@@ -13,7 +13,7 @@
    "listFonction":["aider au developpement informatique","ouvrir des logiciel","ouvrir des racoucie internet"],
    "toucheCalculatrice":"asset/calculatrice",
    "moteurRechercheDefault":"duckduckgo",
-   "emplacementAssetHorloge":"asset/assetHorloge",
+   "emplacementAssetHorloge":"asset/horloge",
    "emplacementSoftWindows":"",
    "etatService":"1",
    "etatSoftware":"1",
