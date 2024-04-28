@@ -40,8 +40,8 @@ class ArreraCopilote :
         labelIconRyley.image_names = iconRyley
         labelIconSix.configure(image=iconSix)
         labelIconRyley.configure(image=iconRyley)
-        labelReponseSix = Label(frameReponse,font=("arial","15"),bg=self.__mainColor,text="")
-        labelReponseRyley = Label(frameReponse,font=("arial","15"),bg=self.__mainColor,text="")
+        self.__labelReponseSix = Label(frameReponse,font=("arial","15"),bg=self.__mainColor,text="")
+        self.__labelReponseRyley = Label(frameReponse,font=("arial","15"),bg=self.__mainColor,text="")
         # Widget frameInput
         input = Frame(frameInput)
         entryInput = Entry(input,width=35,font=("arial","20"),relief=SOLID)
@@ -69,8 +69,8 @@ class ArreraCopilote :
         labelTitle.place(relx=0.5,rely=0.5,anchor="center")
         labelIconSix.place(x=25,y=25)
         labelIconRyley.place(x=25,y=225)
-        labelReponseSix.place(x=90,y=25)
-        labelReponseRyley.place(x=90,y=225)
+        self.__labelReponseSix.place(x=90,y=25)
+        self.__labelReponseRyley.place(x=90,y=225)
         entryInput.pack(side="left")
         btnSend.pack(side="right")
         input.place(relx=0.5,rely=0.5,anchor="center")
@@ -80,4 +80,9 @@ class ArreraCopilote :
 
 
     def active(self):
+        self.__bootCopilote()
         self.__screen.mainloop()
+
+    def __bootCopilote(self):
+        self.__labelReponseRyley.configure(text=self.__assistantRyley.boot())
+        self.__labelReponseSix.configure(text=self.__assistantSix.boot())
