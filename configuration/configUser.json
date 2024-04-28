@@ -1,0 +1,33 @@
+{
+    "user":"",
+    "genre":"",
+    "listVille":[],
+    "lieuDomicile":"",
+    "lieuTravail":"",
+    "adresseDomicile" : "",
+    "adresseTravail":"",
+    "nbSoft" : "0",
+    "dictSoftWindows" :{
+    },
+    "dictSoftLinux" :{
+        
+    },
+    "wordLinux":"",
+    "wordWindows":"",
+    "exelLinux":"",
+    "exelWindows":"",
+    "diapoLinux" :"",
+    "diapoWindows":"",
+    "browserLinux":"",
+    "browserWindows":"",
+    "noteLinux":"",
+    "noteWindows":"",
+    "musicLinux":"",
+    "musicWindows":"",
+    "lienCloud":"",
+    "dictSite":{
+        
+    },
+    "moteurRecherche":"",
+    "emplacementEvenenement" :"evenementUser.json"
+}
