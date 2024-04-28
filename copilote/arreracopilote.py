@@ -46,6 +46,19 @@ class ArreraCopilote :
         input = Frame(frameInput)
         entryInput = Entry(input,width=35,font=("arial","20"),relief=SOLID)
         btnSend = Button(input,text="Envoyer",bg=self.__mainColor,fg=self.__textMainColor,font=("arial","15"))
+        # Widget frameBottom
+        btnApropos = Button(frameBottom,bg=self.__mainColor)
+        iconApropos = ImageTk.PhotoImage((Image.open("asset/icon/copilote/apropos.png").resize((30,30))))
+        btnApropos.image_names=iconApropos
+        btnApropos.configure(image=iconApropos)
+        btnPara = Button(frameBottom,bg=self.__mainColor)
+        iconParametre = ImageTk.PhotoImage((Image.open("asset/icon/copilote/parametre.png").resize((30,30))))
+        btnPara.image_names=iconParametre
+        btnPara.configure(image=iconParametre)
+        btnMicro = Button(frameBottom,width=350,bg=self.__mainColor)
+        iconMicro = ImageTk.PhotoImage((Image.open("asset/icon/copilote/microphoneCopilote.png").resize((30,30))))
+        btnMicro.image_names=iconMicro 
+        btnMicro.configure(image=iconMicro )
         # Affichage general
         # Frame
         frameTop.pack(side="top")
@@ -61,6 +74,9 @@ class ArreraCopilote :
         entryInput.pack(side="left")
         btnSend.pack(side="right")
         input.place(relx=0.5,rely=0.5,anchor="center")
+        btnApropos.place(relx=0, rely=0.5, anchor="w")
+        btnMicro.place(relx=0.5,rely=0.5,anchor="center")
+        btnPara.place(relx=1, rely=0.5, anchor="e")
 
 
     def active(self):
