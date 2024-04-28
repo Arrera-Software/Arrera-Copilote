@@ -44,8 +44,8 @@ class ArreraCopilote :
         self.__labelReponseRyley = Label(frameReponse,font=("arial","15"),bg=self.__mainColor,text="")
         # Widget frameInput
         input = Frame(frameInput)
-        entryInput = Entry(input,width=35,font=("arial","20"),relief=SOLID)
-        btnSend = Button(input,text="Envoyer",bg=self.__mainColor,fg=self.__textMainColor,font=("arial","15"))
+        self.__entryInput = Entry(input,width=35,font=("arial","20"),relief=SOLID)
+        btnSend = Button(input,text="Envoyer",bg=self.__mainColor,fg=self.__textMainColor,font=("arial","15"),command=self.__neuron)
         # Widget frameBottom
         btnApropos = Button(frameBottom,bg=self.__mainColor)
         iconApropos = ImageTk.PhotoImage((Image.open("asset/icon/copilote/apropos.png").resize((30,30))))
@@ -71,7 +71,7 @@ class ArreraCopilote :
         labelIconRyley.place(x=25,y=225)
         self.__labelReponseSix.place(x=90,y=25)
         self.__labelReponseRyley.place(x=90,y=225)
-        entryInput.pack(side="left")
+        self.__entryInput.pack(side="left")
         btnSend.pack(side="right")
         input.place(relx=0.5,rely=0.5,anchor="center")
         btnApropos.place(relx=0, rely=0.5, anchor="w")
@@ -86,3 +86,23 @@ class ArreraCopilote :
     def __bootCopilote(self):
         self.__labelReponseRyley.configure(text=self.__assistantRyley.boot())
         self.__labelReponseSix.configure(text=self.__assistantSix.boot())
+
+    def __neuron(self):
+        reponse =  self.__entryInput.get()
+        self.__entryInput.delete(0,END)
+        self.__labelReponseSix.configure(text="")
+        self.__labelReponseRyley.configure(text="")
+        varSortie = int 
+        varSortie, sortieRyley = self.__assistantRyley.neuron(reponse)
+        if (varSortie==0):
+            varSortie, sortieSix = self.__assistantSix.neuron(reponse)
+            if (varSortie==0) :
+                radom = random.randint(0,1)
+                if (radom==0):
+                    self.__labelReponseSix.configure(text="Il est impossible pour moi et mon frere de vous repondre")
+                else :
+                    self.__labelReponseRyley.configure(text="Il est impossible pour moi et ma soeur de te repondre")
+            else:
+                self.__labelReponseSix.configure(text=sortieSix[0])
+        else :
+            self.__labelReponseRyley.configure(text=sortieRyley[0])
