@@ -1,3 +1,25 @@
 {
-  "theme": "light"
+   "name" : "Ryley",
+   "lang" :"fr",
+   "nombreVilleMeteo":"0",
+   "lieuDomicile":"",
+   "lieuTravail":"",
+   "iconAssistant":"asset/Ryley.png",
+   "interfaceColor" : "#ffffff",
+   "interfaceTextColor":"#000000",
+   "utilisationVous":"0",
+   "bute":"Assister a l'utilisation de son ordinateur",
+   "createur":"Baptiste Pauchet",
+   "listFonction":["aider au developpement informatique","ouvrir des logiciel","ouvrir des racoucie internet"],
+   "toucheCalculatrice":"asset/calculatrice",
+   "moteurRechercheDefault":"duckduckgo",
+   "emplacementAssetHorloge":"asset/assetHorloge",
+   "emplacementSoftWindows":"",
+   "etatService":"1",
+   "etatSoftware":"1",
+   "etatTime":"1",
+   "etatOpen":"1",
+   "etatSearch":"1",
+   "etatChatbot":"1",
+   "etatApi":"1"
 }
