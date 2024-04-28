@@ -20,6 +20,16 @@ class ArreraCopilote :
         self.__iconCopilote = "asset/icon/copilote/icon.png"
         # Ajout icon a la fenetre
         self.__screen.iconphoto(False,PhotoImage(file=self.__iconCopilote))
+        # Mise en place de l'interface
+        frameTop = Frame(self.__screen,bg="red",width=700,height=100)
+        frameReponse =  Frame(self.__screen,bg="blue",width=700,height=450)
+        frameInput = Frame(self.__screen,bg="orange",width=700,height=100)
+        frameBottom = Frame(self.__screen,bg="green",width=700,height=50)
+        # Affichage
+        frameTop.pack(side="top")
+        frameReponse.pack()
+        frameInput.pack()
+        frameBottom.pack(side="bottom")
 
     def active(self):
         self.__screen.mainloop()
