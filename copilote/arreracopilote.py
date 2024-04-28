@@ -47,7 +47,7 @@ class ArreraCopilote :
         self.__entryInput = Entry(input,width=35,font=("arial","20"),relief=SOLID)
         btnSend = Button(input,text="Envoyer",bg=self.__mainColor,fg=self.__textMainColor,font=("arial","15"),command=self.__neuron)
         # Widget frameBottom
-        btnApropos = Button(frameBottom,bg=self.__mainColor)
+        btnApropos = Button(frameBottom,bg=self.__mainColor,command=self.__Apropop)
         iconApropos = ImageTk.PhotoImage((Image.open("asset/icon/copilote/apropos.png").resize((30,30))))
         btnApropos.image_names=iconApropos
         btnApropos.configure(image=iconApropos)
@@ -106,3 +106,32 @@ class ArreraCopilote :
                 self.__labelReponseSix.configure(text=sortieSix[0])
         else :
             self.__labelReponseRyley.configure(text=sortieRyley[0])
+    
+    def __Apropop(self):
+        #Variable
+        nameApp = "Arrera Copilote"#Definir le nom de l'app
+        versionApp = "I2024-1.00-dev"#Definir le nom de la version
+        imagePath = self.__emplacementIconCopilote #Indiquer l'emplacement de l'icon
+        copyrightApp = "Copyright Arrera Software by Baptiste P 2023-2024"
+        color = self.__mainColor
+        #Creation de la fenetre
+        about = Toplevel()
+        about.title("A propos : "+nameApp)
+        about.maxsize(400,300)
+        about.minsize(400,300)
+        about.configure(bg=color)
+        about.iconphoto(False,PhotoImage(file=imagePath))
+        #Traitement Image
+        icon = ImageTk.PhotoImage(Image.open(imagePath).resize((100,100)))
+        #Label
+        labelIcon = Label(about,bg=color)
+        labelIcon.image_names = icon
+        labelIcon.configure(image=icon)
+        labelName = Label(about,text="\n"+nameApp+"\n",font=("arial","12"),bg=color)
+        labelVersion = Label(about,text=versionApp+"\n",font=("arial","11"),bg=color)
+        labelCopyright = Label(about,text=copyrightApp,font=("arial","9"),bg=color)
+        #affichage
+        labelIcon.pack()
+        labelName.pack()
+        labelVersion.pack()
+        labelCopyright.pack()
