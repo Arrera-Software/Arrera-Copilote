@@ -25,23 +25,23 @@ class ArreraCopilote :
         # Ajout icon a la fenetre
         self.__screen.iconphoto(False,PhotoImage(file=self.__emplacementIconCopilote))
         # Mise en place de l'interface
-        frameTop = Frame(self.__screen,bg="red",width=700,height=100)
-        frameReponse =  Frame(self.__screen,bg="blue",width=700,height=450)
-        frameInput = Frame(self.__screen,bg="orange",width=700,height=100)
-        frameBottom = Frame(self.__screen,bg="green",width=700,height=50)
+        frameTop = Frame(self.__screen,bg=self.__mainColor,width=700,height=100)
+        frameReponse =  Frame(self.__screen,bg=self.__mainColor,width=700,height=450)
+        frameInput = Frame(self.__screen,bg=self.__mainColor,width=700,height=100)
+        frameBottom = Frame(self.__screen,bg=self.__mainColor,width=700,height=50)
         # Widget frameTop
         labelTitle = Label(frameTop,text="Arrera Copilote",bg=self.__mainColor,fg=self.__textMainColor,font=("arial","35"))
         # Widget frameReponse
-        labelIconRyley = Label(frameReponse)
-        labelIconSix = Label(frameReponse)
+        labelIconRyley = Label(frameReponse,bg=self.__mainColor)
+        labelIconSix = Label(frameReponse,bg=self.__mainColor)
         iconSix = ImageTk.PhotoImage((Image.open(self.__emplacementIconSix).resize((60,60))))
         iconRyley = ImageTk.PhotoImage((Image.open(self.____emplacementIconRyley).resize((60,60))))
         labelIconSix.image_names = iconSix
         labelIconRyley.image_names = iconRyley
         labelIconSix.configure(image=iconSix)
         labelIconRyley.configure(image=iconRyley)
-        labelReponseSix = Label(frameReponse,font=("arial","15"),bg="grey",text="Reponse SIX")
-        labelReponseRyley = Label(frameReponse,font=("arial","15"),bg="grey",text="Reponse RYLEY")
+        labelReponseSix = Label(frameReponse,font=("arial","15"),bg=self.__mainColor,text="")
+        labelReponseRyley = Label(frameReponse,font=("arial","15"),bg=self.__mainColor,text="")
         # Widget frameInput
         input = Frame(frameInput)
         entryInput = Entry(input,width=35,font=("arial","20"),relief=SOLID)
