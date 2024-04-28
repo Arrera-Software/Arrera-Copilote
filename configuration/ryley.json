@@ -16,10 +16,10 @@
    "emplacementAssetHorloge":"asset/horloge",
    "emplacementSoftWindows":"",
    "etatService":"1",
-   "etatSoftware":"1",
-   "etatTime":"1",
+   "etatSoftware":"0",
+   "etatTime":"0",
    "etatOpen":"1",
-   "etatSearch":"1",
-   "etatChatbot":"1",
-   "etatApi":"1"
+   "etatSearch":"0",
+   "etatChatbot":"0",
+   "etatApi":"0"
 }

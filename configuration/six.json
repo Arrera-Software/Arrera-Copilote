@@ -15,10 +15,10 @@
    "toucheCalculatrice":"asset/calculatrice",
    "moteurRechercheDefault":"duckduckgo",
    "emplacementSoftWindows":"",
-   "etatService":"1",
+   "etatService":"0",
    "etatSoftware":"1",
    "etatTime":"1",
-   "etatOpen":"1",
+   "etatOpen":"0",
    "etatSearch":"1",
    "etatChatbot":"1",
    "etatApi":"1"
