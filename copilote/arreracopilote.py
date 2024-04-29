@@ -140,13 +140,7 @@ class ArreraCopilote :
         labelName.pack()
         labelVersion.pack()
         labelCopyright.pack()
-    
-    def __division(self,text, nombre):
-        mots = text.split()
-        premierPartie = mots[:nombre]
-        deuxiemePartie = mots[nombre:]
-        return ' '.join(premierPartie), ' '.join(deuxiemePartie)
-    
+
     def __ryleySpeak(self,texte:str):
         self.__labelReponseRyley.configure(text=texte, justify="left",wraplength=600)
         
