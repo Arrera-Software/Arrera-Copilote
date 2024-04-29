@@ -97,11 +97,16 @@ class ArreraCopilote :
         if (varSortie==0):
             varSortie, sortieSix = self.__assistantSix.neuron(reponse)
             if (varSortie==0) :
-                radom = random.randint(0,1)
-                if (radom==0):
-                    self.__labelReponseSix.configure(text="Il est impossible pour moi et mon frere de vous repondre")
-                else :
-                    self.__labelReponseRyley.configure(text="Il est impossible pour moi et ma soeur de te repondre")
+                reponse = chaine.netoyage(reponse)
+                if "tu es qui" in reponse or "présente toi" in reponse or "présentation" in reponse or "qui es tu" in reponse or "qui es tu" in reponse or "vous etes qui" in reponse :
+                    self.__labelReponseSix.configure(text="je suis SIX un assistant personnel développer par Arrera Software")
+                    self.__labelReponseRyley.configure(text="Et moi je suis Ryley le frere de Six. Et a deux nous avons pour but d'optimiser votre façon de travailler")
+                else:
+                    radom = random.randint(0,1)
+                    if (radom==0):
+                        self.__labelReponseSix.configure(text="Il est impossible pour moi et mon frere de vous repondre")
+                    else :
+                        self.__labelReponseRyley.configure(text="Il est impossible pour moi et ma soeur de te repondre")
             else:
                 self.__labelReponseSix.configure(text=sortieSix[0])
         else :
