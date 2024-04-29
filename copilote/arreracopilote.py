@@ -99,18 +99,18 @@ class ArreraCopilote :
             if (varSortie==0) :
                 reponse = chaine.netoyage(reponse)
                 if "tu es qui" in reponse or "présente toi" in reponse or "présentation" in reponse or "qui es tu" in reponse or "qui es tu" in reponse or "vous etes qui" in reponse :
-                    self.__labelReponseSix.configure(text="je suis SIX un assistant personnel développer par Arrera Software")
-                    self.__labelReponseRyley.configure(text="Et moi je suis Ryley le frere de Six. Et a deux nous avons pour but d'optimiser votre façon de travailler")
+                    self.__sixSpeak("je suis SIX un assistant personnel développer par Arrera Software")
+                    self.__ryleySpeak("Et moi je suis Ryley le frere de Six. Et a deux nous avons pour but d'optimiser votre façon de travailler")
                 else:
                     radom = random.randint(0,1)
                     if (radom==0):
-                        self.__labelReponseSix.configure(text="Il est impossible pour moi et mon frere de vous repondre")
+                        self.__sixSpeak("Il est impossible pour moi et mon frere de vous repondre")
                     else :
-                        self.__labelReponseRyley.configure(text="Il est impossible pour moi et ma soeur de te repondre")
+                        self.__ryleySpeak("Il est impossible pour moi et ma soeur de te repondre")
             else:
-                self.__labelReponseSix.configure(text=sortieSix[0])
+                self.__sixSpeak(sortieSix[0])
         else :
-            self.__labelReponseRyley.configure(text=sortieRyley[0])
+            self.__ryleySpeak(sortieRyley[0])
     
     def __Apropop(self):
         #Variable
@@ -141,30 +141,36 @@ class ArreraCopilote :
         labelVersion.pack()
         labelCopyright.pack()
     
+    def __division(self,text, nombre):
+        mots = text.split()
+        premierPartie = mots[:nombre]
+        deuxiemePartie = mots[nombre:]
+        return ' '.join(premierPartie), ' '.join(deuxiemePartie)
+    
     def __ryleySpeak(self,texte:str):
-        if int(len(texte)) > 6 :
-            texte1,texte2 = self.__division(texte,6)
+        if int(len(texte)) > 8 :
+            texte1,texte2 = self.__division(texte,8)
             allTexte = texte1+"\n"+texte2
-            if int(len(texte2)) > 6 :
-                texte2,texte3 = self.__division(texte2,6)
+            if int(len(texte2)) > 8 :
+                texte2,texte3 = self.__division(texte2,8)
                 allTexte = texte1+"\n"+texte2+"\n"+texte3
-                if int(len(texte3)) > 6 :
-                    texte3,texte4 = self.__division(texte3,6)
+                if int(len(texte3)) > 8 :
+                    texte3,texte4 = self.__division(texte3,8)
                     allTexte = texte1+"\n"+texte2+"\n"+texte3+"\n"+texte4
         else :
             allTexte = texte
-        self.__labelReponseRyley.configure(text=allTexte)
+        self.__labelReponseRyley.configure(text=allTexte, justify="left")
     
     def __sixSpeak(self,texte:str):
-        if int(len(texte)) > 6 :
-            texte1,texte2 = self.__division(texte,6)
+        if int(len(texte)) > 8 :
+            texte1,texte2 = self.__division(texte,8)
             allTexte = texte1+"\n"+texte2
-            if int(len(texte2)) > 6 :
-                texte2,texte3 = self.__division(texte2,6)
+            if int(len(texte2)) > 8 :
+                texte2,texte3 = self.__division(texte2,8)
                 allTexte = texte1+"\n"+texte2+"\n"+texte3
-                if int(len(texte3)) > 6 :
-                    texte3,texte4 = self.__division(texte3,6)
+                if int(len(texte3)) > 8 :
+                    texte3,texte4 = self.__division(texte3,8)
                     allTexte = texte1+"\n"+texte2+"\n"+texte3+"\n"+texte4
         else :
             allTexte = texte
-        self.__labelReponseSix.configure(text=allTexte)
+        self.__labelReponseSix.configure(text=allTexte, justify="left")
