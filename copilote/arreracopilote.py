@@ -1,9 +1,13 @@
 from ObjetsNetwork.arreraNeuron import*
 from gazelle.arreraAssistantSetting import *
+from lynx.arreraLynx import*
 from PIL import Image, ImageTk
 
 class ArreraCopilote :
     def __init__(self):
+        # Verification des configuaration 
+        if self.__verifBoot()==False:
+            self.__bootWithLynx()
         #objet assistant
         self.__assistantSix = ArreraNetwork("configuration/configUser.json",
                                           "configuration/six.json",
@@ -157,4 +161,16 @@ class ArreraCopilote :
     def __setting(self):
         parametre = Toplevel()
         self.__parametre.windows(parametre,"light")
+    
+    def __verifBoot(self):
+        if not jsonWork("configuration/configUser.json").lectureJSON("user") and not jsonWork("configuration/configUser.json").lectureJSON("genre") :
+            return False
+        else :
+            return True
+
+    def __bootWithLynx(self):
+        screen =  Tk()
+        lynx = ArreraLynx(screen,jsonWork("configuration/lynx.json"),jsonWork("configuration/configUser.json"),jsonWork("configuration/six.json"))
+        lynx.active()
+        screen.mainloop()
         
