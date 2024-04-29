@@ -1,0 +1,16 @@
+{
+    "colorLight1":"white",
+    "colorLight2":"white",
+    "colorDark1":"black",
+    "colorDark2":"black",
+    "textColorDark1":"white",
+    "textColorDark2":"white",
+    "textColorLight1":"black",
+    "textColorLight2":"black",
+    "colorInterface":"0",
+    "setIcon":"1",
+    "iconAssistant":"asset/icon/parametre.png",
+    "listeTheme":["light","black"],
+    "listGenre":["Monsieur","Madame"],
+    "gestionMicro":"0"
+}
