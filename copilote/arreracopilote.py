@@ -140,3 +140,31 @@ class ArreraCopilote :
         labelName.pack()
         labelVersion.pack()
         labelCopyright.pack()
+    
+    def __ryleySpeak(self,texte:str):
+        if int(len(texte)) > 6 :
+            texte1,texte2 = self.__division(texte,6)
+            allTexte = texte1+"\n"+texte2
+            if int(len(texte2)) > 6 :
+                texte2,texte3 = self.__division(texte2,6)
+                allTexte = texte1+"\n"+texte2+"\n"+texte3
+                if int(len(texte3)) > 6 :
+                    texte3,texte4 = self.__division(texte3,6)
+                    allTexte = texte1+"\n"+texte2+"\n"+texte3+"\n"+texte4
+        else :
+            allTexte = texte
+        self.__labelReponseRyley.configure(text=allTexte)
+    
+    def __sixSpeak(self,texte:str):
+        if int(len(texte)) > 6 :
+            texte1,texte2 = self.__division(texte,6)
+            allTexte = texte1+"\n"+texte2
+            if int(len(texte2)) > 6 :
+                texte2,texte3 = self.__division(texte2,6)
+                allTexte = texte1+"\n"+texte2+"\n"+texte3
+                if int(len(texte3)) > 6 :
+                    texte3,texte4 = self.__division(texte3,6)
+                    allTexte = texte1+"\n"+texte2+"\n"+texte3+"\n"+texte4
+        else :
+            allTexte = texte
+        self.__labelReponseSix.configure(text=allTexte)
