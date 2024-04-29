@@ -1,4 +1,5 @@
 from ObjetsNetwork.arreraNeuron import*
+from gazelle.arreraAssistantSetting import *
 from PIL import Image, ImageTk
 
 class ArreraCopilote :
@@ -10,6 +11,11 @@ class ArreraCopilote :
         self.__assistantRyley = ArreraNetwork("configuration/configUser.json",
                                           "configuration/ryley.json",
                                           "configuration/listFete.json")
+        # objet Parametre
+        self.__parametre = ArreraSettingAssistant("configuration/configSetting.json",
+                                                  "configuration/six.json",
+                                                  "configuration/copilote.json",
+                                                  "configuration/configUser.json")
         # varriable couleur
         self.__mainColor = "white"
         self.__textMainColor = "black"
@@ -51,7 +57,7 @@ class ArreraCopilote :
         iconApropos = ImageTk.PhotoImage((Image.open("asset/icon/copilote/apropos.png").resize((30,30))))
         btnApropos.image_names=iconApropos
         btnApropos.configure(image=iconApropos)
-        btnPara = Button(frameBottom,bg=self.__mainColor)
+        btnPara = Button(frameBottom,bg=self.__mainColor,command=self.__setting)
         iconParametre = ImageTk.PhotoImage((Image.open("asset/icon/copilote/parametre.png").resize((30,30))))
         btnPara.image_names=iconParametre
         btnPara.configure(image=iconParametre)
@@ -147,4 +153,8 @@ class ArreraCopilote :
     
     def __sixSpeak(self,texte:str):
         self.__labelReponseSix.configure(text=texte, justify="left",wraplength=600)
+    
+    def __setting(self):
+        parametre = Toplevel()
+        self.__parametre.windows(parametre,"light")
         
