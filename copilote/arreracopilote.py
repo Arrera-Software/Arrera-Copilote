@@ -84,8 +84,8 @@ class ArreraCopilote :
         self.__screen.mainloop()
 
     def __bootCopilote(self):
-        self.__labelReponseRyley.configure(text=self.__assistantRyley.boot())
-        self.__labelReponseSix.configure(text=self.__assistantSix.boot())
+        self.__ryleySpeak(self.__assistantRyley.boot())
+        self.__sixSpeak(self.__assistantSix.boot())
 
     def __neuron(self):
         reponse =  self.__entryInput.get()
@@ -99,7 +99,7 @@ class ArreraCopilote :
             if (varSortie==0) :
                 reponse = chaine.netoyage(reponse)
                 if "tu es qui" in reponse or "présente toi" in reponse or "présentation" in reponse or "qui es tu" in reponse or "qui es tu" in reponse or "vous etes qui" in reponse :
-                    self.__sixSpeak("je suis SIX un assistant personnel développer par Arrera Software")
+                    self.__sixSpeak("Je suis SIX un assistant personnel développer par Arrera Software")
                     self.__ryleySpeak("Et moi je suis Ryley le frere de Six. Et a deux nous avons pour but d'optimiser votre façon de travailler")
                 else:
                     radom = random.randint(0,1)
@@ -148,29 +148,9 @@ class ArreraCopilote :
         return ' '.join(premierPartie), ' '.join(deuxiemePartie)
     
     def __ryleySpeak(self,texte:str):
-        if int(len(texte)) > 8 :
-            texte1,texte2 = self.__division(texte,8)
-            allTexte = texte1+"\n"+texte2
-            if int(len(texte2)) > 8 :
-                texte2,texte3 = self.__division(texte2,8)
-                allTexte = texte1+"\n"+texte2+"\n"+texte3
-                if int(len(texte3)) > 8 :
-                    texte3,texte4 = self.__division(texte3,8)
-                    allTexte = texte1+"\n"+texte2+"\n"+texte3+"\n"+texte4
-        else :
-            allTexte = texte
-        self.__labelReponseRyley.configure(text=allTexte, justify="left")
+        self.__labelReponseRyley.configure(text=texte, justify="left",wraplength=600)
+        
     
     def __sixSpeak(self,texte:str):
-        if int(len(texte)) > 8 :
-            texte1,texte2 = self.__division(texte,8)
-            allTexte = texte1+"\n"+texte2
-            if int(len(texte2)) > 8 :
-                texte2,texte3 = self.__division(texte2,8)
-                allTexte = texte1+"\n"+texte2+"\n"+texte3
-                if int(len(texte3)) > 8 :
-                    texte3,texte4 = self.__division(texte3,8)
-                    allTexte = texte1+"\n"+texte2+"\n"+texte3+"\n"+texte4
-        else :
-            allTexte = texte
-        self.__labelReponseSix.configure(text=allTexte, justify="left")
+        self.__labelReponseSix.configure(text=texte, justify="left",wraplength=600)
+        
