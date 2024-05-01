@@ -1,4 +1,4 @@
-from ObjetsNetwork.arreraNeuron import*
+from neuronCopilote.neuroncopilote import*
 from gazelle.arreraAssistantSetting import *
 from lynx.arreraLynx import*
 from PIL import Image, ImageTk
@@ -20,6 +20,8 @@ class ArreraCopilote :
                                                   "configuration/six.json",
                                                   "configuration/copilote.json",
                                                   "configuration/configUser.json")
+        # Neuron copilote
+        self.__copiloteNeuron = neuronCopilote("configuration/configUser.json")
         # varriable couleur
         self.__mainColor = "white"
         self.__textMainColor = "black"
@@ -107,11 +109,10 @@ class ArreraCopilote :
         if (varSortie==0):
             varSortie, sortieSix = self.__assistantSix.neuron(reponse)
             if (varSortie==0) :
-                reponse = chaine.netoyage(reponse)
-                if "tu es qui" in reponse or "présente toi" in reponse or "présentation" in reponse or "qui es tu" in reponse or "qui es tu" in reponse or "vous etes qui" in reponse :
-                    self.__sixSpeak("Je suis SIX un assistant personnel développer par Arrera Software")
-                    self.__ryleySpeak("Et moi je suis Ryley le frere de Six. Et a deux nous avons pour but d'optimiser votre façon de travailler")
-                else:
+                varSortie,sortieNeuronCopilote = self.__copiloteNeuron.neuron(reponse)
+                self.__sixSpeak(sortieNeuronCopilote[0])
+                self.__ryleySpeak(sortieNeuronCopilote[1])
+                if varSortie == 0 :
                     radom = random.randint(0,1)
                     if (radom==0):
                         self.__sixSpeak("Il est impossible pour moi et mon frere de vous repondre")
