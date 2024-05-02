@@ -17,7 +17,7 @@ class CArreraCopiloteTableurGUI :
         file = ""
         result = messagebox.askquestion(
             "Choix de l'action", 
-            "Voulez-vous créer un nouveau fichier ou ouvrir un fichier existant ?")
+            "Voulez-vous crée un fichier ?")
         if (result=="yes"):
             while (file=="") :
                 file = filedialog.asksaveasfilename(
