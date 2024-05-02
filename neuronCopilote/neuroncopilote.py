@@ -15,8 +15,8 @@ class neuronCopilote :
                 ]
             nb = 1 
         else :
-            if ("tableur" in statement):
-                sortie = ["Okay je vous ouvre le logiciel d'edition de tableur",""]
+            if ("tableur graphique" in statement):
+                sortie = ["Okay je vous ouvre le logiciel d'edition de tableur","J'espere que sa te sera utile"]
                 self.__fncTableur.active()
                 nb = 1 
             else : 
