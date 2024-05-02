@@ -1,8 +1,10 @@
 from ObjetsNetwork.arreraNeuron import*
+from copilotefonction.copiloteTableur import*
 
 class neuronCopilote : 
     def __init__(self,configUser):
         self.__jsonUser = jsonWork(configUser)
+        self.__fncTableur = CArreraCopiloteTableur()
     
     def neuron(self,var:str):
         statement = chaine.netoyage(var)
@@ -12,8 +14,13 @@ class neuronCopilote :
                 "Et moi je suis Ryley le frere de Six. Et a deux nous avons pour but d'optimiser votre façon de travailler"
                 ]
             nb = 1 
-        else : 
-            sortie = ["",""]
-            nb = 0 
+        else :
+            if ("tableur" in statement):
+                sortie = ["Okay je vous ouvre le logiciel d'edition de tableur",""]
+                self.__fncTableur.active()
+                nb = 1 
+            else : 
+                sortie = ["",""]
+                nb = 0 
         
         return nb , sortie

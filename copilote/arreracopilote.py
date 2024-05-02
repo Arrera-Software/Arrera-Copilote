@@ -15,13 +15,6 @@ class ArreraCopilote :
         self.__assistantRyley = ArreraNetwork("configuration/configUser.json",
                                           "configuration/ryley.json",
                                           "configuration/listFete.json")
-        # objet Parametre
-        self.__parametre = ArreraSettingAssistant("configuration/configSetting.json",
-                                                  "configuration/six.json",
-                                                  "configuration/copilote.json",
-                                                  "configuration/configUser.json")
-        # Neuron copilote
-        self.__copiloteNeuron = neuronCopilote("configuration/configUser.json")
         # varriable couleur
         self.__mainColor = "white"
         self.__textMainColor = "black"
@@ -30,6 +23,13 @@ class ArreraCopilote :
         self.__screen.title("Arrera : Copilote")
         self.__screen.maxsize(700,700)
         self.__screen.minsize(700,700)
+        # objet Parametre
+        self.__parametre = ArreraSettingAssistant("configuration/configSetting.json",
+                                                  "configuration/six.json",
+                                                  "configuration/copilote.json",
+                                                  "configuration/configUser.json")
+        # Neuron copilote
+        self.__copiloteNeuron = neuronCopilote("configuration/configUser.json")
         # emplacement icon 
         self.__emplacementIconSix = "asset/icon/six/logo-normal.png"
         self.____emplacementIconRyley = "asset/icon/ryley/icon.png"
