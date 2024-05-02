@@ -8,8 +8,10 @@ class CArreraCopiloteTableur :
     def __init__(self) :
         self.__color = "white"
         self.__textColor = "black"
-        self.__caseSelected,self.__actionSelected = str
-        self.__selectCase , self.__selectAction = False
+        self.__caseSelected = str
+        self.__actionSelected = str
+        self.__selectCase = False
+        self.__selectAction = False
     
     def active(self):
         file = ""
@@ -52,6 +54,8 @@ class CArreraCopiloteTableur :
                                        fg=self.__textColor,bg=self.__color)
         self.__labelfncSelect = Label(self.__mainFrame,font=("arial",15),
                                        fg=self.__textColor,bg=self.__color)
+        self.__btnAnnuler = Button(self.__mainFrame,text="Annuler",font=("arial",15),width=25,
+                                       fg=self.__textColor,bg=self.__color,command=self.__cancelSelect)
         # widget frameCase
         labelCase = Label(self.__frameCase,text="Case :",font=("arial",15),
                           fg=self.__textColor,bg=self.__color)
@@ -113,6 +117,7 @@ class CArreraCopiloteTableur :
                 self.__frameCase.place_forget()
                 self.__labelCaseSelect.place(x=15,y=35)
                 self.__selectCase = True
+                self.__btnAnnuler.place(x=15,y=335)
             else :
                 messagebox.showerror("Case invalide","La case n'est pas valide")
         self.__entryCase.delete(0,END)
@@ -124,3 +129,15 @@ class CArreraCopiloteTableur :
         self.__labelfncSelect.configure(text="Action : "+action)
         self.__labelfncSelect.place(x=15,y=85)
         self.__selectAction = True
+        self.__btnAnnuler.place(x=15,y=335)
+    
+    def __cancelSelect(self):
+        self.__caseSelected = None
+        self.__actionSelected = None
+        self.__selectCase = False
+        self.__selectAction = False
+        self.__labelCaseSelect.place_forget()
+        self.__frameCase.place(x=15,y=35)
+        self.__labelfncSelect.place_forget()
+        self.__frameAction.place(x=15,y=85)
+        self.__btnAnnuler.place_forget()
