@@ -4,7 +4,7 @@ from copilotefonction.copiloteTableur import*
 class neuronCopilote : 
     def __init__(self,configUser):
         self.__jsonUser = jsonWork(configUser)
-        self.__fncTableur = CArreraCopiloteTableur()
+        self.__fncTableur = CArreraCopiloteTableurGUI()
     
     def neuron(self,var:str):
         statement = chaine.netoyage(var)

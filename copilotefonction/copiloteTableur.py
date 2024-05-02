@@ -4,7 +4,7 @@ from tkinter import filedialog, messagebox
 import re
 
 
-class CArreraCopiloteTableur :
+class CArreraCopiloteTableurGUI :
     def __init__(self) :
         self.__color = "white"
         self.__textColor = "black"
