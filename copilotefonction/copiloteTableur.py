@@ -80,7 +80,7 @@ class CArreraCopiloteTableur :
                           fg=self.__textColor,bg=self.__color)
         self.__entryAddValeur = Entry(self.__addValeur,font=("arial","15"),width=15,relief=SOLID)
         validerAddValeur = Button(self.__addValeur,text="Ajouter",font=("arial",15),
-                          fg=self.__textColor,bg=self.__color)
+                          fg=self.__textColor,bg=self.__color,command=lambda:self.__ecritureFormule(1))
         # widget addMoyenne
         labelAddMoyenne = Label(self.__addMoyenne,text="Definissez les case pour votre moyenne",font=("arial",15),
                           fg=self.__textColor,bg=self.__color)
@@ -93,7 +93,7 @@ class CArreraCopiloteTableur :
         labelMoyenneFin  =Label(finMoyenne,text="Fin :",font=("arial",15),
                           fg=self.__textColor,bg=self.__color)
         validerAddMoyenne = Button(self.__addMoyenne,text="Ajouter",font=("arial",15),
-                          fg=self.__textColor,bg=self.__color)
+                          fg=self.__textColor,bg=self.__color,command=lambda:self.__ecritureFormule(2))
         # widget addSomme
         labelAddSomme = Label(self.__addSomme,text="Definissez les case pour votre somme",font=("arial",15),
                           fg=self.__textColor,bg=self.__color)
@@ -106,7 +106,7 @@ class CArreraCopiloteTableur :
         labelSommeFin  =Label(finSomme,text="Fin :",font=("arial",15),
                           fg=self.__textColor,bg=self.__color)
         validerAddSomme = Button(self.__addSomme,text="Ajouter",font=("arial",15),
-                          fg=self.__textColor,bg=self.__color)
+                          fg=self.__textColor,bg=self.__color,command=lambda:self.__ecritureFormule(3))
         # widget addComptage
         labelAddComptage = Label(self.__addComptage,text="Definissez les case pour compter\nle nombre de valeur",font=("arial",15),
                           fg=self.__textColor,bg=self.__color)
@@ -119,7 +119,7 @@ class CArreraCopiloteTableur :
         labelComptageFin  =Label(finComptage,text="Fin :",font=("arial",15),
                           fg=self.__textColor,bg=self.__color)
         validerAddComptage = Button(self.__addComptage,text="Ajouter",font=("arial",15),
-                          fg=self.__textColor,bg=self.__color)
+                          fg=self.__textColor,bg=self.__color,command=lambda:self.__ecritureFormule(4))
         # widget addMinimun
         labelAddMinimun = Label(self.__addMinimun,text="Definissez les case pour\ntrouver votre valeur minimun",font=("arial",15),
                           fg=self.__textColor,bg=self.__color)
@@ -132,7 +132,7 @@ class CArreraCopiloteTableur :
         labelMinimunFin  =Label(finMinimun,text="Fin :",font=("arial",15),
                           fg=self.__textColor,bg=self.__color)
         validerAddMinimun = Button(self.__addMinimun,text="Ajouter",font=("arial",15),
-                          fg=self.__textColor,bg=self.__color)
+                          fg=self.__textColor,bg=self.__color,command=lambda:self.__ecritureFormule(5))
         # widget addMaximun
         labelAddMaximun = Label(self.__addMaximun,text="Definissez les case pour\ntrouver votre valeur maximun",font=("arial",15),
                           fg=self.__textColor,bg=self.__color)
@@ -145,7 +145,7 @@ class CArreraCopiloteTableur :
         labelMaximunFin  =Label(finMaximun,text="Fin :",font=("arial",15),
                           fg=self.__textColor,bg=self.__color)
         validerAddMaximun = Button(self.__addMaximun,text="Ajouter",font=("arial",15),
-                          fg=self.__textColor,bg=self.__color)
+                          fg=self.__textColor,bg=self.__color,command=lambda:self.__ecritureFormule(6))
         #set option menu 
         self.__action.set(listAction[0])
         # Affichage des valeur du tableur
@@ -246,7 +246,7 @@ class CArreraCopiloteTableur :
                 self.__selectCase = True
                 self.__btnAnnuler.place(x=15,y=335)
                 if ((self.__selectCase==True) and (self.__selectAction==True)):
-                    self.__ecriture()
+                    self.__preecretureFormule()
             else :
                 messagebox.showerror("Case invalide","La case n'est pas valide")
         self.__entryCase.delete(0,END)
@@ -260,7 +260,7 @@ class CArreraCopiloteTableur :
         self.__selectAction = True
         self.__btnAnnuler.place(x=15,y=335)
         if ((self.__selectCase==True) and (self.__selectAction==True)):       
-            self.__ecriture()
+            self.__preecretureFormule()
     
     def __cancelSelect(self):
         self.__caseSelected = None
@@ -280,7 +280,7 @@ class CArreraCopiloteTableur :
         self.__addMinimun.place_forget()
         self.__addMaximun.place_forget()
     
-    def __ecriture(self):
+    def __preecretureFormule(self):
         #self.__addMaximun.place(x=0,y=400)
         if (self.__actionSelected=="ecrire une valeur"):
             self.__addValeur.place(x=0,y=400)
@@ -305,4 +305,95 @@ class CArreraCopiloteTableur :
                                     self.__tableur.saveFile()
                                     messagebox.showinfo("Copilote","Valeur Supprimer")
                                     self.__updateTableur()
+        
+    def __ecritureFormule(self,v:int):
+        """
+        1 : valeur 
+        2 : moyenne
+        3 : somme
+        4 : comptage
+        5 : minimun
+        6 : maximun
+        """
+        if (v==1):
+            valeur = self.__entryAddValeur.get()
+            self.__entryAddValeur.delete(0,END)
+            if (valeur.isdigit()==True):
+                self.__tableur.write(self.__caseSelected,int(valeur))
+            else : 
+                self.__tableur.write(self.__caseSelected,valeur)
+            self.__tableur.saveFile()
+            self.__cancelSelect()
+            messagebox.showinfo("Copilote","Valeur ajouter")
+            self.__updateTableur()
+        else :
+            if (v==2):
+                caseDebut  = self.__entryAddMoyenneDebut.get()
+                caseFin = self.__entryAddMoyenneFin.get()
+                self.__entryAddMoyenneDebut.delete(0,END)
+                self.__entryAddMoyenneFin.delete(0,END)
+                if((self.__verifChaine(caseDebut)==True)and(self.__verifChaine(caseFin)==True)):
+                    self.__tableur.moyenne(self.__caseSelected,caseDebut,caseFin)
+                    self.__tableur.saveFile()
+                    messagebox.showinfo("Copilote","Moyenne ecrite")
+                    self.__cancelSelect()
+                    self.__updateTableur()
+                else :
+                    messagebox.showerror("Copilote","La moyenne n'a pas pu etre ajouter")
+            else :
+                if (v==3):
+                    caseDebut = self.__entryAddSommeDebut.get()
+                    caseFin = self.__entryAddSommeFin.get()
+                    self.__entryAddSommeDebut.delete(0,END)
+                    self.__entryAddSommeFin.delete(0,END)
+                    if((self.__verifChaine(caseDebut)==True)and(self.__verifChaine(caseFin)==True)):
+                        self.__tableur.somme(self.__caseSelected,caseDebut,caseFin)
+                        self.__tableur.saveFile()
+                        messagebox.showinfo("Copilote","Somme ecrite")
+                        self.__cancelSelect()
+                        self.__updateTableur()
+                    else :
+                        messagebox.showerror("Copilote","La somme n'a pas pu etre ajouter")
+                else :
+                    if (v==4):
+                        caseDebut = self.__entryAddComptageDebut.get()
+                        caseFin = self.__entryAddComptageFin.get()
+                        self.__entryAddComptageDebut.delete(0,END)
+                        self.__entryAddComptageFin.delete(0,END)
+                        if((self.__verifChaine(caseDebut)==True)and(self.__verifChaine(caseFin)==True)):
+                            self.__tableur.comptage(self.__caseSelected,caseDebut,caseFin)
+                            self.__tableur.saveFile()
+                            messagebox.showinfo("Copilote","Comptage ecrite")
+                            self.__cancelSelect()
+                            self.__updateTableur()
+                        else :
+                            messagebox.showerror("Copilote","Le comptage n'a pas pu etre ajouter")
+                    else :
+                        if (v==5):
+                            caseDebut = self.__entryAddMinimunDebut.get()
+                            caseFin = self.__entryAddMinimunFin.get()
+                            self.__entryAddMinimunDebut.delete(0,END)
+                            self.__entryAddMinimunFin.delete(0,END)
+                            if((self.__verifChaine(caseDebut)==True)and(self.__verifChaine(caseFin)==True)):
+                                self.__tableur.minimun(self.__caseSelected,caseDebut,caseFin)
+                                self.__tableur.saveFile()
+                                messagebox.showinfo("Copilote","Minimun ecrite")
+                                self.__cancelSelect()
+                                self.__updateTableur()
+                            else :
+                                messagebox.showerror("Copilote","Le minimun n'a pas pu etre ajouter")
+                        else :
+                            if (v==6):
+                                caseDebut = self.__entryAddMaximunDebut.get()
+                                caseFin = self.__entryAddMaximunFin.get()
+                                self.__entryAddMaximunDebut.delete(0,END)
+                                self.__entryAddMaximunFin.delete(0,END)
+                                if((self.__verifChaine(caseDebut)==True)and(self.__verifChaine(caseFin)==True)):
+                                    self.__tableur.maximun(self.__caseSelected,caseDebut,caseFin)
+                                    self.__tableur.saveFile()
+                                    messagebox.showinfo("Copilote","Maximun ecrite")
+                                    self.__cancelSelect()
+                                    self.__updateTableur()
+                                else :
+                                    messagebox.showerror("Copilote","Le maximun n'a pas pu etre ajouter")
                             
