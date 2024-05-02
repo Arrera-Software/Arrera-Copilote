@@ -37,7 +37,7 @@ class CArreraCopiloteTableur :
         #Cadre principal
         self.__mainFrame = Frame(screen,width=350,height=700,bg="red")
         # Label Affichage contenu tableur 
-        self.labelTableurView = Label(screen,font=("arial",12),
+        self.__labelTableurView = Label(screen,font=("arial",12),
                                       fg=self.__textColor,bg=self.__color,
                                       )
         #Cadre secondaire
@@ -61,7 +61,7 @@ class CArreraCopiloteTableur :
         #set option menu 
         self.__type.set(listAction[0])
         
-        self.updateTableur()
+        self.__updateTableur()
         #Affichage 
         
         
@@ -75,13 +75,13 @@ class CArreraCopiloteTableur :
         frameCase.place(x=15,y=35)
         frameAction.place(x=15,y=85)
         self.__mainFrame.pack(side="left")
-        self.labelTableurView.pack(side="left",anchor="n")
+        self.__labelTableurView.pack(side="left",anchor="n")
     
-    def updateTableur(self):
+    def __updateTableur(self):
         sortie = self.__tableur.read()
-        self.labelTableurView.configure(text="Contenu du fichier tableur", justify="left")
+        self.__labelTableurView.configure(text="Contenu du fichier tableur", justify="left")
         for cell_position, cell_value in sortie.items():
-            text = self.labelTableurView.cget("text")
-            self.labelTableurView.configure(text=text+"\n"+f"Cellule {cell_position} : {cell_value}", justify="left")
+            text = self.__labelTableurView.cget("text")
+            self.__labelTableurView.configure(text=text+"\n"+f"Cellule {cell_position} : {cell_value}", justify="left")
 
         
