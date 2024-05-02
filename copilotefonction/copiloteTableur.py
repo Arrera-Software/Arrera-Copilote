@@ -9,6 +9,7 @@ class CArreraCopiloteTableur :
         self.__color = "white"
         self.__textColor = "black"
         self.__caseSelect = str
+        self.__actionSelect = str
     
     def active(self):
         file = ""
@@ -32,7 +33,7 @@ class CArreraCopiloteTableur :
         screen.maxsize(700,700)
         screen.minsize(700,700)
         # Varriable
-        self.__type = StringVar(screen)
+        self.__action = StringVar(screen)
         listAction = ["ecrire une valeur","faire une moyenne","faire une somme",
                     "faire un comptage","faire un minimun","faire un maximun","supprimer un valeur"]
         #Cadre principal
@@ -43,7 +44,7 @@ class CArreraCopiloteTableur :
                                       )
         #Cadre secondaire
         self.__frameCase = Frame(self.__mainFrame,bg=self.__color)
-        frameAction =  Frame(self.__mainFrame,bg=self.__color)
+        self.__frameAction =  Frame(self.__mainFrame,bg=self.__color)
         # widget mainframe
         labelIndication = Label(self.__mainFrame,text="Modifier le tableur",
                                 font=("arial",15),fg=self.__textColor,bg=self.__color)
@@ -58,13 +59,13 @@ class CArreraCopiloteTableur :
         btnSetCase = Button(self.__frameCase,text="Valider",bg=self.__color,
                             fg=self.__textColor,font=("arial","15"),command=self.__setCase)
         # widget mainFrame 
-        labelAction = Label(frameAction,text="Action :",font=("arial",15),
+        labelAction = Label(self.__frameAction,text="Action :",font=("arial",15),
                           fg=self.__textColor,bg=self.__color)
-        choixAction = OptionMenu(frameAction,self.__type,*listAction)
-        btnSetAction = Button(frameAction,text="Valider",
-                            bg=self.__color,fg=self.__textColor,font=("arial","15"))
+        choixAction = OptionMenu(self.__frameAction,self.__action,*listAction)
+        btnSetAction = Button(self.__frameAction,text="Valider",bg=self.__color,
+                              fg=self.__textColor,font=("arial","15"),command=self.__setAction)
         #set option menu 
-        self.__type.set(listAction[0])
+        self.__action.set(listAction[0])
         # Affichage des valeur du tableur
         self.__updateTableur()
         # Affichage 
@@ -77,7 +78,7 @@ class CArreraCopiloteTableur :
         choixAction.pack(side="left")
         btnSetAction.pack(side="right")
         self.__frameCase.place(x=15,y=35)
-        frameAction.place(x=15,y=85)
+        self.__frameAction.place(x=15,y=85)
         # Affichage principale
         self.__mainFrame.pack(side="left")
         self.__labelTableurView.pack(side="left",anchor="n")
@@ -94,7 +95,7 @@ class CArreraCopiloteTableur :
 
     def __updateTableur(self):
         sortie = self.__tableur.read()
-        self.__labelTableurView.configure(text="Contenu du fichier tableur", justify="left")
+        self.__labelTableurView.configure(text="Contenu du fichier tableur:\n", justify="left")
         for cell_position, cell_value in sortie.items():
             text = self.__labelTableurView.cget("text")
             self.__labelTableurView.configure(text=text
@@ -116,6 +117,9 @@ class CArreraCopiloteTableur :
                 messagebox.showerror("Case invalide","La case n'est pas valide")
         self.__entryCase.delete(0,END)
     
-    
-
-        
+    def __setAction(self):
+        action = self.__action.get()
+        self.__actionSelect = action
+        self.__frameAction.place_forget()
+        self.__labelfncSelect.configure(text="Action : "+action)
+        self.__labelfncSelect.place(x=15,y=85)
