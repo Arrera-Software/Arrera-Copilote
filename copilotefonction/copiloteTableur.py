@@ -34,12 +34,13 @@ class CArreraCopiloteTableurGUI :
         screen.iconphoto(False,PhotoImage(file="asset/icon/copilote/icon.png"))
         screen.maxsize(700,700)
         screen.minsize(700,700)
+        screen.configure(bg=self.__color)
         # Varriable
         self.__action = StringVar(screen)
         listAction = ["ecrire une valeur","faire une moyenne","faire une somme",
                     "faire un comptage","faire un minimun","faire un maximun","supprimer un valeur"]
         #Cadre principal
-        self.__mainFrame = Frame(screen,width=350,height=700,bg="red")
+        self.__mainFrame = Frame(screen,width=350,height=700,bg=self.__color)
         # Label Affichage contenu tableur 
         self.__labelTableurView = Label(screen,font=("arial",12),
                                       fg=self.__textColor,bg=self.__color,
@@ -48,12 +49,12 @@ class CArreraCopiloteTableurGUI :
         self.__frameCase = Frame(self.__mainFrame,bg=self.__color)
         self.__frameAction =  Frame(self.__mainFrame,bg=self.__color)
         # Cadre add 
-        self.__addValeur = Frame(self.__mainFrame,width=350,height=150)
-        self.__addMoyenne = Frame(self.__mainFrame,width=350,height=150)
-        self.__addSomme = Frame(self.__mainFrame,width=350,height=150)
-        self.__addComptage = Frame(self.__mainFrame,width=350,height=150)
-        self.__addMinimun = Frame(self.__mainFrame,width=350,height=150)
-        self.__addMaximun = Frame(self.__mainFrame,width=350,height=150)
+        self.__addValeur = Frame(self.__mainFrame,width=350,height=150,bg=self.__color)
+        self.__addMoyenne = Frame(self.__mainFrame,width=350,height=150,bg=self.__color)
+        self.__addSomme = Frame(self.__mainFrame,width=350,height=150,bg=self.__color)
+        self.__addComptage = Frame(self.__mainFrame,width=350,height=150,bg=self.__color)
+        self.__addMinimun = Frame(self.__mainFrame,width=350,height=150,bg=self.__color)
+        self.__addMaximun = Frame(self.__mainFrame,width=350,height=150,bg=self.__color)
         # widget mainframe
         labelIndication = Label(self.__mainFrame,text="Modifier le tableur",
                                 font=("arial",15),fg=self.__textColor,bg=self.__color)
@@ -159,8 +160,8 @@ class CArreraCopiloteTableurGUI :
         labelAction.pack(side="left")
         choixAction.pack(side="left")
         btnSetAction.pack(side="right")
-        self.__frameCase.place(x=15,y=35)
-        self.__frameAction.place(x=15,y=85)
+        self.__frameCase.place(x=15,y=40)
+        self.__frameAction.place(x=15,y=100)
         # Affichage widget AddValeur
         labelAddValeur.place(relx=0.5, rely=0, anchor="n")
         self.__entryAddValeur.place(relx=0.5,rely=0.5,anchor="center")
