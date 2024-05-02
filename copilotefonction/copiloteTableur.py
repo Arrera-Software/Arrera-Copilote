@@ -47,6 +47,13 @@ class CArreraCopiloteTableur :
         #Cadre secondaire
         self.__frameCase = Frame(self.__mainFrame,bg=self.__color)
         self.__frameAction =  Frame(self.__mainFrame,bg=self.__color)
+        # Cadre add 
+        self.__addValeur = Frame(self.__mainFrame,width=350,height=150)
+        self.__addMoyenne = Frame(self.__mainFrame,width=350,height=150)
+        self.__addSomme = Frame(self.__mainFrame,width=350,height=150)
+        self.__addComptage = Frame(self.__mainFrame,width=350,height=150)
+        self.__addMinimun = Frame(self.__mainFrame,width=350,height=150)
+        self.__addMaximun = Frame(self.__mainFrame,width=350,height=150)
         # widget mainframe
         labelIndication = Label(self.__mainFrame,text="Modifier le tableur",
                                 font=("arial",15),fg=self.__textColor,bg=self.__color)
@@ -68,6 +75,77 @@ class CArreraCopiloteTableur :
         choixAction = OptionMenu(self.__frameAction,self.__action,*listAction)
         btnSetAction = Button(self.__frameAction,text="Valider",bg=self.__color,
                               fg=self.__textColor,font=("arial","15"),command=self.__setAction)
+        # widget addValeur
+        labelAddValeur = Label(self.__addValeur,text="Ecriver la valeur",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        self.__entryAddValeur = Entry(self.__addValeur,font=("arial","15"),width=15,relief=SOLID)
+        validerAddValeur = Button(self.__addValeur,text="Ajouter",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        # widget addMoyenne
+        labelAddMoyenne = Label(self.__addMoyenne,text="Definissez les case pour votre moyenne",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        debutMoyenne = Frame(self.__addMoyenne)
+        finMoyenne = Frame(self.__addMoyenne)
+        self.__entryAddMoyenneDebut = Entry(debutMoyenne,font=("arial","15"),width=5,relief=SOLID)
+        self.__entryAddMoyenneFin = Entry(finMoyenne,font=("arial","15"),width=5,relief=SOLID)
+        labelMoyenneDebut  =Label(debutMoyenne,text="Debut :",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        labelMoyenneFin  =Label(finMoyenne,text="Fin :",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        validerAddMoyenne = Button(self.__addMoyenne,text="Ajouter",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        # widget addSomme
+        labelAddSomme = Label(self.__addSomme,text="Definissez les case pour votre somme",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        debutSomme = Frame(self.__addSomme)
+        finSomme = Frame(self.__addSomme)
+        self.__entryAddSommeDebut = Entry(debutSomme,font=("arial","15"),width=5,relief=SOLID)
+        self.__entryAddSommeFin = Entry(finSomme,font=("arial","15"),width=5,relief=SOLID)
+        labelSommeDebut  =Label(debutSomme,text="Debut :",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        labelSommeFin  =Label(finSomme,text="Fin :",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        validerAddSomme = Button(self.__addSomme,text="Ajouter",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        # widget addComptage
+        labelAddComptage = Label(self.__addComptage,text="Definissez les case pour compter\nle nombre de valeur",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        debutComptage = Frame(self.__addComptage)
+        finComptage = Frame(self.__addComptage)
+        self.__entryAddComptageDebut = Entry(debutComptage,font=("arial","15"),width=5,relief=SOLID)
+        self.__entryAddComptageFin = Entry(finComptage,font=("arial","15"),width=5,relief=SOLID)
+        labelComptageDebut  =Label(debutComptage,text="Debut :",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        labelComptageFin  =Label(finComptage,text="Fin :",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        validerAddComptage = Button(self.__addComptage,text="Ajouter",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        # widget addMinimun
+        labelAddMinimun = Label(self.__addMinimun,text="Definissez les case pour\ntrouver votre valeur minimun",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        debutMinimun = Frame(self.__addMinimun)
+        finMinimun = Frame(self.__addMinimun)
+        self.__entryAddMinimunDebut = Entry(debutMinimun,font=("arial","15"),width=5,relief=SOLID)
+        self.__entryAddMinimunFin = Entry(finMinimun,font=("arial","15"),width=5,relief=SOLID)
+        labelMinimunDebut  =Label(debutMinimun,text="Debut :",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        labelMinimunFin  =Label(finMinimun,text="Fin :",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        validerAddMinimun = Button(self.__addMinimun,text="Ajouter",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        # widget addMaximun
+        labelAddMaximun = Label(self.__addMaximun,text="Definissez les case pour\ntrouver votre valeur maximun",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        debutMaximun = Frame(self.__addMaximun)
+        finMaximun = Frame(self.__addMaximun)
+        self.__entryAddMaximunDebut = Entry(debutMaximun,font=("arial","15"),width=5,relief=SOLID)
+        self.__entryAddMaximunFin = Entry(finMaximun,font=("arial","15"),width=5,relief=SOLID)
+        labelMaximunDebut  =Label(debutMaximun,text="Debut :",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        labelMaximunFin  =Label(finMaximun,text="Fin :",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
+        validerAddMaximun = Button(self.__addMaximun,text="Ajouter",font=("arial",15),
+                          fg=self.__textColor,bg=self.__color)
         #set option menu 
         self.__action.set(listAction[0])
         # Affichage des valeur du tableur
@@ -83,6 +161,55 @@ class CArreraCopiloteTableur :
         btnSetAction.pack(side="right")
         self.__frameCase.place(x=15,y=35)
         self.__frameAction.place(x=15,y=85)
+        # Affichage widget AddValeur
+        labelAddValeur.place(relx=0.5, rely=0, anchor="n")
+        self.__entryAddValeur.place(relx=0.5,rely=0.5,anchor="center")
+        validerAddValeur.place(relx=0.5, rely=1, anchor="s")
+        # Affichage widget addMoyenne
+        self.__entryAddMoyenneFin.pack(side="right")
+        self.__entryAddMoyenneDebut.pack(side="right")
+        labelMoyenneDebut.pack(side="left")
+        labelMoyenneFin.pack(side="left")
+        labelAddMoyenne.place(relx=0.5, rely=0, anchor="n")
+        debutMoyenne.place(relx=0, rely=0.5, anchor="w")
+        finMoyenne.place(relx=1, rely=0.5, anchor="e")
+        validerAddMoyenne.place(relx=0.5, rely=1, anchor="s")
+        # Affichage widget addSomme
+        labelAddSomme.place(relx=0.5, rely=0, anchor="n")
+        debutSomme.place(relx=0, rely=0.5, anchor="w")
+        finSomme.place(relx=1, rely=0.5, anchor="e")
+        self.__entryAddSommeDebut.pack(side="right")
+        self.__entryAddSommeFin.pack(side="right")
+        labelSommeDebut.pack(side="left")
+        labelSommeFin.pack(side="left")
+        validerAddSomme.place(relx=0.5, rely=1, anchor="s")
+        # Affichage widget addComptage
+        labelAddComptage.place(relx=0.5, rely=0, anchor="n")
+        debutComptage.place(relx=0, rely=0.5, anchor="w")
+        finComptage.place(relx=1, rely=0.5, anchor="e")
+        self.__entryAddComptageDebut.pack(side="right")
+        self.__entryAddComptageFin.pack(side="right")
+        labelComptageDebut.pack(side="left")
+        labelComptageFin.pack(side="left")
+        validerAddComptage.place(relx=0.5, rely=1, anchor="s") 
+        # Affichage widget addMinimun
+        labelAddMinimun.place(relx=0.5, rely=0, anchor="n")
+        debutMinimun.place(relx=0, rely=0.5, anchor="w")
+        finMinimun.place(relx=1, rely=0.5, anchor="e")
+        self.__entryAddMinimunDebut.pack(side="right")
+        self.__entryAddMinimunFin.pack(side="right")
+        labelMinimunDebut.pack(side="left")
+        labelMinimunFin.pack(side="left")
+        validerAddMinimun.place(relx=0.5, rely=1, anchor="s") 
+        # Affichage widget addMaximun
+        labelAddMaximun.place(relx=0.5, rely=0, anchor="n")
+        debutMaximun.place(relx=0, rely=0.5, anchor="w")
+        finMaximun.place(relx=1, rely=0.5, anchor="e")
+        self.__entryAddMaximunDebut.pack(side="right")
+        self.__entryAddMaximunFin.pack(side="right")
+        labelMaximunDebut.pack(side="left")
+        labelMaximunFin.pack(side="left")
+        validerAddMaximun.place(relx=0.5, rely=1, anchor="s")
         # Affichage principale
         self.__mainFrame.pack(side="left")
         self.__labelTableurView.pack(side="left",anchor="n")
@@ -118,6 +245,8 @@ class CArreraCopiloteTableur :
                 self.__labelCaseSelect.place(x=15,y=35)
                 self.__selectCase = True
                 self.__btnAnnuler.place(x=15,y=335)
+                if ((self.__selectCase==True) and (self.__selectAction==True)):
+                    self.__ecriture()
             else :
                 messagebox.showerror("Case invalide","La case n'est pas valide")
         self.__entryCase.delete(0,END)
@@ -130,6 +259,8 @@ class CArreraCopiloteTableur :
         self.__labelfncSelect.place(x=15,y=85)
         self.__selectAction = True
         self.__btnAnnuler.place(x=15,y=335)
+        if ((self.__selectCase==True) and (self.__selectAction==True)):       
+            self.__ecriture()
     
     def __cancelSelect(self):
         self.__caseSelected = None
@@ -141,3 +272,37 @@ class CArreraCopiloteTableur :
         self.__labelfncSelect.place_forget()
         self.__frameAction.place(x=15,y=85)
         self.__btnAnnuler.place_forget()
+
+        self.__addValeur.place_forget()
+        self.__addMoyenne.place_forget()
+        self.__addSomme.place_forget()
+        self.__addComptage.place_forget()
+        self.__addMinimun.place_forget()
+        self.__addMaximun.place_forget()
+    
+    def __ecriture(self):
+        #self.__addMaximun.place(x=0,y=400)
+        if (self.__actionSelected=="ecrire une valeur"):
+            self.__addValeur.place(x=0,y=400)
+        else :
+            if (self.__actionSelected=="faire une moyenne"):
+                self.__addMoyenne.place(x=0,y=400)
+            else :
+                if (self.__actionSelected=="faire une somme"):
+                    self.__addSomme.place(x=0,y=400)
+                else :
+                    if (self.__actionSelected=="faire un comptage"):
+                        self.__addComptage.place(x=0,y=400)
+                    else :
+                        if (self.__actionSelected=="faire un minimun"):
+                            self.__addMinimun.place(x=0,y=400)
+                        else :
+                            if (self.__actionSelected=="faire un maximun"):
+                                self.__addMaximun.place(x=0,y=400)
+                            else :
+                                if (self.__actionSelected=="supprimer un valeur"):
+                                    self.__tableur.deleteValeur(self.__caseSelected)
+                                    self.__tableur.saveFile()
+                                    messagebox.showinfo("Copilote","Valeur Supprimer")
+                                    self.__updateTableur()
+                            
