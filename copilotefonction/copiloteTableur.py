@@ -8,8 +8,8 @@ class CArreraCopiloteTableur :
     def __init__(self) :
         self.__color = "white"
         self.__textColor = "black"
-        self.__caseSelect = str
-        self.__actionSelect = str
+        self.__caseSelected,self.__actionSelected = str
+        self.__selectCase , self.__selectAction = False
     
     def active(self):
         file = ""
@@ -108,18 +108,19 @@ class CArreraCopiloteTableur :
             messagebox.showerror("Case est vide","Veillez entrez quelque chose dans la case")
         else :
             if (self.__verifChaine(case)==True):
-                self.__caseSelect = case 
+                self.__caseSelected = case 
                 self.__labelCaseSelect.configure(text="Case selectionner : "+case)
                 self.__frameCase.place_forget()
                 self.__labelCaseSelect.place(x=15,y=35)
-
+                self.__selectCase = True
             else :
                 messagebox.showerror("Case invalide","La case n'est pas valide")
         self.__entryCase.delete(0,END)
     
     def __setAction(self):
         action = self.__action.get()
-        self.__actionSelect = action
+        self.__actionSelected = action
         self.__frameAction.place_forget()
         self.__labelfncSelect.configure(text="Action : "+action)
         self.__labelfncSelect.place(x=15,y=85)
+        self.__selectAction = True
