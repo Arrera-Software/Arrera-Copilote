@@ -6,6 +6,9 @@ class neuronCopilote :
     def __init__(self,configUser):
         self.__jsonUser = jsonWork(configUser)
         self.__fncTableur = CArreraCopiloteTableurGUI()
+        self.__oldSortie = str
+        self.__fncDocx = None
+        self.__fichierDocxOpen = False
     
     def neuron(self,var:str):
         statement = chaine.netoyage(var)
@@ -27,12 +30,42 @@ class neuronCopilote :
                 else :
                     if(("ouvre un fichier doc"in statement)or("ouvre un fichier traitement de texte"in statement)or("ouvre un fichier word"in statement)
                        or ("ouvre un fichier writer"in statement)or ("ouvre un fichier libre office"in statement)):
-                        sortie = ["Okay je vous est ouvert votre fichier de traitement de texte "+self.__jsonUser.lectureJSON("genre")+" "+self.__jsonUser.lectureJSON("user"),
-                                  "Les fonction qui son possible d'utiliser son :\n-Ecrire dans le fichier en nous disant ''\n-Lire en nous disant ''"]
-                        
+                        result = messagebox.askquestion(
+                                "Choix de l'action", 
+                                "Voulez-vous crée un fichier ?")
+                        if (result=="yes"):
+                            file = filedialog.asksaveasfilename(
+                                defaultextension='.xlsx', 
+                                filetypes=[('Fichiers Word', '*.docx'),('Fichiers OpenDocument', '*.odt')])
+                            self.__fncDocx = CArreraDocx(file)
+                            self.__fncDocx.write("")
+                        else :
+                            file = filedialog.askopenfilename(
+                                filetypes=[('Fichiers Word', '*.docx'),('Fichiers OpenDocument', '*.odt')])
+                            self.__fncDocx = CArreraDocx(file)
+                        if (file==""):
+                            sortie = ["Je suis desoler  "+self.__jsonUser.lectureJSON("genre")+" "+self.__jsonUser.lectureJSON("user")+
+                                      " mais vous avez pas selection de fichier","Selectionne bien un fichier dans la fenetre de l'explorateur de fichier"]
+                        else :
+                            sortie = ["Okay je vous est ouvert votre fichier de traitement de texte "+self.__jsonUser.lectureJSON("genre")+" "+self.__jsonUser.lectureJSON("user"),
+                                    "Les fonction qui son possible d'utiliser son :\n-Ecrire dans le fichier en nous disant 'ecrit dans le document' et en mettant ce que vous voulez ecrire deriere\n-Lire en nous disant 'lit le document'"]
+                            
+                            self.__fichierDocxOpen = True
                         nb = 1
                     else :
-                        sortie = ["",""]
-                        nb = 0 
+                        if ((self.__fichierDocxOpen==True)and("lit le document"in statement)):
+                            sortie = ["Ryley vous montre le contenu du document",
+                                    self.__fncDocx.read()]
+                            nb = 1
+                        else :
+                            if ((self.__fichierDocxOpen==True)and("ecrit dans le document"in statement)):
+                                ligne = statement.replace("ecrit dans le document","")
+                                self.__fncDocx.write(ligne)
+                                sortie = ["Okay "+self.__jsonUser.lectureJSON("genre")+" c'est ecrit",
+                                    "Les fonction qui son possible d'utiliser son :\n-Ecrire dans le fichier en nous disant 'ecrit dans le document' et en mettant ce que vous voulez ecrire deriere\n-Lire en nous disant 'lit le document'"]
+                                nb = 1
+                            else :
+                                sortie = ["",""]
+                                nb = 0 
         
         return nb , sortie
