@@ -20,7 +20,11 @@ class neuronCopilote :
                 self.__fncTableur.active()
                 nb = 1 
             else : 
-                sortie = ["",""]
-                nb = 0 
+                if ("ouvre un fichier tableur"in statement):
+                    sortie = ["La fonction n'est pas encore developper","Je suis desoler "+self.__jsonUser.lectureJSON("user")]
+                    nb = 1
+                else :
+                    sortie = ["",""]
+                    nb = 0 
         
         return nb , sortie
