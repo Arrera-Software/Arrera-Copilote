@@ -397,4 +397,3 @@ class CArreraCopiloteTableurGUI :
                                     self.__updateTableur()
                                 else :
                                     messagebox.showerror("Copilote","Le maximun n'a pas pu etre ajouter")
-                            
