@@ -1,5 +1,6 @@
 from ObjetsNetwork.arreraNeuron import*
 from copilotefonction.copiloteTableur import*
+from fonctionnalites.arreradocument import*
 
 class neuronCopilote : 
     def __init__(self,configUser):
@@ -24,7 +25,14 @@ class neuronCopilote :
                     sortie = ["La fonction n'est pas encore developper","Je suis desoler "+self.__jsonUser.lectureJSON("user")]
                     nb = 1
                 else :
-                    sortie = ["",""]
-                    nb = 0 
+                    if(("ouvre un fichier doc"in statement)or("ouvre un fichier traitement de texte"in statement)or("ouvre un fichier word"in statement)
+                       or ("ouvre un fichier writer"in statement)or ("ouvre un fichier libre office"in statement)):
+                        sortie = ["Okay je vous est ouvert votre fichier de traitement de texte "+self.__jsonUser.lectureJSON("genre")+" "+self.__jsonUser.lectureJSON("user"),
+                                  "Les fonction qui son possible d'utiliser son :\n-Ecrire dans le fichier en nous disant ''\n-Lire en nous disant ''"]
+                        
+                        nb = 1
+                    else :
+                        sortie = ["",""]
+                        nb = 0 
         
         return nb , sortie
