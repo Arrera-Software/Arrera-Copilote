@@ -6,7 +6,6 @@ class neuronCopilote :
     def __init__(self,configUser):
         self.__jsonUser = jsonWork(configUser)
         self.__fncTableur = CArreraCopiloteTableurGUI()
-        self.__oldSortie = str
         self.__fncDocx = None
         self.__fichierDocxOpen = False
     
@@ -28,8 +27,9 @@ class neuronCopilote :
                     sortie = ["La fonction n'est pas encore developper","Je suis desoler "+self.__jsonUser.lectureJSON("user")]
                     nb = 1
                 else :
-                    if(("ouvre un fichier doc"in statement)or("ouvre un fichier traitement de texte"in statement)or("ouvre un fichier word"in statement)
-                       or ("ouvre un fichier writer"in statement)or ("ouvre un fichier libre office"in statement)):
+                    if(("ouvre un fichier doc"in statement)or("ouvre un fichier docx"in statement)or("ouvre un fichier traitement de texte"in statement)
+                       or("ouvre un fichier word"in statement)or ("ouvre un fichier writer"in statement)or ("ouvre un fichier libre office"in statement)
+                       or ("ouvre un document word"in statement)or ("ouvre document libreoffice"in statement)or("ouvre un document")):
                         result = messagebox.askquestion(
                                 "Choix de l'action", 
                                 "Voulez-vous crée un fichier ?")
