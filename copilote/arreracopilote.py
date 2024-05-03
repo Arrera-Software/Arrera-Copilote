@@ -105,23 +105,24 @@ class ArreraCopilote :
         self.__labelReponseSix.configure(text="")
         self.__labelReponseRyley.configure(text="")
         varSortie = int 
-        varSortie, sortieRyley = self.__assistantRyley.neuron(reponse)
-        if (varSortie==0):
-            varSortie, sortieSix = self.__assistantSix.neuron(reponse)
-            if (varSortie==0) :
-                varSortie,sortieNeuronCopilote = self.__copiloteNeuron.neuron(reponse)
-                self.__sixSpeak(sortieNeuronCopilote[0])
-                self.__ryleySpeak(sortieNeuronCopilote[1])
-                if varSortie == 0 :
+        varSortie,sortieNeuronCopilote = self.__copiloteNeuron.neuron(reponse)
+        if (varSortie == 0) :
+            varSortie, sortieRyley = self.__assistantRyley.neuron(reponse)
+            if (varSortie==0):
+                varSortie, sortieSix = self.__assistantSix.neuron(reponse)
+                if (varSortie == 0) :
                     radom = random.randint(0,1)
                     if (radom==0):
                         self.__sixSpeak("Il est impossible pour moi et mon frere de vous repondre")
                     else :
                         self.__ryleySpeak("Il est impossible pour moi et ma soeur de te repondre")
-            else:
-                self.__sixSpeak(sortieSix[0])
+                else:
+                    self.__sixSpeak(sortieSix[0])
+            else :
+                self.__ryleySpeak(sortieRyley[0])
         else :
-            self.__ryleySpeak(sortieRyley[0])
+            self.__sixSpeak(sortieNeuronCopilote[0])
+            self.__ryleySpeak(sortieNeuronCopilote[1])
     
     def __Apropop(self):
         #Variable
