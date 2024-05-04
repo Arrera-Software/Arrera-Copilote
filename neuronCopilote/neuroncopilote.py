@@ -11,6 +11,8 @@ class neuronCopilote :
     
     def neuron(self,var:str):
         statement = chaine.netoyage(var)
+        nameUser = self.__jsonUser.lectureJSON("user")
+        genreUser = self.__jsonUser.lectureJSON("genre")
         if "tu es qui" in statement or "présente toi" in statement or "présentation" in statement or "qui es tu" in statement or "qui es tu" in statement or "vous etes qui" in statement :
             sortie=[
                 "Je suis SIX un assistant personnel développer par Arrera Software",
@@ -24,12 +26,12 @@ class neuronCopilote :
                 nb = 1 
             else : 
                 if ("ouvre un fichier tableur"in statement):
-                    sortie = ["La fonction n'est pas encore developper","Je suis desoler "+self.__jsonUser.lectureJSON("user")]
+                    sortie = ["La fonction n'est pas encore developper","Je suis desoler "+nameUser]
                     nb = 1
                 else :
-                    if(("ouvre un fichier doc"in statement)or("ouvre un fichier docx"in statement)or("ouvre un fichier traitement de texte"in statement)
+                    if((("ouvre un fichier doc"in statement)or("ouvre un fichier docx"in statement)or("ouvre un fichier traitement de texte"in statement)
                        or("ouvre un fichier word"in statement)or ("ouvre un fichier writer"in statement)or ("ouvre un fichier libre office"in statement)
-                       or ("ouvre un document word"in statement)or ("ouvre document libreoffice"in statement)or("ouvre un document")):
+                       or ("ouvre un document word"in statement)or ("ouvre document libreoffice"in statement)or("ouvre un document"in statement))):
                         result = messagebox.askquestion(
                                 "Choix de l'action", 
                                 "Voulez-vous crée un fichier ?")
@@ -44,10 +46,10 @@ class neuronCopilote :
                                 filetypes=[('Fichiers Word', '*.docx'),('Fichiers OpenDocument', '*.odt')])
                             self.__fncDocx = CArreraDocx(file)
                         if (file==""):
-                            sortie = ["Je suis desoler  "+self.__jsonUser.lectureJSON("genre")+" "+self.__jsonUser.lectureJSON("user")+
+                            sortie = ["Je suis desoler  "+genreUser+" "+nameUser+
                                       " mais vous avez pas selection de fichier","Selectionne bien un fichier dans la fenetre de l'explorateur de fichier"]
                         else :
-                            sortie = ["Okay je vous est ouvert votre fichier de traitement de texte "+self.__jsonUser.lectureJSON("genre")+" "+self.__jsonUser.lectureJSON("user"),
+                            sortie = ["Okay je vous est ouvert votre fichier de traitement de texte "+genreUser+" "+nameUser,
                                     "Les fonction qui son possible d'utiliser son :\n-Ecrire dans le fichier en nous disant 'ecrit dans le document' et en mettant ce que vous voulez ecrire deriere\n-Lire en nous disant 'lit le document'"]
                             
                             self.__fichierDocxOpen = True
@@ -61,7 +63,7 @@ class neuronCopilote :
                             if ((self.__fichierDocxOpen==True)and("ecrit dans le document"in statement)):
                                 ligne = statement.replace("ecrit dans le document","")
                                 self.__fncDocx.write(ligne)
-                                sortie = ["Okay "+self.__jsonUser.lectureJSON("genre")+" c'est ecrit",
+                                sortie = ["Okay "+genreUser+" c'est ecrit",
                                     "Les fonction qui son possible d'utiliser son :\n-Ecrire dans le fichier en nous disant 'ecrit dans le document' et en mettant ce que vous voulez ecrire deriere\n-Lire en nous disant 'lit le document'"]
                                 nb = 1
                             else :
