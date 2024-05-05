@@ -20,9 +20,13 @@ class neuronCopilote :
                 ]
             nb = 1 
         else :
-            if ("tableur graphique" in statement):
-                sortie = ["Okay je vous ouvre le logiciel d'edition de tableur","J'espere que sa te sera utile"]
-                self.__fncTableur.active()
+            if (("tableur en graphique" in statement)or("tableur graphique" in statement)):
+                sortie = self.__fncTableur.active()
+                if(sortie==True):
+                    sortie = ["Okay je vous ouvre le logiciel d'edition de tableur","J'espere que sa te sera utile"]
+                else :
+                    sortie = ["Je ne peux pas ouvrir si vous selectionner pas un fichier "+genreUser+" "+nameUser,
+                              "J'espere que sa te sera utile"]
                 nb = 1 
             else : 
                 if ("ouvre un fichier tableur"in statement):
