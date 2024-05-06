@@ -10,10 +10,11 @@ class CArreraCopiloteTableurGUI :
         self.__textColor = "black"
         self.__caseSelected = str
         self.__actionSelected = str
+        self.__tableur = None
         self.__selectCase = False
         self.__selectAction = False
     
-    def active(self):
+    def activeGUI(self):
         file = ""
         result = messagebox.askquestion(
             "Choix de l'action", 
@@ -397,3 +398,126 @@ class CArreraCopiloteTableurGUI :
                                     self.__updateTableur()
                                 else :
                                     messagebox.showerror("Copilote","Le maximun n'a pas pu etre ajouter")
+
+    def activeEcritureDirect(self,case:str,file:str):
+        self.__case = case 
+        self.__tableur = CArreraTableur(file)
+        screen = Toplevel()
+        screen.title("Copilote : Tableur")
+        screen.iconphoto(False,PhotoImage(file="asset/icon/copilote/icon.png"))
+        screen.maxsize(300,250)
+        screen.minsize(300,250)
+        screen.configure(bg=self.__color)
+        # Varriable
+        self.__action = StringVar(screen)
+        listAction = ["ecrire une valeur","faire une moyenne","faire une somme",
+                    "faire un comptage","faire un minimun","faire un maximun","supprimer un valeur"] 
+        #Creation de cardre 
+        self.__mainCadre = Frame(screen,width=300,height=250,bg="white")
+        self.__valeurCadre = Frame(screen,width=300,height=250,bg="white")
+        self.__moyenneCadre = Frame(screen,width=300,height=250,bg="white")  
+        self.__sommeCadre = Frame(screen,width=300,height=250,bg="white")
+        self.__comptageCadre = Frame(screen,width=300,height=250,bg="white")
+        self.__minumunCadre = Frame(screen,width=300,height=250,bg="white")
+        self.__maximunCadre = Frame(screen,width=300,height=250,bg="white")
+        # Widget mainCadre
+        labelInfomainCadre = Label(self.__mainCadre,text="Case selectionner :",font=("arial","15"),bg="white",fg="black")
+        menu = OptionMenu(self.__mainCadre,self.__action,*listAction)
+        buttonValidermainCadre = Button(self.__mainCadre,text="Valider",font=("arial","15"),bg="white",fg="black",command= self.__choixEcritureDirect)
+        # Widget valeurCadre 
+        labelInfovaleurCadre = Label(self.__valeurCadre,text="Ecriver la valeur\nque vous voulez ecrire",font=("arial","15"),bg="white",fg="black")
+        self.__entryValeur = Entry(self.__valeurCadre,font=("arial","15"),width=5,relief=SOLID)
+        buttonValidervaleurCadre = Button(self.__valeurCadre,text="Valider",font=("arial","15"),bg="white",fg="black")
+        # widget moyenneCadre
+        labelInfomoyenneCadre = Label(self.__moyenneCadre,text="Ecriver la case du\ndebut et la case de\nla fin pour faire votre moyenne",font=("arial","15"),bg="white",fg="black")
+        self.__entryMoyenneDebut = Entry(self.__moyenneCadre,font=("arial","15"),width=5,relief=SOLID)
+        self.__entryMoyenneFin = Entry(self.__moyenneCadre,font=("arial","15"),width=5,relief=SOLID)
+        buttonValidermoyenneCadre = Button(self.__moyenneCadre,text="Valider",font=("arial","15"),bg="white",fg="black")
+        # widget sommeCadre
+        labelInfosommeCadre = Label(self.__sommeCadre,text="Ecriver la case du debut et la case de\nla fin pour faire votre somme",font=("arial","15"),bg="white",fg="black")
+        self.__entrySommeDebut = Entry(self.__sommeCadre,font=("arial","15"),width=5,relief=SOLID)
+        self.__entrySommeFin = Entry(self.__sommeCadre,font=("arial","15"),width=5,relief=SOLID)
+        buttonValidersommeCadre = Button(self.__sommeCadre,text="Valider",font=("arial","15"),bg="white",fg="black")
+        # widget comptageCadre
+        labelInfocomptageCadre = Label(self.__comptageCadre,text="Ecriver la case du debut et la case de\nla fin pour faire votre comptage de valeur",font=("arial","15"),bg="white",fg="black")
+        self.__entrycomptageCadre = Entry(self.__comptageCadre,font=("arial","15"),width=5,relief=SOLID)
+        self.__entrycomptageCadre = Entry(self.__comptageCadre,font=("arial","15"),width=5,relief=SOLID)
+        buttonValidercomptageCadre = Button(self.__comptageCadre,text="Valider",font=("arial","15"),bg="white",fg="black")
+        # widget minumunCadre
+        labelInfominumunCadre = Label(self.__minumunCadre,text="Ecriver la case du debut et la case de\nla fin pour faire votre minimun",font=("arial","15"),bg="white",fg="black")
+        self.__entryminumunCadre = Entry(self.__minumunCadre,font=("arial","15"),width=5,relief=SOLID)
+        self.__entryminumunCadre = Entry(self.__minumunCadre,font=("arial","15"),width=5,relief=SOLID)
+        buttonValiderminumunCadre = Button(self.__minumunCadre,text="Valider",font=("arial","15"),bg="white",fg="black")
+        # widget maximunCadre
+        labelInfomaximunCadre = Label(self.__maximunCadre,text="Ecriver la case du debut et la case de\nla fin pour faire votre maximun",font=("arial","15"),bg="white",fg="black")
+        self.__entrymaximunCadre = Entry(self.__maximunCadre,font=("arial","15"),width=5,relief=SOLID)
+        self.__entrymaximunCadre = Entry(self.__maximunCadre,font=("arial","15"),width=5,relief=SOLID)
+        buttonValidermaximunCadre = Button(self.__maximunCadre,text="Valider",font=("arial","15"),bg="white",fg="black")
+        # Affichage
+        # Widget mainCadre
+        labelInfomainCadre.place(relx=0.5, rely=0, anchor="n") 
+        menu.place(relx=0.5, rely=0.5, anchor="center")
+        buttonValidermainCadre.place(relx=0.5, rely=1, anchor="s")
+        # Widget valeurCadre 
+        labelInfovaleurCadre.place(relx=0.5, rely=0, anchor="n")
+        self.__entryValeur.place(relx=0.5, rely=0.5, anchor="center")
+        buttonValidervaleurCadre.place(relx=0.5, rely=1, anchor="s")
+        # widget moyenneCadre
+        labelInfomoyenneCadre.place(relx=0.5, rely=0, anchor="n") 
+        self.__entryMoyenneDebut.place(relx=0.0, rely=0.5, anchor="w")
+        self.__entryMoyenneFin.place(relx=1.0, rely=0.5, anchor="e")
+        buttonValidermoyenneCadre.place(relx=0.5, rely=1, anchor="s")
+        # widget sommeCadre
+        labelInfosommeCadre.place(relx=0.5, rely=0, anchor="n") 
+        self.__entrySommeDebut.place(relx=0.0, rely=0.5, anchor="w")
+        self.__entrySommeFin.place(relx=1.0, rely=0.5, anchor="e")
+        buttonValidersommeCadre.place(relx=0.5, rely=1, anchor="s")
+        # widget comptageCadre
+        labelInfocomptageCadre.place(relx=0.5, rely=0, anchor="n")
+        self.__entrycomptageCadre.place(relx=0.0, rely=0.5, anchor="w")
+        self.__entrycomptageCadre.place(relx=1.0, rely=0.5, anchor="e")
+        buttonValidercomptageCadre.place(relx=0.5, rely=1, anchor="s")
+        # widget minumunCadre
+        labelInfominumunCadre.place(relx=0.5, rely=0, anchor="n")
+        self.__entryminumunCadre.place(relx=0.0, rely=0.5, anchor="w")
+        self.__entryminumunCadre.place(relx=1.0, rely=0.5, anchor="e")
+        buttonValiderminumunCadre.place(relx=0.5, rely=1, anchor="s")
+        # widget maximunCadre
+        labelInfomaximunCadre.place(relx=0.5, rely=0, anchor="n")
+        self.__entrymaximunCadre.place(relx=0.0, rely=0.5, anchor="w")
+        self.__entrymaximunCadre.place(relx=1.0, rely=0.5, anchor="e")
+        buttonValidermaximunCadre.place(relx=0.5, rely=1, anchor="s")
+
+        # Afficage principal 
+        self.__action.set(listAction[0])
+        self.__mainCadre.pack()
+
+    def __choixEcritureDirect(self):
+        listAction = ["ecrire une valeur","faire une moyenne","faire une somme",
+                "faire un comptage","faire un minimun","faire un maximun","supprimer un valeur"] 
+        retour = self.__action.get()
+        self.__mainCadre.pack_forget()
+        if(retour==listAction[0]):
+            self.__valeurCadre.pack()
+        else :
+            if(retour==listAction[1]):
+                self.__moyenneCadre.pack()
+            else :
+                if(retour==listAction[2]):
+                    self.__sommeCadre.pack()
+                else :
+                    if(retour==listAction[3]):
+                        self.__comptageCadre.pack()
+                    else :
+                        if(retour==listAction[4]):
+                            self.__minumunCadre.pack()
+                        else :
+                            if(retour==listAction[5]):
+                                self.__maximunCadre.pack()
+                            else :
+                                if(retour==listAction[6]):
+                                    self.__tableur.deleteValeur(self.__case)
+
+
+            
+        #def __validerEcritureDirect(self,v:int):
