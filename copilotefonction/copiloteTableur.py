@@ -517,6 +517,8 @@ class CArreraCopiloteTableurGUI :
                             else :
                                 if(retour==listAction[6]):
                                     self.__tableur.deleteValeur(self.__case)
+                                    self.__tableur.saveFile()
+                                    self.__screenEcritureDirect.destroy()
 
 
             
