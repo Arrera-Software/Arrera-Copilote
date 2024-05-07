@@ -81,14 +81,14 @@ class neuronCopilote :
                             self.__fncTableur.activeEcritureDirect(statementNoClear,self.__fncEcritureTableur)
                             nb = 1
                         else :
-                            if((self.__fichierTableurOpen==True)and("lit le fichier")):
+                            if((self.__fichierTableurOpen==True)and("lit le fichier"in statement)or("lit le tableur"in statement)):
                                 contenu = self.__fncEcritureTableur.read()
                                 text = ""
                                 for cell_position, cell_value in contenu.items():
                                     text = text+"\n"+"Cellule "+str(cell_position)+" : "+str(cell_value)
                                 sortie = ["Ryley vous montre le contenu du fichier\nJe vous montre les fonction :"+
                                         "\n-Sectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
-                                        "\n-Lire le contennu du tableur en nous disant 'lit le fichier'",text]
+                                        "\n-Lire le contennu du tableur en nous disant 'lit le fichier' ou 'lit le tableur'",text]
                                 nb = 1 
                             else :
                                 if((("ouvre un fichier doc"in statement)or("ouvre un fichier docx"in statement)or("ouvre un fichier traitement de texte"in statement)
