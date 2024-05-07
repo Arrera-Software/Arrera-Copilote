@@ -8,7 +8,7 @@ class neuronCopilote :
         self.__fncTableur = CArreraCopiloteTableurGUI()
         self.__oldSortie = ""
         self.__fncDocx = None
-        self.__fileTableur = None
+        self.__fncEcritureTableur = None
         self.__fichierDocxOpen = False
         self.__fichierTableurOpen = False
     
@@ -60,9 +60,9 @@ class neuronCopilote :
                     else :
                         sortie = ["Okay je vous est ouvert votre fichier de traitement de texte "+genreUser+" "+nameUser,
                                 "Les fonction qui son possible d'utiliser son :"+
-                                "\n-"+
-                                "\n-"]
-                        self.__fileTableur = file
+                                "\n-Sectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
+                                "\n-Lire le contennu du tableur en nous disant 'lit le fichier'"]
+                        self.__fncEcritureTableur = CArreraTableur(file)
                         self.__fichierTableurOpen = True
                     nb = 1
                 else :
@@ -74,7 +74,7 @@ class neuronCopilote :
                         if(("selectionne une case"in self.__oldSortie)and(self.__fichierTableurOpen==True)and(self. __verifCase(statementNoClear)==True)):
                             sortie = ["Suivez les information de l'interface graphique"
                                       ,"Votre tableur a bien etais ecrit"]
-                            self.__fncTableur.activeEcritureDirect(statementNoClear,self.__fileTableur)
+                            self.__fncTableur.activeEcritureDirect(statementNoClear,self.__fncEcritureTableur)
                             nb = 1
                         else :
                             if((("ouvre un fichier doc"in statement)or("ouvre un fichier docx"in statement)or("ouvre un fichier traitement de texte"in statement)

@@ -399,9 +399,9 @@ class CArreraCopiloteTableurGUI :
                                 else :
                                     messagebox.showerror("Copilote","Le maximun n'a pas pu etre ajouter")
 
-    def activeEcritureDirect(self,case:str,file:str):
+    def activeEcritureDirect(self,case:str,tableur:CArreraTableur):
         self.__case = case 
-        self.__tableur = CArreraTableur(file)
+        self.__tableur = tableur
         self.__screenEcritureDirect = Toplevel()
         self.__screenEcritureDirect.title("Copilote : Tableur")
         self.__screenEcritureDirect.iconphoto(False,PhotoImage(file="asset/icon/copilote/icon.png"))
