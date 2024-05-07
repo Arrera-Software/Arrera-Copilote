@@ -34,7 +34,7 @@ class neuronCopilote :
                 ]
             nb = 1 
         else :
-            if (("tableur en graphique" in statement)or("tableur graphique" in statement)):
+            if (("tableur en graphique" in statement)or("tableur graphique" in statement)or("fichier exel en graphique")):
                 sortie = self.__fncTableur.activeGUI()
                 if(sortie==True):
                     sortie = ["Okay je vous ouvre le logiciel d'edition de tableur","J'espere que sa te sera utile"]
@@ -43,7 +43,8 @@ class neuronCopilote :
                               "J'espere que sa te sera utile"]
                 nb = 1 
             else : 
-                if ("ouvre un fichier tableur"in statement):
+                if (("ouvre un fichier tableur"in statement)or("ouvre un fichier exel"in statement)
+                    or("ouvre un fichier libreoffice calc"in statement)or("ouvre un fichier libre office calc"in statement)):
                     result = messagebox.askquestion(
                                 "Choix de l'action", 
                                 "Voulez-vous crée un fichier ?")
@@ -56,7 +57,8 @@ class neuronCopilote :
                             filetypes=[("Fichiers Excel", "*.xlsx"),("Fichiers ODF", "*.ods")])
                     if (file==""):
                         sortie = ["Je suis desoler  "+genreUser+" "+nameUser+
-                                    " mais vous avez pas selection de fichier","Selectionne bien un fichier dans la fenetre de l'explorateur de fichier"]
+                                    " mais vous avez pas selection de fichier",
+                                    "Selectionne bien un fichier dans la fenetre de l'explorateur de fichier"]
                     else :
                         sortie = ["Okay je vous est ouvert votre fichier de traitement de texte "+genreUser+" "+nameUser,
                                 "Les fonction qui son possible d'utiliser son :"+
@@ -72,10 +74,10 @@ class neuronCopilote :
                         nb = 1
                     else :
                         if(("selectionne une case"in self.__oldSortie)and(self.__fichierTableurOpen==True)and(self. __verifCase(statementNoClear)==True)):
-                            sortie = ["Il vous reste plus qu'a suivre les information de l'interface graphique. Et votre vous pourrer ecrire dans votre fichier tableur"
+                            sortie = ["Il vous reste plus qu'a suivre les information de l'interface graphique. Et votre vous pourrer modifier votre tableur"
                                       ,"Les fonction qui son possible d'utiliser son :"+
                                         "\n-Sectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
-                                        "\n-Lire le contennu du tableur en nous disant 'lit le fichier'"]
+                                        "\n-Lire le contennu du tableur en nous disant 'lit le fichier' ou 'lit le tableur'"]
                             self.__fncTableur.activeEcritureDirect(statementNoClear,self.__fncEcritureTableur)
                             nb = 1
                         else :
