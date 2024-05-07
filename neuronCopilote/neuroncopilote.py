@@ -141,3 +141,9 @@ class neuronCopilote :
                                             nb = 0 
             self.__oldSortie = statement   
             return nb , sortie
+        
+    def getDocOpen(self):
+        return self.__fichierDocxOpen
+
+    def getTableurOpen(self):
+        return self.__fichierTableurOpen
