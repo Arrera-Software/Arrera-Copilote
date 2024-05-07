@@ -6,7 +6,7 @@ class neuronCopilote :
     def __init__(self,configUser):
         self.__jsonUser = jsonWork(configUser)
         self.__fncTableur = CArreraCopiloteTableurGUI()
-        self.__oldSortie = str
+        self.__oldSortie = ""
         self.__fncDocx = None
         self.__fileTableur = None
         self.__fichierDocxOpen = False
