@@ -72,50 +72,62 @@ class neuronCopilote :
                         nb = 1
                     else :
                         if(("selectionne une case"in self.__oldSortie)and(self.__fichierTableurOpen==True)and(self. __verifCase(statementNoClear)==True)):
-                            sortie = ["Suivez les information de l'interface graphique"
-                                      ,"Votre tableur a bien etais ecrit"]
+                            sortie = ["Il vous reste plus qu'a suivre les information de l'interface graphique. Et votre vous pourrer ecrire dans votre fichier tableur"
+                                      ,"Les fonction qui son possible d'utiliser son :"+
+                                        "\n-Sectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
+                                        "\n-Lire le contennu du tableur en nous disant 'lit le fichier'"]
                             self.__fncTableur.activeEcritureDirect(statementNoClear,self.__fncEcritureTableur)
                             nb = 1
                         else :
-                            if((("ouvre un fichier doc"in statement)or("ouvre un fichier docx"in statement)or("ouvre un fichier traitement de texte"in statement)
-                            or("ouvre un fichier word"in statement)or ("ouvre un fichier writer"in statement)or ("ouvre un fichier libre office"in statement)
-                            or ("ouvre un document word"in statement)or ("ouvre document libreoffice"in statement)or("ouvre un document"in statement))):
-                                result = messagebox.askquestion(
-                                        "Choix de l'action", 
-                                        "Voulez-vous crée un fichier ?")
-                                if (result=="yes"):
-                                    file = filedialog.asksaveasfilename(
-                                        defaultextension='.xlsx', 
-                                        filetypes=[('Fichiers Word', '*.docx'),('Fichiers OpenDocument', '*.odt')])
-                                    self.__fncDocx = CArreraDocx(file)
-                                    self.__fncDocx.write("")
-                                else :
-                                    file = filedialog.askopenfilename(
-                                        filetypes=[('Fichiers Word', '*.docx'),('Fichiers OpenDocument', '*.odt')])
-                                    self.__fncDocx = CArreraDocx(file)
-                                if (file==""):
-                                    sortie = ["Je suis desoler  "+genreUser+" "+nameUser+
-                                            " mais vous avez pas selection de fichier","Selectionne bien un fichier dans la fenetre de l'explorateur de fichier"]
-                                else :
-                                    sortie = ["Okay je vous est ouvert votre fichier de traitement de texte "+genreUser+" "+nameUser,
-                                            "Les fonction qui son possible d'utiliser son :\n-Ecrire dans le fichier en nous disant 'ecrit dans le document' et en mettant ce que vous voulez ecrire deriere\n-Lire en nous disant 'lit le document'"]
-                                    
-                                    self.__fichierDocxOpen = True
-                                nb = 1
+                            if((self.__fichierTableurOpen==True)and("lit le fichier")):
+                                contenu = self.__fncEcritureTableur.read()
+                                text = ""
+                                for cell_position, cell_value in contenu.items():
+                                    text = text+"\n"+"Cellule "+str(cell_position)+" : "+str(cell_value)
+                                sortie = ["Ryley vous montre le contenu du fichier\nJe vous montre les fonction :"+
+                                        "\n-Sectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
+                                        "\n-Lire le contennu du tableur en nous disant 'lit le fichier'",text]
+                                nb = 1 
                             else :
-                                if ((self.__fichierDocxOpen==True)and("lit le document"in statement)):
-                                    sortie = ["Ryley vous montre le contenu du document",
-                                            self.__fncDocx.read()]
+                                if((("ouvre un fichier doc"in statement)or("ouvre un fichier docx"in statement)or("ouvre un fichier traitement de texte"in statement)
+                                or("ouvre un fichier word"in statement)or ("ouvre un fichier writer"in statement)or ("ouvre un fichier libre office"in statement)
+                                or ("ouvre un document word"in statement)or ("ouvre document libreoffice"in statement)or("ouvre un document"in statement))):
+                                    result = messagebox.askquestion(
+                                            "Choix de l'action", 
+                                            "Voulez-vous crée un fichier ?")
+                                    if (result=="yes"):
+                                        file = filedialog.asksaveasfilename(
+                                            defaultextension='.xlsx', 
+                                            filetypes=[('Fichiers Word', '*.docx'),('Fichiers OpenDocument', '*.odt')])
+                                        self.__fncDocx = CArreraDocx(file)
+                                        self.__fncDocx.write("")
+                                    else :
+                                        file = filedialog.askopenfilename(
+                                            filetypes=[('Fichiers Word', '*.docx'),('Fichiers OpenDocument', '*.odt')])
+                                        self.__fncDocx = CArreraDocx(file)
+                                    if (file==""):
+                                        sortie = ["Je suis desoler  "+genreUser+" "+nameUser+
+                                                " mais vous avez pas selection de fichier","Selectionne bien un fichier dans la fenetre de l'explorateur de fichier"]
+                                    else :
+                                        sortie = ["Okay je vous est ouvert votre fichier de traitement de texte "+genreUser+" "+nameUser,
+                                                "Les fonction qui son possible d'utiliser son :\n-Ecrire dans le fichier en nous disant 'ecrit dans le document' et en mettant ce que vous voulez ecrire deriere\n-Lire en nous disant 'lit le document'"]
+                                        
+                                        self.__fichierDocxOpen = True
                                     nb = 1
                                 else :
-                                    if ((self.__fichierDocxOpen==True)and("ecrit dans le document"in statement)):
-                                        ligne = statement.replace("ecrit dans le document","")
-                                        self.__fncDocx.write(ligne)
-                                        sortie = ["Okay "+genreUser+" c'est ecrit",
-                                            "Les fonction qui son possible d'utiliser son :\n-Ecrire dans le fichier en nous disant 'ecrit dans le document' et en mettant ce que vous voulez ecrire deriere\n-Lire en nous disant 'lit le document'"]
+                                    if ((self.__fichierDocxOpen==True)and("lit le document"in statement)):
+                                        sortie = ["Ryley vous montre le contenu du document",
+                                                self.__fncDocx.read()]
                                         nb = 1
                                     else :
-                                        sortie = ["",""]
-                                        nb = 0 
+                                        if ((self.__fichierDocxOpen==True)and("ecrit dans le document"in statement)):
+                                            ligne = statement.replace("ecrit dans le document","")
+                                            self.__fncDocx.write(ligne)
+                                            sortie = ["Okay "+genreUser+" c'est ecrit",
+                                                "Les fonction qui son possible d'utiliser son :\n-Ecrire dans le fichier en nous disant 'ecrit dans le document' et en mettant ce que vous voulez ecrire deriere\n-Lire en nous disant 'lit le document'"]
+                                            nb = 1
+                                        else :
+                                            sortie = ["",""]
+                                            nb = 0 
             self.__oldSortie = statement   
             return nb , sortie
