@@ -63,7 +63,7 @@ class neuronCopilote :
                         sortie = ["Okay je vous est ouvert votre fichier de traitement de texte "+genreUser+" "+nameUser,
                                 "Les fonction qui son possible d'utiliser son :"+
                                 "\n-Sectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
-                                "\n-Lire le contennu du tableur en nous disant 'lit le fichier'"]
+                                "\n-Lire le contennu du tableur en nous disant 'lit le fichier' ou 'lit le tableur'"]
                         self.__fncEcritureTableur = CArreraTableur(file)
                         self.__fichierTableurOpen = True
                     nb = 1
