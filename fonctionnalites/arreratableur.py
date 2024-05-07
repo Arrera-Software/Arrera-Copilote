@@ -49,3 +49,6 @@ class CArreraTableur:
     
     def maximun(self,caseDestination:str,case1:str,case2:str):
         self.__table[caseDestination] = "=MAX("+case1+":"+case2+")"
+    
+    def __del__(self):
+        self.__workbook.close()
