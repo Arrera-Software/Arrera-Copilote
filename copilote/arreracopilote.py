@@ -57,7 +57,7 @@ class ArreraCopilote :
         # Widget frameInput
         input = Frame(frameInput)
         self.__entryInput = Entry(input,width=35,font=("arial","20"),relief=SOLID)
-        btnSend = Button(input,text="Envoyer",bg=self.__mainColor,fg=self.__textMainColor,font=("arial","15"),command=self.__neuron)
+        btnSend = Button(input,text="Envoyer",bg=self.__mainColor,fg=self.__textMainColor,font=("arial","15"),command=self.__envoie)
         # Widget frameBottom
         btnApropos = Button(frameBottom,bg=self.__mainColor,command=self.__Apropop)
         iconApropos = ImageTk.PhotoImage((Image.open("asset/icon/copilote/apropos.png").resize((30,30))))
@@ -71,6 +71,8 @@ class ArreraCopilote :
         iconMicro = ImageTk.PhotoImage((Image.open("asset/icon/copilote/microphoneCopilote.png").resize((30,30))))
         btnMicro.image_names=iconMicro 
         btnMicro.configure(image=iconMicro )
+        self.__labelDocxOpen = Label(frameBottom,bg=self.__mainColor,fg=self.__textMainColor,font=("arial","13"))
+        self.__labelTableurOpen = Label(frameBottom,bg=self.__mainColor,fg=self.__textMainColor,font=("arial","13"))
         # Affichage general
         # Frame
         frameTop.pack(side="top")
@@ -89,6 +91,8 @@ class ArreraCopilote :
         btnApropos.place(relx=0, rely=0.5, anchor="w")
         btnMicro.place(relx=0.5,rely=0.5,anchor="center")
         btnPara.place(relx=1, rely=0.5, anchor="e")
+        self.__labelDocxOpen.place(x=40, y=10)
+        self.__labelTableurOpen.place(x=535, y=10)
 
 
     def active(self):
@@ -99,7 +103,7 @@ class ArreraCopilote :
         self.__ryleySpeak(self.__assistantRyley.boot())
         self.__sixSpeak(self.__assistantSix.boot())
 
-    def __neuron(self):
+    def __envoie(self):
         reponse =  self.__entryInput.get()
         self.__entryInput.delete(0,END)
         self.__labelReponseSix.configure(text="")
@@ -123,6 +127,7 @@ class ArreraCopilote :
         else :
             self.__sixSpeak(sortieNeuronCopilote[0])
             self.__ryleySpeak(sortieNeuronCopilote[1])
+        self.__testFichierOpen()
     
     def __Apropop(self):
         #Variable
@@ -175,4 +180,13 @@ class ArreraCopilote :
         lynx = ArreraLynx(screen,jsonWork("configuration/lynx.json"),jsonWork("configuration/configUser.json"),jsonWork("configuration/six.json"))
         lynx.active()
         screen.mainloop()
-        
+
+    def __testFichierOpen(self):
+        if(self.__copiloteNeuron.getDocOpen()==True):
+            self.__labelDocxOpen.configure(text="Document ouvert") 
+        else :
+            self.__labelDocxOpen.configure(text="")     
+        if(self.__copiloteNeuron.getTableurOpen()==True):
+            self.__labelTableurOpen.configure(text="Tableur ouvert")
+        else :
+            self.__labelTableurOpen.configure(text="")
