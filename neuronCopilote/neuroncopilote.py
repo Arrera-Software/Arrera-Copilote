@@ -65,7 +65,8 @@ class neuronCopilote :
                         sortie = ["Okay je vous est ouvert votre fichier de traitement de texte "+genreUser+" "+nameUser,
                                 "Les fonction qui son possible d'utiliser son :"+
                                 "\n-Sectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
-                                "\n-Lire le contennu du tableur en nous disant 'lit le fichier' ou 'lit le tableur'"]
+                                "\n-Lire le contennu du tableur en nous disant 'lit le fichier' ou 'lit le tableur'"+
+                                "\n- Fermer le tableur en nous disant 'ferme le exel' ou 'ferme le tableur'"]
                         self.__fncEcritureTableur = CArreraTableur(file)
                         self.__fichierTableurOpen = True
                     nb = 1
@@ -80,7 +81,8 @@ class neuronCopilote :
                             sortie = ["Il vous reste plus qu'a suivre les information de l'interface graphique. Et votre vous pourrer modifier votre tableur"
                                       ,"Les fonction qui son possible d'utiliser son :"+
                                         "\n-Sectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
-                                        "\n-Lire le contennu du tableur en nous disant 'lit le fichier' ou 'lit le tableur'"]
+                                        "\n-Lire le contennu du tableur en nous disant 'lit le fichier' ou 'lit le tableur'"+
+                                        "\n- Fermer le tableur en nous disant 'ferme le exel' ou 'ferme le tableur'"]
                             self.__fncTableur.activeEcritureDirect(statementNoClear,self.__fncEcritureTableur)
                             nb = 1
                         else :
@@ -92,7 +94,8 @@ class neuronCopilote :
                                     text = text+"\n"+"Cellule "+str(cell_position)+" : "+str(cell_value)
                                 sortie = ["Ryley vous montre le contenu du fichier\nJe vous montre les fonction :"+
                                         "\n-Sectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
-                                        "\n-Lire le contennu du tableur en nous disant 'lit le fichier' ou 'lit le tableur'",text]
+                                        "\n-Lire le contennu du tableur en nous disant 'lit le fichier' ou 'lit le tableur'"+
+                                        "\n- Fermer le tableur en nous disant 'ferme le exel' ou 'ferme le tableur'",text]
                                 nb = 1 
                             else :
                                 if((("ouvre un fichier doc"in statement)or("ouvre un fichier docx"in statement)or("ouvre un fichier traitement de texte"in statement)
@@ -118,7 +121,8 @@ class neuronCopilote :
                                         sortie = ["Okay je vous est ouvert votre fichier de traitement de texte "+genreUser+" "+nameUser,
                                                 "Les fonction qui son possible d'utiliser son :"
                                                 +"\n-Ecrire dans le fichier en nous disant 'ecrit dans le document' et en mettant ce que vous voulez ecrire deriere"+
-                                                "\n-Lire en nous disant 'lit le document'"]
+                                                "\n-Lire en nous disant 'lit le document'"+
+                                                "\n-Fermer le document en nous disant 'ferme le word' ou 'ferme le document'"]
                                         
                                         self.__fichierDocxOpen = True
                                     nb = 1
@@ -132,13 +136,29 @@ class neuronCopilote :
                                             ligne = statement.replace("ecrit dans le document","")
                                             self.__fncDocx.write(ligne)
                                             sortie = ["Okay "+genreUser+" c'est ecrit",
+                                                "Okay je vous est ouvert votre fichier de traitement de texte "+genreUser+" "+nameUser,
                                                 "Les fonction qui son possible d'utiliser son :"
                                                 +"\n-Ecrire dans le fichier en nous disant 'ecrit dans le document' et en mettant ce que vous voulez ecrire deriere"+
-                                                "\n-Lire en nous disant 'lit le document'"]
+                                                "\n-Lire en nous disant 'lit le document'"+
+                                                "\n-Fermer le document en nous disant 'ferme le word' ou 'ferme le document'"]
                                             nb = 1
                                         else :
-                                            sortie = ["",""]
-                                            nb = 0 
+                                            if((self.__fichierTableurOpen==True)and(("ferme le tableur" in statement)or("ferme le exel"in statement))):
+                                                del self.__fncEcritureTableur 
+                                                self.__fncEcritureTableur = None
+                                                self.__fichierTableurOpen = False
+                                                sortie = ["Ok je vous ferme le tableur","J'espere que cette fonction a ete utile"]
+                                                nb = 1 
+                                            else :
+                                                if((self.__fichierDocxOpen==True)and(("ferme le document" in statement)or("ferme le word"in statement))):
+                                                    self.__fichierDocxOpen = False
+                                                    del self.__fncDocx 
+                                                    self.__fncDocx = None
+                                                    sortie = ["Ok je vous ferme le fichier de traitement de texte","J'espere que cette fonction a ete utile"]
+                                                    nb = 1 
+                                                else :
+                                                    sortie = ["",""]
+                                                    nb = 0 
             self.__oldSortie = statement   
             return nb , sortie
         
