@@ -34,7 +34,7 @@ class neuronCopilote :
                 ]
             nb = 1 
         else :
-            if (("tableur en graphique" in statement)or("tableur graphique" in statement)or("fichier exel en graphique")):
+            if (("tableur en graphique" in statement)or("tableur graphique" in statement)or("fichier exel en graphique"in statement)):
                 sortie = self.__fncTableur.activeGUI()
                 if(sortie==True):
                     sortie = ["Okay je vous ouvre le logiciel d'edition de tableur","J'espere que sa te sera utile"]
