@@ -402,24 +402,24 @@ class CArreraCopiloteTableurGUI :
     def activeEcritureDirect(self,case:str,file:str):
         self.__case = case 
         self.__tableur = CArreraTableur(file)
-        screen = Toplevel()
-        screen.title("Copilote : Tableur")
-        screen.iconphoto(False,PhotoImage(file="asset/icon/copilote/icon.png"))
-        screen.maxsize(300,250)
-        screen.minsize(300,250)
-        screen.configure(bg=self.__color)
+        self.__screenEcritureDirect = Toplevel()
+        self.__screenEcritureDirect.title("Copilote : Tableur")
+        self.__screenEcritureDirect.iconphoto(False,PhotoImage(file="asset/icon/copilote/icon.png"))
+        self.__screenEcritureDirect.maxsize(300,250)
+        self.__screenEcritureDirect.minsize(300,250)
+        self.__screenEcritureDirect.configure(bg=self.__color)
         # Varriable
-        self.__action = StringVar(screen)
+        self.__action = StringVar(self.__screenEcritureDirect)
         listAction = ["ecrire une valeur","faire une moyenne","faire une somme",
                     "faire un comptage","faire un minimun","faire un maximun","supprimer un valeur"] 
         #Creation de cardre 
-        self.__mainCadre = Frame(screen,width=300,height=250,bg="white")
-        self.__valeurCadre = Frame(screen,width=300,height=250,bg="white")
-        self.__moyenneCadre = Frame(screen,width=300,height=250,bg="white")  
-        self.__sommeCadre = Frame(screen,width=300,height=250,bg="white")
-        self.__comptageCadre = Frame(screen,width=300,height=250,bg="white")
-        self.__minumunCadre = Frame(screen,width=300,height=250,bg="white")
-        self.__maximunCadre = Frame(screen,width=300,height=250,bg="white")
+        self.__mainCadre = Frame(self.__screenEcritureDirect,width=300,height=250,bg="white")
+        self.__valeurCadre = Frame(self.__screenEcritureDirect,width=300,height=250,bg="white")
+        self.__moyenneCadre = Frame(self.__screenEcritureDirect,width=300,height=250,bg="white")  
+        self.__sommeCadre = Frame(self.__screenEcritureDirect,width=300,height=250,bg="white")
+        self.__comptageCadre = Frame(self.__screenEcritureDirect,width=300,height=250,bg="white")
+        self.__minumunCadre = Frame(self.__screenEcritureDirect,width=300,height=250,bg="white")
+        self.__maximunCadre = Frame(self.__screenEcritureDirect,width=300,height=250,bg="white")
         # Widget mainCadre
         labelInfomainCadre = Label(self.__mainCadre,text="Case selectionner :",font=("arial","15"),bg="white",fg="black")
         menu = OptionMenu(self.__mainCadre,self.__action,*listAction)
@@ -427,32 +427,32 @@ class CArreraCopiloteTableurGUI :
         # Widget valeurCadre 
         labelInfovaleurCadre = Label(self.__valeurCadre,text="Ecriver la valeur\nque vous voulez ecrire",font=("arial","15"),bg="white",fg="black")
         self.__entryValeur = Entry(self.__valeurCadre,font=("arial","15"),width=5,relief=SOLID)
-        buttonValidervaleurCadre = Button(self.__valeurCadre,text="Valider",font=("arial","15"),bg="white",fg="black")
+        buttonValidervaleurCadre = Button(self.__valeurCadre,text="Valider",font=("arial","15"),bg="white",fg="black",command=lambda : self.__validerEcritureDirect(1))
         # widget moyenneCadre
         labelInfomoyenneCadre = Label(self.__moyenneCadre,text="Ecriver la case du\ndebut et la case de\nla fin pour faire votre moyenne",font=("arial","15"),bg="white",fg="black")
         self.__entryMoyenneDebut = Entry(self.__moyenneCadre,font=("arial","15"),width=5,relief=SOLID)
         self.__entryMoyenneFin = Entry(self.__moyenneCadre,font=("arial","15"),width=5,relief=SOLID)
-        buttonValidermoyenneCadre = Button(self.__moyenneCadre,text="Valider",font=("arial","15"),bg="white",fg="black")
+        buttonValidermoyenneCadre = Button(self.__moyenneCadre,text="Valider",font=("arial","15"),bg="white",fg="black",command=lambda : self.__validerEcritureDirect(2))
         # widget sommeCadre
         labelInfosommeCadre = Label(self.__sommeCadre,text="Ecriver la case du debut et la case de\nla fin pour faire votre somme",font=("arial","15"),bg="white",fg="black")
         self.__entrySommeDebut = Entry(self.__sommeCadre,font=("arial","15"),width=5,relief=SOLID)
         self.__entrySommeFin = Entry(self.__sommeCadre,font=("arial","15"),width=5,relief=SOLID)
-        buttonValidersommeCadre = Button(self.__sommeCadre,text="Valider",font=("arial","15"),bg="white",fg="black")
+        buttonValidersommeCadre = Button(self.__sommeCadre,text="Valider",font=("arial","15"),bg="white",fg="black",command=lambda : self.__validerEcritureDirect(3))
         # widget comptageCadre
         labelInfocomptageCadre = Label(self.__comptageCadre,text="Ecriver la case du debut et la case de\nla fin pour faire votre comptage de valeur",font=("arial","15"),bg="white",fg="black")
-        self.__entrycomptageCadre = Entry(self.__comptageCadre,font=("arial","15"),width=5,relief=SOLID)
-        self.__entrycomptageCadre = Entry(self.__comptageCadre,font=("arial","15"),width=5,relief=SOLID)
-        buttonValidercomptageCadre = Button(self.__comptageCadre,text="Valider",font=("arial","15"),bg="white",fg="black")
+        self.__entrycomptageDebut = Entry(self.__comptageCadre,font=("arial","15"),width=5,relief=SOLID)
+        self.__entrycomptageFin = Entry(self.__comptageCadre,font=("arial","15"),width=5,relief=SOLID)
+        buttonValidercomptageCadre = Button(self.__comptageCadre,text="Valider",font=("arial","15"),bg="white",fg="black",command=lambda : self.__validerEcritureDirect(4))
         # widget minumunCadre
         labelInfominumunCadre = Label(self.__minumunCadre,text="Ecriver la case du debut et la case de\nla fin pour faire votre minimun",font=("arial","15"),bg="white",fg="black")
-        self.__entryminumunCadre = Entry(self.__minumunCadre,font=("arial","15"),width=5,relief=SOLID)
-        self.__entryminumunCadre = Entry(self.__minumunCadre,font=("arial","15"),width=5,relief=SOLID)
-        buttonValiderminumunCadre = Button(self.__minumunCadre,text="Valider",font=("arial","15"),bg="white",fg="black")
+        self.__entryminimunDebut = Entry(self.__minumunCadre,font=("arial","15"),width=5,relief=SOLID)
+        self.__entryminimunFin = Entry(self.__minumunCadre,font=("arial","15"),width=5,relief=SOLID)
+        buttonValiderminumunCadre = Button(self.__minumunCadre,text="Valider",font=("arial","15"),bg="white",fg="black",command=lambda : self.__validerEcritureDirect(5))
         # widget maximunCadre
         labelInfomaximunCadre = Label(self.__maximunCadre,text="Ecriver la case du debut et la case de\nla fin pour faire votre maximun",font=("arial","15"),bg="white",fg="black")
-        self.__entrymaximunCadre = Entry(self.__maximunCadre,font=("arial","15"),width=5,relief=SOLID)
-        self.__entrymaximunCadre = Entry(self.__maximunCadre,font=("arial","15"),width=5,relief=SOLID)
-        buttonValidermaximunCadre = Button(self.__maximunCadre,text="Valider",font=("arial","15"),bg="white",fg="black")
+        self.__entrymaximunDebut = Entry(self.__maximunCadre,font=("arial","15"),width=5,relief=SOLID)
+        self.__entrymaximunFin = Entry(self.__maximunCadre,font=("arial","15"),width=5,relief=SOLID)
+        buttonValidermaximunCadre = Button(self.__maximunCadre,text="Valider",font=("arial","15"),bg="white",fg="black",command=lambda : self.__validerEcritureDirect(6))
         # Affichage
         # Widget mainCadre
         labelInfomainCadre.place(relx=0.5, rely=0, anchor="n") 
@@ -474,18 +474,18 @@ class CArreraCopiloteTableurGUI :
         buttonValidersommeCadre.place(relx=0.5, rely=1, anchor="s")
         # widget comptageCadre
         labelInfocomptageCadre.place(relx=0.5, rely=0, anchor="n")
-        self.__entrycomptageCadre.place(relx=0.0, rely=0.5, anchor="w")
-        self.__entrycomptageCadre.place(relx=1.0, rely=0.5, anchor="e")
+        self.__entrycomptageDebut.place(relx=0.0, rely=0.5, anchor="w")
+        self.__entrycomptageFin.place(relx=1.0, rely=0.5, anchor="e")
         buttonValidercomptageCadre.place(relx=0.5, rely=1, anchor="s")
         # widget minumunCadre
         labelInfominumunCadre.place(relx=0.5, rely=0, anchor="n")
-        self.__entryminumunCadre.place(relx=0.0, rely=0.5, anchor="w")
-        self.__entryminumunCadre.place(relx=1.0, rely=0.5, anchor="e")
+        self.__entryminimunDebut.place(relx=0.0, rely=0.5, anchor="w")
+        self.__entryminimunFin.place(relx=1.0, rely=0.5, anchor="e")
         buttonValiderminumunCadre.place(relx=0.5, rely=1, anchor="s")
         # widget maximunCadre
         labelInfomaximunCadre.place(relx=0.5, rely=0, anchor="n")
-        self.__entrymaximunCadre.place(relx=0.0, rely=0.5, anchor="w")
-        self.__entrymaximunCadre.place(relx=1.0, rely=0.5, anchor="e")
+        self.__entrymaximunDebut.place(relx=0.0, rely=0.5, anchor="w")
+        self.__entrymaximunFin.place(relx=1.0, rely=0.5, anchor="e")
         buttonValidermaximunCadre.place(relx=0.5, rely=1, anchor="s")
 
         # Afficage principal 
@@ -520,4 +520,58 @@ class CArreraCopiloteTableurGUI :
 
 
             
-        #def __validerEcritureDirect(self,v:int):
+    def __validerEcritureDirect(self,v:int):
+        """
+        1 : valeur
+        2 : moyenne 
+        3 : somme 
+        4 : comptage
+        5 : minimun
+        6 : Maximun 
+        """
+        match(v):
+            case 1 :
+                case1 = self.__entryValeur.get()
+                if (case1.isdigit()==True):
+                    self.__tableur.write(self.__case,int(case1))
+                else :
+                    self.__tableur.write(self.__case,case1)
+            case 2 :
+                case1 = self.__entryMoyenneDebut.get()
+                case2 = self.__entryMoyenneFin.get()
+                if((self.__verifChaine(case1)==True)and(self.__verifChaine(case2)==True)):
+                    self.__tableur.moyenne(self.__case,case1,case2)
+                else :
+                    messagebox.showerror("Copilote","Les deux case ne sont pas valide")
+            case 3 :
+                case1 = self.__entrySommeDebut.get()
+                case2 = self.__entrySommeFin.get()
+                if((self.__verifChaine(case1)==True)and(self.__verifChaine(case2)==True)):
+                    self.__tableur.somme(self.__case,case1,case2)
+                else :
+                    messagebox.showerror("Copilote","Les deux case ne sont pas valide")
+            case 4 :
+                case1 = self.__entrycomptageDebut.get()
+                case2 = self.__entrycomptageFin.get()
+                if((self.__verifChaine(case1)==True)and(self.__verifChaine(case2)==True)):
+                    self.__tableur.comptage(self.__case,case1,case2)
+                else :
+                    messagebox.showerror("Copilote","Les deux case ne sont pas valide")
+            case 5 :
+                case1 = self.__entryminimunDebut.get()
+                case2 = self.__entryminimunFin.get()
+                if((self.__verifChaine(case1)==True)and(self.__verifChaine(case2)==True)):
+                    self.__tableur.minimun(self.__case,case1,case2)
+                else :
+                    messagebox.showerror("Copilote","Les deux case ne sont pas valide")
+            case 6 :
+                case1 = self.__entrymaximunDebut.get()
+                case2 = self.__entrymaximunFin.get()
+                if((self.__verifChaine(case1)==True)and(self.__verifChaine(case2)==True)):
+                    self.__tableur.maximun(self.__case,case1,case2)
+                else :
+                    messagebox.showerror("Copilote","Les deux case ne sont pas valide")
+            
+        self.__tableur.saveFile()
+        self.__screenEcritureDirect.destroy()
+        
