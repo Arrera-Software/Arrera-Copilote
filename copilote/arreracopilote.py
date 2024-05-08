@@ -107,6 +107,8 @@ class ArreraCopilote :
         reponse =  self.__entryInput.get()
         textSix = str
         textRyley = str
+        listReponseRyley = ["C'est Six que peux te repondre sur cette question ","Je peux pas te repondre. Regardes la reponse de Six "]
+        listReponseSix = ["C'est Ryley que peux vous repondre sur cette question ","Je peux pas vous repondre. Regardez la reponse de Ryley "]
         self.__entryInput.delete(0,END)
         varSortie = int 
         varSortie,sortieNeuronCopilote = self.__copiloteNeuron.neuron(reponse)
@@ -119,8 +121,10 @@ class ArreraCopilote :
                     textRyley = "Il est impossible pour moi et ma soeur de te repondre"    
                 else:
                     textSix = sortieSix[0]
+                    textRyley = listReponseRyley[random.randint(0,1)]
             else :
                 textRyley = sortieRyley[0]
+                textSix = listReponseSix[random.randint(0,1)]
         else :
             textSix = sortieNeuronCopilote[0]
             textRyley = sortieNeuronCopilote[1]
