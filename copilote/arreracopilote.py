@@ -127,6 +127,9 @@ class ArreraCopilote :
         else :
             self.__sixSpeak(sortieNeuronCopilote[0])
             self.__ryleySpeak(sortieNeuronCopilote[1])
+        if(varSortie==12):                  
+            self.__sixSpeak(sortieSix[0]+"\n"+sortieSix[1]+"\n"+"La fete du jour est : "+sortieSix[2])
+            self.__ryleySpeak(sortieSix[3]+"\n"+sortieSix[4]+"\n"+sortieSix[5])
         self.__testFichierOpen()
     
     def __Apropop(self):
