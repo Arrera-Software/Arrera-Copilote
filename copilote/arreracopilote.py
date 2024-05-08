@@ -105,9 +105,9 @@ class ArreraCopilote :
 
     def __envoie(self):
         reponse =  self.__entryInput.get()
+        textSix = str
+        textRyley = str
         self.__entryInput.delete(0,END)
-        self.__labelReponseSix.configure(text="")
-        self.__labelReponseRyley.configure(text="")
         varSortie = int 
         varSortie,sortieNeuronCopilote = self.__copiloteNeuron.neuron(reponse)
         if (varSortie == 0) :
@@ -115,24 +115,23 @@ class ArreraCopilote :
             if (varSortie==0):
                 varSortie, sortieSix = self.__assistantSix.neuron(reponse)
                 if (varSortie == 0) :
-                    radom = random.randint(0,1)
-                    if (radom==0):
-                        self.__sixSpeak("Il est impossible pour moi et mon frere de vous repondre")
-                    else :
-                        self.__ryleySpeak("Il est impossible pour moi et ma soeur de te repondre")
+                    textSix = "Il est impossible pour moi et mon frere de vous repondre"
+                    textRyley = "Il est impossible pour moi et ma soeur de te repondre"    
                 else:
-                    self.__sixSpeak(sortieSix[0])
+                    textSix = sortieSix[0]
             else :
-                self.__ryleySpeak(sortieRyley[0])
+                textRyley = sortieRyley[0]
         else :
-            self.__sixSpeak(sortieNeuronCopilote[0])
-            self.__ryleySpeak(sortieNeuronCopilote[1])
+            textSix = sortieNeuronCopilote[0]
+            textRyley = sortieNeuronCopilote[1]
         if(varSortie==12):                  
-            self.__sixSpeak(sortieSix[0]+"\n"+sortieSix[1]+"\n"+"La fete du jour est : "+sortieSix[2])
-            self.__ryleySpeak(sortieSix[3]+"\n"+sortieSix[4]+"\n"+sortieSix[5])
+            textSix = sortieSix[0]+"\n"+sortieSix[1]+"\n"+"La fete du jour est : "+sortieSix[2]
+            textRyley = sortieSix[3]+"\n"+sortieSix[4]+"\n"+sortieSix[5]
         if (varSortie==3):
-            self.__sixSpeak("Les actualités du jour sont "+sortieSix[0]+"\n"+sortieSix[1]+".")
-            self.__ryleySpeak("Et la derniere est "+sortieSix[2])
+            textSix = "Les actualités du jour sont "+sortieSix[0]+"\n"+sortieSix[1]+"."
+            textRyley = "Et la derniere est "+sortieSix[2]
+        self.__sixSpeak(textSix)
+        self.__ryleySpeak(textRyley)
         self.__testFichierOpen()
     
     def __Apropop(self):
