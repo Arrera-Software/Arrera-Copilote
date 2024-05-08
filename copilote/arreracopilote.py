@@ -130,6 +130,9 @@ class ArreraCopilote :
         if(varSortie==12):                  
             self.__sixSpeak(sortieSix[0]+"\n"+sortieSix[1]+"\n"+"La fete du jour est : "+sortieSix[2])
             self.__ryleySpeak(sortieSix[3]+"\n"+sortieSix[4]+"\n"+sortieSix[5])
+        if (varSortie==3):
+            self.__sixSpeak("Les actualités du jour sont "+sortieSix[0]+"\n"+sortieSix[1]+".")
+            self.__ryleySpeak("Et la derniere est "+sortieSix[2])
         self.__testFichierOpen()
     
     def __Apropop(self):
