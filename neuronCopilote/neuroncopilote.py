@@ -1,4 +1,4 @@
-from ObjetsNetwork.arreraNeuron import*
+from neuronCopilote.neuronCopiloteAngenda import*
 from copilotefonction.copiloteTableur import*
 from fonctionnalites.arreradocument import*
 
@@ -6,6 +6,7 @@ class neuronCopilote :
     def __init__(self,configUser):
         self.__jsonUser = jsonWork(configUser)
         self.__fncTableur = CArreraCopiloteTableurGUI()
+        self.__neuronAgenda = neuronAgendatCopilote(self.__jsonUser)
         self.__oldSortie = ""
         self.__fncDocx = None
         self.__fncEcritureTableur = None
@@ -157,8 +158,10 @@ class neuronCopilote :
                                                     sortie = ["Ok je vous ferme le fichier de traitement de texte","J'espere que cette fonction a ete utile"]
                                                     nb = 1 
                                                 else :
-                                                    sortie = ["",""]
-                                                    nb = 0 
+                                                    nb , sortie = self.__neuronAgenda.neuron(statement)
+                                                    if (nb==0):
+                                                        sortie = ["",""]
+                                                        nb = 0 
             self.__oldSortie = statement   
             return nb , sortie
         
