@@ -115,7 +115,22 @@ class ArreraCopilote :
         if (varSortie == 0) :
             varSortie, sortieRyley = self.__assistantRyley.neuron(reponse)
             if (varSortie==0):
-                varSortie, sortieSix = self.__assistantSix.neuron(reponse)
+                requette = chaine.netoyage(reponse)
+                if(("ajouter un rendez-vous" in requette) or 
+                   ("ajout un rendez-vous"  in requette) or ("ajout evenement" in requette) 
+                   or ("ajout rappel" in requette) or ("ajout un evenement" in requette) 
+                   or ("ajout un rappel" in requette) or ("ajouter un evenement" in requette) 
+                   or ("ajouter  un rappel" in requette) or ("suppr un rendez-vous" in requette) 
+                   or ("supprimer un rendez-vous"  in requette) or ("suppr evenement" in requette)
+                   or ("suppr rappel" in requette) or ("suppr un evenement" in requette) 
+                   or ("suppr un rappel" in requette) or ("supprimer un evenement" in requette) 
+                   or ("supprimer un rappel" in requette) or ("evenement d'aujourd'hui" in requette) 
+                   or ("evenement du jour" in requette) or ("rendez-vous d'aujourd'hui" in requette )
+                   or ("rappel aujourd'hui" in requette)):
+                    varSortie = 0 
+                    sortieSix = ["",""]
+                else :
+                    varSortie, sortieSix = self.__assistantSix.neuron(reponse)
                 if (varSortie == 0) :
                     textSix = "Il est impossible pour moi et mon frere de vous repondre"
                     textRyley = "Il est impossible pour moi et ma soeur de te repondre"    
