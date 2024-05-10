@@ -62,8 +62,8 @@ class CArreraCopiloteAgenda :
         labelSuppr = Label(self.__frameSuppr,text="Supprimer un événement",font=("arial","20"),bg=self.__mainColor,fg=self.__textColor)
         btnValiderSuppr = Button(self.__frameSuppr,text="Supprimer",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
         # frameNavigation
-        btnNavigationAdd = Button(self.__frameNavigation,text="Ajouter",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"))
-        btnNavigationSuppr = Button(self.__frameNavigation,text="Supprimer",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"))
+        btnNavigationAdd = Button(self.__frameNavigation,text="Ajouter",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"),command=self.__addWindows)
+        btnNavigationSuppr = Button(self.__frameNavigation,text="Supprimer",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"),command=self.__showFrameSuppr)
         # Affichage Frame Agenda
         frameYesterday.place(x=0,y=0)
         frameToday.place(x=(frameYesterday.winfo_reqwidth()),y=0)
@@ -106,6 +106,12 @@ class CArreraCopiloteAgenda :
         self.__choixSuppr.set(listEvent[0])
         self.__frameSuppr.place(x=0,y=self.__frameSuppr.winfo_reqheight())
     
+    def __addWindows(self):
+        self.__frameSuppr.place_forget()
+        self.__frameResumer.place_forget()
+        self.__frameNavigation.place_forget()
+        self.__frameAdd.place(x=0,y=self.__frameAdd.winfo_reqheight())
+
     def activeAgenda(self):
         self.__windows()
         self.__frameAdd.place_forget()
@@ -116,11 +122,9 @@ class CArreraCopiloteAgenda :
 
     
     def activeAddWindows(self):
-        self.__frameSuppr.place_forget()
-        self.__frameResumer.place_forget()
-        self.__frameNavigation.place_forget()
+        self.__addWindows()
         self.__windows()
-        self.__frameAdd.place(x=0,y=self.__frameAdd.winfo_reqheight())
+        
     
     def activeSupprWindows(self):
         self.__windows()
