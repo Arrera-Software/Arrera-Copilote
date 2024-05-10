@@ -37,6 +37,8 @@ class CArreraCopiloteAgenda :
         # Frame Management
         self.__frameAdd = Frame(self.__screen,width=600,height=350,bg=self.__mainColor)
         self.__frameSuppr = Frame(self.__screen,width=600,height=350,bg=self.__mainColor)
+        self.__frameResumer = Frame(self.__screen,width=600,height=300,bg="red")
+        self.__frameNavigation = Frame(self.__screen,width=600,height=50,bg=self.__mainColor)
         #Widget Frame Agenda
         labelYesterday = Label(frameYesterday,text=yesterday.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg=self.__mainColor)
         labelToday = Label(frameToday,text=today.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg="green")
@@ -59,6 +61,9 @@ class CArreraCopiloteAgenda :
         # FrameSuppr
         labelSuppr = Label(self.__frameSuppr,text="Supprimer un événement",font=("arial","20"),bg=self.__mainColor,fg=self.__textColor)
         btnValiderSuppr = Button(self.__frameSuppr,text="Supprimer",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
+        # frameNavigation
+        btnNavigationAdd = Button(self.__frameNavigation,text="Ajouter",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"))
+        btnNavigationSuppr = Button(self.__frameNavigation,text="Supprimer",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"))
         # Affichage Frame Agenda
         frameYesterday.place(x=0,y=0)
         frameToday.place(x=(frameYesterday.winfo_reqwidth()),y=0)
@@ -88,8 +93,14 @@ class CArreraCopiloteAgenda :
         # FrameSuppr 
         labelSuppr.place(x=0,y=0)
         btnValiderSuppr.place(relx=0.5, rely=1.0, anchor="s")
+        # frameNavigation
+        btnNavigationAdd.place(relx=0.0, rely=0.5, anchor="w")
+        btnNavigationSuppr.place(relx=1.0, rely=0.5, anchor="e")
     
     def __showFrameSuppr(self):
+        self.__frameAdd.place_forget()
+        self.__frameResumer.place_forget()
+        self.__frameNavigation.place_forget()
         listEvent = ["1","2","2"]
         OptionMenu(self.__frameSuppr,self.__choixSuppr,*listEvent).place(relx=0.5,rely=0.5,anchor="center")
         self.__choixSuppr.set(listEvent[0])
@@ -97,8 +108,17 @@ class CArreraCopiloteAgenda :
     
     def activeAgenda(self):
         self.__windows()
+        self.__frameAdd.place_forget()
+        self.__frameSuppr.place_forget()
+        self.__frameResumer.place(x=0,y=self.__frameAdd.winfo_reqheight())
+        self.__frameNavigation.place(x=0,
+                                     y=(self.__frameAdd.winfo_reqheight()+self.__frameResumer.winfo_reqheight()))
+
     
     def activeAddWindows(self):
+        self.__frameSuppr.place_forget()
+        self.__frameResumer.place_forget()
+        self.__frameNavigation.place_forget()
         self.__windows()
         self.__frameAdd.place(x=0,y=self.__frameAdd.winfo_reqheight())
     
