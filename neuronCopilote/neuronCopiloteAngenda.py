@@ -21,7 +21,7 @@ class neuronAgendatCopilote :
             ("ajout evenement" in statement) or ("ajout rappel" in statement) or 
             ("ajout un evenement" in statement) or ("ajout un rappel" in statement) or 
             ("ajouter un evenement" in statement) or ("ajouter  un rappel" in statement)):
-
+            self.__fncAgenda.activeAddWindows()
             sortie = ["",""]
             nb = 1 
         else :
@@ -29,7 +29,7 @@ class neuronAgendatCopilote :
                 ("suppr evenement" in statement) or ("suppr rappel" in statement) or 
                 ("suppr un evenement" in statement) or ("suppr un rappel" in statement) or 
                 ("supprimer un evenement" in statement) or ("supprimer un rappel" in statement)):
-
+                self.__fncAgenda.activeSupprWindows()
                 sortie = ["",""]
                 nb = 1
             

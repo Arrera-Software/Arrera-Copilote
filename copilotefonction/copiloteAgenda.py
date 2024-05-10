@@ -2,6 +2,7 @@ from tkinter import*
 from datetime import datetime, timedelta
 from librairy.travailJSON import*
 import locale
+from tkcalendar import DateEntry
 
 class CArreraCopiloteAgenda :
     def __init__(self,file:str):
@@ -17,23 +18,26 @@ class CArreraCopiloteAgenda :
         self.__screen.maxsize(600,700)
         self.__screen.minsize(600,700)
         self.__screen.configure(bg="white")
-    
-    def activeAgenda(self):
-        self.__windows()
+        # Varriable de date
         today = datetime.now()
         yesterday = today - timedelta(days=1)
         tomorrow = today + timedelta(days=1)
         day1 = today + timedelta(days=2)
         day2 = today + timedelta(days=3)
         day3 = today + timedelta(days=4)
-        # Frame
+        # Variable choix event Suppr
+        self.__choixSuppr = StringVar(self.__screen)
+        # Frame Agenda
         frameYesterday = Frame(self.__screen,width=200,height=175,borderwidth=2, relief="solid",bg=self.__mainColor)
         frameToday = Frame(self.__screen,width=200,height=175,borderwidth=2, relief="solid",bg="green")
         frameTomorrow = Frame(self.__screen,width=200,height=175,borderwidth=2, relief="solid",bg=self.__mainColor)
         frame1 = Frame(self.__screen,width=200,height=175,borderwidth=2, relief="solid",bg=self.__mainColor)
         frame2 = Frame(self.__screen,width=200,height=175,borderwidth=2, relief="solid",bg=self.__mainColor)
         frame3 = Frame(self.__screen,width=200,height=175,borderwidth=2, relief="solid",bg=self.__mainColor)
-        #Widget 
+        # Frame Management
+        self.__frameAdd = Frame(self.__screen,width=600,height=350,bg=self.__mainColor)
+        self.__frameSuppr = Frame(self.__screen,width=600,height=350,bg=self.__mainColor)
+        #Widget Frame Agenda
         labelYesterday = Label(frameYesterday,text=yesterday.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg=self.__mainColor)
         labelToday = Label(frameToday,text=today.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg="green")
         labelTomorrow = Label(frameTomorrow,text=tomorrow.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg=self.__mainColor)
@@ -44,14 +48,25 @@ class CArreraCopiloteAgenda :
             Button(frame1,text="Ajouter",font=("Arial","13"),bg=self.__mainColor),
             Button(frame2,text="Ajouter",font=("Arial","13"),bg=self.__mainColor),
             Button(frame3,text="Ajouter",font=("Arial","13"),bg=self.__mainColor),]
-        # Affichage Frame
+        # Widget Frame Management 
+        # FrameAdd 
+        labelAdd = Label(self.__frameAdd,text="Ajout d'un événement",font=("arial","20"),bg=self.__mainColor,fg=self.__textColor)
+        labelDate = Label(self.__frameAdd,text="Choisir date : ",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
+        labelName = Label(self.__frameAdd,text="Nom du rappel : ",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
+        chooseDate = DateEntry(self.__frameAdd, width=15, background='darkblue', foreground='white', borderwidth=2)
+        entryName = Entry(self.__frameAdd,font=("arial",12),highlightthickness=2, highlightbackground="black")
+        btnValiderAdd = Button(self.__frameAdd,text="Ajouter",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
+        # FrameSuppr
+        labelSuppr = Label(self.__frameSuppr,text="Supprimer un événement",font=("arial","20"),bg=self.__mainColor,fg=self.__textColor)
+        btnValiderSuppr = Button(self.__frameSuppr,text="Supprimer",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
+        # Affichage Frame Agenda
         frameYesterday.place(x=0,y=0)
         frameToday.place(x=(frameYesterday.winfo_reqwidth()),y=0)
         frameTomorrow.place(x=(frameYesterday.winfo_reqwidth()+frameToday.winfo_reqwidth()),y=0)
         frame1.place(x=(frameYesterday.winfo_reqwidth()),y=(frameYesterday.winfo_reqheight()))
         frame2.place(x=0,y=(frameYesterday.winfo_reqheight()))
         frame3.place(x=(frameYesterday.winfo_reqwidth()+frameToday.winfo_reqwidth()),y=(frameYesterday.winfo_reqheight()))
-        # Affichage Widget
+        # Affichage Widget Frame Agenda
         labelYesterday.place(x=0,y=0)
         labelToday.place(x=0,y=0)
         labelTomorrow.place(x=0,y=0)
@@ -62,3 +77,33 @@ class CArreraCopiloteAgenda :
         btnAdd[1].place(relx=0.5,rely=0.5,anchor="center")
         btnAdd[2].place(relx=0.5,rely=0.5,anchor="center")
         btnAdd[3].place(relx=0.5,rely=0.5,anchor="center")
+        # Affichage Frame Management
+        # FrameAdd
+        labelAdd.place(x=0,y=0)
+        labelDate.place(x=0,y=55)
+        chooseDate.place(x=190,y=60)
+        labelName.place(x=0,y=105)
+        entryName.place(x=200,y=110)
+        btnValiderAdd.place(relx=0.5, rely=1.0, anchor="s")
+        # FrameSuppr 
+        labelSuppr.place(x=0,y=0)
+        btnValiderSuppr.place(relx=0.5, rely=1.0, anchor="s")
+    
+    def __showFrameSuppr(self):
+        listEvent = ["1","2","2"]
+        OptionMenu(self.__frameSuppr,self.__choixSuppr,*listEvent).place(relx=0.5,rely=0.5,anchor="center")
+        self.__choixSuppr.set(listEvent[0])
+        self.__frameSuppr.place(x=0,y=self.__frameSuppr.winfo_reqheight())
+    
+    def activeAgenda(self):
+        self.__windows()
+    
+    def activeAddWindows(self):
+        self.__windows()
+        self.__frameAdd.place(x=0,y=self.__frameAdd.winfo_reqheight())
+    
+    def activeSupprWindows(self):
+        self.__windows()
+        self.__showFrameSuppr()
+        
+        
