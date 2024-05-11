@@ -58,10 +58,11 @@ class CArreraCopiloteAgenda :
                          command=lambda:self.__windowsAdd(str(day2.year)+"-"+str(day2.month)+"-"+str(day2.day))),
             Button(frame3,text="Ajouter",font=("Arial","13"),bg=self.__mainColor,
                          command=lambda:self.__windowsAdd(str(day3.year)+"-"+str(day3.month)+"-"+str(day3.day)))]
-        btnResumer = [Button(frameTomorrow,text="Resumer",font=("Arial","13"),bg=self.__mainColor),
-            Button(frame1,text="Resumer",font=("Arial","13"),bg=self.__mainColor),
-            Button(frame2,text="Resumer",font=("Arial","13"),bg=self.__mainColor),
-            Button(frame3,text="Resumer",font=("Arial","13"),bg=self.__mainColor),]
+        btnResumer = [
+            Button(frameTomorrow,text="Resumer",font=("Arial","13"),bg=self.__mainColor,command=lambda:self.__affichageResumer(str(tomorrow.year)+"-"+str(tomorrow.month)+"-"+str(tomorrow.day))),
+            Button(frame1,text="Resumer",font=("Arial","13"),bg=self.__mainColor,command=lambda:self.__affichageResumer(str(day1.year)+"-"+str(day1.month)+"-"+str(day1.day))),
+            Button(frame2,text="Resumer",font=("Arial","13"),bg=self.__mainColor,command=lambda:self.__affichageResumer(str(day2.year)+"-"+str(day2.month)+"-"+str(day2.day))),
+            Button(frame3,text="Resumer",font=("Arial","13"),bg=self.__mainColor,command=lambda:self.__affichageResumer(str(day3.year)+"-"+str(day3.month)+"-"+str(day3.day)))]
         labelResumerTomorrow = Label(frameTomorrow,text="a",font=("Arial","13"),bg=self.__mainColor)
         labelResumerDay1 = Label(frame1,text="a",font=("Arial","13"),bg=self.__mainColor)
         labelResumerDay2 = Label(frame2,text="a",font=("Arial","13"),bg=self.__mainColor)
@@ -83,8 +84,8 @@ class CArreraCopiloteAgenda :
         btnNavigationAdd = Button(self.__frameNavigation,text="Ajouter",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"),command=self.__showFrameAdd)
         btnNavigationSuppr = Button(self.__frameNavigation,text="Supprimer",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"),command=self.__showFrameSuppr)
         # frameResumer
-        labelTitreResumer = Label(self.__frameResumer,text="Resumer du jour :",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"))
-        labelResumerToday = Label(self.__frameResumer,bg=self.__mainColor,fg=self.__textColor,font=("arial","15"))
+        self.__labelTitreResumer = Label(self.__frameResumer,bg=self.__mainColor,fg=self.__textColor,font=("arial","15"))
+        self.__labelResumer = Label(self.__frameResumer,bg=self.__mainColor,fg=self.__textColor,font=("arial","15"))
         # Affichage Frame Agenda
         frameYesterday.place(x=0,y=0)
         frameToday.place(x=(frameYesterday.winfo_reqwidth()),y=0)
@@ -128,8 +129,8 @@ class CArreraCopiloteAgenda :
         btnNavigationAdd.place(relx=0.0, rely=0.5, anchor="w")
         btnNavigationSuppr.place(relx=1.0, rely=0.5, anchor="e")
         # frameResumer
-        labelTitreResumer.place(x=0,y=0)
-        labelResumerToday.place(x=0,y=40)
+        self.__labelTitreResumer.place(x=0,y=0)
+        self.__labelResumer.place(x=0,y=40)
     
     def __showFrameSuppr(self):
         dictEvenement = self.__agendaFile.dictJson()
@@ -154,11 +155,13 @@ class CArreraCopiloteAgenda :
         self.__frameAdd.place(x=0,y=self.__frameAdd.winfo_reqheight())
     
     def __showFrameResumer(self):
+        today = datetime.now()
         self.__frameAdd.place_forget()
         self.__frameSuppr.place_forget()
         self.__frameResumer.place(x=0,y=self.__frameAdd.winfo_reqheight())
         self.__frameNavigation.place(x=0,
                                      y=(self.__frameAdd.winfo_reqheight()+self.__frameResumer.winfo_reqheight()))
+        self.__affichageResumer(str(today.year)+"-"+str(today.month)+"-"+str(today.day))
 
     def activeAgenda(self):
         self.__windows()
@@ -222,3 +225,28 @@ class CArreraCopiloteAgenda :
         date_obj = dateEntry.get_date()  # Obtenir la date sous forme d'objet datetime.date
         formatted_date = f"{date_obj.year}-{date_obj.month}-{date_obj.day}"  # Formatter la date
         return formatted_date
+
+    def __checkEvent(self,date:str):
+        nbEvent = 0
+        listEvent = []
+        dictEvent = self.__agendaFile.dictJson()
+        nb = self.__agendaFile.compteurFlagJSON()
+        if (nb==0):
+            return 0 , ["",""]
+        else :
+            for i in range(0,nb):
+                if(dictEvent[str(i)][0]==date):
+                    nbEvent += 1 
+                    listEvent.append(dictEvent[str(i)][1])
+        return nbEvent,listEvent
+    
+    def __affichageResumer(self,date:str):
+        self.__labelTitreResumer.configure(text="Resumer du "+date+" :")
+        nb , listEvent = self.__checkEvent(date)
+        self.__labelResumer.configure(text="")
+        if (nb!=0):
+            for i in range(0,nb) :
+                texte = self.__labelResumer.cget("text")
+                self.__labelResumer.configure(text=texte+listEvent[i]+"\n")
+        else :
+            self.__labelResumer.configure(text="")
