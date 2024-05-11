@@ -65,7 +65,7 @@ class CArreraCopiloteAgenda :
         btnAnnulerAdd = Button(self.__frameAdd,text="Annuler",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=self.__showFrameResumer)
         # FrameSuppr
         labelSuppr = Label(self.__frameSuppr,text="Supprimer un événement",font=("arial","20"),bg=self.__mainColor,fg=self.__textColor)
-        btnValiderSuppr = Button(self.__frameSuppr,text="Supprimer",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
+        btnValiderSuppr = Button(self.__frameSuppr,text="Supprimer",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=self.__supprEvent)
         btnAnnulerSuppr = Button(self.__frameSuppr,text="Annuler",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=self.__showFrameResumer)
         # frameNavigation
         btnNavigationAdd = Button(self.__frameNavigation,text="Ajouter",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"),command=self.__showFrameAdd)
@@ -112,13 +112,20 @@ class CArreraCopiloteAgenda :
         labelResumerToday.place(x=0,y=40)
     
     def __showFrameSuppr(self):
-        self.__frameAdd.place_forget()
-        self.__frameResumer.place_forget()
-        self.__frameNavigation.place_forget()
-        listEvent = ["1","2","2"]
-        OptionMenu(self.__frameSuppr,self.__choixSuppr,*listEvent).place(relx=0.5,rely=0.5,anchor="center")
-        self.__choixSuppr.set(listEvent[0])
-        self.__frameSuppr.place(x=0,y=self.__frameSuppr.winfo_reqheight())
+        dictEvenement = self.__agendaFile.dictJson()
+        if len(dictEvenement) == 0 :
+            messagebox.showwarning("Avertisement","Vous pouvez supprimer d'evenement avant d'en ajouter")
+        else :
+            self.__frameAdd.place_forget()
+            self.__frameResumer.place_forget()
+            self.__frameNavigation.place_forget()
+            nbEvent = self.__agendaFile.compteurFlagJSON()
+            listEvent = []
+            for i in range(0,nbEvent):
+                listEvent.append(dictEvenement[str(i)][1])
+            OptionMenu(self.__frameSuppr,self.__choixSuppr,*listEvent).place(relx=0.5,rely=0.5,anchor="center")
+            self.__choixSuppr.set(listEvent[0])
+            self.__frameSuppr.place(x=0,y=self.__frameSuppr.winfo_reqheight())
     
     def __showFrameAdd(self):
         self.__frameSuppr.place_forget()
@@ -161,3 +168,14 @@ class CArreraCopiloteAgenda :
                 self.__entryName.delete(0,END)
                 self.__chooseDate.set_date(datetime.today())
                 messagebox.showinfo("événement","Evénement enregistrer avec succes")
+    
+    def __supprEvent(self):
+        nameEvent = self.__choixSuppr.get()
+        dictEvenement = self.__agendaFile.dictJson()
+        for flag, valeurs in dictEvenement.items():
+            deuxieme_valeur = valeurs[1]  # Deuxième valeur de la liste
+            if deuxieme_valeur == nameEvent:
+                break  
+        self.__agendaFile.supprDictReorg(flag)
+        messagebox.showinfo("événement","Evénement supprimer")
+        self.__showFrameResumer()
