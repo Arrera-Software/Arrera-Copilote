@@ -54,6 +54,14 @@ class CArreraCopiloteAgenda :
             Button(frame1,text="Ajouter",font=("Arial","13"),bg=self.__mainColor),
             Button(frame2,text="Ajouter",font=("Arial","13"),bg=self.__mainColor),
             Button(frame3,text="Ajouter",font=("Arial","13"),bg=self.__mainColor),]
+        btnResumer = [Button(frameTomorrow,text="Resumer",font=("Arial","13"),bg=self.__mainColor),
+            Button(frame1,text="Resumer",font=("Arial","13"),bg=self.__mainColor),
+            Button(frame2,text="Resumer",font=("Arial","13"),bg=self.__mainColor),
+            Button(frame3,text="Resumer",font=("Arial","13"),bg=self.__mainColor),]
+        labelResumerTomorrow = Label(frameTomorrow,text="a",font=("Arial","13"),bg=self.__mainColor)
+        labelResumerDay1 = Label(frame1,text="a",font=("Arial","13"),bg=self.__mainColor)
+        labelResumerDay2 = Label(frame2,text="a",font=("Arial","13"),bg=self.__mainColor)
+        labelResumerDay3 = Label(frame3,text="a",font=("Arial","13"),bg=self.__mainColor)
         # Widget Frame Management 
         # FrameAdd 
         labelAdd = Label(self.__frameAdd,text="Ajout d'un événement",font=("arial","20"),bg=self.__mainColor,fg=self.__textColor)
@@ -87,10 +95,18 @@ class CArreraCopiloteAgenda :
         labelDay1.place(x=0,y=0)
         labelDay2.place(x=0,y=0)
         labelDay3.place(x=0,y=0)
-        btnAdd[0].place(relx=0.5,rely=0.5,anchor="center")
-        btnAdd[1].place(relx=0.5,rely=0.5,anchor="center")
-        btnAdd[2].place(relx=0.5,rely=0.5,anchor="center")
-        btnAdd[3].place(relx=0.5,rely=0.5,anchor="center")
+        labelResumerTomorrow.place(relx=0.5, rely=0.5, anchor="center")
+        labelResumerDay1.place(relx=0.5, rely=0.5, anchor="center")
+        labelResumerDay2.place(relx=0.5, rely=0.5, anchor="center")
+        labelResumerDay3.place(relx=0.5, rely=0.5, anchor="center")
+        btnAdd[0].place(relx=0, rely=1, anchor='sw')
+        btnAdd[1].place(relx=0, rely=1, anchor='sw')
+        btnAdd[2].place(relx=0, rely=1, anchor='sw')
+        btnAdd[3].place(relx=0, rely=1, anchor='sw')
+        btnResumer[0].place(relx=1, rely=1, anchor='se')
+        btnResumer[1].place(relx=1, rely=1, anchor='se')
+        btnResumer[2].place(relx=1, rely=1, anchor='se')
+        btnResumer[3].place(relx=1, rely=1, anchor='se')
         # Affichage Frame Management
         # FrameAdd
         labelAdd.place(x=0,y=0)
