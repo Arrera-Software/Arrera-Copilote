@@ -14,7 +14,6 @@ class CArreraCopiloteAgenda :
         self.__textColor = "black"
         self.__objetDate = fncDate()
         locale.setlocale(locale.LC_TIME, 'fr_FR.UTF-8')
-        #.strftime("%A %d/%m/%Y")
 
     def __windows(self):
         self.__screen = Toplevel()
@@ -35,9 +34,9 @@ class CArreraCopiloteAgenda :
         frameYesterday = Frame(self.__screen,width=200,height=175,borderwidth=2, relief="solid",bg=self.__mainColor)
         frameToday = Frame(self.__screen,width=200,height=175,borderwidth=2, relief="solid",bg="green")
         frameTomorrow = Frame(self.__screen,width=200,height=175,borderwidth=2, relief="solid",bg=self.__mainColor)
-        frame1 = Frame(self.__screen,width=200,height=175,borderwidth=2, relief="solid",bg=self.__mainColor)
-        frame2 = Frame(self.__screen,width=200,height=175,borderwidth=2, relief="solid",bg=self.__mainColor)
-        frame3 = Frame(self.__screen,width=200,height=175,borderwidth=2, relief="solid",bg=self.__mainColor)
+        frameDay1 = Frame(self.__screen,width=200,height=175,borderwidth=2, relief="solid",bg=self.__mainColor)
+        frameDay2 = Frame(self.__screen,width=200,height=175,borderwidth=2, relief="solid",bg=self.__mainColor)
+        frameDay3 = Frame(self.__screen,width=200,height=175,borderwidth=2, relief="solid",bg=self.__mainColor)
         # Frame Management
         self.__frameAdd = Frame(self.__screen,width=600,height=350,bg=self.__mainColor)
         self.__frameSuppr = Frame(self.__screen,width=600,height=350,bg=self.__mainColor)
@@ -47,27 +46,32 @@ class CArreraCopiloteAgenda :
         labelYesterday = Label(frameYesterday,text=yesterday.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg=self.__mainColor)
         labelToday = Label(frameToday,text=today.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg="green")
         labelTomorrow = Label(frameTomorrow,text=tomorrow.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg=self.__mainColor)
-        labelDay1 = Label(frame1,text=day1.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg=self.__mainColor)
-        labelDay2 =  Label(frame2,text=day2.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg=self.__mainColor)
-        labelDay3 = Label(frame3,text=day3.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg=self.__mainColor)
-        btnAdd = [Button(frameTomorrow,text="Ajouter",font=("Arial","13"),bg=self.__mainColor,
+        labelDay1 = Label(frameDay1,text=day1.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg=self.__mainColor)
+        labelDay2 =  Label(frameDay2,text=day2.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg=self.__mainColor)
+        labelDay3 = Label(frameDay3,text=day3.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg=self.__mainColor)
+        btnAddFrameDay = [Button(frameTomorrow,text="Ajouter",font=("Arial","13"),bg=self.__mainColor,
                          command=lambda:self.__windowsAdd(str(tomorrow.year)+"-"+str(tomorrow.month)+"-"+str(tomorrow.day))),
-            Button(frame1,text="Ajouter",font=("Arial","13"),bg=self.__mainColor,
+            Button(frameDay1,text="Ajouter",font=("Arial","13"),bg=self.__mainColor,
                          command=lambda:self.__windowsAdd(str(day1.year)+"-"+str(day1.month)+"-"+str(day1.day))),
-            Button(frame2,text="Ajouter",font=("Arial","13"),bg=self.__mainColor,
+            Button(frameDay2,text="Ajouter",font=("Arial","13"),bg=self.__mainColor,
                          command=lambda:self.__windowsAdd(str(day2.year)+"-"+str(day2.month)+"-"+str(day2.day))),
-            Button(frame3,text="Ajouter",font=("Arial","13"),bg=self.__mainColor,
+            Button(frameDay3,text="Ajouter",font=("Arial","13"),bg=self.__mainColor,
                          command=lambda:self.__windowsAdd(str(day3.year)+"-"+str(day3.month)+"-"+str(day3.day)))]
-        btnResumer = [
-            Button(frameToday,text="Resumer",font=("Arial","13"),bg=self.__mainColor,command=lambda:self.__affichageResumer(str(today.year)+"-"+str(today.month)+"-"+str(today.day))),
-            Button(frameTomorrow,text="Resumer",font=("Arial","13"),bg=self.__mainColor,command=lambda:self.__affichageResumer(str(tomorrow.year)+"-"+str(tomorrow.month)+"-"+str(tomorrow.day))),
-            Button(frame1,text="Resumer",font=("Arial","13"),bg=self.__mainColor,command=lambda:self.__affichageResumer(str(day1.year)+"-"+str(day1.month)+"-"+str(day1.day))),
-            Button(frame2,text="Resumer",font=("Arial","13"),bg=self.__mainColor,command=lambda:self.__affichageResumer(str(day2.year)+"-"+str(day2.month)+"-"+str(day2.day))),
-            Button(frame3,text="Resumer",font=("Arial","13"),bg=self.__mainColor,command=lambda:self.__affichageResumer(str(day3.year)+"-"+str(day3.month)+"-"+str(day3.day)))]
+        btnResumerDay = [
+            Button(frameToday,text="Resumer",font=("Arial","13"),bg=self.__mainColor,
+                   command=lambda:self.__affichageResumer(str(today.year)+"-"+str(today.month)+"-"+str(today.day))),
+            Button(frameTomorrow,text="Resumer",font=("Arial","13"),bg=self.__mainColor,
+                   command=lambda:self.__affichageResumer(str(tomorrow.year)+"-"+str(tomorrow.month)+"-"+str(tomorrow.day))),
+            Button(frameDay1,text="Resumer",font=("Arial","13"),bg=self.__mainColor,
+                   command=lambda:self.__affichageResumer(str(day1.year)+"-"+str(day1.month)+"-"+str(day1.day))),
+            Button(frameDay2,text="Resumer",font=("Arial","13"),bg=self.__mainColor,
+                   command=lambda:self.__affichageResumer(str(day2.year)+"-"+str(day2.month)+"-"+str(day2.day))),
+            Button(frameDay3,text="Resumer",font=("Arial","13"),bg=self.__mainColor,
+                   command=lambda:self.__affichageResumer(str(day3.year)+"-"+str(day3.month)+"-"+str(day3.day)))]
         labelResumerTomorrow = Label(frameTomorrow,text="a",font=("Arial","13"),bg=self.__mainColor)
-        labelResumerDay1 = Label(frame1,text="a",font=("Arial","13"),bg=self.__mainColor)
-        labelResumerDay2 = Label(frame2,text="a",font=("Arial","13"),bg=self.__mainColor)
-        labelResumerDay3 = Label(frame3,text="a",font=("Arial","13"),bg=self.__mainColor)
+        labelResumerDay1 = Label(frameDay1,text="a",font=("Arial","13"),bg=self.__mainColor)
+        labelResumerDay2 = Label(frameDay2,text="a",font=("Arial","13"),bg=self.__mainColor)
+        labelResumerDay3 = Label(frameDay3,text="a",font=("Arial","13"),bg=self.__mainColor)
         # Widget Frame Management 
         # FrameAdd 
         labelAdd = Label(self.__frameAdd,text="Ajout d'un événement",font=("arial","20"),bg=self.__mainColor,fg=self.__textColor)
@@ -75,25 +79,34 @@ class CArreraCopiloteAgenda :
         labelName = Label(self.__frameAdd,text="Nom du rappel : ",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
         chooseDate = DateEntry(self.__frameAdd, width=15, background='darkblue', foreground='white', borderwidth=2)
         entryName = Entry(self.__frameAdd,font=("arial",12),highlightthickness=2, highlightbackground="black")
-        btnValiderAdd = Button(self.__frameAdd,text="Ajouter",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=lambda:self.__addEvent(self.__formatageDateEntry(chooseDate),entryName))
-        btnAnnulerAdd = Button(self.__frameAdd,text="Annuler",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=self.__showFrameResumer)
+        btnValiderAdd = Button(self.__frameAdd,text="Ajouter",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,
+                               command=lambda:self.__addEvent(self.__formatageDateEntry(chooseDate),entryName))
+        btnAnnulerAdd = Button(self.__frameAdd,text="Annuler",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,
+                               command=self.__showFrameResumer)
         # FrameSuppr
-        labelSuppr = Label(self.__frameSuppr,text="Supprimer un événement",font=("arial","20"),bg=self.__mainColor,fg=self.__textColor)
-        btnValiderSuppr = Button(self.__frameSuppr,text="Supprimer",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=self.__supprEvent)
-        btnAnnulerSuppr = Button(self.__frameSuppr,text="Annuler",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=self.__showFrameResumer)
+        labelSuppr = Label(self.__frameSuppr,text="Supprimer un événement",font=("arial","20"),
+                           bg=self.__mainColor,fg=self.__textColor)
+        btnValiderSuppr = Button(self.__frameSuppr,text="Supprimer",font=("arial","15"),
+                                 bg=self.__mainColor,fg=self.__textColor,command=self.__supprEvent)
+        btnAnnulerSuppr = Button(self.__frameSuppr,text="Annuler",font=("arial","15"),
+                                 bg=self.__mainColor,fg=self.__textColor,command=self.__showFrameResumer)
         # frameNavigation
-        btnNavigationAdd = Button(self.__frameNavigation,text="Ajouter",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"),command=self.__showFrameAdd)
-        btnNavigationSuppr = Button(self.__frameNavigation,text="Supprimer",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"),command=self.__showFrameSuppr)
+        btnNavigationAdd = Button(self.__frameNavigation,text="Ajouter",
+                                  bg=self.__mainColor,fg=self.__textColor,font=("arial","15"),command=self.__showFrameAdd)
+        btnNavigationSuppr = Button(self.__frameNavigation,text="Supprimer",
+                                    bg=self.__mainColor,fg=self.__textColor,font=("arial","15"),command=self.__showFrameSuppr)
         # frameResumer
-        self.__labelTitreResumer = Label(self.__frameResumer,bg=self.__mainColor,fg=self.__textColor,font=("arial","15"))
-        self.__labelResumer = Label(self.__frameResumer,bg=self.__mainColor,fg=self.__textColor,font=("arial","15"))
+        self.__labelTitreResumer = Label(self.__frameResumer,
+                                         bg=self.__mainColor,fg=self.__textColor,font=("arial","15"))
+        self.__labelResumer = Label(self.__frameResumer,
+                                    bg=self.__mainColor,fg=self.__textColor,font=("arial","15"))
         # Affichage Frame Agenda
         frameYesterday.place(x=0,y=0)
         frameToday.place(x=(frameYesterday.winfo_reqwidth()),y=0)
         frameTomorrow.place(x=(frameYesterday.winfo_reqwidth()+frameToday.winfo_reqwidth()),y=0)
-        frame1.place(x=0,y=(frameYesterday.winfo_reqheight()))
-        frame2.place(x=(frameYesterday.winfo_reqwidth()),y=(frameYesterday.winfo_reqheight()))
-        frame3.place(x=(frameYesterday.winfo_reqwidth()+frameToday.winfo_reqwidth()),y=(frameYesterday.winfo_reqheight()))
+        frameDay1.place(x=0,y=(frameYesterday.winfo_reqheight()))
+        frameDay2.place(x=(frameYesterday.winfo_reqwidth()),y=(frameYesterday.winfo_reqheight()))
+        frameDay3.place(x=(frameYesterday.winfo_reqwidth()+frameToday.winfo_reqwidth()),y=(frameYesterday.winfo_reqheight()))
         # Affichage Widget Frame Agenda
         labelYesterday.place(x=0,y=0)
         labelToday.place(x=0,y=0)
@@ -105,15 +118,15 @@ class CArreraCopiloteAgenda :
         labelResumerDay1.place(relx=0.5, rely=0.5, anchor="center")
         labelResumerDay2.place(relx=0.5, rely=0.5, anchor="center")
         labelResumerDay3.place(relx=0.5, rely=0.5, anchor="center")
-        btnAdd[0].place(relx=0, rely=1, anchor='sw')
-        btnAdd[1].place(relx=0, rely=1, anchor='sw')
-        btnAdd[2].place(relx=0, rely=1, anchor='sw')
-        btnAdd[3].place(relx=0, rely=1, anchor='sw')
-        btnResumer[0].place(relx=0.5, rely=0.5, anchor="center")
-        btnResumer[1].place(relx=1, rely=1, anchor='se')
-        btnResumer[2].place(relx=1, rely=1, anchor='se')
-        btnResumer[3].place(relx=1, rely=1, anchor='se')
-        btnResumer[4].place(relx=1, rely=1, anchor='se')
+        btnAddFrameDay[0].place(relx=0, rely=1, anchor='sw')
+        btnAddFrameDay[1].place(relx=0, rely=1, anchor='sw')
+        btnAddFrameDay[2].place(relx=0, rely=1, anchor='sw')
+        btnAddFrameDay[3].place(relx=0, rely=1, anchor='sw')
+        btnResumerDay[0].place(relx=0.5, rely=0.5, anchor="center")
+        btnResumerDay[1].place(relx=1, rely=1, anchor='se')
+        btnResumerDay[2].place(relx=1, rely=1, anchor='se')
+        btnResumerDay[3].place(relx=1, rely=1, anchor='se')
+        btnResumerDay[4].place(relx=1, rely=1, anchor='se')
         # Affichage Frame Management
         # FrameAdd
         labelAdd.place(x=0,y=0)
@@ -182,15 +195,18 @@ class CArreraCopiloteAgenda :
         dateJour = str(self.__objetDate.annes() + "-" +  self.__objetDate.nbMois() + "-" + self.__objetDate.jour()) 
         name = entry.get()   
         if (date==dateJour):
-            messagebox.showwarning("Avertisement","Vous pouvez pas crée un événement a la date du jours. Cree un tache a la place")
+            messagebox.showwarning("Avertisement",
+                                   "Vous pouvez pas crée un événement a la date du jours. Cree un tache a la place")
         else :
             if(name==""):
-                messagebox.showwarning("Avertisement","Vous crée un événement sans nom")
+                messagebox.showwarning("Avertisement",
+                                       "Vous crée un événement sans nom")
             else :
                 nb = self.__agendaFile.compteurFlagJSON()
                 self.__agendaFile.EcritureJSON(str(nb),[date,name])
                 entry.delete(0,END)
-                messagebox.showinfo("événement","Evénement enregistrer avec succes")
+                messagebox.showinfo("événement",
+                                    "Evénement enregistrer avec succes")
     
     def __supprEvent(self):
         nameEvent = self.__choixSuppr.get()
