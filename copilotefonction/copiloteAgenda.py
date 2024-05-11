@@ -59,6 +59,7 @@ class CArreraCopiloteAgenda :
             Button(frame3,text="Ajouter",font=("Arial","13"),bg=self.__mainColor,
                          command=lambda:self.__windowsAdd(str(day3.year)+"-"+str(day3.month)+"-"+str(day3.day)))]
         btnResumer = [
+            Button(frameToday,text="Resumer",font=("Arial","13"),bg=self.__mainColor,command=lambda:self.__affichageResumer(str(today.year)+"-"+str(today.month)+"-"+str(today.day))),
             Button(frameTomorrow,text="Resumer",font=("Arial","13"),bg=self.__mainColor,command=lambda:self.__affichageResumer(str(tomorrow.year)+"-"+str(tomorrow.month)+"-"+str(tomorrow.day))),
             Button(frame1,text="Resumer",font=("Arial","13"),bg=self.__mainColor,command=lambda:self.__affichageResumer(str(day1.year)+"-"+str(day1.month)+"-"+str(day1.day))),
             Button(frame2,text="Resumer",font=("Arial","13"),bg=self.__mainColor,command=lambda:self.__affichageResumer(str(day2.year)+"-"+str(day2.month)+"-"+str(day2.day))),
@@ -90,8 +91,8 @@ class CArreraCopiloteAgenda :
         frameYesterday.place(x=0,y=0)
         frameToday.place(x=(frameYesterday.winfo_reqwidth()),y=0)
         frameTomorrow.place(x=(frameYesterday.winfo_reqwidth()+frameToday.winfo_reqwidth()),y=0)
-        frame1.place(x=(frameYesterday.winfo_reqwidth()),y=(frameYesterday.winfo_reqheight()))
-        frame2.place(x=0,y=(frameYesterday.winfo_reqheight()))
+        frame1.place(x=0,y=(frameYesterday.winfo_reqheight()))
+        frame2.place(x=(frameYesterday.winfo_reqwidth()),y=(frameYesterday.winfo_reqheight()))
         frame3.place(x=(frameYesterday.winfo_reqwidth()+frameToday.winfo_reqwidth()),y=(frameYesterday.winfo_reqheight()))
         # Affichage Widget Frame Agenda
         labelYesterday.place(x=0,y=0)
@@ -108,10 +109,11 @@ class CArreraCopiloteAgenda :
         btnAdd[1].place(relx=0, rely=1, anchor='sw')
         btnAdd[2].place(relx=0, rely=1, anchor='sw')
         btnAdd[3].place(relx=0, rely=1, anchor='sw')
-        btnResumer[0].place(relx=1, rely=1, anchor='se')
+        btnResumer[0].place(relx=0.5, rely=0.5, anchor="center")
         btnResumer[1].place(relx=1, rely=1, anchor='se')
         btnResumer[2].place(relx=1, rely=1, anchor='se')
         btnResumer[3].place(relx=1, rely=1, anchor='se')
+        btnResumer[4].place(relx=1, rely=1, anchor='se')
         # Affichage Frame Management
         # FrameAdd
         labelAdd.place(x=0,y=0)
