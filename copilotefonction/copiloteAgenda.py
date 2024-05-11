@@ -50,10 +50,14 @@ class CArreraCopiloteAgenda :
         labelDay1 = Label(frame1,text=day1.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg=self.__mainColor)
         labelDay2 =  Label(frame2,text=day2.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg=self.__mainColor)
         labelDay3 = Label(frame3,text=day3.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg=self.__mainColor)
-        btnAdd = [Button(frameTomorrow,text="Ajouter",font=("Arial","13"),bg=self.__mainColor),
-            Button(frame1,text="Ajouter",font=("Arial","13"),bg=self.__mainColor),
-            Button(frame2,text="Ajouter",font=("Arial","13"),bg=self.__mainColor),
-            Button(frame3,text="Ajouter",font=("Arial","13"),bg=self.__mainColor),]
+        btnAdd = [Button(frameTomorrow,text="Ajouter",font=("Arial","13"),bg=self.__mainColor,
+                         command=lambda:self.__windowsAdd(str(tomorrow.year)+"-"+str(tomorrow.month)+"-"+str(tomorrow.day))),
+            Button(frame1,text="Ajouter",font=("Arial","13"),bg=self.__mainColor,
+                         command=lambda:self.__windowsAdd(str(day1.year)+"-"+str(day1.month)+"-"+str(day1.day))),
+            Button(frame2,text="Ajouter",font=("Arial","13"),bg=self.__mainColor,
+                         command=lambda:self.__windowsAdd(str(day2.year)+"-"+str(day2.month)+"-"+str(day2.day))),
+            Button(frame3,text="Ajouter",font=("Arial","13"),bg=self.__mainColor,
+                         command=lambda:self.__windowsAdd(str(day3.year)+"-"+str(day3.month)+"-"+str(day3.day)))]
         btnResumer = [Button(frameTomorrow,text="Resumer",font=("Arial","13"),bg=self.__mainColor),
             Button(frame1,text="Resumer",font=("Arial","13"),bg=self.__mainColor),
             Button(frame2,text="Resumer",font=("Arial","13"),bg=self.__mainColor),
@@ -67,9 +71,9 @@ class CArreraCopiloteAgenda :
         labelAdd = Label(self.__frameAdd,text="Ajout d'un événement",font=("arial","20"),bg=self.__mainColor,fg=self.__textColor)
         labelDate = Label(self.__frameAdd,text="Choisir date : ",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
         labelName = Label(self.__frameAdd,text="Nom du rappel : ",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
-        self.__chooseDate = DateEntry(self.__frameAdd, width=15, background='darkblue', foreground='white', borderwidth=2)
-        self.__entryName = Entry(self.__frameAdd,font=("arial",12),highlightthickness=2, highlightbackground="black")
-        btnValiderAdd = Button(self.__frameAdd,text="Ajouter",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=lambda:self.__addEvent(str(self.__chooseDate.get_date()),self.__entryName.get()))
+        chooseDate = DateEntry(self.__frameAdd, width=15, background='darkblue', foreground='white', borderwidth=2)
+        entryName = Entry(self.__frameAdd,font=("arial",12),highlightthickness=2, highlightbackground="black")
+        btnValiderAdd = Button(self.__frameAdd,text="Ajouter",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=lambda:self.__addEvent(self.__formatageDateEntry(chooseDate),entryName))
         btnAnnulerAdd = Button(self.__frameAdd,text="Annuler",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=self.__showFrameResumer)
         # FrameSuppr
         labelSuppr = Label(self.__frameSuppr,text="Supprimer un événement",font=("arial","20"),bg=self.__mainColor,fg=self.__textColor)
@@ -111,9 +115,9 @@ class CArreraCopiloteAgenda :
         # FrameAdd
         labelAdd.place(x=0,y=0)
         labelDate.place(x=0,y=55)
-        self.__chooseDate.place(x=190,y=60)
+        chooseDate.place(x=190,y=60)
         labelName.place(x=0,y=105)
-        self.__entryName.place(x=200,y=110)
+        entryName.place(x=200,y=110)
         btnValiderAdd.place(relx=0, rely=1, anchor='sw')
         btnAnnulerAdd.place(relx=1, rely=1, anchor='se')
         # FrameSuppr 
@@ -169,8 +173,9 @@ class CArreraCopiloteAgenda :
         self.__windows()
         self.__showFrameSuppr()
         
-    def __addEvent(self,date:str,name:str): 
-        dateJour = str(self.__objetDate.annes() + "-" +  self.__objetDate.nbMois() + "-" + self.__objetDate.jour())    
+    def __addEvent(self,date:str,entry:Entry): 
+        dateJour = str(self.__objetDate.annes() + "-" +  self.__objetDate.nbMois() + "-" + self.__objetDate.jour()) 
+        name = entry.get()   
         if (date==dateJour):
             messagebox.showwarning("Avertisement","Vous pouvez pas crée un événement a la date du jours. Cree un tache a la place")
         else :
@@ -179,8 +184,7 @@ class CArreraCopiloteAgenda :
             else :
                 nb = self.__agendaFile.compteurFlagJSON()
                 self.__agendaFile.EcritureJSON(str(nb),[date,name])
-                self.__entryName.delete(0,END)
-                self.__chooseDate.set_date(datetime.today())
+                entry.delete(0,END)
                 messagebox.showinfo("événement","Evénement enregistrer avec succes")
     
     def __supprEvent(self):
@@ -193,3 +197,28 @@ class CArreraCopiloteAgenda :
         self.__agendaFile.supprDictReorg(flag)
         messagebox.showinfo("événement","Evénement supprimer")
         self.__showFrameResumer()
+    
+    def __windowsAdd(self,date:str):
+        screen = Toplevel()
+        screen.maxsize(500,200)
+        screen.minsize(500,200)
+        screen.title("Ajout d'evenement")
+        screen.iconphoto(False,PhotoImage(file="asset/icon/copilote/icon.png"))
+        screen.configure(bg=self.__mainColor)
+        Label(screen,text="Ajout d'evenement le "+date,font=("Arial","13"),bg=self.__mainColor).place(x=0,y=0)
+        entryName = Entry(screen,font=("arial",12),highlightthickness=2, highlightbackground="black")
+        entryName.place(relx=0.5, rely=0.5, anchor="center")
+        Button(screen,text="Ajouter",font=("arial","15"),
+               bg=self.__mainColor,fg=self.__textColor,
+               command=lambda:
+               self.__addEvent(date,entryName) and 
+               screen.destroy()).place(relx=1, rely=1, anchor='se')
+        Button(screen,text="Annuler",font=("arial","15"),
+               bg=self.__mainColor,fg=self.__textColor,
+               command=lambda:
+               screen.destroy()).place(relx=0, rely=1, anchor='sw')
+    
+    def __formatageDateEntry(self,dateEntry:DateEntry):
+        date_obj = dateEntry.get_date()  # Obtenir la date sous forme d'objet datetime.date
+        formatted_date = f"{date_obj.year}-{date_obj.month}-{date_obj.day}"  # Formatter la date
+        return formatted_date
