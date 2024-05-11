@@ -17,27 +17,42 @@ class neuronAgendatCopilote :
             sortie=["Okay "+genreUser+" "+nameUser+". Je vous ouvre l'agenda"
                     ,"J'espere que l'agenda vous servira"]
             nb = 1 
-        if (("ajouter un rendez-vous" in statement) or ("ajout un rendez-vous"  in statement) or 
-            ("ajout evenement" in statement) or ("ajout rappel" in statement) or 
-            ("ajout un evenement" in statement) or ("ajout un rappel" in statement) or 
+        if (("ajouter un rendez-vous" in statement) or ("ajoute un rendez-vous"  in statement) or 
+            ("ajoute evenement" in statement) or ("ajoute rappel" in statement) or 
+            ("ajoute un evenement" in statement) or ("ajoute un rappel" in statement) or 
             ("ajouter un evenement" in statement) or ("ajouter  un rappel" in statement)):
             self.__fncAgenda.activeAddWindows()
-            sortie = ["",""]
+            sortie = ["Ok "+genreUser+" "+nameUser+" . Je vous ouvre l'interface de l'agenda.",
+                      "Il te reste plus qu'a suivre l'interface pour ajouter votre rendez-vous"]
             nb = 1 
         else :
             if (("suppr un rendez-vous" in statement) or ("supprimer un rendez-vous"  in statement) or 
                 ("suppr evenement" in statement) or ("suppr rappel" in statement) or 
                 ("suppr un evenement" in statement) or ("suppr un rappel" in statement) or 
-                ("supprimer un evenement" in statement) or ("supprimer un rappel" in statement)):
+                ("supprimer un evenement" in statement) or ("supprimer un rappel" in statement)or
+                ("supprime un evenement" in statement) or ("supprime un rappel" in statement or
+                ("supprimer un rendez-vous" in statement))):
                 self.__fncAgenda.activeSupprWindows()
-                sortie = ["",""]
+                sortie = ["Ok "+genreUser+" "+nameUser+" . Je vous ouvre l'interface de l'agenda.",
+                      "Il te reste plus qu'a suivre l'interface pour supprimer votre rendez-vous"]
                 nb = 1
             
             else :
                 if (("evenement d'aujourd'hui" in statement) or ("evenement du jour" in statement) 
                     or ("rendez-vous d'aujourd'hui" in statement) or ("rappel aujourd'hui" in statement)):
-
-                    sortie = ["",""]
+                    nbEvent= self.__fncAgenda.getNbEventToday()
+                    if (nbEvent==0):
+                        sortie = ["Vous avez rien de prevu aujourd'hui "+genreUser,"Toujours la pour te servir"]
+                    else :
+                        listEvent = self.__fncAgenda.getEventToday()
+                        texteRyley = ""
+                        for i in range(0,nbEvent):
+                            texteRyley = texteRyley+"\n"+listEvent[i]
+                        if(nbEvent==1):
+                            textSix = "Ryley vous montre votre seule événement "+genreUser
+                        else :
+                            textSix = "Ryley vous montre vos "+str(nbEvent)+" événement "+genreUser
+                        sortie = [textSix,texteRyley]
                     nb = 1
                 else :
                     sortie = ["",""]
