@@ -1,12 +1,12 @@
 import datetime
-from datetime import  timedelta
+from datetime import  datetime , timedelta
 
 class fncDate :
     def __init__(self):
-        self.__date= datetime.datetime.now()
+        self.__date= datetime.now()
     
     def rafraichisement(self):
-        self.__date= datetime.datetime.now()
+        self.__date= datetime.now()
         
     def heure(self):
         return str(self.__date.time().hour)
