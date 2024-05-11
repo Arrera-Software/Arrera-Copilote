@@ -43,7 +43,7 @@ class ArreraNetwork :
         self.__time = neuroneTime(self.__fonctionAssistant,self.__gestionnaire,self.__etatNeuron)
     
     def boot(self):
-        hour = datetime.datetime.now().hour
+        hour = datetime.now().hour
         text= self.__formuleNeuron.salutation(hour)
         self.__oldRequette = "boot"
         self.__oldSorti = text
