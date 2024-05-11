@@ -3,12 +3,16 @@ from datetime import datetime, timedelta
 from librairy.travailJSON import*
 import locale
 from tkcalendar import DateEntry
+from arreraSoftware.fonctionDate import *
+from tkinter import filedialog, messagebox
+
 
 class CArreraCopiloteAgenda :
     def __init__(self,file:str):
         self.__agendaFile = jsonWork(file)
         self.__mainColor = "white"
         self.__textColor = "black"
+        self.__objetDate = fncDate()
         locale.setlocale(locale.LC_TIME, 'fr_FR.UTF-8')
         #.strftime("%A %d/%m/%Y")
 
@@ -55,9 +59,9 @@ class CArreraCopiloteAgenda :
         labelAdd = Label(self.__frameAdd,text="Ajout d'un événement",font=("arial","20"),bg=self.__mainColor,fg=self.__textColor)
         labelDate = Label(self.__frameAdd,text="Choisir date : ",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
         labelName = Label(self.__frameAdd,text="Nom du rappel : ",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
-        chooseDate = DateEntry(self.__frameAdd, width=15, background='darkblue', foreground='white', borderwidth=2)
-        entryName = Entry(self.__frameAdd,font=("arial",12),highlightthickness=2, highlightbackground="black")
-        btnValiderAdd = Button(self.__frameAdd,text="Ajouter",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
+        self.__chooseDate = DateEntry(self.__frameAdd, width=15, background='darkblue', foreground='white', borderwidth=2)
+        self.__entryName = Entry(self.__frameAdd,font=("arial",12),highlightthickness=2, highlightbackground="black")
+        btnValiderAdd = Button(self.__frameAdd,text="Ajouter",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=self.__addEvent)
         btnAnnulerAdd = Button(self.__frameAdd,text="Annuler",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=self.__showFrameResumer)
         # FrameSuppr
         labelSuppr = Label(self.__frameSuppr,text="Supprimer un événement",font=("arial","20"),bg=self.__mainColor,fg=self.__textColor)
@@ -91,9 +95,9 @@ class CArreraCopiloteAgenda :
         # FrameAdd
         labelAdd.place(x=0,y=0)
         labelDate.place(x=0,y=55)
-        chooseDate.place(x=190,y=60)
+        self.__chooseDate.place(x=190,y=60)
         labelName.place(x=0,y=105)
-        entryName.place(x=200,y=110)
+        self.__entryName.place(x=200,y=110)
         btnValiderAdd.place(relx=0, rely=1, anchor='sw')
         btnAnnulerAdd.place(relx=1, rely=1, anchor='se')
         # FrameSuppr 
@@ -142,4 +146,18 @@ class CArreraCopiloteAgenda :
         self.__windows()
         self.__showFrameSuppr()
         
-        
+    def __addEvent(self): 
+        dateJour = str(self.__objetDate.annes() + "-" +  self.__objetDate.nbMois() + "-" + self.__objetDate.jour())   
+        name = self.__entryName.get()
+        date = str(self.__chooseDate.get_date())
+        if (date==dateJour):
+            messagebox.showwarning("Avertisement","Vous pouvez pas crée un événement a la date du jours. Cree un tache a la place")
+        else :
+            if(name==""):
+                messagebox.showwarning("Avertisement","Vous crée un événement sans nom")
+            else :
+                nb = self.__agendaFile.compteurFlagJSON()
+                self.__agendaFile.EcritureJSON(str(nb),[date,name])
+                self.__entryName.delete(0,END)
+                self.__chooseDate.set_date(datetime.today())
+                messagebox.showinfo("événement","Evénement enregistrer avec succes")
