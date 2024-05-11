@@ -268,3 +268,13 @@ class CArreraCopiloteAgenda :
                 self.__labelResumer.configure(text=texte+listEvent[i]+"\n")
         else :
             self.__labelResumer.configure(text="")
+    
+    def getEventToday(self):
+        today = datetime.now()
+        nb , listEvent = self.__checkEvent(str(today.year)+"-"+str(today.month)+"-"+str(today.day))
+        return listEvent
+    
+    def getNbEventToday(self):
+        today = datetime.now()
+        nb , listEvent = self.__checkEvent(str(today.year)+"-"+str(today.month)+"-"+str(today.day))
+        return nb
