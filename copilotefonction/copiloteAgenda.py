@@ -69,7 +69,7 @@ class CArreraCopiloteAgenda :
         labelName = Label(self.__frameAdd,text="Nom du rappel : ",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
         self.__chooseDate = DateEntry(self.__frameAdd, width=15, background='darkblue', foreground='white', borderwidth=2)
         self.__entryName = Entry(self.__frameAdd,font=("arial",12),highlightthickness=2, highlightbackground="black")
-        btnValiderAdd = Button(self.__frameAdd,text="Ajouter",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=lambda:self.__addEvent(str(self.__chooseDate.get_date())))
+        btnValiderAdd = Button(self.__frameAdd,text="Ajouter",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=lambda:self.__addEvent(str(self.__chooseDate.get_date()),self.__entryName.get()))
         btnAnnulerAdd = Button(self.__frameAdd,text="Annuler",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=self.__showFrameResumer)
         # FrameSuppr
         labelSuppr = Label(self.__frameSuppr,text="Supprimer un événement",font=("arial","20"),bg=self.__mainColor,fg=self.__textColor)
@@ -169,9 +169,8 @@ class CArreraCopiloteAgenda :
         self.__windows()
         self.__showFrameSuppr()
         
-    def __addEvent(self,date:str): 
-        dateJour = str(self.__objetDate.annes() + "-" +  self.__objetDate.nbMois() + "-" + self.__objetDate.jour())   
-        name = self.__entryName.get()
+    def __addEvent(self,date:str,name:str): 
+        dateJour = str(self.__objetDate.annes() + "-" +  self.__objetDate.nbMois() + "-" + self.__objetDate.jour())    
         if (date==dateJour):
             messagebox.showwarning("Avertisement","Vous pouvez pas crée un événement a la date du jours. Cree un tache a la place")
         else :
