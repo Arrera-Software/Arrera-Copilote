@@ -64,6 +64,9 @@ class CArreraCopiloteAgenda :
         # frameNavigation
         btnNavigationAdd = Button(self.__frameNavigation,text="Ajouter",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"),command=self.__addWindows)
         btnNavigationSuppr = Button(self.__frameNavigation,text="Supprimer",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"),command=self.__showFrameSuppr)
+        # frameResumer
+        labelTitreResumer = Label(self.__frameResumer,text="Resumer du jour :",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"))
+        labelResumerToday = Label(self.__frameResumer,bg=self.__mainColor,fg=self.__textColor,font=("arial","15"))
         # Affichage Frame Agenda
         frameYesterday.place(x=0,y=0)
         frameToday.place(x=(frameYesterday.winfo_reqwidth()),y=0)
@@ -96,6 +99,9 @@ class CArreraCopiloteAgenda :
         # frameNavigation
         btnNavigationAdd.place(relx=0.0, rely=0.5, anchor="w")
         btnNavigationSuppr.place(relx=1.0, rely=0.5, anchor="e")
+        # frameResumer
+        labelTitreResumer.place(x=0,y=0)
+        labelResumerToday.place(x=0,y=40)
     
     def __showFrameSuppr(self):
         self.__frameAdd.place_forget()
