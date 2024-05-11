@@ -37,7 +37,7 @@ class CArreraCopiloteAgenda :
         # Frame Management
         self.__frameAdd = Frame(self.__screen,width=600,height=350,bg=self.__mainColor)
         self.__frameSuppr = Frame(self.__screen,width=600,height=350,bg=self.__mainColor)
-        self.__frameResumer = Frame(self.__screen,width=600,height=300,bg="red")
+        self.__frameResumer = Frame(self.__screen,width=600,height=300,bg=self.__mainColor)
         self.__frameNavigation = Frame(self.__screen,width=600,height=50,bg=self.__mainColor)
         #Widget Frame Agenda
         labelYesterday = Label(frameYesterday,text=yesterday.strftime("%A %d/%m/%Y"),font=("Arial","13"),bg=self.__mainColor)
@@ -58,11 +58,13 @@ class CArreraCopiloteAgenda :
         chooseDate = DateEntry(self.__frameAdd, width=15, background='darkblue', foreground='white', borderwidth=2)
         entryName = Entry(self.__frameAdd,font=("arial",12),highlightthickness=2, highlightbackground="black")
         btnValiderAdd = Button(self.__frameAdd,text="Ajouter",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
+        btnAnnulerAdd = Button(self.__frameAdd,text="Annuler",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=self.__showFrameResumer)
         # FrameSuppr
         labelSuppr = Label(self.__frameSuppr,text="Supprimer un événement",font=("arial","20"),bg=self.__mainColor,fg=self.__textColor)
         btnValiderSuppr = Button(self.__frameSuppr,text="Supprimer",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor)
+        btnAnnulerSuppr = Button(self.__frameSuppr,text="Annuler",font=("arial","15"),bg=self.__mainColor,fg=self.__textColor,command=self.__showFrameResumer)
         # frameNavigation
-        btnNavigationAdd = Button(self.__frameNavigation,text="Ajouter",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"),command=self.__addWindows)
+        btnNavigationAdd = Button(self.__frameNavigation,text="Ajouter",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"),command=self.__showFrameAdd)
         btnNavigationSuppr = Button(self.__frameNavigation,text="Supprimer",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"),command=self.__showFrameSuppr)
         # frameResumer
         labelTitreResumer = Label(self.__frameResumer,text="Resumer du jour :",bg=self.__mainColor,fg=self.__textColor,font=("arial","15"))
@@ -92,10 +94,12 @@ class CArreraCopiloteAgenda :
         chooseDate.place(x=190,y=60)
         labelName.place(x=0,y=105)
         entryName.place(x=200,y=110)
-        btnValiderAdd.place(relx=0.5, rely=1.0, anchor="s")
+        btnValiderAdd.place(relx=0, rely=1, anchor='sw')
+        btnAnnulerAdd.place(relx=1, rely=1, anchor='se')
         # FrameSuppr 
         labelSuppr.place(x=0,y=0)
-        btnValiderSuppr.place(relx=0.5, rely=1.0, anchor="s")
+        btnValiderSuppr.place(relx=0, rely=1, anchor='sw')
+        btnAnnulerSuppr.place(relx=1, rely=1, anchor='se')
         # frameNavigation
         btnNavigationAdd.place(relx=0.0, rely=0.5, anchor="w")
         btnNavigationSuppr.place(relx=1.0, rely=0.5, anchor="e")
@@ -112,24 +116,26 @@ class CArreraCopiloteAgenda :
         self.__choixSuppr.set(listEvent[0])
         self.__frameSuppr.place(x=0,y=self.__frameSuppr.winfo_reqheight())
     
-    def __addWindows(self):
+    def __showFrameAdd(self):
         self.__frameSuppr.place_forget()
         self.__frameResumer.place_forget()
         self.__frameNavigation.place_forget()
         self.__frameAdd.place(x=0,y=self.__frameAdd.winfo_reqheight())
-
-    def activeAgenda(self):
-        self.__windows()
+    
+    def __showFrameResumer(self):
         self.__frameAdd.place_forget()
         self.__frameSuppr.place_forget()
         self.__frameResumer.place(x=0,y=self.__frameAdd.winfo_reqheight())
         self.__frameNavigation.place(x=0,
                                      y=(self.__frameAdd.winfo_reqheight()+self.__frameResumer.winfo_reqheight()))
 
-    
-    def activeAddWindows(self):
-        self.__addWindows()
+    def activeAgenda(self):
         self.__windows()
+        self.__showFrameResumer()
+
+    def activeAddWindows(self):
+        self.__windows()
+        self.__showFrameAdd()
         
     
     def activeSupprWindows(self):
