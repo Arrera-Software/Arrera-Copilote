@@ -123,7 +123,7 @@ class CArreraCopiloteTask :
     def __showCheckFrame(self):
         dictTache = self.__taskFile.dictJson()
         if(len(dictTache)==0):
-            messagebox.showwarning("Avertisement","Vous pouvez supprimer une tache avant d'en ajouter")
+            messagebox.showwarning("Avertisement","Vous pouvez finir une tache avant d'en ajouter")
         else :
             self.__frameTask.place_forget()
             self.__frameCheck.place(x=0,y=0)
