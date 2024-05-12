@@ -1,11 +1,13 @@
 from ObjetsNetwork.arreraNeuron import*
 from copilotefonction.copiloteAgenda import*
+from copilotefonction.copiloteTask import*
 from tkinter import*
 
 class neuronAgendatCopilote :
     def __init__(self,jsonUser:jsonWork):
         self.__jsonUser = jsonUser
         self.__fncAgenda = CArreraCopiloteAgenda("fileUser/agenda.json")
+        self.__fncTask = CArreraCopiloteTask("fileUser/task.json")
         self.__oldSortie = ""
     
     def neuron(self,var:str):
@@ -55,7 +57,27 @@ class neuronAgendatCopilote :
                         sortie = [textSix,texteRyley]
                     nb = 1
                 else :
-                    sortie = ["",""]
-                    nb = 0
+                    if("montre mes tache"in statement):
+                        sortie =["",""]
+                        self.__fncTask.activeViewTask()
+                        nb = 1
+                    else :
+                        if("ajoute une tache"in statement):
+                            sortie =["",""]
+                            self.__fncTask.activeViewAdd()
+                            nb = 1
+                        else :
+                            if("supprime une tache"in statement):
+                                sortie =["",""]
+                                self.__fncTask.activeViewSuppr()
+                                nb = 1
+                            else :
+                                if("fini une tache"in statement):
+                                    sortie =["",""]
+                                    self.__fncTask.activeViewCheck()
+                                    nb = 1
+                                else :
+                                    sortie = ["",""]
+                                    nb = 0
         
         return nb , sortie
