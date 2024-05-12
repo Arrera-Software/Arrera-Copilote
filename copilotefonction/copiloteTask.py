@@ -13,6 +13,7 @@ class CArreraCopiloteTask :
         screen.minsize(500,450)
         screen.maxsize(500,450)
         screen.configure(bg=self.__mainColor)
+        screen.iconphoto(False,PhotoImage(file="asset/icon/copilote/icon.png"))
         # Varriable 
         self.__choixSuppr = StringVar(screen)
         # Frame

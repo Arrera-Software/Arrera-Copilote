@@ -21,6 +21,7 @@ class CArreraCopiloteAgenda :
         self.__screen.maxsize(600,700)
         self.__screen.minsize(600,700)
         self.__screen.configure(bg="white")
+        self.__screen.iconphoto(False,PhotoImage(file="asset/icon/copilote/icon.png"))
         # Varriable de date
         today = datetime.now()
         yesterday = today - timedelta(days=1)
