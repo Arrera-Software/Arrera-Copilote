@@ -68,10 +68,10 @@ class CArreraCopiloteAgenda :
                    command=lambda:self.__affichageResumer(str(day2.year)+"-"+str(day2.month)+"-"+str(day2.day))),
             Button(frameDay3,text="Resumer",font=("Arial","13"),bg=self.__mainColor,
                    command=lambda:self.__affichageResumer(str(day3.year)+"-"+str(day3.month)+"-"+str(day3.day)))]
-        labelResumerTomorrow = Label(frameTomorrow,text="a",font=("Arial","13"),bg=self.__mainColor)
-        labelResumerDay1 = Label(frameDay1,text="a",font=("Arial","13"),bg=self.__mainColor)
-        labelResumerDay2 = Label(frameDay2,text="a",font=("Arial","13"),bg=self.__mainColor)
-        labelResumerDay3 = Label(frameDay3,text="a",font=("Arial","13"),bg=self.__mainColor)
+        self.__labelResumerTomorrow = Label(frameTomorrow,text="a",font=("Arial","13"),bg=self.__mainColor)
+        self.__labelResumerDay1 = Label(frameDay1,font=("Arial","13"),bg=self.__mainColor)
+        self.__labelResumerDay2 = Label(frameDay2,font=("Arial","13"),bg=self.__mainColor)
+        self.__labelResumerDay3 = Label(frameDay3,font=("Arial","13"),bg=self.__mainColor)
         # Widget Frame Management 
         # FrameAdd 
         labelAdd = Label(self.__frameAdd,text="Ajout d'un événement",font=("arial","20"),bg=self.__mainColor,fg=self.__textColor)
@@ -114,10 +114,10 @@ class CArreraCopiloteAgenda :
         labelDay1.place(x=0,y=0)
         labelDay2.place(x=0,y=0)
         labelDay3.place(x=0,y=0)
-        labelResumerTomorrow.place(relx=0.5, rely=0.5, anchor="center")
-        labelResumerDay1.place(relx=0.5, rely=0.5, anchor="center")
-        labelResumerDay2.place(relx=0.5, rely=0.5, anchor="center")
-        labelResumerDay3.place(relx=0.5, rely=0.5, anchor="center")
+        self.__labelResumerTomorrow.place(relx=0.5, rely=0.5, anchor="center")
+        self.__labelResumerDay1.place(relx=0.5, rely=0.5, anchor="center")
+        self.__labelResumerDay2.place(relx=0.5, rely=0.5, anchor="center")
+        self.__labelResumerDay3.place(relx=0.5, rely=0.5, anchor="center")
         btnAddFrameDay[0].place(relx=0, rely=1, anchor='sw')
         btnAddFrameDay[1].place(relx=0, rely=1, anchor='sw')
         btnAddFrameDay[2].place(relx=0, rely=1, anchor='sw')
@@ -162,12 +162,14 @@ class CArreraCopiloteAgenda :
             OptionMenu(self.__frameSuppr,self.__choixSuppr,*listEvent).place(relx=0.5,rely=0.5,anchor="center")
             self.__choixSuppr.set(listEvent[0])
             self.__frameSuppr.place(x=0,y=self.__frameSuppr.winfo_reqheight())
+        self.__setLabelResumer()
     
     def __showFrameAdd(self):
         self.__frameSuppr.place_forget()
         self.__frameResumer.place_forget()
         self.__frameNavigation.place_forget()
         self.__frameAdd.place(x=0,y=self.__frameAdd.winfo_reqheight())
+        self.__setLabelResumer()
     
     def __showFrameResumer(self):
         today = datetime.now()
@@ -177,6 +179,7 @@ class CArreraCopiloteAgenda :
         self.__frameNavigation.place(x=0,
                                      y=(self.__frameAdd.winfo_reqheight()+self.__frameResumer.winfo_reqheight()))
         self.__affichageResumer(str(today.year)+"-"+str(today.month)+"-"+str(today.day))
+        self.__setLabelResumer()
 
     def activeAgenda(self):
         self.__windows()
@@ -207,6 +210,7 @@ class CArreraCopiloteAgenda :
                 entry.delete(0,END)
                 messagebox.showinfo("événement",
                                     "Evénement enregistrer avec succes")
+        self.__setLabelResumer()
     
     def __supprEvent(self):
         nameEvent = self.__choixSuppr.get()
@@ -218,6 +222,7 @@ class CArreraCopiloteAgenda :
         self.__agendaFile.supprDictReorg(flag)
         messagebox.showinfo("événement","Evénement supprimer")
         self.__showFrameResumer()
+        self.__setLabelResumer()
     
     def __windowsAdd(self,date:str):
         screen = Toplevel()
@@ -268,6 +273,49 @@ class CArreraCopiloteAgenda :
                 self.__labelResumer.configure(text=texte+listEvent[i]+"\n")
         else :
             self.__labelResumer.configure(text="")
+    
+    def __setLabelResumer(self):
+        tomorrow = datetime.now() + timedelta(days=1)
+        day1 = datetime.now() + timedelta(days=2)
+        day2 = datetime.now() + timedelta(days=3)
+        day3 = datetime.now() + timedelta(days=4)
+        nbTomorrow,listEvent = self.__checkEvent(str(tomorrow.year)+"-"+str(tomorrow.month)+"-"+str(tomorrow.day))
+        nbDay1,listEvent = self.__checkEvent(str(day1.year)+"-"+str(day1.month)+"-"+str(day1.day))
+        nbDay2,listEvent = self.__checkEvent(str(day2.year)+"-"+str(day2.month)+"-"+str(day2.day))
+        nbDay3,listEvent = self.__checkEvent(str(day3.year)+"-"+str(day3.month)+"-"+str(day3.day))
+        if(nbTomorrow==0):
+            self.__labelResumerTomorrow.configure(text="Aucun un événement a cette date",wraplength=130)
+        else :
+            if(nbTomorrow==1):
+                self.__labelResumerTomorrow.configure(text="1 seul événement prévu pour cette date",wraplength=130)
+            else :
+                self.__labelTitreResumer.configure(text=str(nbTomorrow)+" événements prévu pour cette date",wraplength=130)
+        
+        if(nbDay1==0):
+            self.__labelResumerDay1.configure(text="Aucun un événement a cette date",wraplength=130)
+        else :
+            if(nbDay1==1):
+                self.__labelResumerDay1.configure(text="1 seul événement prévu pour cette date",wraplength=130)
+            else :
+                self.__labelResumerDay1.configure(text=str(nbDay1)+" événements prévu pour cette date",wraplength=130)
+        
+        if(nbDay2==0):
+            self.__labelResumerDay2.configure(text="Aucun un événement a cette date",wraplength=130)
+        else :
+            if(nbDay2==1):
+                self.__labelResumerDay2.configure(text="1 seul événement prévu pour cette date",wraplength=130)
+            else :
+                self.__labelResumerDay2.configure(text=str()+" événements prévu pour cette date",wraplength=130)
+        
+        if(nbDay3==0):
+            self.__labelResumerDay3.configure(text="Aucun un événement a cette date",wraplength=130)
+        else :
+            if(nbDay3==1):
+                self.__labelResumerDay3.configure(text="1 seul événement prévu pour cette date",wraplength=130)
+            else :
+                self.__labelResumerDay3.configure(text=str(nbDay3)+" événements prévu pour cette date",wraplength=130)
+
+
     
     def getEventToday(self):
         today = datetime.now()
