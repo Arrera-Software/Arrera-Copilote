@@ -315,8 +315,6 @@ class CArreraCopiloteAgenda :
             else :
                 self.__labelResumerDay3.configure(text=str(nbDay3)+" événements prévu pour cette date",wraplength=130)
 
-
-    
     def getEventToday(self):
         today = datetime.now()
         nb , listEvent = self.__checkEvent(str(today.year)+"-"+str(today.month)+"-"+str(today.day))
