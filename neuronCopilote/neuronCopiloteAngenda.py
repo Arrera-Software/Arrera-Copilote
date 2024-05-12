@@ -57,23 +57,23 @@ class neuronAgendatCopilote :
                         sortie = [textSix,texteRyley]
                     nb = 1
                 else :
-                    if("montre mes tache"in statement):
-                        sortie =["",""]
+                    if(("montre mes tache"in statement)or("fais voir mes taches"in statement)):
+                        sortie =["Voici vos tache "+genreUser,"Suit bien l'interface"]
                         self.__fncTask.activeViewTask()
                         nb = 1
                     else :
-                        if("ajoute une tache"in statement):
-                            sortie =["",""]
+                        if(("ajoute une tache"in statement)):
+                            sortie =["Je vous ouvre l'interface pour ajouter une tache","Suis bien l'interface pour ajouter une tache"]
                             self.__fncTask.activeViewAdd()
                             nb = 1
                         else :
-                            if("supprime une tache"in statement):
-                                sortie =["",""]
+                            if(("supprime une tache"in statement)):
+                                sortie =["Je vous ouvre l'interface pour supprimer une tache","Suis bien l'interface pour supprimer une de tes tache"]
                                 self.__fncTask.activeViewSuppr()
                                 nb = 1
                             else :
-                                if("fini une tache"in statement):
-                                    sortie =["",""]
+                                if(("finir une tache"in statement)or("terminer une tache" in statement)):
+                                    sortie =["Je vous ouvre l'interface pour finir une tache","Suis bien l'interface pour finir une de tes tache"]
                                     self.__fncTask.activeViewCheck()
                                     nb = 1
                                 else :
