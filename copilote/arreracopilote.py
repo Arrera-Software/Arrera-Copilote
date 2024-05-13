@@ -1,5 +1,6 @@
 from neuronCopilote.neuroncopilote import*
 from gazelle.arreraAssistantSetting import *
+from neuron.codehelp import*
 from lynx.arreraLynx import*
 from PIL import Image, ImageTk
 
@@ -28,8 +29,10 @@ class ArreraCopilote :
                                                   "configuration/six.json",
                                                   "configuration/copilote.json",
                                                   "configuration/configUser.json")
-        # Neuron copilote
+        # Neuron complaimentaire
         self.__copiloteNeuron = neuronCopilote("configuration/configUser.json")
+        self.__neuronCodehelp = neuronCodehelp(self.__mainColor,
+                                               self.__textMainColor,"fileUser/codehelp.json")
         # emplacement icon 
         self.__emplacementIconSix = "asset/icon/six/logo-normal.png"
         self.____emplacementIconRyley = "asset/icon/ryley/icon.png"
@@ -112,34 +115,39 @@ class ArreraCopilote :
         self.__entryInput.delete(0,END)
         varSortie = int 
         varSortie,sortieNeuronCopilote = self.__copiloteNeuron.neuron(reponse)
-        if (varSortie == 0) :
-            varSortie, sortieRyley = self.__assistantRyley.neuron(reponse)
-            if (varSortie==0):
-                requette = chaine.netoyage(reponse)
-                if(("ajouter un rendez-vous" in requette) or 
-                   ("ajout un rendez-vous"  in requette) or ("ajout evenement" in requette) 
-                   or ("ajout rappel" in requette) or ("ajout un evenement" in requette) 
-                   or ("ajout un rappel" in requette) or ("ajouter un evenement" in requette) 
-                   or ("ajouter  un rappel" in requette) or ("suppr un rendez-vous" in requette) 
-                   or ("supprimer un rendez-vous"  in requette) or ("suppr evenement" in requette)
-                   or ("suppr rappel" in requette) or ("suppr un evenement" in requette) 
-                   or ("suppr un rappel" in requette) or ("supprimer un evenement" in requette) 
-                   or ("supprimer un rappel" in requette) or ("evenement d'aujourd'hui" in requette) 
-                   or ("evenement du jour" in requette) or ("rendez-vous d'aujourd'hui" in requette )
-                   or ("rappel aujourd'hui" in requette)):
-                    varSortie = 0 
-                    sortieSix = ["",""]
+        if (varSortie==0):
+            varSortie,sortieNeuronCodehelp = self.__neuronCodehelp.neuron(chaine.netoyage(reponse))
+            if (varSortie == 0) :
+                varSortie, sortieRyley = self.__assistantRyley.neuron(reponse)
+                if (varSortie==0):
+                    requette = chaine.netoyage(reponse)
+                    if(("ajouter un rendez-vous" in requette) or 
+                    ("ajout un rendez-vous"  in requette) or ("ajout evenement" in requette) 
+                    or ("ajout rappel" in requette) or ("ajout un evenement" in requette) 
+                    or ("ajout un rappel" in requette) or ("ajouter un evenement" in requette) 
+                    or ("ajouter  un rappel" in requette) or ("suppr un rendez-vous" in requette) 
+                    or ("supprimer un rendez-vous"  in requette) or ("suppr evenement" in requette)
+                    or ("suppr rappel" in requette) or ("suppr un evenement" in requette) 
+                    or ("suppr un rappel" in requette) or ("supprimer un evenement" in requette) 
+                    or ("supprimer un rappel" in requette) or ("evenement d'aujourd'hui" in requette) 
+                    or ("evenement du jour" in requette) or ("rendez-vous d'aujourd'hui" in requette )
+                    or ("rappel aujourd'hui" in requette)):
+                        varSortie = 0 
+                        sortieSix = ["",""]
+                    else :
+                        varSortie, sortieSix = self.__assistantSix.neuron(reponse)
+                    if (varSortie == 0) :
+                        textSix = "Il est impossible pour moi et mon frere de vous repondre"
+                        textRyley = "Il est impossible pour moi et ma soeur de te repondre"    
+                    else:
+                        textSix = sortieSix[0]
+                        textRyley = listReponseRyley[random.randint(0,1)]
                 else :
-                    varSortie, sortieSix = self.__assistantSix.neuron(reponse)
-                if (varSortie == 0) :
-                    textSix = "Il est impossible pour moi et mon frere de vous repondre"
-                    textRyley = "Il est impossible pour moi et ma soeur de te repondre"    
-                else:
-                    textSix = sortieSix[0]
-                    textRyley = listReponseRyley[random.randint(0,1)]
+                    textRyley = sortieRyley[0]
+                    textSix = listReponseSix[random.randint(0,1)]
             else :
-                textRyley = sortieRyley[0]
-                textSix = listReponseSix[random.randint(0,1)]
+                textSix = "C'est Ryley qui vas vous aidez avec CodeHelp"
+                textRyley = sortieNeuronCodehelp
         else :
             textSix = sortieNeuronCopilote[0]
             textRyley = sortieNeuronCopilote[1]
