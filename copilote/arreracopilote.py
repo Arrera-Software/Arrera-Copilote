@@ -3,6 +3,8 @@ from gazelle.arreraAssistantSetting import *
 from neuron.codehelp import*
 from lynx.arreraLynx import*
 from PIL import Image, ImageTk
+from src.srcSix import*
+import threading as th
 
 class ArreraCopilote :
     def __init__(self):
@@ -19,6 +21,8 @@ class ArreraCopilote :
         # varriable couleur
         self.__mainColor = "white"
         self.__textMainColor = "black"
+        # Varriable reponse Oral
+        self.__microOn = False 
         #fenetre tkinter
         self.__screen = Tk()
         self.__screen.title("Arrera : Copilote")
@@ -34,6 +38,8 @@ class ArreraCopilote :
         self.__neuronCodehelp = neuronCodehelp(self.__mainColor,
                                                self.__textMainColor,
                                                "fileUser/codehelp.json","configuration/configUser.json")
+        # Instenation des source de Six 
+        self.__sourceSix = SIXsrc()
         # emplacement icon 
         self.__emplacementIconSix = "asset/icon/six/logo-normal.png"
         self.____emplacementIconRyley = "asset/icon/ryley/icon.png"
@@ -71,10 +77,10 @@ class ArreraCopilote :
         iconParametre = ImageTk.PhotoImage((Image.open("asset/icon/copilote/parametre.png").resize((30,30))))
         btnPara.image_names=iconParametre
         btnPara.configure(image=iconParametre)
-        btnMicro = Button(frameBottom,width=350,bg=self.__mainColor)
+        self.__btnMicro = Button(frameBottom,width=350,bg=self.__mainColor,command=self.__fncMicro)
         iconMicro = ImageTk.PhotoImage((Image.open("asset/icon/copilote/microphoneCopilote.png").resize((30,30))))
-        btnMicro.image_names=iconMicro 
-        btnMicro.configure(image=iconMicro )
+        self.__btnMicro.image_names=iconMicro 
+        self.__btnMicro.configure(image=iconMicro )
         self.__labelDocxOpen = Label(frameBottom,bg=self.__mainColor,fg=self.__textMainColor,font=("arial","13"))
         self.__labelTableurOpen = Label(frameBottom,bg=self.__mainColor,fg=self.__textMainColor,font=("arial","13"))
         # Affichage general
@@ -93,7 +99,7 @@ class ArreraCopilote :
         btnSend.pack(side="right")
         input.place(relx=0.5,rely=0.5,anchor="center")
         btnApropos.place(relx=0, rely=0.5, anchor="w")
-        btnMicro.place(relx=0.5,rely=0.5,anchor="center")
+        self.__btnMicro.place(relx=0.5,rely=0.5,anchor="center")
         btnPara.place(relx=1, rely=0.5, anchor="e")
         self.__labelDocxOpen.place(x=40, y=10)
         self.__labelTableurOpen.place(x=535, y=10)
@@ -197,6 +203,10 @@ class ArreraCopilote :
     
     def __sixSpeak(self,texte:str):
         self.__labelReponseSix.configure(text=texte, justify="left",wraplength=600)
+        if (self.__microOn==True):
+            theardParole = th.Thread(target=self.__sourceSix.speak,args=(texte,))
+            theardParole.start()
+
     
     def __setting(self):
         parametre = Toplevel()
@@ -223,3 +233,11 @@ class ArreraCopilote :
             self.__labelTableurOpen.configure(text="Tableur ouvert")
         else :
             self.__labelTableurOpen.configure(text="")
+    
+    def __fncMicro(self):
+        if (self.__microOn==False):
+            self.__microOn = True
+            self.__btnMicro.configure(bg="green")
+        else :
+            self.__microOn = False
+            self.__btnMicro.configure(bg=self.__mainColor)
