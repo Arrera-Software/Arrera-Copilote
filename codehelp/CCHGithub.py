@@ -32,7 +32,7 @@ class CHGithub:
         self.__entrySeach = Entry(self.__frameSearch,font=("arial","15"),relief=SOLID)
         labelSearch = Label(self.__frameSearch,text="Recherche sur Github",bg=self.__mainColor,fg=self.__mainTextColor,font=("arial","25"))
         btnSearch = Button(self.__frameSearch,text="Valider",bg=self.__mainColor,fg=self.__mainTextColor,font=("arial","15"),command=self.__search)
-        labelError = Label(self.__frameError,text="Aucun token enregistrer\nRendez-vous\ndans les parametre pour\nl'enregistrer",bg=self.__mainColor,fg=self.__mainTextColor,font=("arial","25"))
+        labelError = Label(self.__frameError,text="Aucun token enregistrer\ntaper dans le zone de \nreponse d'arrera copilote\n'enregistrement token'",bg=self.__mainColor,fg=self.__mainTextColor,font=("arial","25"))
         btnError = Button(self.__frameError,text="Quitter",bg=self.__mainColor,fg=self.__mainTextColor,font=("arial","15"),command=self.__backMain)
         btnListQuit = Button(self.__frameList,text="Quitter",bg=self.__mainColor,fg=self.__mainTextColor,font=("arial","15"),width=self.__frameList.winfo_reqwidth(),command=self.__backMain)
         self.boxlistDepot = Listbox(self.__frameList,width=500,height=500)
