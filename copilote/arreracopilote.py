@@ -32,7 +32,8 @@ class ArreraCopilote :
         # Neuron complaimentaire
         self.__copiloteNeuron = neuronCopilote("configuration/configUser.json")
         self.__neuronCodehelp = neuronCodehelp(self.__mainColor,
-                                               self.__textMainColor,"fileUser/codehelp.json")
+                                               self.__textMainColor,
+                                               "fileUser/codehelp.json","configuration/configUser.json")
         # emplacement icon 
         self.__emplacementIconSix = "asset/icon/six/logo-normal.png"
         self.____emplacementIconRyley = "asset/icon/ryley/icon.png"
@@ -116,7 +117,7 @@ class ArreraCopilote :
         varSortie = int 
         varSortie,sortieNeuronCopilote = self.__copiloteNeuron.neuron(reponse)
         if (varSortie==0):
-            varSortie,sortieNeuronCodehelp = self.__neuronCodehelp.neuron(chaine.netoyage(reponse))
+            varSortie,sortieNeuronCodehelp = self.__neuronCodehelp.neuron(reponse)
             if (varSortie == 0) :
                 varSortie, sortieRyley = self.__assistantRyley.neuron(reponse)
                 if (varSortie==0):
