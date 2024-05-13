@@ -63,7 +63,7 @@ class neuronCopilote :
                                     " mais vous avez pas selection de fichier",
                                     "Selectionne bien un fichier dans la fenetre de l'explorateur de fichier"]
                     else :
-                        sortie = ["Okay je vous est ouvert votre fichier de traitement de texte "+genreUser+" "+nameUser,
+                        sortie = ["Okay je vous est ouvert votre fichier tableur "+genreUser+" "+nameUser,
                                 "Les fonction qui son possible d'utiliser son :"+
                                 "\n-Sectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
                                 "\n-Lire le contennu du tableur en nous disant 'lit le fichier' ou 'lit le tableur'"+
