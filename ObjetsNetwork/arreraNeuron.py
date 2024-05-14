@@ -97,7 +97,7 @@ class ArreraNetwork :
                                     valeur = 0
                                 if valeur == 0 :
                                     if "stop" in requette or "au revoir" in requette or "quitter" in requette or "bonne nuit" in requette or "adieu" in requette or "bonne soirée" in requette or "arreter" in requette :
-                                        text = self.__formuleNeuron.aurevoir(datetime.datetime.now().hour)
+                                        text = self.__formuleNeuron.aurevoir(datetime.now().hour)
                                         valeur = 15
                                     else : 
                                         valeur = 0 
