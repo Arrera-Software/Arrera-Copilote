@@ -47,7 +47,7 @@ class ArreraCopilote :
         # Instentation de la class Arrera Triger
         self.__fncTriger = CArreraTrigerWord("copilote")
         # Creation du theard du triger word
-        self.__tTrigerWord = th.Thread(target=self.copiloteTriger)
+        self.__tTrigerWord = th.Thread(target=self.__copiloteTriger)
         # emplacement icon 
         self.__emplacementIconSix = "asset/icon/six/logo-normal.png"
         self.____emplacementIconRyley = "asset/icon/ryley/icon.png"
@@ -252,7 +252,7 @@ class ArreraCopilote :
             self.__voiceOn = False
             self.__btnMicro.configure(bg=self.__mainColor)
     
-    def copiloteTriger(self):
+    def __copiloteTriger(self):
         while True :
             sortie = self.__fncTriger.detectWord()
             if (sortie==1):
@@ -263,6 +263,8 @@ class ArreraCopilote :
                     self.__entryInput.insert(0,texte)
                     self.__voiceOn = True
                     self.__btnMicro.configure(bg="green")
+                    time.sleep(0.2)
+                    self.__envoie()
     
     def __onClose(self):
         os.kill(os.getpid(), signal.SIGINT)
