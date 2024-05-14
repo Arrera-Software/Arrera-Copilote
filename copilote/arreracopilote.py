@@ -14,7 +14,9 @@ class ArreraCopilote :
         # Verification des configuaration 
         if self.__verifBoot()==False:
             self.__bootWithLynx()
-        #objet assistant
+        # Objet os 
+        self.__objetDectOS = OS()
+        # Objet assistant
         self.__assistantSix = ArreraNetwork("configuration/configUser.json",
                                           "configuration/six.json",
                                           "configuration/listFete.json")
@@ -111,7 +113,13 @@ class ArreraCopilote :
         btnPara.place(relx=1, rely=0.5, anchor="e")
         self.__labelDocxOpen.place(x=40, y=10)
         self.__labelTableurOpen.place(x=535, y=10)
-        # Allumage du theard
+        # Attache de la touche entre a la fonction envoi
+        if (self.__objetDectOS.osWindows()==True) and (self.__objetDectOS.osLinux()==False) : 
+            self.__detectionTouche(self.__screen,self.__envoie,13)
+        else :
+            if (self.__objetDectOS.osWindows()==False) and (self.__objetDectOS.osLinux()==True) :
+                self.__detectionTouche(self.__screen,self.__envoie,36)
+        # Allumage du theard TrigerWord
         self.__tTrigerWord.start()
 
 
@@ -127,8 +135,10 @@ class ArreraCopilote :
         reponse =  self.__entryInput.get()
         textSix = str
         textRyley = str
-        listReponseRyley = ["C'est Six qui peux te repondre sur cette question ","Je peux pas te repondre. Regardes la reponse de Six "]
-        listReponseSix = ["C'est Ryley qui peux vous repondre sur cette question ","Je peux pas vous repondre. Regardez la reponse de Ryley "]
+        listReponseRyley = ["C'est Six qui peux te repondre sur cette question ",
+                            "Je peux pas te repondre. Regardes la reponse de Six "]
+        listReponseSix = ["C'est Ryley qui peux vous repondre sur cette question ",
+                          "Je peux pas vous repondre. Regardez la reponse de Ryley "]
         self.__entryInput.delete(0,END)
         varSortie = int 
         varSortie,sortieNeuronCopilote = self.__copiloteNeuron.neuron(reponse)
@@ -268,3 +278,9 @@ class ArreraCopilote :
     
     def __onClose(self):
         os.kill(os.getpid(), signal.SIGINT)
+    
+    def __detectionTouche(self,fenetre,fonc,touche):
+        def anychar(event):
+            if event.keycode == touche:
+                fonc()               
+        fenetre.bind("<Key>", anychar)
