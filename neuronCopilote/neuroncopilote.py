@@ -65,9 +65,9 @@ class neuronCopilote :
                     else :
                         sortie = ["Okay je vous est ouvert votre fichier tableur "+genreUser+" "+nameUser,
                                 "Les fonction qui son possible d'utiliser son :"+
-                                "\n-Sectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
-                                "\n-Lire le contennu du tableur en nous disant 'lit le fichier' ou 'lit le tableur'"+
-                                "\n- Fermer le tableur en nous disant 'ferme le exel' ou 'ferme le tableur'"]
+                                "\n-Selectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
+                                "\n-Lire le contennu du tableur en nous disant 'lis le fichier' ou 'lis le tableur'"+
+                                "\n- Fermer le tableur en nous disant 'ferme l'exel' ou 'ferme le tableur'"]
                         self.__fncEcritureTableur = CArreraTableur(file)
                         self.__fichierTableurOpen = True
                     nb = 1
@@ -81,22 +81,22 @@ class neuronCopilote :
                            and(self. __verifCase(statementNoClear)==True)):
                             sortie = ["Il vous reste plus qu'a suivre les information de l'interface graphique. Et votre vous pourrer modifier votre tableur"
                                       ,"Les fonction qui son possible d'utiliser son :"+
-                                        "\n-Sectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
-                                        "\n-Lire le contennu du tableur en nous disant 'lit le fichier' ou 'lit le tableur'"+
-                                        "\n- Fermer le tableur en nous disant 'ferme le exel' ou 'ferme le tableur'"]
+                                        "\n-Selectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
+                                        "\n-Lire le contennu du tableur en nous disant 'lis le fichier' ou 'lis le tableur'"+
+                                        "\n- Fermer le tableur en nous disant 'ferme l'exel' ou 'ferme le tableur'"]
                             self.__fncTableur.activeEcritureDirect(statementNoClear,self.__fncEcritureTableur)
                             nb = 1
                         else :
-                            if((self.__fichierTableurOpen==True)and("lit le fichier"in statement)
-                               or("lit le tableur"in statement)):
+                            if((self.__fichierTableurOpen==True)and("lis le fichier"in statement)
+                               or("lis le tableur"in statement)):
                                 contenu = self.__fncEcritureTableur.read()
                                 text = ""
                                 for cell_position, cell_value in contenu.items():
                                     text = text+"\n"+"Cellule "+str(cell_position)+" : "+str(cell_value)
                                 sortie = ["Ryley vous montre le contenu du fichier\nJe vous montre les fonction :"+
-                                        "\n-Sectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
-                                        "\n-Lire le contennu du tableur en nous disant 'lit le fichier' ou 'lit le tableur'"+
-                                        "\n- Fermer le tableur en nous disant 'ferme le exel' ou 'ferme le tableur'",text]
+                                        "\n-Selectionner un case pour en suite ecrire en nous disant 'selectionne une case'"+
+                                        "\n-Lire le contennu du tableur en nous disant 'lis le fichier' ou 'lis le tableur'"+
+                                       "\n- Fermer le tableur en nous disant 'ferme l'exel' ou 'ferme le tableur'",text]
                                 nb = 1 
                             else :
                                 if((("ouvre un fichier doc"in statement)or("ouvre un fichier docx"in statement)or("ouvre un fichier traitement de texte"in statement)
@@ -122,13 +122,13 @@ class neuronCopilote :
                                         sortie = ["Okay je vous est ouvert votre fichier de traitement de texte "+genreUser+" "+nameUser,
                                                 "Les fonction qui son possible d'utiliser son :"
                                                 +"\n-Ecrire dans le fichier en nous disant 'ecrit dans le document' et en mettant ce que vous voulez ecrire deriere"+
-                                                "\n-Lire en nous disant 'lit le document'"+
+                                                "\n-Lire en nous disant 'lis le document'"+
                                                 "\n-Fermer le document en nous disant 'ferme le word' ou 'ferme le document'"]
                                         
                                         self.__fichierDocxOpen = True
                                     nb = 1
                                 else :
-                                    if ((self.__fichierDocxOpen==True)and("lit le document"in statement)):
+                                    if ((self.__fichierDocxOpen==True)and("lis le document"in statement)):
                                         sortie = ["Ryley vous montre le contenu du document",
                                                 self.__fncDocx.read()]
                                         nb = 1
@@ -140,7 +140,7 @@ class neuronCopilote :
                                                 "Okay je vous est ouvert votre fichier de traitement de texte "+genreUser+" "+nameUser,
                                                 "Les fonction qui son possible d'utiliser son :"
                                                 +"\n-Ecrire dans le fichier en nous disant 'ecrit dans le document' et en mettant ce que vous voulez ecrire deriere"+
-                                                "\n-Lire en nous disant 'lit le document'"+
+                                                "\n-Lire en nous disant 'lis le document'"+
                                                 "\n-Fermer le document en nous disant 'ferme le word' ou 'ferme le document'"]
                                             nb = 1
                                         else :
