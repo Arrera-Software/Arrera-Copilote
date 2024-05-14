@@ -30,10 +30,8 @@ class neuronCopilote :
         genreUser = self.__jsonUser.lectureJSON("genre")
         if (("tu es qui" in statement) or ("présente toi" in statement) or ("présentation" in statement) 
             or ("qui es tu" in statement) or ("qui es tu" in statement) or ("vous etes qui" in statement)) :
-            sortie=[
-                "Je suis SIX un assistant personnel développer par Arrera Software",
-                "Et moi je suis Ryley le frere de Six. Et a deux nous avons pour but d'optimiser votre façon de travailler"
-                ]
+            sortie=["Je suis SIX un assistant personnel développer par Arrera Software",
+                "Et moi je suis Ryley le frere de Six. Et a deux nous avons pour but d'optimiser votre façon de travailler"]
             nb = 1 
         else :
             if (("tableur en graphique" in statement)or("tableur graphique" in statement)
@@ -162,8 +160,8 @@ class neuronCopilote :
                                                     if (nb==0):
                                                         sortie = ["",""]
                                                         nb = 0 
-            self.__oldSortie = statement   
-            return nb , sortie
+        self.__oldSortie = statement   
+        return nb , sortie
         
     def getDocOpen(self):
         return self.__fichierDocxOpen
