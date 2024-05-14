@@ -1,10 +1,13 @@
 from neuronCopilote.neuroncopilote import*
+from src.CArreraTrigerWord import*
 from gazelle.arreraAssistantSetting import *
 from neuron.codehelp import*
 from lynx.arreraLynx import*
 from PIL import Image, ImageTk
 from src.srcSix import*
 import threading as th
+import os
+import signal
 
 class ArreraCopilote :
     def __init__(self):
@@ -22,12 +25,13 @@ class ArreraCopilote :
         self.__mainColor = "white"
         self.__textMainColor = "black"
         # Varriable reponse Oral
-        self.__microOn = False 
+        self.__voiceOn = False 
         #fenetre tkinter
         self.__screen = Tk()
         self.__screen.title("Arrera : Copilote")
         self.__screen.maxsize(700,700)
         self.__screen.minsize(700,700)
+        self.__screen.protocol("WM_DELETE_WINDOW",self.__onClose)
         # objet Parametre
         self.__parametre = ArreraSettingAssistant("configuration/configSetting.json",
                                                   "configuration/six.json",
@@ -40,6 +44,10 @@ class ArreraCopilote :
                                                "fileUser/codehelp.json","configuration/configUser.json")
         # Instenation des source de Six 
         self.__sourceSix = SIXsrc()
+        # Instentation de la class Arrera Triger
+        self.__fncTriger = CArreraTrigerWord("copilote")
+        # Creation du theard du triger word
+        self.__tTrigerWord = th.Thread(target=self.copiloteTriger)
         # emplacement icon 
         self.__emplacementIconSix = "asset/icon/six/logo-normal.png"
         self.____emplacementIconRyley = "asset/icon/ryley/icon.png"
@@ -77,7 +85,7 @@ class ArreraCopilote :
         iconParametre = ImageTk.PhotoImage((Image.open("asset/icon/copilote/parametre.png").resize((30,30))))
         btnPara.image_names=iconParametre
         btnPara.configure(image=iconParametre)
-        self.__btnMicro = Button(frameBottom,width=350,bg=self.__mainColor,command=self.__fncMicro)
+        self.__btnMicro = Button(frameBottom,width=350,bg=self.__mainColor,command=self.__enbaleVoice)
         iconMicro = ImageTk.PhotoImage((Image.open("asset/icon/copilote/microphoneCopilote.png").resize((30,30))))
         self.__btnMicro.image_names=iconMicro 
         self.__btnMicro.configure(image=iconMicro )
@@ -103,6 +111,8 @@ class ArreraCopilote :
         btnPara.place(relx=1, rely=0.5, anchor="e")
         self.__labelDocxOpen.place(x=40, y=10)
         self.__labelTableurOpen.place(x=535, y=10)
+        # Allumage du theard
+        self.__tTrigerWord.start()
 
 
     def active(self):
@@ -203,7 +213,7 @@ class ArreraCopilote :
     
     def __sixSpeak(self,texte:str):
         self.__labelReponseSix.configure(text=texte, justify="left",wraplength=600)
-        if (self.__microOn==True):
+        if (self.__voiceOn==True):
             theardParole = th.Thread(target=self.__sourceSix.speak,args=(texte,))
             theardParole.start()
 
@@ -234,10 +244,25 @@ class ArreraCopilote :
         else :
             self.__labelTableurOpen.configure(text="")
     
-    def __fncMicro(self):
-        if (self.__microOn==False):
-            self.__microOn = True
+    def __enbaleVoice(self):
+        if (self.__voiceOn==False):
+            self.__voiceOn = True
             self.__btnMicro.configure(bg="green")
         else :
-            self.__microOn = False
+            self.__voiceOn = False
             self.__btnMicro.configure(bg=self.__mainColor)
+    
+    def copiloteTriger(self):
+        while True :
+            sortie = self.__fncTriger.detectWord()
+            if (sortie==1):
+                self.__sourceSix.speak("Oui")
+                texte = self.__sourceSix.micro()
+                if (texte != "nothing"):
+                    self.__entryInput.delete(0,END)
+                    self.__entryInput.insert(0,texte)
+                    self.__voiceOn = True
+                    self.__btnMicro.configure(bg="green")
+    
+    def __onClose(self):
+        os.kill(os.getpid(), signal.SIGINT)
