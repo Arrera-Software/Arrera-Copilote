@@ -2,13 +2,12 @@ import speech_recognition as sr
 
 class CArreraTrigerWord :
     def __init__(self,word:str):
-        
         self.__word = word
     
     def detectWord(self):
         """
-        0 : Mots pas detecter
-        1 : Mots detecter
+        0  : Mots pas detecter
+        1  : Mots detecter
         -1 : Impossible de reconaitre l'audio
         -2 : Erreur de reqette
         """
