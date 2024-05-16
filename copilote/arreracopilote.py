@@ -87,10 +87,10 @@ class ArreraCopilote :
         iconParametre = ImageTk.PhotoImage((Image.open("asset/icon/copilote/parametre.png").resize((30,30))))
         btnPara.image_names=iconParametre
         btnPara.configure(image=iconParametre)
-        self.__btnMicro = Button(frameBottom,width=350,bg=self.__mainColor,command=self.__enbaleVoice)
-        iconMicro = ImageTk.PhotoImage((Image.open("asset/icon/copilote/microphoneCopilote.png").resize((30,30))))
-        self.__btnMicro.image_names=iconMicro 
-        self.__btnMicro.configure(image=iconMicro )
+        self.__btnHautParleur = Button(frameBottom,width=350,bg=self.__mainColor,command=self.__enbaleVoice)
+        iconHautParleur = ImageTk.PhotoImage((Image.open("asset/icon/copilote/hautParleur.png").resize((30,30))))
+        self.__btnHautParleur.image_names=iconHautParleur 
+        self.__btnHautParleur.configure(image=iconHautParleur )
         self.__labelDocxOpen = Label(frameBottom,bg=self.__mainColor,fg=self.__textMainColor,font=("arial","13"))
         self.__labelTableurOpen = Label(frameBottom,bg=self.__mainColor,fg=self.__textMainColor,font=("arial","13"))
         # Affichage general
@@ -109,7 +109,7 @@ class ArreraCopilote :
         btnSend.pack(side="right")
         input.place(relx=0.5,rely=0.5,anchor="center")
         btnApropos.place(relx=0, rely=0.5, anchor="w")
-        self.__btnMicro.place(relx=0.5,rely=0.5,anchor="center")
+        self.__btnHautParleur.place(relx=0.5,rely=0.5,anchor="center")
         btnPara.place(relx=1, rely=0.5, anchor="e")
         self.__labelDocxOpen.place(x=40, y=10)
         self.__labelTableurOpen.place(x=535, y=10)
@@ -257,10 +257,10 @@ class ArreraCopilote :
     def __enbaleVoice(self):
         if (self.__voiceOn==False):
             self.__voiceOn = True
-            self.__btnMicro.configure(bg="green")
+            self.__btnHautParleur.configure(bg="#00df38")
         else :
             self.__voiceOn = False
-            self.__btnMicro.configure(bg=self.__mainColor)
+            self.__btnHautParleur.configure(bg=self.__mainColor)
     
     def __copiloteTriger(self):
         while True :
@@ -272,7 +272,7 @@ class ArreraCopilote :
                     self.__entryInput.delete(0,END)
                     self.__entryInput.insert(0,texte)
                     self.__voiceOn = True
-                    self.__btnMicro.configure(bg="green")
+                    self.__btnHautParleur.configure(bg="#00df38")
                     time.sleep(0.2)
                     self.__envoie()
     
