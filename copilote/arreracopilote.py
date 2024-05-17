@@ -1,4 +1,5 @@
 from neuronCopilote.neuroncopilote import*
+from copilote.ArreraSaveUse import*
 from src.CArreraTrigerWord import*
 from gazelle.arreraAssistantSetting import *
 from neuron.codehelp import*
@@ -23,6 +24,8 @@ class ArreraCopilote :
         self.__assistantRyley = ArreraNetwork("configuration/configUser.json",
                                           "configuration/ryley.json",
                                           "configuration/listFete.json")
+        # Declaration de l'objet ArreraSaveUse
+        self.__saveOldUse = CArreraSaveUse("fileUser/fileSave.json")
         # varriable couleur
         self.__mainColor = "white"
         self.__textMainColor = "black"
@@ -277,6 +280,21 @@ class ArreraCopilote :
                     self.__envoie()
     
     def __onClose(self):
+        tableurOpen = self.__copiloteNeuron.getTableurOpen()
+        documentOpen = self.__copiloteNeuron.getDocOpen()
+
+        if (tableurOpen==True):
+            self.__saveOldUse.setTableurEmplacement(self.__copiloteNeuron.getEmplacementTableur())
+        else :
+            self.__saveOldUse.setTableurEmplacement("")
+        self.__saveOldUse.setTableurOpen(tableurOpen)
+
+        if (documentOpen==True):
+            self.__saveOldUse.setDocumentEmplacement(self.__copiloteNeuron.getEmplacementDocument())
+        else :
+            self.__saveOldUse.setDocumentEmplacement("")
+        self.__saveOldUse.setDocumentOpen(documentOpen)
+        
         os.kill(os.getpid(), signal.SIGINT)
     
     def __detectionTouche(self,fenetre,fonc,touche):
