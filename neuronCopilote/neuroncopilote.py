@@ -178,3 +178,13 @@ class neuronCopilote :
 
     def getEmplacementTableur(self):
         return self.__emplacementFileTableur
+
+    def openTableur(self,file:str):
+        self.__fncEcritureTableur = CArreraTableur(file)
+        self.__fichierTableurOpen = True
+        self.__emplacementFileTableur = file
+    
+    def openDocument(self,file:str):
+        self.__fichierDocxOpen = True
+        self.__emplacementFileDocument = file
+        self.__fncDocx = CArreraDocx(file) 

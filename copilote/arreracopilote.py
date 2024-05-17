@@ -131,8 +131,26 @@ class ArreraCopilote :
         self.__screen.mainloop()
 
     def __bootCopilote(self):
-        self.__ryleySpeak(self.__assistantRyley.boot())
+        tableurOpen = self.__saveOldUse.getDocumentOpen()
+        documentOpen = self.__saveOldUse.getTableurOpen()
         self.__sixSpeak(self.__assistantSix.boot())
+        texteRyley = self.__assistantRyley.boot()
+        if (documentOpen==True):
+            self.__copiloteNeuron.openDocument(self.__saveOldUse.getDocumentEmplacement())
+        if (tableurOpen==True):
+            self.__copiloteNeuron.openTableur(self.__saveOldUse.getTableurEmplacement())
+
+        if ((documentOpen==True)and(tableurOpen==True)):
+            texteRyley = "Tu avais un document et un tableur ouvert lors de la derniere utilisation"
+        else :
+            if ((documentOpen==True)):
+                texteRyley = "Tu avais un document ouvert lors de la derniere utilisation"
+            else : 
+                if (tableurOpen==True) :
+                    texteRyley = "Tu avais un tableur ouvert lors de la derniere utilisation"
+        
+        self.__ryleySpeak(texteRyley)
+        self.__testFichierOpen()
 
     def __envoie(self):
         reponse =  self.__entryInput.get()
