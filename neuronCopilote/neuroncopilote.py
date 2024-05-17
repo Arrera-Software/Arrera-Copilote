@@ -109,12 +109,12 @@ class neuronCopilote :
                                     if (result=="yes"):
                                         file = filedialog.asksaveasfilename(
                                             defaultextension='.xlsx', 
-                                            filetypes=[('Fichiers Word', '*.docx'),('Fichiers OpenDocument', '*.odt')])
+                                            filetypes=[('Fichiers Word', '*.docx')])
                                         self.__fncDocx = CArreraDocx(file)
                                         self.__fncDocx.write("")
                                     else :
                                         file = filedialog.askopenfilename(
-                                            filetypes=[('Fichiers Word', '*.docx'),('Fichiers OpenDocument', '*.odt')])
+                                            filetypes=[('Fichiers Word', '*.docx')])
                                         self.__fncDocx = CArreraDocx(file)                             
                                     if (file==""):
                                         sortie = ["Je suis desoler  "+genreUser+" "+nameUser+
