@@ -7,6 +7,8 @@ class neuronCopilote :
         self.__jsonUser = jsonWork(configUser)
         self.__fncTableur = CArreraCopiloteTableurGUI()
         self.__neuronAgenda = neuronAgendatCopilote(self.__jsonUser)
+        self.__emplacementFileTableur = ""
+        self.__emplacementFileDocument = ""
         self.__oldSortie = ""
         self.__fncDocx = None
         self.__fncEcritureTableur = None
@@ -68,6 +70,7 @@ class neuronCopilote :
                                 "\n- Fermer le tableur en nous disant 'ferme l'exel' ou 'ferme le tableur'"]
                         self.__fncEcritureTableur = CArreraTableur(file)
                         self.__fichierTableurOpen = True
+                        self.__emplacementFileTableur = file
                     nb = 1
                 else :
                     if((self.__fichierTableurOpen==True)and("selectionne une case"in statement)):
@@ -112,7 +115,7 @@ class neuronCopilote :
                                     else :
                                         file = filedialog.askopenfilename(
                                             filetypes=[('Fichiers Word', '*.docx'),('Fichiers OpenDocument', '*.odt')])
-                                        self.__fncDocx = CArreraDocx(file)
+                                        self.__fncDocx = CArreraDocx(file)                             
                                     if (file==""):
                                         sortie = ["Je suis desoler  "+genreUser+" "+nameUser+
                                                 " mais vous avez pas selection de fichier","Selectionne bien un fichier dans la fenetre de l'explorateur de fichier"]
@@ -124,6 +127,7 @@ class neuronCopilote :
                                                 "\n-Fermer le document en nous disant 'ferme le word' ou 'ferme le document'"]
                                         
                                         self.__fichierDocxOpen = True
+                                        self.__emplacementFileDocument = file
                                     nb = 1
                                 else :
                                     if ((self.__fichierDocxOpen==True)and("lis le document"in statement)):
@@ -168,3 +172,9 @@ class neuronCopilote :
 
     def getTableurOpen(self):
         return self.__fichierTableurOpen
+    
+    def getEmplacementDocument(self):
+        return self.__emplacementFileDocument
+
+    def getEmplacementTableur(self):
+        return self.__emplacementFileTableur
