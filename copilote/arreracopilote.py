@@ -212,7 +212,7 @@ class ArreraCopilote :
     def __Apropop(self):
         #Variable
         nameApp = "Arrera Copilote"#Definir le nom de l'app
-        versionApp = "I2024-1.00-dev"#Definir le nom de la version
+        versionApp = "I2024-1.00"#Definir le nom de la version
         imagePath = self.__emplacementIconCopilote #Indiquer l'emplacement de l'icon
         copyrightApp = "Copyright Arrera Software by Baptiste P 2023-2024"
         color = self.__mainColor
