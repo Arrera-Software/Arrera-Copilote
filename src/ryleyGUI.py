@@ -36,10 +36,10 @@ class guiRyley:
         # Demarage de l'interface
 
         if (self.__windowsOS == True) and (self.__linuxOS == False):
-            self.__emplacementIcon = "asset/Ryley.ico"
+            self.__emplacementIcon = "asset/icon.ico"
         else:
             if (self.__windowsOS == False) and (self.__linuxOS == True):
-                self.__emplacementIcon = "asset/Ryley.png"
+                self.__emplacementIcon = "asset/icon.png"
 
         self.__screen = self.__arrTK.aTK(0,title=self.__nameSoft, resizable=False,
                                          width=500, height=600,icon=self.__emplacementIcon)
@@ -57,9 +57,9 @@ class guiRyley:
 
         # Icon
         if self.__windowsOS:
-            self.__emplacementIcon = "asset/Ryley.ico"
+            self.__emplacementIcon = "asset/icon.ico"
         else :
-            self.__emplacementIcon = "asset/Ryley.png"
+            self.__emplacementIcon = "asset/icon.png"
 
         # Definition des images
         emplacementLight = "asset/GUI/light/"
