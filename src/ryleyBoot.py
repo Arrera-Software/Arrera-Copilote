@@ -53,7 +53,7 @@ class ryleyBoot:
             arrTk.placeBottomCenter(btnConf)
             arrTk.view()
         else :
-            assistant = guiRyley("fichierJSON/configNeuron.json",self.__demonTiger.getVersionSoft())
+            assistant = guiRyley("fichierJSON/configNeuronRyley.json",self.__demonTiger.getVersionSoft())
             assistant.active(self.__firstStart)
 
     def __restartConf(self,windows:ctk.CTk):
