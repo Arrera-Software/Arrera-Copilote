@@ -53,7 +53,9 @@ class copiloteBoot:
             arrTk.placeBottomCenter(btnConf)
             arrTk.view()
         else :
-            assistant = guiCopilote("fichierJSON/configNeuronRyley.json", self.__demonTiger.getVersionSoft())
+            assistant = guiCopilote("fichierJSON/configNeuronRyley.json",
+                                    "fichierJSON/configNeuronSix.json",
+                                    self.__demonTiger.getVersionSoft())
             assistant.active(self.__firstStart)
 
     def __restartConf(self,windows:ctk.CTk):

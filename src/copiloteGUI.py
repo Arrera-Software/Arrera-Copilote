@@ -10,7 +10,7 @@ from setting.CArreraGazelleUIRyleyCopilote import *
 VERSION = "I2025-1.00"
 
 class guiCopilote:
-    def __init__(self, neuronConfigFile: str,version: str):
+    def __init__(self, neuronConfigFileRyley: str, neuronConfigFileSix: str, version: str):
         # Varriable
         self.__nameSoft = "Arrera RYLEY"
         self.__version = version
@@ -20,7 +20,8 @@ class guiCopilote:
         self.__arrTK = CArreraTK()
 
         # Demarage Neuron Network
-        self.__assistantRyley = ArreraNetwork(neuronConfigFile)
+        self.__assistantRyley = ArreraNetwork(neuronConfigFileRyley)
+        self.__assistantSix = ArreraNetwork(neuronConfigFileSix)
 
         # Demarage objet language Ryley
         self.__language = CLanguageCopilote("fichierJSON/paroleRyley.json",
@@ -44,7 +45,7 @@ class guiCopilote:
         self.__screen = self.__arrTK.aTK(0,title=self.__nameSoft, resizable=False,
                                          width=500, height=600,icon=self.__emplacementIcon)
 
-        self.__screen.protocol("WM_DELETE_WINDOW", self.__quitRyley)
+        self.__screen.protocol("WM_DELETE_WINDOW", self.__quitCopilote)
 
         # Demage de l'objet parametre
 
@@ -278,8 +279,8 @@ class guiCopilote:
                                                  bg="#8c8c8c", hoverbg="#4e4e4e")
 
         btnRyley = self.__arrTK.createButton(self.__frameBackgroudCodehelp, image=imgRyley,
-                                                width=40, height=40,command=self.__modeRyley,
-                                                bg="#8c8c8c", hoverbg="#4e4e4e")
+                                             width=40, height=40, command=self.__modeNormal,
+                                             bg="#8c8c8c", hoverbg="#4e4e4e")
 
         btnCHOrgaVar = self.__arrTK.createButton(fDockCodeHelpAppRight, width=40,height=40,
                                                  image=imgCHOrgaVar,command=self.__activeOrgaVar,
@@ -527,7 +528,7 @@ class guiCopilote:
         self.__backgroundBottomCodehelp.pack()
         self.__frameBackgroudCodehelp.pack()
 
-    def __modeRyley(self):
+    def __modeNormal(self):
         self.__codeHelpActived = False
         self.__disableAllFrame()
         self.__viewNormal()
@@ -557,7 +558,7 @@ class guiCopilote:
             self.__lparoleLittle.configure(text=text)
             self.__entryUserLittle.delete(0, END)
 
-    def __quitRyley(self):
+    def __quitCopilote(self):
         if (askyesno("Atention", "Voulez-vous vraiment fermer Ryley")):
             self.__close()
 
@@ -902,7 +903,7 @@ class guiCopilote:
         self.__arrGazelle.passQUITFNC(self.__quitParametre)
 
     def __quitParametre(self):
-        self.__screen.protocol("WM_DELETE_WINDOW", self.__quitRyley)
+        self.__screen.protocol("WM_DELETE_WINDOW", self.__quitCopilote)
         self.__screen.maxsize(500, 600)
         self.__viewNormal()
         self.__paroleRyley(self.__language.getPhParametre())
