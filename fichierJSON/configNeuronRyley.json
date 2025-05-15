@@ -23,10 +23,11 @@
    "etatApi":"1",
    "etatCodehelp":"1",
    "etatWork":"1",
+   "etatSocket": "1",
    "lienDoc":"https://github.com/Arrera-Software/Ryley/blob/main/README.md",
    "emplacementFileHist":"fichierJSON/neuronHist.json",
    "emplacementFileRoutine":"fichierJSON/routineFile.json",
    "fileUser": "fichierJSON/configUser.json",
    "fileFete": "fichierJSON/listFete.json",
-   "moduleLanguage": "language/"
+   "moduleLanguage": "language/tutoiment/"
 }

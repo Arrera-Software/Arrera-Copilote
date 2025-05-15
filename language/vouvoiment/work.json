@@ -90,6 +90,7 @@
   "phWork66" : "Les projets que nous avons créés à deux sont",
   "phWork67" : "Le projets qu'on créés est",
   "phWork68" : "Vous n'avez créé aucun projet {genre}",
+  "phWork69" : "Voici votre recherche de sur github",
   "phHelpArreraWork1": [
     "Les fonctions d'édition de tableur d'Arrera Work sont :",
     "Pour ouvrir un tableur, dites 'Ouvre un fichier Excel', 'Ouvre un Excel', 'Ouvre un fichier tableur' ou 'Ouvre un tableur'.",
