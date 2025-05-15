@@ -1,8 +1,8 @@
-from src.ryleyBoot import *
+from src.copiloteBoot import *
 import PIL._tkinter_finder # NO SUPPR
 
 def main():
-    ryleyBoot().active()
+    copiloteBoot().active()
 
 if __name__ == "__main__":
     main()

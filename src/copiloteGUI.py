@@ -2,14 +2,14 @@ import time
 
 from librairy.arrera_tk import CArreraTK
 from ObjetsNetwork.arreraNeuron import *
-from src.CLanguageRyley import *
+from src.CLanguageCopilote import *
 import threading as th
 import signal
 from setting.CArreraGazelleUIRyleyCopilote import *
 
 VERSION = "I2025-1.00"
 
-class guiRyley:
+class guiCopilote:
     def __init__(self, neuronConfigFile: str,version: str):
         # Varriable
         self.__nameSoft = "Arrera RYLEY"
@@ -23,7 +23,7 @@ class guiRyley:
         self.__assistantRyley = ArreraNetwork(neuronConfigFile)
 
         # Demarage objet language Ryley
-        self.__language = CLanguageRyley("fichierJSON/paroleRyley.json",
+        self.__language = CLanguageCopilote("fichierJSON/paroleRyley.json",
                                               "fichierJSON/aideRyley.json",
                                               "fichierJSON/firstBootRyley.json")
 

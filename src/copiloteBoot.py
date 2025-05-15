@@ -1,8 +1,8 @@
-from src.ryleyGUI import *
+from src.copiloteGUI import *
 from arreraLynx.arreraLynx import *
 from src.CTigerDemon import *
 
-class ryleyBoot:
+class copiloteBoot:
     def __init__(self):
         # Ouverture JSON
         json = jsonWork("fichierJSON/configUser.json")
@@ -53,7 +53,7 @@ class ryleyBoot:
             arrTk.placeBottomCenter(btnConf)
             arrTk.view()
         else :
-            assistant = guiRyley("fichierJSON/configNeuronRyley.json",self.__demonTiger.getVersionSoft())
+            assistant = guiCopilote("fichierJSON/configNeuronRyley.json", self.__demonTiger.getVersionSoft())
             assistant.active(self.__firstStart)
 
     def __restartConf(self,windows:ctk.CTk):
