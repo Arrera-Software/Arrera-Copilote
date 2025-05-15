@@ -1,9 +1,8 @@
 from tkinter import *
-from gtts import gTTS
-from playsound import playsound
 from librairy.travailJSON import *
 from librairy.speak import*
 from librairy.dectectionOS import*
+import threading as th
 
 class fncLecture :
     def __init__(self,ConfigNeuron:jsonWork,detecteurSys:OS):
@@ -13,6 +12,7 @@ class fncLecture :
         self.__icon = self.__configNeuron.lectureJSON("iconAssistant")
         self.__lang = ""
         self.__langSet = 0
+        self.__thSpeak = None
         self.__color = self.__configNeuron.lectureJSON("interfaceColor")
         self.__windowsOS = detecteurSys.osWindows()
         self.__linuxOS = detecteurSys.osLinux()
@@ -66,8 +66,22 @@ class fncLecture :
     def lecture(self):
         texte = self.__entryLect.get("1.0",END)
         if self.__langSet == 0 :
-            Speaking(self.__configNeuron.lectureJSON("lang")).speak(texte)
+            objSpeak = Speaking(self.__configNeuron.lectureJSON("lang"))
+
         else :
-            Speaking(self.__lang).speak(texte)
-        self.__screen.destroy()
-            
+            objSpeak = Speaking(self.__lang)
+        self.__thSpeak = th.Thread(target=objSpeak.speak,args=(texte,))
+        self.__thSpeak.start()
+        self.__screen.after(1000,self.__actualiser)
+
+    def __actualiser(self):
+        if (self.__thSpeak.is_alive()==True):
+            self.__entryLect.config(state="disabled")
+            self.__screen.after(1000,self.__actualiser)
+            self.__boutonValider.pack_forget()
+        else :
+            self.__entryLect.config(state="normal")
+            self.__boutonValider.pack(side="bottom")
+            self.__entryLect.delete("1.0",END)
+            del self.__thSpeak
+            self.__thSpeak = None

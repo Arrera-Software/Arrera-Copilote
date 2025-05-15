@@ -1,5 +1,4 @@
 from translate import Translator
-from librairy.speak import*
 from librairy.travailJSON import*
 from tkinter import messagebox
 from tkinter import*

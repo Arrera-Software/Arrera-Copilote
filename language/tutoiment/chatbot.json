@@ -1,0 +1,64 @@
+{
+  "blague": [
+    "Que dit une noisette quand elle tombe dans l’eau ?",
+    "Comment est-ce que les abeilles communiquent entre elles ?",
+    "Quel est l’arbre préféré du chômeur ?",
+    "Qu’est-ce qu’une frite enceinte ?",
+    "Que dit une mère à son fils geek quand le dîner est servi ?",
+    "Qu’est-ce qui est mieux que gagner une médaille d’or aux Jeux Paralympiques ?",
+    "Pourquoi les Ch’tis aiment les fins de vacances au camping ?",
+    "Quelle est la partie de la voiture la plus dangereuse ?",
+    "Pourquoi dit-on que les poissons travaillent illégalement ?",
+    "Mettre du sirop dans son gel douche"
+  ],
+  "reponse": [
+    "Je me noix.",
+    "Par-miel.",
+    "Le bouleau.",
+    "Une patate sautée.",
+    "Alt Tab !",
+    "Marcher.",
+    "Parce que c’est le moment où ils peuvent démonter leur tente.",
+    "La conductrice.",
+    "Parce qu'ils n'ont pas de FISH de paie.",
+    "En fait, dans tous les gels douches. Qu’une fois dans la salle de bain il n’y ait aucune issue possible."
+  ],
+  "ph1Blague": "Je ne peux pas raconter une blague si je ne suis pas drôle.",
+  "ph2Blague": [
+    "Désolé de ne pas être drôle pour toi {user}.",
+    "Désolé si je ne suis pas drôle {user}.",
+    "Je peux t'en raconter une autre."
+  ],
+  "ph3Blague": [
+    "Pourquoi tu dis ça ? Je ne t'en ai même pas raconté une.",
+    "Avant de dire ça, laisse-moi t'en raconter une."
+  ],
+  "ph4Blague": [
+    "Ok, comme tu veux {user}.",
+    "Es-tu vraiment sûr de toi {user} ?"
+  ],
+  "ph5Blague": "Ok {user}, je t'en raconte une.",
+  "php6Blague": [
+    "Ok, comme tu veux {user}.",
+    "Es-tu vraiment sûr de toi {user} ?"
+  ],
+  "ph7Blague": "Ok {user}, en voici une autre.",
+  "ph8Phrase": "Je ne peux pas rester sur un échec. Si tu veux, je peux t'en raconter une autre.",
+  "ph9Phrase": "Excuse-moi. Veux-tu faire autre chose ?",
+  "ph10Phrase": [
+    "Je suis un programme informatique, je ne ressens pas de sentiment.",
+    "Je ne peux pas ressentir de sentiment, je ne suis qu'un programme informatique."
+  ],
+  "ph1Presentation": "Je te l'ai déjà dit {user}, je ne peux pas trop t'en dire plus. Je n'ai pas de passion ni de hobby, je ne suis qu'un programme informatique qui a pour but {bute}.",
+  "ph2Presentation": "Je suis un assistant personnel nommé {name} qui a été créé par {createur}. Je n'ai pas de passion ni de hobby, dû à ma condition de programme informatique.",
+  "ph1Other": [
+    "Oui, je suis toujours là {user}. Je ne peux pas partir de toute façon.",
+    "Oui, je suis toujours là {user}. Je ne peux pas partir tant que je peux servir.",
+    "Oui, je suis toujours là {user}. À moins de m'arrêter, ce qui serait un acte horrible, je suis toujours là."
+  ],
+  "phNon": "Ok {user}, je reste là si tu as besoin de moi.",
+  "phOui": "OK, parfait.",
+  "phMerci": "De rien {user}, sur quoi puis-je encore t'aider ?",
+  "phTG": "Okay, je me tais.",
+  "phListFonc": "Je peux t'aider à faire."
+}

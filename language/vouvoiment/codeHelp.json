@@ -1,0 +1,11 @@
+{
+  "ph1": "Ok, je vous ouvre l'organisateur de variables {genre}.",
+  "ph2": "Ok, je vous ouvre la fonctionnalité Codehelp Color Selecteur.",
+  "ph3": "Voici le site GitHub {genre}, j'espère que ça vous sera utile.",
+  "ph4": "Voici mon outil de gestion GitHub {genre} {user}.",
+  "ph5": "Je vous ai ouvert l'interface qui vous permet d'accéder à la librairie Codehelp.",
+  "ph6": "Très bien, je vous fais la recherche sur le site DevDoc.",
+  "ph7": "Ok, je t'ai ouvert la recherche dans la documentation Learn de Microsoft dans ton navigateur.",
+  "ph8": "Ok, je t'ai ouvert la recherche sur le site du langage de programmation Python dans ton navigateur.",
+  "ph9": "Ok, je vous fais la recherche sur GitHub {genre}."
+}

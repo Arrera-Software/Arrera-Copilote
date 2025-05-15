@@ -1,87 +1,49 @@
-from ObjetsNetwork.chaineCarractere import*
-from codehelp.CCHcolorSelector import*
-from codehelp.CCHGithub import*
-from codehelp.CCHLibrairy import*
-from codehelp.CCHOrgaVarriable import*
-from codehelp.CCHsearchDoc import*
+from neuron.CNeuronBase import neuronBase
 
-class neuronCodehelp :
-    def __init__(self,mainColor:str,textColor:str,fileCodeHelp:str,fileUser:str):
-        self.__configFile = jsonWork(fileCodeHelp)
-        self.__jsonUser = jsonWork(fileUser)
-        self.searchDoc =  CHsearchDoc()
-        self.__github = CHGithub(mainColor,textColor,self.__configFile)
-        self.__selecteurColor = CCHcolorSelector(mainColor,textColor)
-        self.__lib = CHLibrairy(mainColor,textColor)
-        self.__orgaVar = CHOrgraVarriable(mainColor,textColor)
-        self.__oldEntrer = ""
-        self.__oldSortie = ""
 
-    def neuron(self,requette:str):
-        statement = chaine.netoyage(requette)
-        texte =  ""
-        var = 0
-        nameUser = self.__jsonUser.lectureJSON("user")
-        genreUser = self.__jsonUser.lectureJSON("genre")
-        if (("doc microsoft" in statement )or ("learn" in statement) or ("visual" in statement)) :
-            statement = statement.replace("doc microsoft","")
-            statement = statement.replace("learn","")
-            statement = statement.replace("visual","")
-            if self.searchDoc.rechercheMicrosoft(statement) == True :
-                texte = "Okay je t'ouverture de la documentation de microsoft."
-            else :
-                texte = "Une erreur c'est produite lors de la tentative d'ouverture de la documentation de microsoft "+nameUser
-            var = 1
-        else :
-            if ("doc" in statement) : 
-                statement = statement.replace("doc","")
-                print(statement)
-                if self.searchDoc.rechercheDevDoc(statement) == True :
-                    texte = "Voici ta recherche sur le site DevDoc ."
-                else :
-                    texte = "je suis désoler "+nameUser+". Mais une erreur c'est produite qui m'empéche de faire la recherche"
-                var = 1
-            else :
-                if (("liste depos" in statement) or ("depos github" in statement) or ("github depos" in statement)) :
-                    texte = "Voici la liste de tes depots"
-                    self.__github.GUI()
-                    self.__github.GUIListDepos()
-                    var = 1
-                else :
-                    if ("github search" in statement) : 
-                        texte = "Voici ta recherche sur github ."
-                        statement.replace("github search","")
-                        self.__github.search(statement)
-                        var = 1
-                    else :
-                        if ("couleur" in statement) :
-                            texte ="Je vous ouvre le logiciel colors selector "+nameUser+"."
-                            self.__selecteurColor.bootSelecteur()
-                            var = 1
-                        else :
-                            if (("organisateur de varriable" in statement) or ("orga var" in statement)) :
-                                texte ="Je t'ouverture de l'organisateur de varriable"
-                                self.__orgaVar.bootOrganisateur()
-                                var = 1
-                            else :
-                                if (("librairy" in statement) or ("lib" in statement)) :
-                                    texte = "Ouverture de la librairy Arrera ."
-                                    self.__lib.librairy()
-                                    var = 1
-                                else :
-                                    if ("github" in statement) :
-                                        texte = "Ouverture de l'interface qui permet de naviguer dans github."
-                                        self.__github.GUI()
-                                        var = 1
-                                    else :
-                                        if ("enregistrement token"in statement):
-                                            texte = "Okay taper votre token dans la zone de reponse ."
-                                            var = 1 
-                                        else :
-                                            if (("enregistrement token"in self.__oldEntrer)and(self.__oldSortie=="Okay taper votre token dans la zone de reponse .")):
-                                                texte = "Votre token Github est enregister "+nameUser
-                                                self.__configFile.EcritureJSON("token",requette)
-                                                var = 1 
-        self.__oldEntrer = statement
-        self.__oldSortie = texte
-        return var,texte
+class neuroneCodehelp(neuronBase) :
+
+    def neurone(self,requette:str):
+        #Initilisation des variable nbRand et text et valeur
+        self._listSortie = ["", ""]
+        self._valeurOut = 0
+        if self._gestNeuron.getCodeHelp() == True:
+            if ("ouvre" in requette):
+                if (("organisateur de variable" in requette)or("orga var" in requette)):
+                    self._listSortie = [self._fonctionArreraNetwork.sortieOpenOrgaVar(), ""]
+                    self._objHistorique.setAction("Ouverture organisateur de varriable")
+                    self._valeurOut = 5
+                elif (("color selecteur" in requette) or ("couleur selecteur" in requette)
+                        or ("selecteur de couleur" in requette)):
+                    self._listSortie=[self._fonctionArreraNetwork.sortieOpenColorSelecteur(), ""]
+                    self._objHistorique.setAction("Ouverture selecteur de couleur")
+                    self._valeurOut = 5
+                elif ("site github" in requette):
+                    self._listSortie = [self._fonctionArreraNetwork.sortieOpenSiteGithub(), ""]
+                    self._objHistorique.setAction("Ouverture du site github")
+                elif (("gestion github" in requette) or ("gest github" in requette)):
+                    self._listSortie = [self._fonctionArreraNetwork.sortieOpenGuiGithub(), ""]
+                    self._objHistorique.setAction("Ouverture de logiciel de gestion github")
+                    self._valeurOut = 5
+                elif ("librairy" in requette):
+                    self._listSortie = [self._fonctionArreraNetwork.sortieOpenLibrairy(), ""]
+                    self._objHistorique.setAction("Ouverture de la librairy codehelp")
+                    self._valeurOut = 5
+            elif ("recherche devdoc" in requette or "rdevdoc" in requette or
+                  "sdevdoc" in requette or "recherche microsoft" in requette or
+                  "rmicrosoft" in requette or "smicrosoft" in requette or
+                  "recheche python" in requette or "rpython" in requette or
+                  "spython" in requette):
+                text , recherche = self._fonctionArreraNetwork.sortieSearchDoc(requette)
+                self._listSortie = [text, ""]
+                self._objHistorique.setAction("Recherche documentation " + recherche)
+            elif (("recherche github" in requette) or ("rgithub" in requette) or
+                    ("sgithub" in requette) or ("search github" in requette)):
+                text,recherche = self._fonctionArreraNetwork.sortieSearchGithub(requette)
+                self._listSortie = [text, ""]
+                self._objHistorique.setAction("Recherche github " + recherche)
+
+            
+            #Mise a jour de la valeur
+            if (self._valeurOut == 0):
+                self._valeurOut = self._gestionNeuron.verrifSortie(self._listSortie[0])

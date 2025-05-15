@@ -1,0 +1,93 @@
+{
+  "nc": "Je ne comprends pas ce que vous m'avez dit.",
+  "bootN1": [
+    "Bonjour {genre} {user}. Que faites-vous à cette heure matinale ?",
+    "Bonjour {genre} {user}. J'espère que vous avez suffisamment dormi."
+  ],
+  "bootN2": [
+    "Bonjour {genre} {user}. Êtes-vous prêt à travailler ?",
+    "Désirez-vous poursuivre votre travail à une heure pareille {genre} {user}?"
+  ],
+  "bootN3": [
+    "Bonjour {genre} {user}. J'espère que votre nuit fut reposante.",
+    "Bonjour {genre} {user}. J'espère que vous avez bien dormi."
+  ],
+  "bootN4": [
+    "Bonjour {genre} {user}. J'espère que vous passez une belle matinée.",
+    "Bonjour {genre} {user}. Avez-vous bien débuté votre journée ?"
+  ],
+  "bootN5": [
+    "Bonjour {genre} {user}. J'espère que vous passez une belle après-midi.",
+    "Bonjour {genre} {user}. J'espère que vous passez une belle après-midi."
+  ],
+  "bootN6": [
+    "Bonjour {genre} {user}. En quoi puis-je vous aider cet après-midi ?",
+    "Bonjour {genre} {user}. Que puis-je faire pour vous aider ?"
+  ],
+  "bootN7": [
+    "Bonsoir, {genre} {user}. Comment se passe votre début de soirée ?",
+    "Bonsoir, {genre} {user}. J'espère que votre début de soirée se passe bien."
+  ],
+  "bootN8": [
+    "Bonsoir, {genre} {user}. Comment se passe votre soirée ?",
+    "Bonsoir, {genre} {user}. J'espère que votre soirée s'est bien passée."
+  ],
+  "bootN9": [
+    "Bonjour, {genre} {user}. Que faites-vous si tôt ?",
+    "Bonjour, {genre} {user}. J'espère que vous avez un peu dormi."
+  ],
+  "bootN10": [
+    "Bonjour, {genre} {user}. Que voulez-vous qu'on fasse ?",
+    "Bonjour, {genre} {user}. Que voulez-vous qu'on fasse ?"
+  ],
+  "stop1": [
+    "Bonne nuit, {genre} {user}. Reposez-vous bien.",
+    "Bonne nuit, {genre} {user}. Passez une bonne nuit."
+  ],
+  "stop2": [
+    "Bonne nuit, {genre} {user}. Essayez de vous reposer.",
+    "Bonne nuit, {genre} {user}. Reposez-vous bien."
+  ],
+  "stop3": [
+    "Bonne journée, {genre} {user}. Passez une bonne journée.",
+    "Bonne journée, {genre} {user}. Profitez bien de votre journée."
+  ],
+  "stop4": [
+    "Au revoir, {genre} {user}. Passez une bonne fin de matinée.",
+    "Au revoir, {genre} {user}. Profitez bien de votre fin de matinée."
+  ],
+  "stop5": [
+    "Bonne après-midi, {genre} {user}. Profitez bien.",
+    "Au revoir, {genre} {user}. Passez une bonne fin d'après-midi."
+  ],
+  "stop6": [
+    "Au revoir, {genre} {user}. Profitez bien de votre fin de soirée.",
+    "Bonne soirée, {genre} {user}. Profitez bien."
+  ],
+  "stop7": [
+    "Bonne soirée, {genre} {user}. Profitez bien.",
+    "Bonne soirée, {genre} {user}. Reposez-vous bien ce soir."
+  ],
+  "stop8": [
+    "Bonne nuit, {genre} {user}. Dormez bien.",
+    "Bonne nuit, {genre} {user}. Reposez-vous bien."
+  ],
+  "stop9": [
+    "Bonne nuit, {genre} {user}. Dormez bien, soyez en forme pour demain.",
+    "Bonne nuit, {genre} {user}. Reposez-vous bien pour demain."
+  ],
+  "stop10": [
+    "Au revoir, {genre} {user}. J'espère vous revoir bientôt.",
+    "Au revoir, {genre} {user}. J'espère vous revoir bientôt."
+  ],
+  "bootHist1": "Bonjour, {genre} {user}. Je vous ai relancé votre travail. Mais il faudrait que vous dormiez.",
+  "bootHist2": "Bonjour, {genre} {user}. Je vous ai relancé votre travail. Mais il faudrait que vous dormiez.",
+  "bootHist3": "Bonjour, {genre} {user}. J'espère que vous avez passé une bonne nuit. J'ai relancé là où vous étiez arrivé.",
+  "bootHist4": "Bonjour, {genre} {user}. J'espère que vous passez une bonne matinée. Je vous ai relancé là où vous étiez.",
+  "bootHist5": "Bonjour, {genre} {user}. J'espère que vous passez une bonne après-midi. J'ai relancé là où vous étiez arrivé.",
+  "bootHist6": "Bonjour, {genre} {user}. Sur quoi puis-je vous aider cet après-midi ? Je vous ai relancé là où vous étiez.",
+  "bootHist7": "Bonsoir, {genre} {user}. J'espère que votre début de soirée se passe bien. J'ai relancé là où vous étiez arrivé.",
+  "bootHist8": "Bonsoir, {genre} {user}. J'espère que votre soirée s'est bien passée. J'ai relancé là où vous étiez arrivé.",
+  "bootHist9": "Bonjour, {genre} {user}. J'espère que vous avez un peu dormi. J'ai relancé là où vous étiez arrivé.",
+  "bootHist10": "Bonjour, {genre} {user}. J'ai relancé là où vous étiez arrivé."
+}

@@ -1,0 +1,8 @@
+{
+    "color":"white",
+    "textColor":"black",
+    "nameSoft":"Ryley",
+    "iconSoftWin":"asset/Ryley.ico",
+    "iconSoftLinux":"asset/Ryley.png",
+    "listGenre":["monsieur","madame","maitre","maitresse"]
+}

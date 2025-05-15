@@ -1,0 +1,21 @@
+{
+  "phOpenActu": "Voilà, j'espère que ces actualités ont été utiles pour toi.",
+  "phErreurActu": "Désolé, mais je ne peux pas te montrer les actualités : j'ai rencontré un problème.",
+  "phErreurResumerActu": "Désolé, mais je ne peux pas te montrer un résumé des actualités : j'ai rencontré un problème.",
+  "phResumerActu": "Voilà ton résumé des actualités du jour.",
+  "phResumerAgenda": "Voilà ton résumé des tâches et des événements du jour.",
+  "phResumerAll": "Voilà, j'espère que ton résumé total du jour te sera utile.",
+  "phErreurResumerAll": "Désolé, mais je rencontre un problème qui m'empêche de te donner ton résumé total du jour.",
+  "phOpenAideTableur": "Voici l'aide pour travailler sur un tableur avec moi.",
+  "phOpenAideWord": "Je t'ai ouvert l'aide pour t'aider à manipuler des fichiers de traitement de texte avec moi.",
+  "phOpenAideFichier": "Je t'ai ouvert la liste des types de fichiers que je peux te créer dans un projet.",
+  "phOpenAideRadio": "Voici la liste des radios que je peux te lancer pour t'aider à te détendre.",
+  "phOpenAideProjet": "Voici l'aide pour que nous puissions créer des projets ensemble.",
+  "phOpenAideWork": "Je t'ai ouvert l'aide pour utiliser la fonction Arrera Word.",
+  "phReadWord": "Je t'ouvre une fenêtre pour que tu lises le contenu du fichier de traitement de texte.",
+  "phReadTableur": "Voici la fenêtre pour que tu lises le contenu du tableur.",
+  "phParametre": "J'ai bien pris en compte les nouveaux paramètres.",
+  "phActiveCodehelp": "Très bien, je suis passé en mode CodeHelp pour vous aider à concevoir vos programmes.",
+  "phActiveModeLitle": "Je passe à une fenêtre plus petite pour continuer à t'aider tout en étant plus discrète.",
+  "phActiveModeNormal": "Je repasse en fenêtre normale pour t'aider plus efficacement."
+}

@@ -1,9 +1,7 @@
 import geocoder
 import requests
 import webbrowser
-import platform
-import os
-import subprocess
+import urllib.parse
 
 class GPS:
     def __init__(self,KeyGPS:str,etatConnextion:bool):
@@ -52,40 +50,26 @@ class GPS:
     def getNameVille(self):
         return self.nameVille
     
-class GPSItineraires :
-    def __init__(self):
-        os = platform.system()
-        if os == "Windows":
-           self.__chrome = "C:/Program Files/Google/Chrome/Application/chrome.exe %s"
-        else :
-            if os == "Linux":
-                self.__chrome = "/usr/bin/google-chrome"
+    def launchGoogleMapItineraire(self,depart:str, arrivee:str):
+        """
+        Lance un itinéraire Google Maps depuis l'adresse de départ jusqu'à l'adresse d'arrivée.
         
-        self.__baseURL = "https://www.google.fr/maps/dir/"
-                
-    def ouvertureItineraires(self,loc1:str,loc2:str):
-        nameOS = platform.system()
-        if nameOS == "Windows":
-            try:
-               # Vérifie si la clé de registre pour Google Chrome existe
-               key_path = r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe"
-               os.path.exists(r"C:\Program Files\Google\Chrome\Application\chrome.exe")
-               etat = True
-            except:
-                etat = False 
-        else :
-            if nameOS == "Linux":
-                try:
-                    # Exécute la commande "which" pour rechercher l'exécutable de Google Chrome
-                    subprocess.check_output(["which", "google-chrome"])
-                    etat = True
-                except subprocess.CalledProcessError:
-                    etat = False
-            else :
-                etat = False
-        
-        if etat == True :
-            webbrowser.get(self.__chrome).open(self.__baseURL+loc1+"/"+loc2)
-            return True
+        Parameters:
+        depart (str): Adresse de départ en langage naturel.
+        arrivee (str): Adresse d'arrivée en langage naturel.
+        """
+        if (depart!="" and arrivee!=""):
+            base_url = "https://www.google.com/maps/dir/?api=1"
+            params = {
+                "origin": depart,
+                "destination": arrivee
+            }
+            
+            # Encoder les paramètres pour les inclure dans l'URL
+            url_params = urllib.parse.urlencode(params)
+            full_url = f"{base_url}&{url_params}"
+            
+            # Ouvrir l'URL dans le navigateur par défaut
+            return webbrowser.open(full_url)
         else :
             return False

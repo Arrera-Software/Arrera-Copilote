@@ -1,0 +1,12 @@
+{
+  "formule": "formule.json",
+  "api": "api.json",
+  "chatbot": "chatbot.json",
+  "codeHelp": "codeHelp.json",
+  "open": "open.json",
+  "search": "search.json",
+  "service": "service.json",
+  "software": "software.json",
+  "time": "time.json",
+  "work": "work.json"
+}

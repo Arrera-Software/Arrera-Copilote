@@ -1,4 +1,8 @@
-from copilote.arreracopilote import*
+from src.ryleyBoot import *
+import PIL._tkinter_finder # NO SUPPR
 
-copilote = ArreraCopilote()
-copilote.active()
+def main():
+    ryleyBoot().active()
+
+if __name__ == "__main__":
+    main()

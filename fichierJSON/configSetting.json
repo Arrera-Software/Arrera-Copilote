@@ -1,0 +1,7 @@
+{
+    "gestionMicro":"0",
+    "listeTheme":["Dark","Light"],
+    "listGenre":["monsieur","madame","maitre","maitresse"],
+    "iconSoft": "asset/Ryley.png",
+    "listMoteurRecherche": ["google","brave","duckduckgo","qwant","ecosia","bing","perplexity"]
+}

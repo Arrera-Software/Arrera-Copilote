@@ -1,8 +1,6 @@
 import webbrowser
 import requests
 import time
-from translate import*
-
 
 class fncArreraSearch :
     def __init__(self,etatConnextion:bool):
@@ -19,7 +17,7 @@ class fncArreraSearch :
         else :
             return False
 
-    def AmazonSearch(self,query:str):
+    def amazonSearch(self,query:str):
         if self.__etatConnexion == True :
             url = 'https://www.amazon.fr/s?k='
             urllink = requests.get(url+query)
@@ -49,7 +47,7 @@ class fncArreraSearch :
         else :
             return False 
 
-    def QwantSearch(self,query:str):
+    def qwantSearch(self,query:str):
         if self.__etatConnexion == True :
             url = 'https://www.qwant.com/?l=fr&q'
             query = {'q': query}
@@ -61,7 +59,7 @@ class fncArreraSearch :
             return False
 
 
-    def EcosiaSearch(self,query:str):
+    def ecosiaSearch(self,query:str):
         if self.__etatConnexion == True :
             url = 'https://www.ecosia.org/search'
             query = {'q': query}
@@ -83,16 +81,24 @@ class fncArreraSearch :
         else :
             return False
     
-    def GrandRecherche(self,query:str):
+    def perplexitySearch(self,query:str):
+        if self.__etatConnexion == True :
+            url = "https://www.perplexity.ai/search/new?q"
+            webbrowser.open(url+"="+query+". Repond en francais")
+            return True
+        else :
+            return False
+    
+    def bigRecherche(self,query:str):
         if self.__etatConnexion == True :
             i = 0
-            while(i!=7):
+            while(i!=6):
                 if (i==1) :
                     self.googleSearch(query)
                     time.sleep(1.5)
                 else :
                     if (i==2):                
-                        self.QwantSearch(query)
+                        self.qwantSearch(query)
                         time.sleep(1.5)
                     else :
                         if(i==3):
@@ -100,16 +106,13 @@ class fncArreraSearch :
                             time.sleep(1.5)
                         else :
                             if(i==4):
-                                self.EcosiaSearch(query)
+                                self.bingSearch(query)
                                 time.sleep(1.5)
                             else :
                                 if(i==5):
-                                    self.braveSearch(query)
+                                    self.perplexitySearch(query)
                                     time.sleep(1.5)
-                                else :
-                                    if(i==6):
-                                        self.bingSearch(query)
-                                        time.sleep(1.5)
+                                        
                 i = i + 1
             return True
         else :

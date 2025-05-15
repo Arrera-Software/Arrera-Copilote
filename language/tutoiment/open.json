@@ -1,0 +1,50 @@
+{
+  "ph1": [
+    "Voici ton logiciel de présentation {user}.",
+    "Je t'ai ouvert ton logiciel de diaporama. En quoi puis-je t'aider de plus {user} ?"
+  ],
+  "phError1": "Il y a un problème qui m'empêche d'ouvrir ton logiciel de présentation",
+  "ph2": [
+    "Voici ton navigateur web {user}.",
+    "Ok je t'ouvre ton explorateur web {user}.",
+    "Voilà ton explorateur web {user}.",
+    "Voici ton navigateur internet {user}.",
+    "Ok je t'ouvre ton explorateur internet {user}.",
+    "Voilà ton explorateur internet {user}."
+  ],
+  "phError2": "Il y a un problème qui m'empêche d'ouvrir ton navigateur internet",
+  "ph3": "Voici tes notes {user}.",
+  "phError3": "Il y a un problème qui m'empêche d'ouvrir tes notes",
+  "ph4": "Voici {user}, bonne écoute.",
+  "phError4": "Il y a un problème qui m'empêche d'ouvrir ton logiciel d'écoute musicale.",
+  "phRadio": "Voici la radio {radio}. Profite bien de ton écoute {user}.",
+  "phRadioError": "Désolé {user}, je ne peux pas lancer une radio. Un problème est survenu.",
+  "ph5": "Ok, je t'ai ouvert ton stockage distant.",
+  "phError5": "Il y a un problème qui m'empêche d'ouvrir ton stockage distant.",
+  "ph6": "Ok, je t'ai ouvert YouTube.",
+  "phError6": "Il y a un problème qui m'empêche d'ouvrir YouTube.",
+  "phSite": "Ok je t'ouvre {site} {user}",
+  "phSiteError": "Il y a un problème qui m'empêche d'ouvrir {site}",
+  "ph7": "Désolé {user}, mais je ne peux pas ouvrir ce que tu me demandes.",
+  "ph8": "Tu n'as pas de logiciel enregistré. Ouvre les paramètres pour en enregistrer un.",
+  "ph9": "Tu as un seul logiciel enregistré, qui est ",
+  "phNbSite": "Tu as {nombre} logiciels enregistrés, qui sont ",
+  "ph10": "Tu n'as pas de site internet enregistré dans l'assistant. Ouvre les paramètres pour en enregistrer un.",
+  "ph11": "Tu as un seul site internet enregistré, qui est ",
+  "phNbSoftware": "Tu as {nombre} sites internet enregistrés, qui sont ",
+  "phListRadion": [
+    "Les radios qui peuvent être lancées par l'assistant sont :",
+    "Europe 1",
+    "Europe 2",
+    "France Info",
+    "France Inter",
+    "France Musique",
+    "France Culture",
+    "France Bleu",
+    "Fun Radio",
+    "NRJ",
+    "RFM",
+    "Skyrock",
+    "RTL"
+  ]
+}

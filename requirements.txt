@@ -1,0 +1,16 @@
+yt_dlp
+pathlib
+tkcalendar
+datetime
+geocoder
+requests
+playsound
+gTTS
+translate
+python-docx
+odfpy
+openpyxl
+PyGithub
+language_tool_python
+pyperclip
+websocket-client

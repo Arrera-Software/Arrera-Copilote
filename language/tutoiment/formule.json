@@ -1,0 +1,93 @@
+{
+  "nc": "Je ne comprends pas ce que tu m’as dit ou ce que tu me demandes",
+  "bootN1": [
+    "Zzzz... Il faudrait peut-être dormir {self.__user}, non ?",
+    "Zzzz... Comment peux-tu travailler si tard {self.__user} ?"
+  ],
+  "bootN2": [
+    "Zzzz... {user}... Il faudrait peut-être dormir, non ?",
+    "Zzzz... Il est tard... Pourquoi travailles-tu encore {user} ?"
+  ],
+  "bootN3": [
+    "Hey {user} ! Bien dormi ?",
+    "Hey {user} ! As-tu passé une bonne nuit ?"
+  ],
+  "bootN4": [
+    "Salut {user}. Que fais-tu de beau ce matin ?",
+    "Alors {user}, prêt à travailler ?"
+  ],
+  "bootN5": [
+    "Alors {user}, prêt à travailler ?",
+    "Alors {user}, es-tu prêt à travailler cet après-midi ?"
+  ],
+  "bootN6": [
+    "Salut, {user} ! En quoi consiste ton travail ?",
+    "Salut, {user} ! Dis-moi comment je peux t'aider ?"
+  ],
+  "bootN7": [
+    "Alors {user}, que veux-tu faire ce soir ?",
+    "Alors {user}, veux-tu travailler ou te divertir ce soir ?"
+  ],
+  "bootN8": [
+    "*bâille* {user}, que fais-tu si tard ?",
+    "*bâille* {user}, pourquoi me réveilles-tu si tard ?"
+  ],
+  "bootN9": [
+    "Zzzz {user}. Il faudrait peut-être dormir, non ?",
+    "Zzzz {user}. Comment peux-tu travailler si tard ?"
+  ],
+  "bootN10": [
+    "Salut, {user}. Que veux-tu que je t'aide à faire ?",
+    "Salut, {user}. Que veux-tu que je t'aide à faire ?"
+  ],
+  "stop1": [
+    "Au revoir, {user}. Bonne nuit.",
+    "Au revoir, {user}. Bonne nuit, repose-toi bien."
+  ],
+  "stop2": [
+    "Bonne nuit, {user}. Essaie de te reposer un peu.",
+    "Bonne nuit, {user}. Essaie de te reposer un peu."
+  ],
+  "stop3": [
+    "Au revoir, {user}. Passe une bonne journée.",
+    "Au revoir, {user}. Profite bien de ta journée."
+  ],
+  "stop4": [
+    "Au revoir, passe une bonne fin de matinée.",
+    "Au revoir, profite bien de ta fin de matinée."
+  ],
+  "stop5": [
+    "Au revoir, {user}. Profite bien de ta fin d'après-midi.",
+    "Au revoir, {user}. Profite bien de ta fin d'après-midi."
+  ],
+  "stop6": [
+    "Au revoir, {user}. Profite bien de ta soirée.",
+    "Au revoir, {user}. Profite bien de ta soirée."
+  ],
+  "stop7": [
+    "Au revoir, {user}. Profite bien de ta soirée.",
+    "Au revoir, {user}. Repose-toi bien ce soir."
+  ],
+  "stop8": [
+    "Bonne nuit, {user}. Dors bien.",
+    "Bonne nuit, {user}. Repose-toi bien."
+  ],
+  "stop9": [
+    "Bonne nuit, {user}. Dors bien, sois en forme pour demain.",
+    "Bonne nuit, {user}. Repose-toi bien pour demain."
+  ],
+  "stop10": [
+    "Au revoir, {user}. J'espère te revoir bientôt.",
+    "Au revoir, {user}. J'espère te revoir bientôt."
+  ],
+  "bootHist1": "Zzzz, {user}. J'ai relancé là où tu t'étais arrêté. Mais il faudrait que tu dormes.",
+  "bootHist2": "Hey, {user}. J’espère que tu as passé une bonne nuit. J’ai relancé là où tu étais arrivé.",
+  "bootHist3": "Salut, {user}. Comment se passe ta matinée ? J’ai relancé là où tu étais arrivé.",
+  "bootHist4": "Alors {user}, prêt à travailler ? Je t’ai relancé là où tu étais.",
+  "bootHist5": "Salut, {user}. En quoi puis-je t'aider ? Je t’ai relancé là où tu étais.",
+  "bootHist6": "Alors, {user}. Prêt à travailler ce soir ? Je t’ai relancé là où tu étais.",
+  "bootHist7": "*bâille*, {user}. Pourquoi me réveilles-tu si tard ? Je t’ai relancé là où tu étais.",
+  "bootHist8": "Zzzz, {user}. Comment peux-tu travailler si tard ? Je t’ai relancé là où tu étais.",
+  "bootHist9": "Salut, {user}. Je t’ai relancé là où tu étais.",
+  "bootHist10": "Salut, {user}. Je t’ai relancé là où tu étais."
+}

@@ -27,7 +27,7 @@ class fncArreraHorloge :
         self.__name = fileJSON.lectureJSON("name")
         self.__emplacementBIP = fileJSON.lectureJSON("emplacementAssetHorloge")
           
-    def _fenetreTK(self):
+    def __fenetreTK(self):
         self.__screen = Toplevel()
         self.__screen.iconphoto(False,PhotoImage(file=self.__icon))
         self.__screen.title(self.__name+" : Horloge")
@@ -58,22 +58,22 @@ class fncArreraHorloge :
         self.__frameMinuteur.place_forget()
     
     def modeChrono(self):
-        self._fenetreToplevel()
+        self.__fenetreTK()
         self.__objetChrono.bootChrono()
         self.__frameChrono.place(x=0,y=0)
     
     def modeMinuteur(self):
-        self._fenetreToplevel()
+        self.__fenetreTK()
         self.__objetAppMinuteur.bootAppMinuteur()
         self.__frameMinuteur.place(x=0,y=0)
     
     def modeBootMinuteur(self,duration:int) :
-        self._fenetreToplevel()
+        self.__fenetreTK()
         self.__objetAppMinuteur.bootMinuteurInstentaner(duration)
         self.__frameMinuteur.place(x=0,y=0)
     
     def modeHorloge(self):
-        self._fenetreToplevel()
+        self.__fenetreTK()
         self.__objetHorloge.bootClock()
         self.__frameHorloge.place(x=0,y=0)
     

@@ -1,0 +1,50 @@
+{
+  "ph1": [
+    "Voici votre logiciel de diaporama {genre} {user}.",
+    "Je vous ai ouvert votre logiciel de présentation. En quoi puis-je vous aider de plus {genre} ?"
+  ],
+  "phError1": "Je suis désolé {genre}. Mais il y a un problème qui m'empêche d'ouvrir votre logiciel de présentation.",
+  "ph2": [
+    "Voici votre navigateur web {genre} {user}.",
+    "Ok, je vous ouvre votre explorateur web {genre} {user}.",
+    "Voilà votre explorateur web {genre} {user}.",
+    "Voici votre navigateur internet {genre} {user}.",
+    "Ok, je vous ouvre votre explorateur internet {genre} {user}.",
+    "Voilà votre explorateur internet {genre} {user}."
+  ],
+  "phError2": "Je suis désolé {genre}. Mais il y a un problème qui m'empêche d'ouvrir votre navigateur internet.",
+  "ph3": "Voici vos notes {genre} {user}.",
+  "phError3": "Je suis désolé {genre}. Mais il y a un problème qui m'empêche d'ouvrir vos notes.",
+  "ph4": "Voici {genre}, bonne écoute.",
+  "phError4": "Je suis désolé {genre}. Mais il y a un problème qui m'empêche d'ouvrir votre logiciel d'écoute musicale.",
+  "phRadio": "Je vous lance la radio {radio}. Bonne écoute {genre} {user}.",
+  "phRadioError": "Désolé {genre} {user}, je ne peux pas lancer une radio. Un problème est survenu.",
+  "ph5": "Ok, je vous ai ouvert votre stockage distant.",
+  "phError5": "Je suis désolé {genre}. Mais il y a un problème qui m'empêche d'ouvrir votre stockage distant.",
+  "ph6": "Ok, je vous ai ouvert YouTube.",
+  "phError6": "Je suis désolé {genre}. Mais il y a un problème qui m'empêche d'ouvrir YouTube.",
+  "phSite": "Ok, je vous ouvre {site} {genre}.",
+  "phSiteError": "Je suis désolé {genre}. Mais il y a un problème qui m'empêche d'ouvrir {site}.",
+  "ph7": "Désolé {genre} {user}, mais je ne peux pas ouvrir ce que vous me demandez.",
+  "ph8": "Vous n'avez pas de logiciel enregistré. Ouvrez les paramètres pour en enregistrer un.",
+  "ph9": "Vous n'avez qu'un seul logiciel enregistré. Il est : ",
+  "phNbSite": "Vous avez {nombre} de logiciels enregistrés. Ils sont :",
+  "ph10": "Vous n'avez pas de site internet enregistré dans l'assistant. Ouvrez les paramètres pour en enregistrer un.",
+  "ph11": "Vous n'avez qu'un seul site internet enregistré. Il est : ",
+  "phNbSoftware": "Vous avez {nombre} de sites internet enregistrés. Ils sont :",
+  "phListRadion": [
+    "Les radios qui peuvent être lancées par l'assistant sont :",
+    "Europe 1",
+    "Europe 2",
+    "France Info",
+    "France Inter",
+    "France Musique",
+    "France Culture",
+    "France Bleu",
+    "Fun Radio",
+    "NRJ",
+    "RFM",
+    "Skyrock",
+    "RTL"
+  ]
+}
