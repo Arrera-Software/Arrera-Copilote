@@ -77,12 +77,12 @@ class copiloteBoot:
                                           justify="left")
 
             btnUpdate = arrTk.createButton(screen,text="Mettre a jour",ppolice="Arial",ptaille=20,
-                                           pstyle="bold",
+                                           pstyle="bold",bg="#3c2144",
                                            command=lambda :
                                            wb.open("https://github.com/Arrera-Software/Ryley/releases"))
 
             btnContinuer = arrTk.createButton(screen,text="Me rappeler plus tart",ppolice="Arial",ptaille=20,
-                                              pstyle="bold",
+                                              pstyle="bold",bg="#3c2144",
                                               command=lambda : screen.destroy())
 
             imgCavas.pack()
