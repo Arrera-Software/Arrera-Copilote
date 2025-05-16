@@ -16,7 +16,7 @@ class copiloteBoot:
         else:
             self.__firstStart = False
         del json
-        self.__demonTiger = CTigerDemon("six","https://arrera-software.fr/depots.json")
+        self.__demonTiger = CTigerDemon("arrera-copilote","https://arrera-software.fr/depots.json")
 
     def active(self):
         if (self.__firstStart):
@@ -70,7 +70,7 @@ class copiloteBoot:
                                                         imageLight="asset/GUI/light/NoConfig.png",
                                                         width=500,height=350)
             labeltext = arrTk.createLabel(screen,
-                                          text="Une mise à jour d'ARRERA RYLEY est disponible. Installez-la pour bénéficier des dernières fonctionnalités.",
+                                          text="Une mise à jour d'Arrera copilote est disponible. Installez-la pour bénéficier des dernières fonctionnalités.",
                                           ppolice="Arial",ptaille=20,
                                           pstyle="bold",bg="#041f75",
                                           fg="white",pwraplength=250,
