@@ -43,7 +43,7 @@ class copiloteBoot:
             labeltext = arrTk.createLabel(screen,
                                           text="Désoler mais vous avez pas configuer l'assistant correctement",
                                           ppolice="Arial",ptaille=20,
-                                          pstyle="bold",bg="#041f75",
+                                          pstyle="bold",bg="#3c2144",
                                           fg="white",pwraplength=300,
                                           justify="left")
             btnConf = arrTk.createButton(screen,text="Configurer",ppolice="Arial",ptaille=20,
@@ -72,7 +72,7 @@ class copiloteBoot:
             labeltext = arrTk.createLabel(screen,
                                           text="Une mise à jour d'Arrera copilote est disponible. Installez-la pour bénéficier des dernières fonctionnalités.",
                                           ppolice="Arial",ptaille=20,
-                                          pstyle="bold",bg="#041f75",
+                                          pstyle="bold",bg="#3c2144",
                                           fg="white",pwraplength=250,
                                           justify="left")
 
