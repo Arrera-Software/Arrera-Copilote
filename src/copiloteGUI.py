@@ -12,7 +12,7 @@ VERSION = "I2025-1.00"
 class guiCopilote:
     def __init__(self, neuronConfigFileRyley: str, neuronConfigFileSix: str, version: str):
         # Varriable
-        self.__nameSoft = "Arrera RYLEY"
+        self.__nameSoft = "Arrera Copilote"
         self.__version = version
         self.__codeHelpActived = False
         self.__litleWindowsActived = False
@@ -202,10 +202,6 @@ class guiCopilote:
         self.__backgroudBoot5 = self.__arrTK.createArreraBackgroudImage(self.__screen,
                                                                         imageLight=emplacementLight + listIMG[13],
                                                                         imageDark=emplacementDark + listIMG[13],
-                                                                        width=500, height=600)
-        self.__backgroudBoot6 = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=emplacementLight + listIMG[14],
-                                                                        imageDark=emplacementDark + listIMG[14],
                                                                         width=500, height=600)
 
         self.__backgroundTopCodehelp = self.__arrTK.createArreraBackgroudImage(self.__screen,
@@ -427,16 +423,16 @@ class guiCopilote:
     def __sequenceBoot(self):
         self.__disableAllFrame()
         self.__backgroudBoot1.pack()
-        time.sleep(0.2)
+        time.sleep(0.4)
         self.__backgroudBoot1.pack_forget()
         self.__backgroudBoot2.pack()
-        time.sleep(0.2)
+        time.sleep(0.4)
         self.__backgroudBoot2.pack_forget()
         self.__backgroudBoot3.pack()
-        time.sleep(0.2)
+        time.sleep(0.4)
         self.__backgroudBoot3.pack_forget()
         self.__backgroudBoot4.pack()
-        time.sleep(0.2)
+        time.sleep(0.4)
         self.__backgroudBoot4.pack_forget()
         self.__backgroudBoot5.pack()
         time.sleep(0.2)
