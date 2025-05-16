@@ -4,8 +4,8 @@
    "nombreVilleMeteo":"0",
    "lieuDomicile":"0",
    "lieuTravail":"0",
-   "iconAssistant":"asset/icon/icon.png",
-   "emplacementAssetHorloge":"asset/Sound/bip.mp3",
+   "iconAssistant":"asset/icon.png",
+   "emplacementAssetHorloge":"asset/assetHorloge/bip.mp3",
    "interfaceColor" : "white",
    "interfaceTextColor":"black",
    "utilisationVous":"1",
@@ -26,8 +26,9 @@
    "etatWork":"1",
    "etatSocket": "1",
    "lienDoc":"https://github.com/Arrera-Software/Six/blob/main/readme.md",
-   "emplacementFileRoutine":"FileJSON/routineFile.json",
-   "fileUser": "FileJSON/configUser.json",
-   "fileFete": "FileJSON/listFete.json",
+   "emplacementFileHist":"fichierJSON/neuronHist.json",
+   "emplacementFileRoutine":"fichierJSON/routineFile.json",
+   "fileUser": "fichierJSON/configUser.json",
+   "fileFete": "fichierJSON/listFete.json",
    "moduleLanguage": "language/vouvoiment/"
 }
