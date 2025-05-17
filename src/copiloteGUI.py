@@ -147,13 +147,9 @@ class guiCopilote:
 
         # Frame
         self.__topBackgrown = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                      imageLight=emplacementLight + listIMG[0],
-                                                                      imageDark=emplacementDark + listIMG[0],
-                                                                      width=500, height=400)
-        self.__bottomBackgrown = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                         imageLight=emplacementLight + listIMG[1],
-                                                                         imageDark=emplacementDark + listIMG[1],
-                                                                         width=500, height=70)
+                                                                      imageLight=emplacementLight + "homeScree.png",
+                                                                      imageDark=emplacementDark + "homeScree.png",
+                                                                      width=500, height=470)
         self.__backgroundActu = self.__arrTK.createArreraBackgroudImage(self.__screen,
                                                                         imageLight=emplacementLight + listIMG[15],
                                                                         imageDark=emplacementDark + listIMG[15],
@@ -351,7 +347,12 @@ class guiCopilote:
         self.__lparoleRyley = self.__arrTK.createLabel(self.__topBackgrown,
                                                        bg="#041f75", fg="white",
                                                        ppolice="Arial", pstyle="bold",
-                                                       ptaille=18, justify="left", pwraplength=400)
+                                                       ptaille=18, justify="left", pwraplength=350)
+
+        self.__lparoleSix = self.__arrTK.createLabel(self.__topBackgrown,
+                                                       bg="#0018ff", fg="white",
+                                                       ppolice="Arial", pstyle="bold",
+                                                       ptaille=18, justify="left", pwraplength=350)
 
         self.__lparoleCodehelp = self.__arrTK.createLabel(self.__backgroundTopCodehelp,
                                                        bg="#041f75", fg="white",
@@ -375,7 +376,8 @@ class guiCopilote:
         # Affichage des widgets
         self.__entryUserRyley.place(relx=0.40, rely=0.3, anchor="center")
         btnSendRyley.place(relx=0.90, rely=0.3, anchor="center")
-        self.__lparoleRyley.place(x=55, y=280)
+        self.__lparoleRyley.place(x=120, y=160)
+        self.__lparoleSix.place(x=120, y=340)
 
         self.__arrTK.placeBottomLeft(btnParaRyley)
         self.__arrTK.placeBottomRight(btnCodehelp)
@@ -438,6 +440,7 @@ class guiCopilote:
         time.sleep(0.2)
         self.__backgroudBoot5.pack_forget()
         self.__paroleRyley(self.__assistantRyley.boot(2))
+        self.__paroleSix(self.__assistantSix.boot(2))
         self.__viewNormal()
         self.setButtonOpen()
 
@@ -466,6 +469,7 @@ class guiCopilote:
         self.__labelFirstBoot.configure(text=self.__language.getFirstBoot(3))
         time.sleep(3)
         self.__paroleRyley(self.__assistantRyley.boot(2))
+        self.__paroleSix(self.__assistantSix.boot(2))
         self.__disableAllFrame()
         self.__viewNormal()
         self.setButtonOpen()
@@ -473,6 +477,7 @@ class guiCopilote:
     def __sequenceStop(self):
         self.__screen.configure(bg_color="#081ec7", fg_color="#081ec7")
         self.__paroleRyley(self.__assistantRyley.shutdown())
+        self.__paroleSix(self.__assistantSix.shutdown())
         time.sleep(3)
         self.__screen.configure(bg_color="white", fg_color="white")
         self.__disableAllFrame()
@@ -498,7 +503,6 @@ class guiCopilote:
 
     def __disableAllFrame(self):
         self.__topBackgrown.pack_forget()
-        self.__bottomBackgrown.pack_forget()
         self.__frameBackgroud.pack_forget()
         self.__bottomBackgrownOpen.pack_forget()
         self.__backgroundActu.pack_forget()
@@ -511,7 +515,6 @@ class guiCopilote:
 
     def __viewNormal(self):
         self.__topBackgrown.pack()
-        self.__bottomBackgrown.pack()
         self.__frameBackgroud.pack()
 
     def __viewOpen(self):
@@ -542,6 +545,11 @@ class guiCopilote:
     def __paroleRyley(self, text: str):
         if text != "":
             self.__lparoleRyley.configure(text=text)
+            self.__entryUserRyley.delete(0, END)
+
+    def __paroleSix(self, text: str):
+        if text != "":
+            self.__lparoleSix.configure(text=text)
             self.__entryUserRyley.delete(0, END)
 
     def __paroleCodehelp(self, text: str):
