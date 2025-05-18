@@ -581,7 +581,7 @@ class guiCopilote:
             iconFile=self.__emplacementIcon,
             version=self.__version,
             copyright="Copyright Arrera Software by Baptiste P 2023-2025",
-            linkSource="https://github.com/Arrera-Software/Ryley",
+            linkSource="https://github.com/Arrera-Software/Arrera-Copilote",
             linkWeb="https://arrera-software.fr/")
 
     def __actionBTNRyley(self):
