@@ -150,6 +150,12 @@ class guiCopilote:
                                                                       imageLight=emplacementLight + "homeScree.png",
                                                                       imageDark=emplacementDark + "homeScree.png",
                                                                       width=500, height=470)
+
+        self.__copiloteSpeak = self.__arrTK.createArreraBackgroudImage(self.__screen,
+                                                                      imageLight=emplacementLight + "copiloteSpeak.png",
+                                                                      imageDark=emplacementDark + "copiloteSpeak.png",
+                                                                      width=500, height=470)
+
         self.__backgroundActu = self.__arrTK.createArreraBackgroudImage(self.__screen,
                                                                         imageLight=emplacementLight + listIMG[15],
                                                                         imageDark=emplacementDark + listIMG[15],
@@ -354,6 +360,11 @@ class guiCopilote:
                                                        ppolice="Arial", pstyle="bold",
                                                        ptaille=18, justify="left", pwraplength=350)
 
+        self.__lparoleCopilote = self.__arrTK.createLabel(self.__copiloteSpeak,
+                                                         bg="#482c4a", fg="white",
+                                                         ppolice="Arial", pstyle="bold",
+                                                         ptaille=18, justify="left", pwraplength=350)
+
         self.__lparoleCodehelp = self.__arrTK.createLabel(self.__backgroundTopCodehelp,
                                                        bg="#041f75", fg="white",
                                                        ppolice="Arial", pstyle="bold",
@@ -378,6 +389,7 @@ class guiCopilote:
         btnSendRyley.place(relx=0.90, rely=0.3, anchor="center")
         self.__lparoleRyley.place(x=120, y=160)
         self.__lparoleSix.place(x=120, y=340)
+        self.__lparoleCopilote.place(x=75,y=260)
 
         self.__arrTK.placeBottomLeft(btnParaRyley)
         self.__arrTK.placeBottomRight(btnCodehelp)
@@ -502,6 +514,7 @@ class guiCopilote:
 
 
     def __disableAllFrame(self):
+        self.__copiloteSpeak.pack_forget()
         self.__topBackgrown.pack_forget()
         self.__frameBackgroud.pack_forget()
         self.__bottomBackgrownOpen.pack_forget()
@@ -547,6 +560,15 @@ class guiCopilote:
             self.__lparoleRyley.configure(text=text)
             self.__entryUserRyley.delete(0, END)
 
+    def __paroleCopilote(self,text: str):
+        if text != "":
+            self.__disableAllFrame()
+            self.__copiloteSpeak.pack()
+            self.__frameBackgroud.pack()
+            self.__lparoleCopilote.configure(text=text)
+            self.__screen.update()
+            time.sleep(0.8)
+
     def __paroleSix(self, text: str):
         if text != "":
             self.__lparoleSix.configure(text=text)
@@ -587,19 +609,128 @@ class guiCopilote:
     def __actionBTNRyley(self):
         texte = self.__entryUserRyley.get().lower()
         self.__entryUserRyley.delete(0, END)
-        self.__paroleRyley(self.__sendAssistant(texte))
+        self.__sendCopilote(texte)
 
     def __actionBTNCodehelp(self):
         texte = self.__entryUserCodehelp.get().lower()
         self.__entryUserCodehelp.delete(0, END)
-        self.__paroleCodehelp(self.__sendAssistant(texte))
+        self.__paroleCodehelp(self.__sendAssistantRyley(texte))
 
     def __actionBTNLitleWindows(self):
         texte = self.__entryUserLittle.get().lower()
         self.__entryUserLittle.delete(0, END)
-        self.__paroleLittle(self.__sendAssistant(texte))
+        self.__paroleLittle(self.__sendAssistantRyley(texte))
 
-    def __sendAssistant(self, texte:str):
+    def __sendCopilote(self, texte:str):
+        if ("mode normal" in texte and self.__litleWindowsActived == True):
+            self.__modeBigWindows()
+            return
+        else :
+            if ("mode petit" in texte or "mode discret" in texte and self.__litleWindowsActived == False):
+                self.__modeLittleWindows()
+                return
+            else :
+                if ("parametre" in texte):
+                    self.__viewParametre()
+                else:
+                    if ("codehelp" in texte):
+                        self.__modeCodehelp()
+                        return
+                    else:
+                        self.__assistantRyley.neuron(texte)
+                        self.__assistantSix.neuron(texte)
+
+                        nbSortieRyley = self.__assistantRyley.getValeurSortie()
+                        listSortieRyley = self.__assistantRyley.getListSortie()
+
+                        nbSortieSix = self.__assistantSix.getValeurSortie()
+                        listSortieSix = self.__assistantSix.getListSortie()
+
+                        if (nbSortieRyley == 3 and nbSortieSix == 3):
+                            text = self.__language.getPhOpenActu()
+                            self.__paroleCopilote(text)
+                            self.__viewResumer(listSortieRyley, 2)
+                            self.__paroleSix(text)
+                            self.__paroleRyley(text)
+                        elif (nbSortieRyley == 9 and nbSortieSix == 9):
+                            out = self.__language.getPhReadWord()
+                            self.__windowsReadFile(listSortieRyley, 2)
+                            self.__paroleCopilote(out)
+                            self.__paroleSix(out)
+                            self.__paroleRyley(out)
+                        elif (nbSortieRyley == 12 and nbSortieSix == 12):
+                            out = self.__language.getPhResumerActu()
+                            self.__viewResumer(listSortieRyley, 1)
+                            self.__paroleCopilote(out)
+                            self.__paroleSix(out)
+                            self.__paroleRyley(out)
+                        elif (nbSortieRyley == 13 and nbSortieSix == 13):
+                            out = self.__language.getPhReadTableur()
+                            self.__windowsReadFile(listSortieRyley, 1)
+                            self.__paroleCopilote(out)
+                            self.__paroleSix(out)
+                            self.__paroleRyley(out)
+                        elif (nbSortieRyley == 17 and nbSortieSix == 17):
+                            self.__windowsHelp(listSortieRyley)
+                        elif (nbSortieRyley == 18 and nbSortieSix == 18):
+                            out = self.__language.getPhResumerAgenda()
+                            self.__viewResumer(listSortieRyley, 3)
+                            self.__paroleCopilote(out)
+                            self.__paroleSix(out)
+                            self.__paroleRyley(out)
+                        elif (nbSortieRyley == 19 and nbSortieSix == 19):
+                            out = self.__language.getPhResumerAll()
+                            self.__viewResumer(listSortieRyley, 4)
+                            self.__paroleCopilote(out)
+                            self.__paroleSix(out)
+                            self.__paroleRyley(out)
+                        else :
+                            self.__paroleSix(self.__traimentNeuronal(nbSortieSix, listSortieSix))
+                            self.__paroleRyley(self.__traimentNeuronal(nbSortieRyley, listSortieRyley))
+
+    def __traimentNeuronal(self, nb:int, liste:list):
+        match nb:
+            case 0:
+                out = liste[0]
+            case 1:
+                out =liste[0]
+            case 2:
+                out = "error"
+            case 4:
+                out = liste[0]
+            case 5:
+                out = liste[0]
+            case 6:
+                out = self.__language.getPhErreurActu()
+            case 7:
+                out = liste[0]
+                self.setButtonOpen()
+            case 8:
+                out = liste[0]
+                self.setButtonOpen()
+
+            case 10:
+                out = liste[0]
+                self.setButtonOpen()
+            case 11:
+                out = self.__language.getPhErreurResumerActu()
+            case 14:
+                out = liste[0]
+                self.setButtonOpen()
+            case 15:
+                self.__close()
+            case 16:
+                out = self.__assistantRyley.shutdown()
+            case 20:
+                out = self.__language.getPhErreurResumerAll()
+            case 21:
+                out = liste[0]
+                self.setButtonOpen()
+            case other:
+                out = ""
+        return out
+
+    def __sendAssistantRyley(self, texte:str):
         out = ""
         texte = texte.lower()
         if ("mode normal" in texte and self.__litleWindowsActived == True):
@@ -864,6 +995,7 @@ class guiCopilote:
 
         self.__arrTK.placeTopCenter(labelTitleHelp)
         self.__arrTK.placeCenter(aideView)
+        self.__paroleSix(textSpeak)
         self.__paroleRyley(textSpeak)
 
     def __windowsReadFile(self, liste:list, mode:int):
@@ -913,16 +1045,16 @@ class guiCopilote:
         self.__paroleRyley(self.__language.getPhParametre())
 
     def __activeOrgaVar(self):
-        self.__paroleCodehelp(self.__sendAssistant("ouvre orga var"))
+        self.__paroleCodehelp(self.__sendAssistantRyley("ouvre orga var"))
 
     def __activeColorSelecteur(self):
-        self.__paroleCodehelp(self.__sendAssistant("ouvre color selecteur"))
+        self.__paroleCodehelp(self.__sendAssistantRyley("ouvre color selecteur"))
 
     def __activeGestGit(self):
-        self.__paroleCodehelp(self.__sendAssistant("ouvre gest github"))
+        self.__paroleCodehelp(self.__sendAssistantRyley("ouvre gest github"))
 
     def __activeLibrairy(self):
-        self.__paroleCodehelp(self.__sendAssistant("ouvre librairy"))
+        self.__paroleCodehelp(self.__sendAssistantRyley("ouvre librairy"))
 
     def __modeLittleWindows(self):
         self.__disableAllFrame()
