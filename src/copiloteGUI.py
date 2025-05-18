@@ -168,11 +168,11 @@ class guiCopilote:
 
         self.__fBottomLitleWindows = self.__arrTK.createFrame(self.__screen,
                                                          width=500, height=90,
-                                                         bg="#081ec7", corner_radius=0)
+                                                         bg="#482c4a", corner_radius=0)
 
         self.__frameBackgroud = self.__arrTK.createFrame(self.__screen,
                                                          width=500, height=130,
-                                                         bg="#081ec7",corner_radius=0)
+                                                         bg="#482c4a",corner_radius=0)
 
         self.__backgroundFirstboot = self.__arrTK.createArreraBackgroudImage(self.__screen,
                                                                         imageLight=emplacementLight + listIMG[16],
@@ -236,36 +236,36 @@ class guiCopilote:
 
         # Bouton
         # Partie Ryley
-        btnSendRyley = self.__arrTK.createButton(self.__frameBackgroud, image=imgSend,
+        btnSendCopilote = self.__arrTK.createButton(self.__frameBackgroud, image=imgSend,
                                                  width=40, height=40, command=self.__actionBTNAcceuil,
-                                                 bg="#3b4bca", hoverbg="#051484")
+                                                 bg="#694d6b", hoverbg="#1d1020")
 
-        btnParaRyley = self.__arrTK.createButton(self.__frameBackgroud,image=imgPara,
+        btnParaCopilote = self.__arrTK.createButton(self.__frameBackgroud,image=imgPara,
                                             width=40, height=40,command=self.__viewParametre,
-                                            bg="#3b4bca",hoverbg="#051484")
+                                            bg="#694d6b",hoverbg="#1d1020")
 
         btnCodehelp = self.__arrTK.createButton(self.__frameBackgroud,image=imgCodehelp,
                                                 width=40,height=40,command=self.__modeCodehelp,
-                                                bg="#3b4bca", hoverbg="#051484")
+                                                bg="#694d6b", hoverbg="#1d1020")
         btnLittleWindows = self.__arrTK.createButton(self.__frameBackgroud,image=imgBTNLittleWindows,
                                                        width=40,height=40,command=self.__modeLittleWindows,
-                                                       bg="#3b4bca", hoverbg="#051484")
+                                                       bg="#694d6b", hoverbg="#1d1020")
         # Btn open
 
         self.__btnTableurOpenRyley = self.__arrTK.createButton(self.__bottomBackgrownOpen, width=35, height=35,
                                                                image=imgTableurOpen,
                                                                command=lambda: self.__winHelpFileAndProjet(1),
-                                                               bg="#3b4bca", hoverbg="#051484")
+                                                               bg="#694d6b", hoverbg="#1d1020")
 
         self.__btnWordOpenRyley = self.__arrTK.createButton(self.__bottomBackgrownOpen, width=35, height=35,
                                                             image=imgWordOpen,
                                                             command=lambda: self.__winHelpFileAndProjet(2),
-                                                            bg="#3b4bca", hoverbg="#051484")
+                                                            bg="#694d6b", hoverbg="#1d1020")
 
         self.__btnProjetOpenRyley = self.__arrTK.createButton(self.__bottomBackgrownOpen, width=35, height=35,
                                                               image=imgProjetOpen,
                                                               command=lambda: self.__winHelpFileAndProjet(3),
-                                                              bg="#3b4bca", hoverbg="#051484")
+                                                              bg="#694d6b", hoverbg="#1d1020")
 
         # Partie Codehelp
         btnSendCodehelp = self.__arrTK.createButton(self.__frameBackgroudCodehelp, image=imgSend,
@@ -276,7 +276,7 @@ class guiCopilote:
                                                  width=40, height=40, command=self.__viewParametre,
                                                  bg="#8c8c8c", hoverbg="#4e4e4e")
 
-        btnRyley = self.__arrTK.createButton(self.__frameBackgroudCodehelp, image=imgRyley,
+        btnCopilote = self.__arrTK.createButton(self.__frameBackgroudCodehelp, image=imgRyley,
                                              width=40, height=40, command=self.__modeNormal,
                                              bg="#8c8c8c", hoverbg="#4e4e4e")
 
@@ -322,27 +322,27 @@ class guiCopilote:
         self.__btnTableurOpenLittle = self.__arrTK.createButton(self.__fBottomLitleWindows, width=35, height=35,
                                                                image=imgTableurOpen,
                                                                command=lambda: self.__winHelpFileAndProjet(1),
-                                                               bg="#3b4bca", hoverbg="#051484")
+                                                               bg="#694d6b", hoverbg="#1d1020")
 
         self.__btnWordOpenLitte = self.__arrTK.createButton(self.__fBottomLitleWindows, width=35, height=35,
                                                             image=imgWordOpen,
                                                             command=lambda: self.__winHelpFileAndProjet(2),
-                                                            bg="#3b4bca", hoverbg="#051484")
+                                                            bg="#694d6b", hoverbg="#1d1020")
 
         self.__btnProjetOpenLitte = self.__arrTK.createButton(self.__backgroundLitleWindows, width=35, height=35,
                                                               image=imgProjetOpen,
                                                               command=lambda: self.__winHelpFileAndProjet(3),
-                                                              bg="#3b4bca", hoverbg="#051484")
+                                                              bg="#694d6b", hoverbg="#1d1020")
 
         # Button
 
         btnSendLittle = self.__arrTK.createButton(self.__fBottomLitleWindows, image=imgSend,
                                                   width=40, height=40, command=self.__actionBTNAcceuil,
-                                                  bg="#3b4bca", hoverbg="#051484")
+                                                  bg="#694d6b", hoverbg="#1d1020")
 
         btnBigWindows = self.__arrTK.createButton(self.__fBottomLitleWindows,image=imgBTNBigWindows,
                                                      width=40,height=40,command=self.__modeBigWindows,
-                                                     bg="#3b4bca", hoverbg="#051484")
+                                                     bg="#694d6b", hoverbg="#1d1020")
 
 
         # Partie actu
@@ -386,12 +386,12 @@ class guiCopilote:
 
         # Affichage des widgets
         self.__entryUserRyley.place(relx=0.40, rely=0.3, anchor="center")
-        btnSendRyley.place(relx=0.90, rely=0.3, anchor="center")
+        btnSendCopilote.place(relx=0.90, rely=0.3, anchor="center")
         self.__lparoleRyley.place(x=120, y=160)
         self.__lparoleSix.place(x=120, y=340)
         self.__lparoleCopilote.place(x=75,y=260)
 
-        self.__arrTK.placeBottomLeft(btnParaRyley)
+        self.__arrTK.placeBottomLeft(btnParaCopilote)
         self.__arrTK.placeBottomRight(btnCodehelp)
 
         self.__entryUserCodehelp.place(relx=0.40, rely=0.3, anchor="center")
@@ -405,7 +405,7 @@ class guiCopilote:
         self.__arrTK.placeBottomCenter(btnBigWindows)
 
         self.__arrTK.placeBottomLeft(btnParaCodehelp)
-        self.__arrTK.placeBottomRight(btnRyley)
+        self.__arrTK.placeBottomRight(btnCopilote)
         self.__arrTK.placeBottomCenter(btnLittleWindows)
 
         self.__labelActu.place(x=70, y=75)
