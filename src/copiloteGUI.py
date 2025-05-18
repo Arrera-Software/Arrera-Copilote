@@ -237,7 +237,7 @@ class guiCopilote:
         # Bouton
         # Partie Ryley
         btnSendRyley = self.__arrTK.createButton(self.__frameBackgroud, image=imgSend,
-                                                 width=40, height=40, command=self.__actionBTNRyley,
+                                                 width=40, height=40, command=self.__actionBTNAcceuil,
                                                  bg="#3b4bca", hoverbg="#051484")
 
         btnParaRyley = self.__arrTK.createButton(self.__frameBackgroud,image=imgPara,
@@ -337,8 +337,8 @@ class guiCopilote:
         # Button
 
         btnSendLittle = self.__arrTK.createButton(self.__fBottomLitleWindows, image=imgSend,
-                                                 width=40, height=40, command=self.__actionBTNRyley,
-                                                 bg="#3b4bca", hoverbg="#051484")
+                                                  width=40, height=40, command=self.__actionBTNAcceuil,
+                                                  bg="#3b4bca", hoverbg="#051484")
 
         btnBigWindows = self.__arrTK.createButton(self.__fBottomLitleWindows,image=imgBTNBigWindows,
                                                      width=40,height=40,command=self.__modeBigWindows,
@@ -606,222 +606,153 @@ class guiCopilote:
             linkSource="https://github.com/Arrera-Software/Arrera-Copilote",
             linkWeb="https://arrera-software.fr/")
 
-    def __actionBTNRyley(self):
-        texte = self.__entryUserRyley.get().lower()
-        self.__entryUserRyley.delete(0, END)
-        self.__sendCopilote(texte)
+    def __actionBTNAcceuil(self):
+        if self.__litleWindowsActived == False and self.__codeHelpActived == False:
+            texte = self.__entryUserRyley.get().lower()
+            self.__entryUserRyley.delete(0, END)
+            self.__sendCopilote(texte)
+
 
     def __actionBTNCodehelp(self):
-        texte = self.__entryUserCodehelp.get().lower()
-        self.__entryUserCodehelp.delete(0, END)
-        self.__paroleCodehelp(self.__sendAssistantRyley(texte))
+        if self.__codeHelpActived:
+            texte = self.__entryUserCodehelp.get().lower()
+            self.__entryUserCodehelp.delete(0, END)
+            self.__sendCopilote(texte)
 
     def __actionBTNLitleWindows(self):
-        texte = self.__entryUserLittle.get().lower()
-        self.__entryUserLittle.delete(0, END)
-        self.__paroleLittle(self.__sendAssistantRyley(texte))
+        if self.__litleWindowsActived:
+            texte = self.__entryUserLittle.get().lower()
+            self.__entryUserLittle.delete(0, END)
+            self.__sendCopilote(texte)
 
     def __sendCopilote(self, texte:str):
         if ("mode normal" in texte and self.__litleWindowsActived == True):
             self.__modeBigWindows()
             return
-        else :
-            if ("mode petit" in texte or "mode discret" in texte and self.__litleWindowsActived == False):
+        elif ("mode petit" in texte or "mode discret" in texte and self.__litleWindowsActived == False):
                 self.__modeLittleWindows()
                 return
+        elif ("parametre" in texte):
+            self.__viewParametre()
+        elif ("codehelp" in texte):
+            self.__modeCodehelp()
+        else:
+            self.__assistantRyley.neuron(texte)
+            self.__assistantSix.neuron(texte)
+
+            nbSortieRyley = self.__assistantRyley.getValeurSortie()
+            listSortieRyley = self.__assistantRyley.getListSortie()
+
+            nbSortieSix = self.__assistantSix.getValeurSortie()
+            listSortieSix = self.__assistantSix.getListSortie()
+
+            if (nbSortieRyley == 3 and nbSortieSix == 3):
+                out = self.__language.getPhOpenActu()
+                self.__paroleCopilote(out)
+                self.__viewResumer(listSortieRyley, 2)
+                self.__paroleSix(out)
+                self.__paroleRyley(out)
+                self.__paroleLittle(out)
+                self.__paroleCodehelp(out)
+            elif (nbSortieRyley == 9 and nbSortieSix == 9):
+                out = self.__language.getPhReadWord()
+                self.__windowsReadFile(listSortieRyley, 2)
+                self.__paroleCopilote(out)
+                self.__paroleSix(out)
+                self.__paroleRyley(out)
+                self.__paroleLittle(out)
+                self.__paroleCodehelp(out)
+            elif (nbSortieRyley == 12 and nbSortieSix == 12):
+                out = self.__language.getPhResumerActu()
+                self.__viewResumer(listSortieRyley, 1)
+                self.__paroleCopilote(out)
+                self.__paroleSix(out)
+                self.__paroleRyley(out)
+                self.__paroleLittle(out)
+                self.__paroleCodehelp(out)
+            elif (nbSortieRyley == 13 and nbSortieSix == 13):
+                out = self.__language.getPhReadTableur()
+                self.__windowsReadFile(listSortieRyley, 1)
+                self.__paroleCopilote(out)
+                self.__paroleSix(out)
+                self.__paroleRyley(out)
+                self.__paroleLittle(out)
+                self.__paroleCodehelp(out)
+            elif (nbSortieRyley == 17 and nbSortieSix == 17):
+                self.__windowsHelp(listSortieRyley)
+            elif (nbSortieRyley == 18 and nbSortieSix == 18):
+                out = self.__language.getPhResumerAgenda()
+                self.__viewResumer(listSortieRyley, 3)
+                self.__paroleCopilote(out)
+                self.__paroleSix(out)
+                self.__paroleRyley(out)
+                self.__paroleLittle(out)
+                self.__paroleCodehelp(out)
+            elif (nbSortieRyley == 19 and nbSortieSix == 19):
+                out = self.__language.getPhResumerAll()
+                self.__viewResumer(listSortieRyley, 4)
+                self.__paroleCopilote(out)
+                self.__paroleSix(out)
+                self.__paroleRyley(out)
+                self.__paroleLittle(out)
+                self.__paroleCodehelp(out)
             else :
-                if ("parametre" in texte):
-                    self.__viewParametre()
-                else:
-                    if ("codehelp" in texte):
-                        self.__modeCodehelp()
-                        return
-                    else:
-                        self.__assistantRyley.neuron(texte)
-                        self.__assistantSix.neuron(texte)
-
-                        nbSortieRyley = self.__assistantRyley.getValeurSortie()
-                        listSortieRyley = self.__assistantRyley.getListSortie()
-
-                        nbSortieSix = self.__assistantSix.getValeurSortie()
-                        listSortieSix = self.__assistantSix.getListSortie()
-
-                        if (nbSortieRyley == 3 and nbSortieSix == 3):
-                            text = self.__language.getPhOpenActu()
-                            self.__paroleCopilote(text)
-                            self.__viewResumer(listSortieRyley, 2)
-                            self.__paroleSix(text)
-                            self.__paroleRyley(text)
-                        elif (nbSortieRyley == 9 and nbSortieSix == 9):
-                            out = self.__language.getPhReadWord()
-                            self.__windowsReadFile(listSortieRyley, 2)
-                            self.__paroleCopilote(out)
-                            self.__paroleSix(out)
-                            self.__paroleRyley(out)
-                        elif (nbSortieRyley == 12 and nbSortieSix == 12):
-                            out = self.__language.getPhResumerActu()
-                            self.__viewResumer(listSortieRyley, 1)
-                            self.__paroleCopilote(out)
-                            self.__paroleSix(out)
-                            self.__paroleRyley(out)
-                        elif (nbSortieRyley == 13 and nbSortieSix == 13):
-                            out = self.__language.getPhReadTableur()
-                            self.__windowsReadFile(listSortieRyley, 1)
-                            self.__paroleCopilote(out)
-                            self.__paroleSix(out)
-                            self.__paroleRyley(out)
-                        elif (nbSortieRyley == 17 and nbSortieSix == 17):
-                            self.__windowsHelp(listSortieRyley)
-                        elif (nbSortieRyley == 18 and nbSortieSix == 18):
-                            out = self.__language.getPhResumerAgenda()
-                            self.__viewResumer(listSortieRyley, 3)
-                            self.__paroleCopilote(out)
-                            self.__paroleSix(out)
-                            self.__paroleRyley(out)
-                        elif (nbSortieRyley == 19 and nbSortieSix == 19):
-                            out = self.__language.getPhResumerAll()
-                            self.__viewResumer(listSortieRyley, 4)
-                            self.__paroleCopilote(out)
-                            self.__paroleSix(out)
-                            self.__paroleRyley(out)
-                        else :
-                            self.__paroleSix(self.__traimentNeuronal(nbSortieSix, listSortieSix))
-                            self.__paroleRyley(self.__traimentNeuronal(nbSortieRyley, listSortieRyley))
+                self.__paroleSix(self.__traimentNeuronal(nbSortieSix, listSortieSix))
+                self.__paroleRyley(self.__traimentNeuronal(nbSortieRyley, listSortieRyley))
+                self.__paroleLittle(self.__traimentNeuronal(nbSortieSix, listSortieSix))
+                self.__paroleCodehelp(self.__traimentNeuronal(nbSortieRyley, listSortieRyley))
 
     def __traimentNeuronal(self, nb:int, liste:list):
         match nb:
             case 0:
-                out = liste[0]
+                return liste[0]
             case 1:
-                out =liste[0]
+                return liste[0]
             case 2:
-                out = "error"
+                return "error"
             case 4:
-                out = liste[0]
+                return liste[0]
             case 5:
-                out = liste[0]
+                return liste[0]
             case 6:
-                out = self.__language.getPhErreurActu()
+                return self.__language.getPhErreurActu()
             case 7:
-                out = liste[0]
                 self.setButtonOpen()
+                return liste[0]
             case 8:
-                out = liste[0]
                 self.setButtonOpen()
-
+                return liste[0]
             case 10:
-                out = liste[0]
                 self.setButtonOpen()
+                return liste[0]
             case 11:
-                out = self.__language.getPhErreurResumerActu()
+                return self.__language.getPhErreurResumerActu()
             case 14:
-                out = liste[0]
                 self.setButtonOpen()
+                return liste[0]
             case 15:
                 self.__close()
+                return ""
             case 16:
-                out = self.__assistantRyley.shutdown()
+                return self.__assistantRyley.shutdown()
             case 20:
-                out = self.__language.getPhErreurResumerAll()
+                return self.__language.getPhErreurResumerAll()
             case 21:
-                out = liste[0]
                 self.setButtonOpen()
+                return liste[0]
             case other:
-                out = ""
-        return out
-
-    def __sendAssistantRyley(self, texte:str):
-        out = ""
-        texte = texte.lower()
-        if ("mode normal" in texte and self.__litleWindowsActived == True):
-            self.__modeBigWindows()
-            return
-        else :
-            if ("mode petit" in texte or "mode discret" in texte and self.__litleWindowsActived == False):
-                self.__modeLittleWindows()
-                return
-            else :
-                if ("parametre" in texte):
-                    self.__viewParametre()
-                else:
-                    if ("codehelp" in texte):
-                        self.__modeCodehelp()
-                        return
-                    else:
-                        self.__assistantRyley.neuron(texte)
-                        nbSortie = self.__assistantRyley.getValeurSortie()
-                        listSortie = self.__assistantRyley.getListSortie()
-                        match nbSortie:
-                            case 0:
-                                out = listSortie[0]
-                            case 1:
-                                out =listSortie[0]
-                            case 2:
-                                out = "error"
-                            case 3:
-                                out = self.__language.getPhOpenActu()
-                                self.__viewResumer(listSortie, 2)
-                            case 4:
-                                out = listSortie[0]
-                            case 5:
-                                out = listSortie[0]
-                            case 6:
-                                out = self.__language.getPhErreurActu()
-                            case 7:
-                                out = listSortie[0]
-                                self.setButtonOpen()
-                            case 8:
-                                out = listSortie[0]
-                                self.setButtonOpen()
-                            case 9:
-                                out = self.__language.getPhReadWord()
-                                self.__windowsReadFile(listSortie, 2)
-                            case 10:
-                                out = listSortie[0]
-                                self.setButtonOpen()
-                            case 11:
-                                 out = self.__language.getPhErreurResumerActu()
-                            case 12:
-                                out = self.__language.getPhResumerActu()
-                                self.__viewResumer(listSortie, 1)
-                            case 13:
-                                out = self.__language.getPhReadTableur()
-                                self.__windowsReadFile(listSortie, 1)
-                            case 14:
-                                out = listSortie[0]
-                                self.setButtonOpen()
-                            case 15:
-                                self.__close()
-                            case 16:
-                                out = self.__assistantRyley.shutdown()
-                            case 17:
-                                out = ""
-                                self.__windowsHelp(listSortie)
-                            case 18:
-                                out = self.__language.getPhResumerAgenda()
-                                self.__viewResumer(listSortie, 3)
-                            case 19:
-                                out = self.__language.getPhResumerAll()
-                                self.__viewResumer(listSortie, 4)
-                            case 20:
-                                out = self.__language.getPhErreurResumerAll()
-                            case 21:
-                                out = listSortie[0]
-                                self.setButtonOpen()
-                            case other:
-                                out = ""
-            return out
+                return ""
 
     def __keyboard(self):
         def anychar(event):
             if self.__windowsOS:
                 if event.keycode == 13:
-                    self.__actionBTNRyley()
+                    self.__actionBTNAcceuil()
                     self.__actionBTNCodehelp()
                     self.__actionBTNLitleWindows()
             else:
                 if event.keycode == 36:
-                    self.__actionBTNRyley()
+                    self.__actionBTNAcceuil()
                     self.__actionBTNCodehelp()
                     self.__actionBTNLitleWindows()
         self.__screen.bind("<Key>", anychar)
@@ -1045,16 +976,20 @@ class guiCopilote:
         self.__paroleRyley(self.__language.getPhParametre())
 
     def __activeOrgaVar(self):
-        self.__paroleCodehelp(self.__sendAssistantRyley("ouvre orga var"))
+        self.__assistantRyley.neuron("ouvre orga var")
+        self.__paroleCodehelp(self.__assistantRyley.getListSortie()[0])
 
     def __activeColorSelecteur(self):
-        self.__paroleCodehelp(self.__sendAssistantRyley("ouvre color selecteur"))
+        self.__assistantRyley.neuron("ouvre color selecteur")
+        self.__paroleCodehelp(self.__assistantRyley.getListSortie()[0])
 
     def __activeGestGit(self):
-        self.__paroleCodehelp(self.__sendAssistantRyley("ouvre gest github"))
+        self.__assistantRyley.neuron("ouvre gest github")
+        self.__paroleCodehelp(self.__assistantRyley.getListSortie()[0])
 
     def __activeLibrairy(self):
-        self.__paroleCodehelp(self.__sendAssistantRyley("ouvre librairy"))
+        self.__assistantRyley.neuron("ouvre librairy")
+        self.__paroleCodehelp(self.__assistantRyley.getListSortie()[0])
 
     def __modeLittleWindows(self):
         self.__disableAllFrame()
