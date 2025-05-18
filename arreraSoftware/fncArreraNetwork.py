@@ -6,7 +6,7 @@ from arreraSoftware.fonctionMeteoActu import *
 from arreraSoftware.fonctionGPS import*
 from arreraSoftware.fonctionTraduction import*
 from arreraSoftware.fonctionArreraDownload import *
-from arreraSoftware.fonctionCalculatrice import * 
+from arreraSoftware.fonctionCalculatrice import *
 from arreraSoftware.fonctionRecherche import *
 from arreraSoftware.fonctionHorloge import*
 from arreraSoftware.fonctionCalendar import *
@@ -32,7 +32,7 @@ class fncArreraNetwork:
         self.__meteo = Meteo("19bfbee6112be5b3d9a64d4ccec72602")
         self.__traducteur = fncArreraTrad(self.__configNeuron,)
         self.__downloader = fncArreraVideoDownload(self.__configNeuron,self.__gestionNeuron)
-        self.__calculatrice = fncCalculatrice(self.__configNeuron)  
+        self.__calculatrice = fncCalculatrice(self.__configNeuron)
         self.__objetRecherche = fncArreraSearch(etatConnextion)
         self.__objetDate = fncDate()
         self.__objetHorloge = fncArreraHorloge()
@@ -40,14 +40,14 @@ class fncArreraNetwork:
         self.__objetTache = fncArreraTache(self.__objetDate,self.__configNeuron,self.__gestionNeuron.getEmplacemntfileTache())
         self.__objetCodehelp = fncCodehelp(self.__configNeuron,self.__detecteurOS,self.__gestionNeuron)
         self.__objetArreraWork = fncArreraWork(self.__objetDate,self.__gestionNeuron,self.__configNeuron,self.__detecteurOS)
-        self.__objetHorloge.setAtributJSON(self.__configNeuron)    
+        self.__objetHorloge.setAtributJSON(self.__configNeuron)
         self.__objetOpenSoft = OpenSoftware(self.__gestionNeuron)
         self.__objRadio = fncRadio(self.__objetNetwork)
         # Fonction qui on besoin d'internet
         if (etatConnextion == True):
             self.__objOrthographe = fncOrthagraphe(self.__configNeuron.lectureJSON("interfaceColor"),
-                                               self.__configNeuron.lectureJSON("interfaceTextColor"))
-        
+                                                   self.__configNeuron.lectureJSON("interfaceTextColor"))
+
     def reading(self):
         self.__fncReading.fenetreLecture()
         text = self.__mLanguage.getPhraseService("6")
@@ -66,8 +66,8 @@ class fncArreraNetwork:
                 return 3, [listActu[nbrand1],listActu[nbrand2],listActu[nbrand3]]
         else :
             return 6 , [self.__mLanguage.getPhraseApi("1"),""]
-        
-    
+
+
     def sortieMeteoTowmoroMorning(self,ville):
         if ville == "" :
             sortieGPS = self.__gps.recuperationCordonneePossition()
@@ -101,8 +101,8 @@ class fncArreraNetwork:
                     text = self.__mLanguage.getPhraseMeteoError("4")
             else :
                 text = self.__mLanguage.getPhraseMeteoError("4")
-        return 4 , [text,""]
-    
+        return [text,""]
+
     def sortieMeteoTowmorNoon(self,ville):
         if ville == "" :
             sortieGPS = self.__gps.recuperationCordonneePossition()
@@ -137,9 +137,9 @@ class fncArreraNetwork:
                     text = self.__mLanguage.getPhraseMeteoError("2")
             else :
                 text = self.__mLanguage.getPhraseMeteoError("2")
-        
-        return 4 , [text,""]
-    
+
+        return [text,""]
+
     def sortieMeteoToday(self,ville):
         if ville == "" :
             sortieGPS = self.__gps.recuperationCordonneePossition()
@@ -173,9 +173,9 @@ class fncArreraNetwork:
                     text = self.__mLanguage.getPhraseMeteoError("6")
             else :
                 text = self.__mLanguage.getPhraseMeteoError("6")
-        
-        return 4 , [text,""]
-    
+
+        return [text,""]
+
     def sortieTemperature(self):
         sortieGPS = self.__gps.recuperationCordonneePossition()
         if sortieGPS == True :
@@ -185,7 +185,7 @@ class fncArreraNetwork:
             if sortieMeteo == True :
                 text = self.__mLanguage.getPhraseTemperature(self.__meteo.gettemperature())
         return 4 , text
-    
+
     def sortieGPS(self):
         text = []
         sortieGPS = self.__gps.recuperationCordonneePossition()
@@ -197,7 +197,7 @@ class fncArreraNetwork:
                 nameVille = self.__gps.getNameVille()
                 text = self.__mLanguage.getPhraseCoordonnees(nameVille,lat,lon)
         return 4,text
-    
+
     def sortieItineraire(self,phrase):
         """
         Extrait les adresses de départ et d'arrivée d'une phrase donnée.
@@ -222,7 +222,7 @@ class fncArreraNetwork:
         pattern = re.compile(r"de\s+(.*?)\s+(?:a|comme|et)\s+(.*?)\s+(?:comme|et|s'il|destination|aller|sur|,|\.|$)", re.IGNORECASE)
         match = pattern.search(phrase)
         depart=""
-        
+
         if match:
             depart = match.group(1).strip()
             arrivee = match.group(2).strip()
@@ -230,19 +230,19 @@ class fncArreraNetwork:
         else:
             reusite = False
         if (reusite == True ) :
-            if ((depart == "domicile") or (depart =="residence") 
-                or (depart =="maison") or (depart == "appartement") 
-                or (depart =="chez moi") or (depart =="foyer") 
-                or (depart =="maison") or (depart == "foyer") 
-                or (depart =="demeure")):
+            if ((depart == "domicile") or (depart =="residence")
+                    or (depart =="maison") or (depart == "appartement")
+                    or (depart =="chez moi") or (depart =="foyer")
+                    or (depart =="maison") or (depart == "foyer")
+                    or (depart =="demeure")):
                 depart = self.__gestionNeuron.getAdresseDomicile()
-            else : 
+            else :
                 if ((depart =="bureau")or (depart =="lieu de travail")
-                    or (depart =="entreprise")or (depart =="societe")
-                    or (depart =="boulot") or (depart == "cabinet")
-                    or (depart =="college")or (depart =="lycee")
-                    or (depart =="ecole") or (depart =="campus")
-                    or (depart =="universite")):
+                        or (depart =="entreprise")or (depart =="societe")
+                        or (depart =="boulot") or (depart == "cabinet")
+                        or (depart =="college")or (depart =="lycee")
+                        or (depart =="ecole") or (depart =="campus")
+                        or (depart =="universite")):
                     depart = self.__gestionNeuron.getAdresseTravil()
                 else :
                     if ((depart =="la ou je suis")or (depart =="ma localisation")) :
@@ -250,20 +250,20 @@ class fncArreraNetwork:
                             return self.__mLanguage.getPhraseIteneraireError("1")
                         else :
                             depart = self.__gps.getNameVille()
-            
-            if ((arrivee == "domicile") or (arrivee =="residence") 
-                or (arrivee =="maison") or (arrivee == "appartement") 
-                or (arrivee =="chez moi") or (arrivee =="foyer") 
-                or (arrivee =="maison") or (arrivee == "foyer") 
-                or (arrivee =="demeure")):
+
+            if ((arrivee == "domicile") or (arrivee =="residence")
+                    or (arrivee =="maison") or (arrivee == "appartement")
+                    or (arrivee =="chez moi") or (arrivee =="foyer")
+                    or (arrivee =="maison") or (arrivee == "foyer")
+                    or (arrivee =="demeure")):
                 arrivee = self.__gestionNeuron.getAdresseDomicile()
-            else : 
+            else :
                 if ((arrivee =="bureau")or (arrivee =="lieu de travail")
-                    or (arrivee =="entreprise")or (arrivee =="societe")
-                    or (arrivee =="boulot") or (arrivee == "cabinet")
-                    or (arrivee =="college")or (arrivee =="lycee")
-                    or (arrivee =="ecole") or (arrivee =="campus")
-                    or (arrivee =="universite")):
+                        or (arrivee =="entreprise")or (arrivee =="societe")
+                        or (arrivee =="boulot") or (arrivee == "cabinet")
+                        or (arrivee =="college")or (arrivee =="lycee")
+                        or (arrivee =="ecole") or (arrivee =="campus")
+                        or (arrivee =="universite")):
                     arrivee = self.__gestionNeuron.getAdresseTravil()
                 else :
                     if ((arrivee =="la ou je suis")or (arrivee =="ma localisation")) :
@@ -314,12 +314,12 @@ class fncArreraNetwork:
                     textSpeak = textSpeak + self.__mLanguage.getPhraseMeteo("7",domicile,self.__meteo.getdescription(),self.__meteo.gettemperature())[random.randint(0,1)]
                     meteoHome = "Meteo lieu de residence :\nDescription : "+self.__meteo.getdescription()+"\nTemperature : "+self.__meteo.gettemperature()+"°C"
                 else :
-                   meteoHome = "error" 
+                    meteoHome = "error"
             else :
                 meteoHome = "error"
         else :
             meteoHome = "error"
-        
+
         # Meteo sur le lieu de travail
         if (travail != "") :
             verif = self.__gps.recuperationCordonneeVille(travail)
@@ -329,13 +329,13 @@ class fncArreraNetwork:
                     textSpeak = textSpeak + self.__mLanguage.getPhraseMeteo("8",travail,self.__meteo.getdescription(),self.__meteo.gettemperature())[random.randint(0,1)]
                     meteoWork = "Meteo lieu de travail :\nDescription : "+self.__meteo.getdescription()+"\nTemperature : "+self.__meteo.gettemperature()+"°C"
                 else :
-                    meteoWork = "error" 
+                    meteoWork = "error"
             else :
-                meteoWork = "error" 
+                meteoWork = "error"
         else :
-            meteoWork = "error" 
+            meteoWork = "error"
 
-        # Meteo sur la position que si la meteo au lieu de travail et au domicile a echouer
+            # Meteo sur la position que si la meteo au lieu de travail et au domicile a echouer
         if (meteoHome == "error" and meteoWork == "error") :
             verif = self.__gps.recuperationCordonneePossition()
             if (verif == True):
@@ -344,11 +344,11 @@ class fncArreraNetwork:
                     textSpeak = textSpeak + self.__mLanguage.getPhraseMeteo("9",self.__gps.getNameVille(),self.__meteo.getdescription(),self.__meteo.gettemperature())[random.randint(0,1)]
                     meteoWork = "Meteo a votre position :\nDescription : "+self.__meteo.getdescription()+"\nTemperature : "+self.__meteo.gettemperature()+"°C"
                 else :
-                    meteoWork = "error" 
+                    meteoWork = "error"
             else :
-                meteoWork = "error"  
-                
-        #fete du jour
+                meteoWork = "error"
+
+                #fete du jour
         feteJour = self.__gestionNeuron.getFeteJour()
         textSpeak = textSpeak + "La fête du jour est "+feteJour+". "
 
@@ -370,7 +370,7 @@ class fncArreraNetwork:
     def sortieErrorLangue(self):
         return self.__mLanguage.getPhraseErrorLangue()
 
-    
+
     def sortieCalculatrice(self,mode):
         if mode == "0":
             text = self.__mLanguage.getPhraseSoftware("4")
@@ -381,7 +381,7 @@ class fncArreraNetwork:
                 text = self.__mLanguage.getPhraseSoftware("6")
         self.__calculatrice.calculatrice(mode)
         return text
-    
+
     def sortieOpenSoftware(self,requette):
         soft = requette.lower().replace("ouvrir",
                                         "").replace("ouvre"
@@ -416,7 +416,7 @@ class fncArreraNetwork:
                 return False
         return False
 
-    
+
     def sortieOpenYoutube(self):
         socket = self.__gestionNeuron.getSocketObjet()
 
@@ -428,9 +428,9 @@ class fncArreraNetwork:
             text = self.__mLanguage.getPhraseOpen("6")
         else :
             text = self.__mLanguage.getPhraseOpenError("6")
-        
+
         return text
-    
+
     def sortieOpenSite(self,requette:str,etat:bool):
         site = requette.replace("ouvrir","").replace("ouvre","").strip().lower()
         return self.__mLanguage.getPhraseOpenSite(site,etat)
@@ -463,7 +463,7 @@ class fncArreraNetwork:
 
     def sortieNoOpen(self):
         return self.__mLanguage.getPhraseOpen("7")
-            
+
     def sortieRechercheSimple(self,requette:str):
         moteurDefault = self.__gestionNeuron.getMoteurRechercheDefault()
         moteurUser = self.__gestionNeuron.getValeurfichierUtilisateur("moteurRecherche")
@@ -473,7 +473,7 @@ class fncArreraNetwork:
             moteur = moteurDefault
         else :
             moteur = moteurUser
-    
+
         match moteur :
             case "duckduckgo" :
                 sortieRecherche = self.__objetRecherche.duckduckgoSearch(recherche)
@@ -495,9 +495,9 @@ class fncArreraNetwork:
             text = self.__mLanguage.getPhraseSearch("3")
         else :
             text = self.__mLanguage.getPhraseSearch("4")
-       
+
         return text,recherche
-    
+
     def sortieGrandRecherche(self,requette:str):
         recherche = requette.replace("bigsearch","")
         recherche = recherche.replace("grand recherche","")
@@ -507,20 +507,20 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseSearch("2")
         return text,recherche
-    
+
     def sortieHeure(self):
         self.__objetDate.rafraichisement()
         heure = self.__objetDate.heure()
         minute = self.__objetDate.minute()
         return self.__mLanguage.getPhraseHeure(heure,minute)
-    
+
     def sortieDate(self):
         self.__objetDate.rafraichisement()
         jour = self.__objetDate.jour()
         mois = self.__objetDate.mois()
         annes = self.__objetDate.annes()
         return self.__mLanguage.getPhraseDate(jour,mois,annes)
-    
+
     def sortieOpenChrono(self):
         text = self.__mLanguage.getPhraseTime("1")
         self.__objetHorloge.modeChrono()
@@ -530,22 +530,22 @@ class fncArreraNetwork:
         text = self.__mLanguage.getPhraseTime("2")
         self.__objetHorloge.modeHorloge()
         return text
-    
+
     def sortieOpenSimpleMinuteur(self):
         text = self.__mLanguage.getPhraseTime("3")
         self.__objetHorloge.modeMinuteur()
-        return text   
-    
+        return text
+
     def sortieAjoutEvent(self):
         self.__objetCalendar.activeAddWindows()
         text = self.__mLanguage.getPhraseTime("4")
-        return text  
-    
+        return text
+
     def sortieSupprEvent(self):
         self.__objetCalendar.activeSupprWindows()
         text = self.__mLanguage.getPhraseTime("5")
-        return text   
-    
+        return text
+
     def sortieEvenementDay(self):
         tampons = ""
         text = ""
@@ -567,12 +567,12 @@ class fncArreraNetwork:
                         else :
                             text = tampons +", "+listEvent[i]
         return text
-    
+
     def sortieOpenAgenda(self):
         text = self.__mLanguage.getPhraseTime("8")
         self.__objetCalendar.activeAgenda()
         return text
-    
+
     def sortieListLogiciel(self):
         listSoft = self.__gestionNeuron.getListLogiciel()
         nb = len(listSoft)
@@ -580,7 +580,7 @@ class fncArreraNetwork:
         if (nb==0):
             return self.__mLanguage.getPhraseOpen("8")
         elif (nb == 1) :
-                return self.__mLanguage.getPhraseOpen("9")+listSoft[0]
+            return self.__mLanguage.getPhraseOpen("9")+listSoft[0]
         else :
             baseTexte = self.__mLanguage.getPhraseNbOpenSoftware(str(nb))
             for i in range(0,nb):
@@ -598,9 +598,9 @@ class fncArreraNetwork:
         nb = len(listSite)
         texte = ""
         if (nb==0):
-           return self.__mLanguage.getPhraseOpen("10")
+            return self.__mLanguage.getPhraseOpen("10")
         elif (nb == 1) :
-           return self.__mLanguage.getPhraseOpen("11")+listSite[0]
+            return self.__mLanguage.getPhraseOpen("11")+listSite[0]
         else :
             baseTexte = self.__mLanguage.getPhraseNbOpenSoftware(str(nb))
             for i in range(0,nb):
@@ -615,17 +615,17 @@ class fncArreraNetwork:
 
     def sortieListRadio(self):
         return self.__mLanguage.getPhraseListeRadio()
-    
+
     def sortieViewTache(self):
         text = self.__mLanguage.getPhraseTime("9")
         self.__objetTache.activeViewTask()
         return text
-    
+
     def sortieViewTacheAdd(self):
         text = self.__mLanguage.getPhraseTime("10")
         self.__objetTache.activeViewAdd()
         return text
-    
+
     def sortieViewTacheSuppr(self):
         sortie = self.__objetTache.activeViewSuppr()
         if (sortie==True):
@@ -633,7 +633,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseTime("12")
         return text
-    
+
     def sortieViewTacheCheck(self):
         sortie = self.__objetTache.activeViewCheck()
         if (sortie==True):
@@ -662,7 +662,7 @@ class fncArreraNetwork:
                     else :
                         text = self.__mLanguage.getPhraseNBTache("3",str(nbTache),"0")
         return text
-    
+
     def sortieSpeakTacheToday(self):
         listTache = self.__objetTache.getTacheToday()
         nbTache = len(listTache)
@@ -682,7 +682,7 @@ class fncArreraNetwork:
                     else :
                         text = text+", "+listTache[i]
         return text
-    
+
     def sortieSpeakTacheTowmorow(self):
         listTache = self.__objetTache.getTacheTowmorow()
         nbTache = len(listTache)
@@ -702,12 +702,12 @@ class fncArreraNetwork:
                     else :
                         text = text+", "+listTache[i]
         return text
-    
+
     def sortieOpenOrgaVar(self):
         text = self.__mLanguage.getPhraseCodehelp("1")
         self.__objetCodehelp.activeOrgaVar()
         return text
-    
+
     def sortieSearchDoc(self,requette:str):
         """
         Flag recherche : 
@@ -741,9 +741,9 @@ class fncArreraNetwork:
                     text = self.__mLanguage.getPhraseCodehelp("8")
                     r = "python "+recherche
                     return text,r
-        
+
         return "",""
-    
+
     def sortieOpenColorSelecteur(self):
         text = self.__mLanguage.getPhraseCodehelp("2")
         self.__objetCodehelp.activeColorSelecteur()
@@ -767,12 +767,12 @@ class fncArreraNetwork:
         self.__objetCodehelp.searchGithub(recherche)
 
         return text,recherche
-    
+
     def sortieOpenSiteGithub(self):
         text = self.__mLanguage.getPhraseCodehelp("3")
         self.__objetCodehelp.openSiteGithub()
-        return text 
-    
+        return text
+
     def sortieOpenGuiGithub(self):
         text = self.__mLanguage.getPhraseCodehelp("4")
         self.__objetCodehelp.openGestionGithub()
@@ -786,19 +786,19 @@ class fncArreraNetwork:
     # Partie Arrera Work 
     def getWordOpen(self):
         return self.__objetArreraWork.getEtatWord()
-    
+
     def getTableurOpen(self):
         return self.__objetArreraWork.getEtatTableur()
 
     def getProjectOpen(self):
         return self.__objetArreraWork.getEtatProject()
-    
+
     def getFileTableur(self):
         return self.__objetArreraWork.getNameFileTableur()
-    
+
     def getFileWord(self):
         return self.__objetArreraWork.getNameFileWord()
-    
+
     def sortieOpenTableur(self):
         sortie = self.__objetArreraWork.openTableur()
         if (sortie == True) :
@@ -806,7 +806,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseWork("6")
         return text
-    
+
     def sortieOpenWord(self):
         sortie = self.__objetArreraWork.openWord()
         if (sortie == True) :
@@ -814,7 +814,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseWork("8")
         return text
-    
+
     def sortieCloseTableur(self):
         sortie = self.__objetArreraWork.closeTableur()
         if (sortie == True) :
@@ -822,7 +822,7 @@ class fncArreraNetwork:
         else:
             text = self.__mLanguage.getPhraseWork("11")
         return text
-    
+
     def sortieCloseDocx(self):
         sortie = self.__objetArreraWork.closeDocx()
         if (sortie == True) :
@@ -830,7 +830,7 @@ class fncArreraNetwork:
         else:
             text = self.__mLanguage.getPhraseWork("13")
         return text
-    
+
     def sortieWriteDocx(self,texte:str):
         if (texte != ""):
             ligne = texte.replace("ecrit dans le word","")
@@ -843,7 +843,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseMeteoError("20")
         return text
-    
+
     def sortieReadDocx(self):
         sortie = self.__objetArreraWork.readDocxFile()
         if (sortie == "error"):
@@ -851,7 +851,7 @@ class fncArreraNetwork:
         else :
             text = sortie
         return text
-    
+
     def sortieFileOpen(self):
         tableur = self.getTableurOpen()
         word = self.getWordOpen()
@@ -866,13 +866,13 @@ class fncArreraNetwork:
                 else :
                     text = self.__mLanguage.getPhraseWork("24")
         return text
-    
+
     def sortieReadTableur(self):
         return self.__objetArreraWork.readTableur()
 
     def sortieErrorReadTableur(self):
         return [self.__mLanguage.getPhraseWork("17"),""]
-    
+
     def sortieAddValeurTableur(self):
         sortie = self.__objetArreraWork.tkAddValeurParole()
         if (sortie == True):
@@ -880,7 +880,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseWork("26")
         return text
-    
+
     def sortieSupprValeurTableur(self):
         sortie = self.__objetArreraWork.tkSuppValeurParole()
         if (sortie == True):
@@ -888,7 +888,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseWork("42")
         return text
-    
+
     def sortieAddFormuleTableur(self,mode:int):
         """
         1: Somme
@@ -930,9 +930,9 @@ class fncArreraNetwork:
                     text = self.__mLanguage.getPhraseWork("34")
             case other :
                 text = self.__mLanguage.getPhraseWork("35")
-        
+
         return text
-    
+
     def sortieOpenSoftTableurFile(self):
         sortie = self.__objetArreraWork.openTableurOs()
         if (sortie==True):
@@ -940,7 +940,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseWork("2")
         return text
-    
+
     def sortieOpenSoftWorkFile(self):
         sortie = self.__objetArreraWork.openWordOs()
         if (sortie==True):
@@ -948,7 +948,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseWork("4")
         return text
-    
+
     def sortieOpenTableurGUI(self):
         sortie = self.__objetArreraWork.guiTableurWork()
         if (sortie == True):
@@ -956,7 +956,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseWork("37")
         return text
-    
+
     def sortieOpenWordGUI(self):
         sortie = self.__objetArreraWork.guiWordWork()
         if (sortie == True):
@@ -980,7 +980,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseProjetFileOpen("4",name)
         return text
-    
+
     def sortieSetTypeProjet(self,requette:str):
         type = requette.replace("le type est","")
         type = type.replace("le type du projet est","")
@@ -990,7 +990,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseWork("44")
         return text
-    
+
     def sortieOpenProjet(self,requette:str):
         projet = requette.replace("ouvre le projet nommer","")
         projet = projet.replace("ouvre le projet nomme","")
@@ -1002,7 +1002,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseProjetFileOpen("7",projet)
         return projet,text
-    
+
     def sortieCloseProject(self):
         sortie = self.__objetArreraWork.closeProject()
         if (sortie == True):
@@ -1010,7 +1010,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseWork("15")
         return text
-    
+
     def sortieAddfile(self,type:str,name:str):
         """
         Type:
@@ -1031,7 +1031,7 @@ class fncArreraNetwork:
             java
             kt
         """
-        mode = int 
+        mode = int
         typeName = ""
         match type :
             case "exel" :
@@ -1047,7 +1047,7 @@ class fncArreraNetwork:
                 mode = 4
                 typeName = "texte"
             case "python" :
-                mode = 5 
+                mode = 5
                 typeName = "python"
             case "h" :
                 mode = 6
@@ -1059,7 +1059,7 @@ class fncArreraNetwork:
                 mode = 8
                 typeName = "html"
             case "css":
-                mode = 9 
+                mode = 9
                 typeName = "css"
             case "md":
                 mode = 10
@@ -1071,10 +1071,10 @@ class fncArreraNetwork:
                 mode = 12
                 typeName = "language c"
             case "php" :
-                mode = 13 
+                mode = 13
                 typeName = "PHP"
             case "js" :
-                mode = 14 
+                mode = 14
                 typeName = "JavaScript"
             case "java" :
                 mode = 15
@@ -1082,14 +1082,14 @@ class fncArreraNetwork:
             case "kt" :
                 mode = 16
                 typeName = "Kotlin"
-            
+
         sortie = self.__objetArreraWork.createFileProject(mode,name)
 
         if (sortie == True):
             text = self.__mLanguage.getPhraseProjetFileOpen("8",name)
         else :
             text = self.__mLanguage.getPhraseWork("45")
-        
+
         return text
 
     def sortieCreateFileDirect(self,requette:str):
@@ -1157,18 +1157,18 @@ class fncArreraNetwork:
                                                                         else :
                                                                             typeFile = ""
         return self.sortieAddfile(typeFile,nom)
-    
+
     def getNameProjetOpen(self):
         return self.__objetArreraWork.getNameProjet()
 
     def getNameLastFile(self):
         return self.__objetArreraWork.getNameLastFileCreate()
-    
+
     def sortieopenFileCreated(self):
         sortie = self.__objetArreraWork.openLastFileCreate()
         print(sortie)
         if (sortie == 1) :
-           text = self.__mLanguage.getPhraseWork("46")
+            text = self.__mLanguage.getPhraseWork("46")
         else :
             if (sortie == 2):
                 text = self.__mLanguage.getPhraseWork("47")
@@ -1180,7 +1180,7 @@ class fncArreraNetwork:
                         text = self.__mLanguage.getPhraseWork("49")
                     else :
                         text = self.__mLanguage.getPhraseWork("49")
-        return text    
+        return text
 
     def sortieListFileProject(self):
         sortie = self.__objetArreraWork.setlistFileProject()
@@ -1200,7 +1200,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseWork("50")
 
-        return text 
+        return text
 
     def sortieOpenFileProject(self,requette:str):
         """
@@ -1234,9 +1234,9 @@ class fncArreraNetwork:
             text = self.__mLanguage.getPhraseProjetFileOpen("10",self.getNameProjetOpen())
         else :
             text = self.__mLanguage.getPhraseWork("51")
-        
+
         return text
-    
+
     def sortieAddTacheProjet(self):
         sortie = self.__objetArreraWork.addTacheProjet()
         if (sortie == True):
@@ -1244,7 +1244,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseWork("52")
         return text
-    
+
     def sortieSupprTacheProjet(self):
         sortie = self.__objetArreraWork.supprTacheProjet()
         if (sortie == True):
@@ -1252,7 +1252,7 @@ class fncArreraNetwork:
         else :
             self.__mLanguage.getPhraseWork("53")
         return text
-    
+
     def sortieNbTacheProjet(self):
         sortie = self.__objetArreraWork.getNbTacheProjet()
         sortie2 = self.__objetArreraWork.getNBTacheToday()
@@ -1278,7 +1278,7 @@ class fncArreraNetwork:
                 if (nbTache==1):
                     baseText = self.__mLanguage.getPhraseProjetFileOpen("14",self.getNameProjetOpen())+" "
                 else :
-                   baseText = self.__mLanguage.getPhraseProjetNbTache("1",str(nbTache),self.getNameProjetOpen())+" "
+                    baseText = self.__mLanguage.getPhraseProjetNbTache("1",str(nbTache),self.getNameProjetOpen())+" "
                 for i in range(0,nbTache):
                     if (i == 0):
                         text = baseText + listTache[i]
@@ -1290,7 +1290,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseWork("54")
         return text
-    
+
     def sortieListTacheTowmorowProjet(self):
         text = ""
         sortie = self.__objetArreraWork.setListTacheTowmorowProjet()
@@ -1316,7 +1316,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseWork("55")
         return text
-    
+
     def sortieResumerTacheAgenda(self):
         """
         Return  : tache,agenda
@@ -1359,7 +1359,7 @@ class fncArreraNetwork:
                         else:
                             eventTXT = eventTXT + ", " + listEvent[i]
         return 18,[tacheTXT,eventTXT]
-    
+
     def sortieResumerAll(self):
         """
         Sortie NB  :
@@ -1370,16 +1370,16 @@ class fncArreraNetwork:
         """
         nb1,listAgendaTache = self.sortieResumerTacheAgenda()
         nb2,listActuMeto = self.sortieResumerActualite()
-        
+
         if (nb2 == 11):
             text = self.__mLanguage.getPhraseResumerAll("1")
             return 20,[text,""]
         else :
             listOut = listActuMeto+listAgendaTache
             listOut[6] = self.__mLanguage.getPhraseResumerAll("2")
-            
-            return 19,listOut 
-    
+
+            return 19,listOut
+
     def sortieStartRadio(self,radio:int):
         """
         1 = Europe 1 
@@ -1441,12 +1441,12 @@ class fncArreraNetwork:
             return self.__mLanguage.getPhraseOpenRadio(txtRadio,sortieRadio)
         else :
             return self.__mLanguage.getPhraseOpenRadio("",sortieRadio)
-    
+
     def sortieDownloadMusic(self):
         self.__downloader.activeMusique()
         text = self.__mLanguage.getPhraseSoftware("1")
         return text
-    
+
     def sortieDownloadVideo(self):
         self.__downloader.activeVideo()
         text = self.__mLanguage.getPhraseSoftware("2")
@@ -1454,15 +1454,15 @@ class fncArreraNetwork:
 
     def sortieNoDownload(self):
         return self.__mLanguage.getPhraseSoftware("3")
-    
+
     def sortieOpenProjetDirect(self,projet:str):
         sortie = self.__objetArreraWork.openProjet(projet)
         if (sortie == True):
-           text = self.__mLanguage.getPhraseProjetFileOpen("18",projet)
+            text = self.__mLanguage.getPhraseProjetFileOpen("18",projet)
         else :
             text = self.__mLanguage.getPhraseProjetFileOpen("19",projet)
         return projet,text
-    
+
     def sortieOpenTableurDirect(self,file:str):
         sortie = self.__objetArreraWork.openTableurDirectly(file)
         if (sortie == True) :
@@ -1470,7 +1470,7 @@ class fncArreraNetwork:
         else :
             text = self.__mLanguage.getPhraseWork("58")
         return text
-    
+
     def sortieOpenWordDirect(self,file:str):
         sortie = self.__objetArreraWork.openWordDirectly(file)
         if (sortie == True) :
@@ -1481,7 +1481,7 @@ class fncArreraNetwork:
 
     def getNamePenseBete(self):
         return self.__objPenseBete.getNamefile()
-    
+
     def sortieCorrection(self,requette:str):
         if (self.__objetNetwork.getEtatInternet() == True):
             texte = requette.replace("corrige","").strip()

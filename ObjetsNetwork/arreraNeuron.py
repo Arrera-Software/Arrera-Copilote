@@ -13,7 +13,7 @@ from neuron.work import*
 class ArreraNetwork :
     def __init__(self,fichierConfiguration:str):
         # Declaration des diferente var 
-        self.__listOut =  [] 
+        self.__listOut =  []
         self.__valeurOut = 0
         self.__networkRunning = True
         #Ouverture fichier de configuration
@@ -60,7 +60,7 @@ class ArreraNetwork :
             text= self.__formuleNeuron.bootWithHist(hour)
         self.__gestionnaire.setOld("boot","boot")
         return str(text)
-    
+
     def shutdown(self):
         self.__historique.saveHistorique()
         hour = datetime.now().hour
@@ -68,9 +68,9 @@ class ArreraNetwork :
         if (self.__socket.getServeurOn() == True):
             self.__socket.stopSocket()
         return str(text)
-    
+
     def getListSortie(self)->list :
-        return self.__listOut 
+        return self.__listOut
 
     def getValeurSortie(self)->int :
         """
@@ -97,10 +97,10 @@ class ArreraNetwork :
         21 : Close projet
         """
         return self.__valeurOut
-    
+
     def getTableur(self):
         return self.__fonctionAssistant.getTableurOpen()
-    
+
     def getWord(self):
         return self.__fonctionAssistant.getWordOpen()
 
@@ -145,7 +145,6 @@ class ArreraNetwork :
                                 if self.__etatReseau == True :
                                     self.__search.neurone(requette)
                                     self.__valeurOut = self.__search.getValeurSortie()
-                                    print(self.__valeurOut)
                                 else :
                                     self.__valeurOut = 0
 
@@ -163,9 +162,9 @@ class ArreraNetwork :
 
                                         if self.__valeurOut == 0 :
                                             if (("stop" in requette) or ("au revoir" in requette)
-                                                or ("quitter" in requette) or ("bonne nuit" in requette)
-                                                or ("adieu" in requette) or ("bonne soirée" in requette)
-                                                or ("arreter" in requette)) :
+                                                    or ("quitter" in requette) or ("bonne nuit" in requette)
+                                                    or ("adieu" in requette) or ("bonne soirée" in requette)
+                                                    or ("arreter" in requette)) :
                                                 self.__listOut = [self.shutdown(),""]
                                                 self.__valeurOut = 15
                                             else :
