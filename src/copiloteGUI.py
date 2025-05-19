@@ -366,7 +366,7 @@ class guiCopilote:
                                                          ptaille=18, justify="left", pwraplength=350)
 
         self.__lparoleCodehelp = self.__arrTK.createLabel(self.__backgroundTopCodehelp,
-                                                       bg="#041f75", fg="white",
+                                                       bg="#482c4a", fg="white",
                                                        ppolice="Arial", pstyle="bold",
                                                        ptaille=18, justify="left", pwraplength=400)
 
