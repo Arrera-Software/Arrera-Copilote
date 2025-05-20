@@ -66,82 +66,56 @@ class guiCopilote:
         emplacementLight = "asset/GUI/light/"
         emplacementDark = "asset/GUI/dark/"
 
-        listIMG = ["top.png",#0
-                   "bottom.png",#1
-                   "send.png",#2
-                   "settings.png",#3
-                   "iconRyleyCodehelp.png",#4
-                   "tableur.png",#5
-                   "word.png",#6
-                   "projet.png",#7
-                   "bottomOpen.png",#8
-                   "booting1.png",#9
-                   "booting2.png",#10
-                   "booting3.png",#11
-                   "booting4.png",#12
-                   "booting5.png",#13
-                   "booting6.png",#14
-                   "actu.png",#15
-                   "firstBoot.png",#16
-                   "bottomCodeHelp.png",#17
-                   "topCodehelp.png",#18
-                   "btnColorSelector.png",#19
-                   "btnGestGithub.png",#20
-                    "btnLibrairy.png",#21
-                    "btnOrgaVar.png",#22
-                   "litlewindows.png",#23
-                   "btnbigwindows.png",#24
-                   "btnlittlewindows.png"#25
-                   ]
+
         # Creation des images
 
-        imgSend = self.__arrTK.createImage(pathLight=emplacementLight + listIMG[2],
-                                           pathDark=emplacementDark + listIMG[2],
+        imgSend = self.__arrTK.createImage(pathLight=emplacementLight + "send.png",
+                                           pathDark=emplacementDark + "send.png",
                                            tailleX=30, tailleY=30)
-        imgPara = self.__arrTK.createImage(pathLight=emplacementLight + listIMG[3],
-                                             pathDark=emplacementDark + listIMG[3],
+        imgPara = self.__arrTK.createImage(pathLight=emplacementLight + "settings.png",
+                                             pathDark=emplacementDark + "settings.png",
                                              tailleX=30, tailleY=30)
 
-        imgCodehelp = self.__arrTK.createImage(pathLight=emplacementLight + listIMG[4],
-                                             pathDark=emplacementDark + listIMG[4],
+        imgCodehelp = self.__arrTK.createImage(pathLight=emplacementLight + "iconRyleyCodehelp.png",
+                                             pathDark=emplacementDark + "iconRyleyCodehelp.png",
                                              tailleX=30, tailleY=30)
 
         imgRyley = self.__arrTK.createImage(pathLight=self.__emplacementIcon,
                                             pathDark=self.__emplacementIcon,
                                             tailleX=30, tailleY=30)
 
-        imgTableurOpen = self.__arrTK.createImage(pathLight=emplacementLight + listIMG[5],
-                                                    pathDark=emplacementDark + listIMG[5],
+        imgTableurOpen = self.__arrTK.createImage(pathLight=emplacementLight + "tableur.png",
+                                                    pathDark=emplacementDark + "tableur.png",
                                                     tailleX=30, tailleY=30)
-        imgWordOpen = self.__arrTK.createImage(pathLight=emplacementLight + listIMG[6],
-                                                    pathDark=emplacementDark + listIMG[6],
+        imgWordOpen = self.__arrTK.createImage(pathLight=emplacementLight + "word.png",
+                                                    pathDark=emplacementDark + "word.png",
                                                     tailleX=30, tailleY=30)
-        imgProjetOpen = self.__arrTK.createImage(pathLight=emplacementLight + listIMG[7],
-                                                    pathDark=emplacementDark + listIMG[7],
-                                                    tailleX=30, tailleY=30)
-
-        imgCHColorSelector = self.__arrTK.createImage(pathLight=emplacementLight + listIMG[19],
-                                                    pathDark=emplacementDark + listIMG[19],
+        imgProjetOpen = self.__arrTK.createImage(pathLight=emplacementLight + "projet.png",
+                                                    pathDark=emplacementDark + "projet.png",
                                                     tailleX=30, tailleY=30)
 
-        imgCHGestGithub = self.__arrTK.createImage(pathLight=emplacementLight + listIMG[20],
-                                                     pathDark=emplacementDark + listIMG[20],
+        imgCHColorSelector = self.__arrTK.createImage(pathLight=emplacementLight + "btnColorSelector.png",
+                                                    pathDark=emplacementDark + "btnColorSelector.png",
+                                                    tailleX=30, tailleY=30)
+
+        imgCHGestGithub = self.__arrTK.createImage(pathLight=emplacementLight + "btnGestGithub.png",
+                                                     pathDark=emplacementDark + "btnGestGithub.png",
                                                      tailleX=30, tailleY=30)
 
-        imgCHLibrairy = self.__arrTK.createImage(pathLight=emplacementLight + listIMG[21],
-                                                   pathDark=emplacementDark + listIMG[21],
+        imgCHLibrairy = self.__arrTK.createImage(pathLight=emplacementLight + "btnLibrairy.png",
+                                                   pathDark=emplacementDark + "btnLibrairy.png",
                                                    tailleX=30, tailleY=30)
 
-        imgCHOrgaVar = self.__arrTK.createImage(pathLight=emplacementLight + listIMG[22],
-                                                   pathDark=emplacementDark + listIMG[22],
+        imgCHOrgaVar = self.__arrTK.createImage(pathLight=emplacementLight + "btnOrgaVar.png",
+                                                   pathDark=emplacementDark + "btnOrgaVar.png",
                                                    tailleX=30, tailleY=30)
 
-        imgBTNBigWindows = self.__arrTK.createImage(pathLight=emplacementLight + listIMG[24],
-                                                pathDark=emplacementDark + listIMG[24],
+        imgBTNBigWindows = self.__arrTK.createImage(pathLight=emplacementLight + "btnbigwindows.png",
+                                                pathDark=emplacementDark + "btnbigwindows.png",
                                                 tailleX=30, tailleY=30)
 
-        imgBTNLittleWindows = self.__arrTK.createImage(pathLight=emplacementLight + listIMG[25],
-                                                pathDark=emplacementDark + listIMG[25],
+        imgBTNLittleWindows = self.__arrTK.createImage(pathLight=emplacementLight + "btnlittlewindows.png",
+                                                pathDark=emplacementDark + "btnlittlewindows.png",
                                                 tailleX=30, tailleY=30)
 
 
@@ -157,13 +131,13 @@ class guiCopilote:
                                                                       width=500, height=470)
 
         self.__backgroundActu = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=emplacementLight + listIMG[15],
-                                                                        imageDark=emplacementDark + listIMG[15],
+                                                                        imageLight=emplacementLight + "actu.png",
+                                                                        imageDark=emplacementDark + "actu.png",
                                                                         width=500, height=600)
 
         self.__backgroundLitleWindows = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=emplacementLight + listIMG[23],
-                                                                        imageDark=emplacementDark + listIMG[23],
+                                                                        imageLight=emplacementLight + "litlewindows.png",
+                                                                        imageDark=emplacementDark + "litlewindows.png",
                                                                         width=500, height=110)
 
         self.__fBottomLitleWindows = self.__arrTK.createFrame(self.__screen,
@@ -175,44 +149,44 @@ class guiCopilote:
                                                          bg="#482c4a",corner_radius=0)
 
         self.__backgroundFirstboot = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=emplacementLight + listIMG[16],
-                                                                        imageDark=emplacementDark + listIMG[16],
+                                                                        imageLight=emplacementLight + "firstBoot.png",
+                                                                        imageDark=emplacementDark + "firstBoot.png",
                                                                         width=500, height=600)
 
         self.__bottomBackgrownOpen = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                             imageLight=emplacementLight + listIMG[8],
-                                                                             imageDark=emplacementDark + listIMG[8],
+                                                                             imageLight=emplacementLight + "bottomOpen.png",
+                                                                             imageDark=emplacementDark + "bottomOpen.png",
                                                                              width=500, height=70,)
 
         self.__backgroudBoot1 = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=emplacementLight + listIMG[9],
-                                                                        imageDark=emplacementDark + listIMG[9],
+                                                                        imageLight=emplacementLight + "booting1.png",
+                                                                        imageDark=emplacementDark + "booting1.png",
                                                                         width=500, height=600)
 
         self.__backgroudBoot2 = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=emplacementLight + listIMG[10],
-                                                                        imageDark=emplacementDark + listIMG[10],
+                                                                        imageLight=emplacementLight + "booting2.png",
+                                                                        imageDark=emplacementDark + "booting2.png",
                                                                         width=500, height=600)
         self.__backgroudBoot3 = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=emplacementLight + listIMG[11],
-                                                                        imageDark=emplacementDark + listIMG[11],
+                                                                        imageLight=emplacementLight + "booting3.png",
+                                                                        imageDark=emplacementDark + "booting3.png",
                                                                         width=500, height=600)
         self.__backgroudBoot4 = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=emplacementLight + listIMG[12],
-                                                                        imageDark=emplacementDark + listIMG[12],
+                                                                        imageLight=emplacementLight + "booting4.png",
+                                                                        imageDark=emplacementDark + "booting4.png",
                                                                         width=500, height=600)
         self.__backgroudBoot5 = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=emplacementLight + listIMG[13],
-                                                                        imageDark=emplacementDark + listIMG[13],
+                                                                        imageLight=emplacementLight + "booting5.png",
+                                                                        imageDark=emplacementDark + "booting5.png",
                                                                         width=500, height=600)
 
         self.__backgroundTopCodehelp = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                      imageLight=emplacementLight + listIMG[18],
-                                                                      imageDark=emplacementDark + listIMG[18],
+                                                                      imageLight=emplacementLight + "topCodehelp.png",
+                                                                      imageDark=emplacementDark + "topCodehelp.png",
                                                                       width=500, height=400)
         self.__backgroundBottomCodehelp = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                             imageLight=emplacementLight + listIMG[17],
-                                                                             imageDark=emplacementDark + listIMG[17],
+                                                                             imageLight=emplacementLight + "bottomCodeHelp.png",
+                                                                             imageDark=emplacementDark + "bottomCodeHelp.png",
                                                                              width=500, height=70)
         self.__frameBackgroudCodehelp = self.__arrTK.createFrame(self.__screen,
                                                          width=500, height=130,
@@ -225,8 +199,8 @@ class guiCopilote:
 
         # Widget
         # Entry
-        self.__entryUserRyley = self.__arrTK.createEntry(self.__frameBackgroud,
-                                                         ppolice="Arial", ptaille=25, width=350)
+        self.__entryUserCopilote = self.__arrTK.createEntry(self.__frameBackgroud,
+                                                            ppolice="Arial", ptaille=25, width=350)
 
         self.__entryUserCodehelp = self.__arrTK.createEntry(self.__frameBackgroudCodehelp,
                                                          ppolice="Arial", ptaille=25, width=350)
@@ -252,20 +226,20 @@ class guiCopilote:
                                                        bg="#694d6b", hoverbg="#1d1020")
         # Btn open
 
-        self.__btnTableurOpenRyley = self.__arrTK.createButton(self.__bottomBackgrownOpen, width=35, height=35,
-                                                               image=imgTableurOpen,
-                                                               command=lambda: self.__winHelpFileAndProjet(1),
+        self.__btnTableurOpenCopilote = self.__arrTK.createButton(self.__bottomBackgrownOpen, width=35, height=35,
+                                                                  image=imgTableurOpen,
+                                                                  command=lambda: self.__winHelpFileAndProjet(1),
+                                                                  bg="#694d6b", hoverbg="#1d1020")
+
+        self.__btnWordOpenCopilote = self.__arrTK.createButton(self.__bottomBackgrownOpen, width=35, height=35,
+                                                               image=imgWordOpen,
+                                                               command=lambda: self.__winHelpFileAndProjet(2),
                                                                bg="#694d6b", hoverbg="#1d1020")
 
-        self.__btnWordOpenRyley = self.__arrTK.createButton(self.__bottomBackgrownOpen, width=35, height=35,
-                                                            image=imgWordOpen,
-                                                            command=lambda: self.__winHelpFileAndProjet(2),
-                                                            bg="#694d6b", hoverbg="#1d1020")
-
-        self.__btnProjetOpenRyley = self.__arrTK.createButton(self.__bottomBackgrownOpen, width=35, height=35,
-                                                              image=imgProjetOpen,
-                                                              command=lambda: self.__winHelpFileAndProjet(3),
-                                                              bg="#694d6b", hoverbg="#1d1020")
+        self.__btnProjetOpenCopilote = self.__arrTK.createButton(self.__bottomBackgrownOpen, width=35, height=35,
+                                                                 image=imgProjetOpen,
+                                                                 command=lambda: self.__winHelpFileAndProjet(3),
+                                                                 bg="#694d6b", hoverbg="#1d1020")
 
         # Partie Codehelp
         btnSendCodehelp = self.__arrTK.createButton(self.__frameBackgroudCodehelp, image=imgSend,
@@ -385,7 +359,7 @@ class guiCopilote:
                                                         ppolice="Arial", pstyle="bold",justify="left")
 
         # Affichage des widgets
-        self.__entryUserRyley.place(relx=0.40, rely=0.3, anchor="center")
+        self.__entryUserCopilote.place(relx=0.40, rely=0.3, anchor="center")
         btnSendCopilote.place(relx=0.90, rely=0.3, anchor="center")
         self.__lparoleRyley.place(x=120, y=160)
         self.__lparoleSix.place(x=120, y=340)
@@ -558,7 +532,7 @@ class guiCopilote:
     def __paroleRyley(self, text: str):
         if text != "":
             self.__lparoleRyley.configure(text=text)
-            self.__entryUserRyley.delete(0, END)
+            self.__entryUserCopilote.delete(0, END)
 
     def __paroleCopilote(self,text: str):
         if text != "":
@@ -572,7 +546,7 @@ class guiCopilote:
     def __paroleSix(self, text: str):
         if text != "":
             self.__lparoleSix.configure(text=text)
-            self.__entryUserRyley.delete(0, END)
+            self.__entryUserCopilote.delete(0, END)
 
     def __paroleCodehelp(self, text: str):
         if text != "":
@@ -585,7 +559,7 @@ class guiCopilote:
             self.__entryUserLittle.delete(0, END)
 
     def __quitCopilote(self):
-        if (askyesno("Atention", "Voulez-vous vraiment fermer Ryley")):
+        if (askyesno("Atention", "Voulez-vous vraiment fermer Arrera Copilote ?")):
             self.__close()
 
     def __close(self):
@@ -608,8 +582,8 @@ class guiCopilote:
 
     def __actionBTNAcceuil(self):
         if self.__litleWindowsActived == False and self.__codeHelpActived == False:
-            texte = self.__entryUserRyley.get().lower()
-            self.__entryUserRyley.delete(0, END)
+            texte = self.__entryUserCopilote.get().lower()
+            self.__entryUserCopilote.delete(0, END)
             self.__sendCopilote(texte)
 
 
@@ -763,29 +737,29 @@ class guiCopilote:
         projet = self.__assistantRyley.getProject()
 
         if tableur :
-            self.__arrTK.placeTopRight(self.__btnTableurOpenRyley)
+            self.__arrTK.placeTopRight(self.__btnTableurOpenCopilote)
             self.__arrTK.placeBottomRight(self.__btnTableurOpenCodehelp)
             self.__arrTK.placeBottomLeft(self.__btnTableurOpenLittle)
         else :
-            self.__btnTableurOpenRyley.place_forget()
+            self.__btnTableurOpenCopilote.place_forget()
             self.__btnTableurOpenCodehelp.place_forget()
             self.__btnTableurOpenLittle.place_forget()
 
         if word:
-            self.__arrTK.placeTopLeft(self.__btnWordOpenRyley)
+            self.__arrTK.placeTopLeft(self.__btnWordOpenCopilote)
             self.__arrTK.placeBottomLeft(self.__btnWordOpenCodehelp)
             self.__arrTK.placeBottomRight(self.__btnWordOpenLitte)
         else :
-            self.__btnWordOpenRyley.place_forget()
+            self.__btnWordOpenCopilote.place_forget()
             self.__btnWordOpenCodehelp.place_forget()
             self.__btnWordOpenLitte.place_forget()
 
         if projet:
-            self.__arrTK.placeTopCenter(self.__btnProjetOpenRyley)
+            self.__arrTK.placeTopCenter(self.__btnProjetOpenCopilote)
             self.__arrTK.placeBottomCenter(self.__btnProjetOpenCodehelp)
             self.__arrTK.placeBottomLeft(self.__btnProjetOpenLitte)
         else :
-            self.__btnProjetOpenRyley.place_forget()
+            self.__btnProjetOpenCopilote.place_forget()
             self.__btnProjetOpenCodehelp.place_forget()
             self.__btnProjetOpenLitte.place_forget()
 
