@@ -355,7 +355,7 @@ class guiCopilote:
                                                     ptaille=18, justify="left", pwraplength=400)
 
         self.__labelFirstBoot = self.__arrTK.createLabel(self.__backgroundFirstboot,pwraplength=300,
-                                                        bg="#041f75", fg="white",ptaille=20,
+                                                        bg="#3c2144", fg="white",ptaille=20,
                                                         ppolice="Arial", pstyle="bold",justify="left")
 
         # Affichage des widgets
