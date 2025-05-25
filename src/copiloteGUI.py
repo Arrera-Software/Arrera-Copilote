@@ -1,11 +1,10 @@
-import time
-
-from librairy.arrera_tk import CArreraTK
 from ObjetsNetwork.arreraNeuron import *
 from src.CLanguageCopilote import *
 import threading as th
 import signal
 from setting.CArreraGazelleUIRyleyCopilote import *
+from src.arrera_voice import *
+import threading as th
 
 VERSION = "I2025-1.00"
 
@@ -19,6 +18,12 @@ class guiCopilote:
         # Boot ArreraTK
         self.__arrTK = CArreraTK()
 
+        # Arrera Voice
+        self.__arrVoice = CArreraVoice(jsonWork("fichierJSON/copiloteConfig.json"))
+
+        #Theard de parole
+        self.__threadParoleCopilote = th.Thread()
+
         # Demarage Neuron Network
         self.__assistantRyley = ArreraNetwork(neuronConfigFileRyley)
         self.__assistantSix = ArreraNetwork(neuronConfigFileSix)
@@ -26,7 +31,7 @@ class guiCopilote:
         # Demarage objet language Ryley
         self.__language = CLanguageCopilote("fichierJSON/paroleRyley.json",
                                               "fichierJSON/aideRyley.json",
-                                              "fichierJSON/firstBootRyley.json")
+                                              "fichierJSON/firstBootCopilote.json")
 
         # Teste sur de l'OS hote
         objOS = OS()
@@ -52,7 +57,7 @@ class guiCopilote:
         self.__arrGazelle = CArreraGazelleUIRyleyCopilote(self.__arrTK, self.__screen,
                                                           "fichierJSON/configUser.json",
                                                           "fichierJSON/configNeuron.json",
-                                                          "fichierJSON/ryleyConfig.json",
+                                                          "fichierJSON/copiloteConfig.json",
                                                           "fichierJSON/configSetting.json")
         self.__arrGazelle.passApropos(self.__apropos)
 
@@ -449,11 +454,15 @@ class guiCopilote:
         self.__backgroudBoot5.pack_forget()
         self.__backgroundFirstboot.pack()
         self.__labelFirstBoot.configure(text=self.__language.getFirstBoot(1))
-        time.sleep(3)
+        self.__arrVoice.say(self.__language.getFirstBoot(1))
         self.__labelFirstBoot.configure(text=self.__language.getFirstBoot(2))
-        time.sleep(3)
+        self.__arrVoice.say(self.__language.getFirstBoot(2))
         self.__labelFirstBoot.configure(text=self.__language.getFirstBoot(3))
-        time.sleep(3)
+        self.__arrVoice.say(self.__language.getFirstBoot(3))
+        self.__labelFirstBoot.configure(text=self.__language.getFirstBoot(4))
+        self.__arrVoice.say(self.__language.getFirstBoot(4))
+        self.__labelFirstBoot.configure(text=self.__language.getFirstBoot(5))
+        self.__arrVoice.say(self.__language.getFirstBoot(5))
         self.__paroleRyley(self.__assistantRyley.boot(2))
         self.__paroleSix(self.__assistantSix.boot(2))
         self.__disableAllFrame()
@@ -981,3 +990,20 @@ class guiCopilote:
         self.__paroleRyley(self.__language.getPhActiveModeNormal())
         self.__viewNormal()
         self.__litleWindowsActived = False
+
+    def __ttsSpeak(self,text:str):
+        """
+        Fonction pour faire parler le TTS
+        :param text: Texte à faire parler
+        """
+        self.__threadParoleCopilote = th.Thread(target=self.__arrVoice.say,args=(text,))
+        self.__threadParoleCopilote.start()
+        self.__screen.after(1000, self.__updateSpeak)
+
+    def __updateSpeak(self):
+        """
+        Fonction pour mettre à jour le texte de parole
+        """
+        if self.__threadParoleCopilote.is_alive():
+            self.__screen.update()
+            self.__screen.after(1000, self.__updateSpeak)
