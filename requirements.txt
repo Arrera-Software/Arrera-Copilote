@@ -4,6 +4,7 @@ tkcalendar
 datetime
 geocoder
 requests
+playsound3
 playsound
 gTTS
 translate
@@ -14,3 +15,7 @@ PyGithub
 language_tool_python
 pyperclip
 websocket-client
+customtkinter
+pillow
+pyttslib
+speechRecognition
