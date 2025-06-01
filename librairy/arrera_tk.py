@@ -361,6 +361,14 @@ class CArreraTK :
         var.set(value[0])
         return option
 
+    def createEntryLegend(self,screen, bg : str = "", fg : str = "",text :str = "", ppolice : str = "Arial", ptaille : int = 12, width : int = 20):
+        widget = self.createFrame(screen)
+        label = self.createLabel(widget, text=text, bg=bg, fg=fg, ppolice=ppolice, ptaille=ptaille, width=width)
+        entry = self.createEntry(widget, bg=bg, fg=fg, ppolice=ppolice, ptaille=ptaille, width=width)
+        label.pack(side="left")
+        entry.pack(side="right")
+        return widget,entry
+
     def placeLeftTop(self, widget):
         widget.place(relx=0, rely=0, anchor='nw')
 
