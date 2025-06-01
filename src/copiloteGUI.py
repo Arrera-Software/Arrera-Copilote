@@ -123,6 +123,25 @@ class guiCopilote:
                                                 pathDark=emplacementDark + "btnlittlewindows.png",
                                                 tailleX=30, tailleY=30)
 
+        imgBtnSoundOff = self.__arrTK.createImage(pathLight=emplacementLight + "settings.png",
+                                               pathDark=emplacementDark + "settings.png",
+                                               tailleX=30, tailleY=30)
+
+        imgBtnMicroOff = self.__arrTK.createImage(pathLight=emplacementLight + "settings.png",
+                                               pathDark=emplacementDark + "settings.png",
+                                               tailleX=30, tailleY=30)
+
+        imgBtnSoundOn = self.__arrTK.createImage(pathLight=emplacementLight + "word.png",
+                                                 pathDark=emplacementDark + "word.png",
+                                                 tailleX=30, tailleY=30)
+
+        imgBtnMicroOn = self.__arrTK.createImage(pathLight=emplacementLight + "word.png",
+                                                 pathDark=emplacementDark + "word.png",
+                                                 tailleX=30, tailleY=30)
+        imgBtnMicroTiger = self.__arrTK.createImage(pathLight=emplacementLight + "word.png",
+                                                    pathDark=emplacementDark + "word.png",
+                                                    tailleX=30, tailleY=30)
+
 
         # Frame
         self.__topBackgrown = self.__arrTK.createArreraBackgroudImage(self.__screen,
