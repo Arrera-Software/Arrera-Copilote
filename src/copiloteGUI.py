@@ -25,15 +25,18 @@ class guiCopilote:
 
         #Theard de parole
         self.__threadParoleCopilote = th.Thread()
+        self.__threadSpeaking = False
 
         # Demarage Neuron Network
         self.__assistantRyley = ArreraNetwork(neuronConfigFileRyley)
         self.__assistantSix = ArreraNetwork(neuronConfigFileSix)
 
         # Demarage objet language Ryley
-        self.__language = CLanguageCopilote("fichierJSON/paroleRyley.json",
+        self.__language = CLanguageCopilote("fichierJSON/paroleCopilote.json",
+                                            "fichierJSON/paroleSix.json",
                                               "fichierJSON/aideRyley.json",
-                                              "fichierJSON/firstBootCopilote.json")
+                                              "fichierJSON/firstBootCopilote.json",
+                                            "fichierJSON/configUser.json")
 
         # Teste sur de l'OS hote
         objOS = OS()
@@ -133,8 +136,8 @@ class guiCopilote:
                                                pathDark=emplacementDark + "microOff.png",
                                                tailleX=30, tailleY=30)
 
-        self.__imgBtnSoundOn = self.__arrTK.createImage(pathLight=emplacementLight + "microOn.png",
-                                                 pathDark=emplacementDark + "microOn.png",
+        self.__imgBtnSoundOn = self.__arrTK.createImage(pathLight=emplacementLight + "soundOn.png",
+                                                 pathDark=emplacementDark + "soundOn.png",
                                                  tailleX=30, tailleY=30)
 
         self.__imgBtnMicroOn = self.__arrTK.createImage(pathLight=emplacementLight + "microOn.png",
@@ -253,7 +256,7 @@ class guiCopilote:
                                                        bg="#694d6b", hoverbg="#1d1020")
 
         self.__btnSound = self.__arrTK.createButton(self.__frameBackgroud, image=self.__imgBtnSoundOff,
-                                                         width=40, height=40,
+                                                         width=40, height=40,command = self.__actionSound,
                                                          bg="#694d6b", hoverbg="#1d1020")
         self.__btnMicro = self.__arrTK.createButton(self.__frameBackgroud, image=self.__imgBtnMicroOff,
                                                        width=40, height=40,
@@ -501,6 +504,7 @@ class guiCopilote:
         self.setButtonOpen()
 
     def __sequenceStop(self):
+        self.__soundState = False
         self.__screen.configure(bg_color="#081ec7", fg_color="#081ec7")
         self.__paroleRyley(self.__assistantRyley.shutdown())
         self.__paroleSix(self.__assistantSix.shutdown())
@@ -587,6 +591,8 @@ class guiCopilote:
         if text != "":
             self.__lparoleSix.configure(text=text)
             self.__entryUserCopilote.delete(0, END)
+            if self.__soundState :
+                self.__ttsSpeak(text)
 
     def __paroleCodehelp(self, text: str):
         if text != "":
@@ -1027,9 +1033,10 @@ class guiCopilote:
         Fonction pour faire parler le TTS
         :param text: Texte à faire parler
         """
-        self.__threadParoleCopilote = th.Thread(target=self.__arrVoice.say,args=(text,))
-        self.__threadParoleCopilote.start()
-        self.__screen.after(1000, self.__updateSpeak)
+        if not self.__threadSpeaking :
+            self.__threadParoleCopilote = th.Thread(target=self.__arrVoice.say,args=(text,))
+            self.__threadParoleCopilote.start()
+            self.__screen.after(1000, self.__updateSpeak)
 
     def __updateSpeak(self):
         """
@@ -1038,3 +1045,15 @@ class guiCopilote:
         if self.__threadParoleCopilote.is_alive():
             self.__screen.update()
             self.__screen.after(1000, self.__updateSpeak)
+        else :
+            self.__threadSpeaking = False
+
+    def __actionSound(self):
+        if not self.__soundState:
+            self.__soundState = True
+            self.__paroleSix(self.__language.getPhActiveSound())
+            self.__btnSound.configure(image=self.__imgBtnSoundOn)
+        else :
+            self.__paroleSix(self.__language.getPhDesactiveSound(1))
+            self.__soundState = False
+            self.__btnSound.configure(image=self.__imgBtnSoundOff)

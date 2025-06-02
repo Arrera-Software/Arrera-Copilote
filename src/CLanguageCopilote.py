@@ -1,10 +1,12 @@
 from librairy.travailJSON import *
 
 class CLanguageCopilote :
-    def __init__(self, fileLanguage:str, fileHelp:str,fileFirstBoot:str):
-        self.__language = jsonWork(fileLanguage)
+    def __init__(self, languageCopilote:str,languageSix:str,fileHelp:str, fileFirstBoot:str, fileUser:str):
+        self.__languageCopilote = jsonWork(languageCopilote)
+        self.__languageSix = jsonWork(languageSix)
         self.__help = jsonWork(fileHelp)
         self.__firstBoot = jsonWork(fileFirstBoot)
+        self.__jsonUser = jsonWork(fileUser)
 
     def getHelpTableur(self):
         return self.__help.lectureJSONList("tableur")
@@ -16,62 +18,67 @@ class CLanguageCopilote :
         return self.__help.lectureJSONList("projet")
 
     def getPhOpenActu(self):
-        return self.__language.lectureJSON("phOpenActu")
+        return self.__languageCopilote.lectureJSON("phOpenActu")
 
     def getPhErreurActu(self):
-        return self.__language.lectureJSON("phErreurActu")
+        return self.__languageCopilote.lectureJSON("phErreurActu")
 
     def getPhErreurResumerActu(self):
-        return self.__language.lectureJSON("phErreurResumer")
+        return self.__languageCopilote.lectureJSON("phErreurResumer")
 
     def getPhResumerActu(self):
-        return self.__language.lectureJSON("phResumerActu")
+        return self.__languageCopilote.lectureJSON("phResumerActu")
 
     def getPhResumerAgenda(self):
-        return self.__language.lectureJSON("phResumerAgenda")
+        return self.__languageCopilote.lectureJSON("phResumerAgenda")
 
     def getPhResumerAll(self):
-        return self.__language.lectureJSON("phResumerAll")
+        return self.__languageCopilote.lectureJSON("phResumerAll")
 
     def getPhErreurResumerAll(self):
-        return self.__language.lectureJSON("phErreurResumerAll")
+        return self.__languageCopilote.lectureJSON("phErreurResumerAll")
 
     def getPhOpenAideTableur(self):
-        return self.__language.lectureJSON("phOpenAideTableur")
+        return self.__languageCopilote.lectureJSON("phOpenAideTableur")
 
     def getPhOpenAideWord(self):
-        return self.__language.lectureJSON("phOpenAideWord")
+        return self.__languageCopilote.lectureJSON("phOpenAideWord")
 
     def getPhOpenAideFichier(self):
-        return self.__language.lectureJSON("phOpenAideFichier")
+        return self.__languageCopilote.lectureJSON("phOpenAideFichier")
 
     def getPhOpenAideRadio(self):
-        return self.__language.lectureJSON("phOpenAideRadio")
+        return self.__languageCopilote.lectureJSON("phOpenAideRadio")
 
     def getPhOpenAideProjet(self):
-        return self.__language.lectureJSON("phOpenAideProjet")
+        return self.__languageCopilote.lectureJSON("phOpenAideProjet")
 
     def getPhOpenAideWork(self):
-        return self.__language.lectureJSON("phOpenAideWork")
+        return self.__languageCopilote.lectureJSON("phOpenAideWork")
 
     def getPhReadWord(self):
-        return self.__language.lectureJSON("phReadWord")
+        return self.__languageCopilote.lectureJSON("phReadWord")
 
     def getPhReadTableur(self):
-        return self.__language.lectureJSON("phReadTableur")
+        return self.__languageCopilote.lectureJSON("phReadTableur")
 
     def getPhParametre(self):
-        return self.__language.lectureJSON("phParametre")
+        return self.__languageCopilote.lectureJSON("phParametre")
 
     def getFirstBoot(self,nb:int):
         return self.__firstBoot.lectureJSON(str(nb))
 
     def getPhActiveCodehelp(self):
-        return self.__language.lectureJSON("phActiveCodehelp")
+        return self.__languageCopilote.lectureJSON("phActiveCodehelp")
 
     def getPhActiveModeLitle(self):
-        return self.__language.lectureJSON("phActiveModeLitle")
+        return self.__languageCopilote.lectureJSON("phActiveModeLitle")
 
     def getPhActiveModeNormal(self):
-        return self.__language.lectureJSON("phActiveModeNormal")
+        return self.__languageCopilote.lectureJSON("phActiveModeNormal")
 
+    def getPhActiveSound(self):
+        return  self.__languageSix.lectureJSON("phActiveSound").format(genre=self.__jsonUser.lectureJSON("genre"))
+
+    def getPhDesactiveSound(self,nb:int):
+        return  self.__languageSix.lectureJSON("phDisableSound" + str(nb)).format(genre=self.__jsonUser.lectureJSON("genre"), nb=nb)
