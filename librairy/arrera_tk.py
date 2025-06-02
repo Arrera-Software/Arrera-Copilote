@@ -402,6 +402,9 @@ class CArreraTK :
         else :
             widget.place(relx=0.5, y=y, anchor='n')
 
+    def placeWidgetCenteredAtBottom(self, widget, x_offset=1):
+        widget.place(relx=0.5, rely=1, x=-x_offset, anchor="s")
+
     def placeBottomRight(self,widget):
         widget.place(relx=1, rely=1, anchor='se')
 
