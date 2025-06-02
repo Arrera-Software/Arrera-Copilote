@@ -245,8 +245,16 @@ class guiCopilote:
         btnCodehelp = self.__arrTK.createButton(self.__frameBackgroud,image=imgCodehelp,
                                                 width=40,height=40,command=self.__modeCodehelp,
                                                 bg="#694d6b", hoverbg="#1d1020")
+
         btnLittleWindows = self.__arrTK.createButton(self.__frameBackgroud,image=imgBTNLittleWindows,
                                                        width=40,height=40,command=self.__modeLittleWindows,
+                                                       bg="#694d6b", hoverbg="#1d1020")
+
+        self.__btnSound = self.__arrTK.createButton(self.__frameBackgroud, image=imgBtnSoundOff,
+                                                         width=40, height=40,
+                                                         bg="#694d6b", hoverbg="#1d1020")
+        self.__btnMicro = self.__arrTK.createButton(self.__frameBackgroud, image=imgBtnMicroOff,
+                                                       width=40, height=40,
                                                        bg="#694d6b", hoverbg="#1d1020")
         # Btn open
 
@@ -405,6 +413,8 @@ class guiCopilote:
         self.__arrTK.placeBottomLeft(btnParaCodehelp)
         self.__arrTK.placeBottomRight(btnCopilote)
         self.__arrTK.placeBottomCenter(btnLittleWindows)
+        self.__arrTK.placeWidgetCenteredAtBottom(self.__btnSound, -125)
+        self.__arrTK.placeWidgetCenteredAtBottom(self.__btnMicro, 125)
 
         self.__labelActu.place(x=70, y=75)
         self.__labelFirstBoot.place(x=70, y=190)
