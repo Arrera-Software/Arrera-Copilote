@@ -123,23 +123,23 @@ class guiCopilote:
                                                 pathDark=emplacementDark + "btnlittlewindows.png",
                                                 tailleX=30, tailleY=30)
 
-        imgBtnSoundOff = self.__arrTK.createImage(pathLight=emplacementLight + "settings.png",
-                                               pathDark=emplacementDark + "settings.png",
+        imgBtnSoundOff = self.__arrTK.createImage(pathLight=emplacementLight + "soundOff.png",
+                                               pathDark=emplacementDark + "soundOff.png",
                                                tailleX=30, tailleY=30)
 
-        imgBtnMicroOff = self.__arrTK.createImage(pathLight=emplacementLight + "settings.png",
-                                               pathDark=emplacementDark + "settings.png",
+        imgBtnMicroOff = self.__arrTK.createImage(pathLight=emplacementLight + "microOff.png",
+                                               pathDark=emplacementDark + "microOff.png",
                                                tailleX=30, tailleY=30)
 
-        imgBtnSoundOn = self.__arrTK.createImage(pathLight=emplacementLight + "word.png",
-                                                 pathDark=emplacementDark + "word.png",
+        imgBtnSoundOn = self.__arrTK.createImage(pathLight=emplacementLight + "microOn.png",
+                                                 pathDark=emplacementDark + "microOn.png",
                                                  tailleX=30, tailleY=30)
 
-        imgBtnMicroOn = self.__arrTK.createImage(pathLight=emplacementLight + "word.png",
-                                                 pathDark=emplacementDark + "word.png",
+        imgBtnMicroOn = self.__arrTK.createImage(pathLight=emplacementLight + "microOn.png",
+                                                 pathDark=emplacementDark + "microOn.png",
                                                  tailleX=30, tailleY=30)
-        imgBtnMicroTiger = self.__arrTK.createImage(pathLight=emplacementLight + "word.png",
-                                                    pathDark=emplacementDark + "word.png",
+        imgBtnMicroTiger = self.__arrTK.createImage(pathLight=emplacementLight + "microTriger.png",
+                                                    pathDark=emplacementDark + "microTriger.png",
                                                     tailleX=30, tailleY=30)
 
 
