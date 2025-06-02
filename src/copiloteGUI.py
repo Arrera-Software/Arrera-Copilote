@@ -15,6 +15,8 @@ class guiCopilote:
         self.__version = version
         self.__codeHelpActived = False
         self.__litleWindowsActived = False
+        # arguments sons micro 
+        self.__soundState = False
         # Boot ArreraTK
         self.__arrTK = CArreraTK()
 
@@ -123,22 +125,22 @@ class guiCopilote:
                                                 pathDark=emplacementDark + "btnlittlewindows.png",
                                                 tailleX=30, tailleY=30)
 
-        imgBtnSoundOff = self.__arrTK.createImage(pathLight=emplacementLight + "soundOff.png",
+        self.__imgBtnSoundOff = self.__arrTK.createImage(pathLight=emplacementLight + "soundOff.png",
                                                pathDark=emplacementDark + "soundOff.png",
                                                tailleX=30, tailleY=30)
 
-        imgBtnMicroOff = self.__arrTK.createImage(pathLight=emplacementLight + "microOff.png",
+        self.__imgBtnMicroOff = self.__arrTK.createImage(pathLight=emplacementLight + "microOff.png",
                                                pathDark=emplacementDark + "microOff.png",
                                                tailleX=30, tailleY=30)
 
-        imgBtnSoundOn = self.__arrTK.createImage(pathLight=emplacementLight + "microOn.png",
+        self.__imgBtnSoundOn = self.__arrTK.createImage(pathLight=emplacementLight + "microOn.png",
                                                  pathDark=emplacementDark + "microOn.png",
                                                  tailleX=30, tailleY=30)
 
-        imgBtnMicroOn = self.__arrTK.createImage(pathLight=emplacementLight + "microOn.png",
+        self.__imgBtnMicroOn = self.__arrTK.createImage(pathLight=emplacementLight + "microOn.png",
                                                  pathDark=emplacementDark + "microOn.png",
                                                  tailleX=30, tailleY=30)
-        imgBtnMicroTiger = self.__arrTK.createImage(pathLight=emplacementLight + "microTriger.png",
+        self.__imgBtnMicroTiger = self.__arrTK.createImage(pathLight=emplacementLight + "microTriger.png",
                                                     pathDark=emplacementDark + "microTriger.png",
                                                     tailleX=30, tailleY=30)
 
@@ -250,10 +252,10 @@ class guiCopilote:
                                                        width=40,height=40,command=self.__modeLittleWindows,
                                                        bg="#694d6b", hoverbg="#1d1020")
 
-        self.__btnSound = self.__arrTK.createButton(self.__frameBackgroud, image=imgBtnSoundOff,
+        self.__btnSound = self.__arrTK.createButton(self.__frameBackgroud, image=self.__imgBtnSoundOff,
                                                          width=40, height=40,
                                                          bg="#694d6b", hoverbg="#1d1020")
-        self.__btnMicro = self.__arrTK.createButton(self.__frameBackgroud, image=imgBtnMicroOff,
+        self.__btnMicro = self.__arrTK.createButton(self.__frameBackgroud, image=self.__imgBtnMicroOff,
                                                        width=40, height=40,
                                                        bg="#694d6b", hoverbg="#1d1020")
         # Btn open
