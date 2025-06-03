@@ -165,8 +165,8 @@ class guiCopilote:
                                                                         width=500, height=600)
 
         self.__backgroundLitleWindows = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=emplacementLight + "litlewindows.png",
-                                                                        imageDark=emplacementDark + "litlewindows.png",
+                                                                        imageLight=emplacementLight + "litlewindows-ryley.png",
+                                                                        imageDark=emplacementDark + "litlewindows-ryley.png",
                                                                         width=500, height=110)
 
         self.__fBottomLitleWindows = self.__arrTK.createFrame(self.__screen,
