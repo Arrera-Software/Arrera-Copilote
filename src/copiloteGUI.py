@@ -164,10 +164,19 @@ class guiCopilote:
                                                                         imageDark=emplacementDark + "actu.png",
                                                                         width=500, height=600)
 
-        self.__backgroundLitleWindows = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=emplacementLight + "litlewindows-ryley.png",
-                                                                        imageDark=emplacementDark + "litlewindows-ryley.png",
-                                                                        width=500, height=110)
+        self.__backgroundLitleWindowsRyley = self.__arrTK.createArreraBackgroudImage(self.__screen,
+                                                                                     imageLight=emplacementLight + "litlewindows-ryley.png",
+                                                                                     imageDark=emplacementDark + "litlewindows-ryley.png",
+                                                                                     width=500, height=110)
+
+        self.__backgroundLitleWindowsSix = self.__arrTK.createArreraBackgroudImage(self.__screen,
+                                                                                     imageLight=emplacementLight + "litlewindows-six.png",
+                                                                                     imageDark=emplacementDark + "litlewindows-six.png",
+                                                                                     width=500, height=110)
+
+        self.__fChoiceLitleWindows = self.__arrTK.createFrame(self.__screen,
+                                                              width=500, height=200,
+                                                              bg="#482c4a", corner_radius=0)
 
         self.__fBottomLitleWindows = self.__arrTK.createFrame(self.__screen,
                                                          width=500, height=90,
@@ -261,6 +270,11 @@ class guiCopilote:
         self.__btnMicro = self.__arrTK.createButton(self.__frameBackgroud, image=self.__imgBtnMicroOff,
                                                        width=40, height=40,
                                                        bg="#694d6b", hoverbg="#1d1020")
+
+        btnChoiceSixLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows)
+        btnChoiceRyleyLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows)
+        btnChoiceCancelLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows)
+
         # Btn open
 
         self.__btnTableurOpenCopilote = self.__arrTK.createButton(self.__bottomBackgrownOpen, width=35, height=35,
@@ -340,7 +354,7 @@ class guiCopilote:
                                                             command=lambda: self.__winHelpFileAndProjet(2),
                                                             bg="#694d6b", hoverbg="#1d1020")
 
-        self.__btnProjetOpenLitte = self.__arrTK.createButton(self.__backgroundLitleWindows, width=35, height=35,
+        self.__btnProjetOpenLitte = self.__arrTK.createButton(self.__backgroundLitleWindowsRyley, width=35, height=35,
                                                               image=imgProjetOpen,
                                                               command=lambda: self.__winHelpFileAndProjet(3),
                                                               bg="#694d6b", hoverbg="#1d1020")
@@ -381,7 +395,7 @@ class guiCopilote:
                                                        ppolice="Arial", pstyle="bold",
                                                        ptaille=18, justify="left", pwraplength=400)
 
-        self.__lparoleLittle = self.__arrTK.createLabel(self.__backgroundLitleWindows,
+        self.__lparoleLittle = self.__arrTK.createLabel(self.__backgroundLitleWindowsRyley,
                                                         bg="#041f75", fg="white",
                                                         ppolice="Arial", pstyle="bold",
                                                         ptaille=18, justify="left", pwraplength=350)
@@ -541,7 +555,7 @@ class guiCopilote:
         self.__backgroundTopCodehelp.pack_forget()
         self.__backgroundBottomCodehelp.pack_forget()
         self.__frameBackgroudCodehelp.pack_forget()
-        self.__backgroundLitleWindows.pack_forget()
+        self.__backgroundLitleWindowsRyley.pack_forget()
         self.__fBottomLitleWindows.pack_forget()
 
     def __viewNormal(self):
@@ -1016,7 +1030,7 @@ class guiCopilote:
         self.__screen.maxsize(500, 200)
         self.__screen.minsize(500, 200)
         self.__paroleLittle(self.__language.getPhActiveModeLitle())
-        self.__backgroundLitleWindows.pack()
+        self.__backgroundLitleWindowsRyley.pack()
         self.__fBottomLitleWindows.pack()
         self.__litleWindowsActived = True
 
