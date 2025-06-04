@@ -90,9 +90,17 @@ class guiCopilote:
                                              pathDark=emplacementDark + "iconRyleyCodehelp.png",
                                              tailleX=30, tailleY=30)
 
-        imgRyley = self.__arrTK.createImage(pathLight=self.__emplacementIcon,
-                                            pathDark=self.__emplacementIcon,
-                                            tailleX=30, tailleY=30)
+        imgCopilote = self.__arrTK.createImage(pathLight=self.__emplacementIcon,
+                                               pathDark=self.__emplacementIcon,
+                                               tailleX=30, tailleY=30)
+
+        imgSix = self.__arrTK.createImage(pathLight="asset/six.png",pathDark="asset/six.png",
+                                          tailleX=50, tailleY=50)
+        imgRyley = self.__arrTK.createImage(pathLight="asset/ryley.png",pathDark="asset/ryley.png",
+                                            tailleX=50, tailleY=50)
+        imgCancel = self.__arrTK.createImage(pathLight=emplacementLight +"cancel.png",
+                                             pathDark=emplacementDark +"cancel.png",
+                                             tailleX=50, tailleY=50)
 
         imgTableurOpen = self.__arrTK.createImage(pathLight=emplacementLight + "tableur.png",
                                                     pathDark=emplacementDark + "tableur.png",
@@ -271,9 +279,12 @@ class guiCopilote:
                                                        width=40, height=40,
                                                        bg="#694d6b", hoverbg="#1d1020")
 
-        btnChoiceSixLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows)
-        btnChoiceRyleyLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows)
-        btnChoiceCancelLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows)
+        btnChoiceSixLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows,
+                                                         image=imgSix,width=50,height=50)
+        btnChoiceRyleyLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows,
+                                                           image=imgRyley,width=50,height=50)
+        btnChoiceCancelLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows,
+                                                            image=imgCancel,width=50,height=50)
 
         # Btn open
 
@@ -301,9 +312,9 @@ class guiCopilote:
                                                  width=40, height=40, command=self.__viewParametre,
                                                  bg="#8c8c8c", hoverbg="#4e4e4e")
 
-        btnCopilote = self.__arrTK.createButton(self.__frameBackgroudCodehelp, image=imgRyley,
-                                             width=40, height=40, command=self.__modeNormal,
-                                             bg="#8c8c8c", hoverbg="#4e4e4e")
+        btnCopilote = self.__arrTK.createButton(self.__frameBackgroudCodehelp, image=imgCopilote,
+                                                width=40, height=40, command=self.__modeNormal,
+                                                bg="#8c8c8c", hoverbg="#4e4e4e")
 
         btnCHOrgaVar = self.__arrTK.createButton(fDockCodeHelpAppRight, width=40,height=40,
                                                  image=imgCHOrgaVar,command=self.__activeOrgaVar,
@@ -448,6 +459,10 @@ class guiCopilote:
         self.__arrTK.placeBottomRight(fDockCodeHelpAppRight)
         self.__arrTK.placeBottomLeft(fDockCodeHelpAppleft)
         self.__arrTK.placeBottomCenter(fDockCodeHelpApp)
+
+        self.__arrTK.placeCenterLeft(btnChoiceSixLitleWin)
+        self.__arrTK.placeCenterRight(btnChoiceRyleyLitleWin)
+        self.__arrTK.placeCenter(btnChoiceCancelLitleWin)
         # Bind
         self.__keyboard()
 
@@ -557,6 +572,8 @@ class guiCopilote:
         self.__frameBackgroudCodehelp.pack_forget()
         self.__backgroundLitleWindowsRyley.pack_forget()
         self.__fBottomLitleWindows.pack_forget()
+        self.__fChoiceLitleWindows.pack_forget()
+        self.__backgroundLitleWindowsSix.pack_forget()
 
     def __viewNormal(self):
         self.__topBackgrown.pack()
@@ -1029,10 +1046,16 @@ class guiCopilote:
         self.__disableAllFrame()
         self.__screen.maxsize(500, 200)
         self.__screen.minsize(500, 200)
+        self.__fChoiceLitleWindows.pack()
         self.__paroleLittle(self.__language.getPhActiveModeLitle())
-        self.__backgroundLitleWindowsRyley.pack()
-        self.__fBottomLitleWindows.pack()
-        self.__litleWindowsActived = True
+        #self.__backgroundLitleWindowsRyley.pack()
+        #self.__fBottomLitleWindows.pack()
+        #self.__litleWindowsActived = True
+
+    def modeLittleWindowsSix(self):
+        self.__disableAllFrame()
+        self.__screen.maxsize(500, 200)
+        self.__screen.minsize(500, 200)
 
     def __modeBigWindows(self):
         self.__disableAllFrame()
