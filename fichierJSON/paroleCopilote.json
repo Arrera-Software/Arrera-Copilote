@@ -16,6 +16,8 @@
   "phReadTableur": "Voici la fenêtre pour que tu lises le contenu du tableur.",
   "phParametre": "J'ai bien pris en compte les nouveaux paramètres.",
   "phActiveCodehelp": "Très bien, je suis passé en mode CodeHelp pour vous aider à concevoir vos programmes.",
-  "phActiveModeLitle": "Je passe à une fenêtre plus petite pour continuer à t'aider tout en étant plus discrète.",
-  "phActiveModeNormal": "Je repasse en fenêtre normale pour t'aider plus efficacement."
+  "phActiveModeLittleRyley": "Je passe à une fenêtre plus petite pour continuer à t'aider tout en étant plus discrète.",
+  "phActiveModeLittleSix": "Je passe dans une fenêtre plus petite pour t'aider au mieux {genre}.",
+  "phActiveModeNormalRyley": "On repasse en mode normal avec Six pour t’assister au mieux.",
+  "phActiveModeNormalSix": "Je repasse en mode normal avec Ryley pour t’assister au mieux {genre}."
 }

@@ -14,7 +14,7 @@ class guiCopilote:
         self.__nameSoft = "Arrera Copilote"
         self.__version = version
         self.__codeHelpActived = False
-        self.__litleWindowsActived = False
+        self.__litleWindowsActived = 0
         # arguments sons micro 
         self.__soundState = False
         # Boot ArreraTK
@@ -280,9 +280,11 @@ class guiCopilote:
                                                        bg="#694d6b", hoverbg="#1d1020")
 
         btnChoiceSixLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows,
-                                                         image=imgSix,width=50,height=50)
+                                                         image=imgSix,width=50,height=50
+                                                         ,command=self.__modeLittleWindowsSix)
         btnChoiceRyleyLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows,
-                                                           image=imgRyley,width=50,height=50)
+                                                           image=imgRyley,width=50,height=50
+                                                           ,command=self.__modeLittleWindowsRyley)
         btnChoiceCancelLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows,
                                                             image=imgCancel,width=50,height=50)
 
@@ -406,10 +408,15 @@ class guiCopilote:
                                                        ppolice="Arial", pstyle="bold",
                                                        ptaille=18, justify="left", pwraplength=400)
 
-        self.__lparoleLittle = self.__arrTK.createLabel(self.__backgroundLitleWindowsRyley,
-                                                        bg="#041f75", fg="white",
-                                                        ppolice="Arial", pstyle="bold",
-                                                        ptaille=18, justify="left", pwraplength=350)
+        self.__lparoleLittleRyley = self.__arrTK.createLabel(self.__backgroundLitleWindowsRyley,
+                                                             bg="#041f75", fg="white",
+                                                             ppolice="Arial", pstyle="bold",
+                                                             ptaille=18, justify="left", pwraplength=350)
+
+        self.__lparoleLittleSix = self.__arrTK.createLabel(self.__backgroundLitleWindowsSix,
+                                                             bg="#0018ff", fg="white",
+                                                             ppolice="Arial", pstyle="bold",
+                                                             ptaille=18, justify="left", pwraplength=350)
 
         self.__labelActu = self.__arrTK.createLabel(self.__backgroundActu,
                                                     bg="#041f75", fg="white",
@@ -436,7 +443,8 @@ class guiCopilote:
 
         self.__entryUserLittle.place(relx=0.40, rely=0.3, anchor="center")
         btnSendLittle.place(relx=0.90, rely=0.3, anchor="center")
-        self.__lparoleLittle.place(x=95, y=10)
+        self.__lparoleLittleRyley.place(x=95, y=10)
+        self.__lparoleLittleSix.place(x=95, y=10)
 
         self.__arrTK.placeBottomCenter(btnBigWindows)
 
@@ -597,7 +605,7 @@ class guiCopilote:
 
     def __modeCodehelp(self):
         self.__codeHelpActived = True
-        if self.__litleWindowsActived:
+        if self.__litleWindowsActived != 0:
             self.__modeBigWindows()
         self.__disableAllFrame()
         self.__paroleCodehelp(self.__language.getPhActiveCodehelp())
@@ -632,15 +640,18 @@ class guiCopilote:
 
     def __paroleLittle(self, text: str):
         if text != "":
-            self.__lparoleLittle.configure(text=text)
             self.__entryUserLittle.delete(0, END)
+            if self.__litleWindowsActived == 1:
+                self.__lparoleLittleRyley.configure(text=text)
+            elif self.__litleWindowsActived == 2:
+                self.__lparoleLittleSix.configure(text=text)
 
     def __quitCopilote(self):
         if (askyesno("Atention", "Voulez-vous vraiment fermer Arrera Copilote ?")):
             self.__close()
 
     def __close(self):
-        if self.__litleWindowsActived:
+        if self.__litleWindowsActived != 0:
             self.__modeBigWindows()
         self.__disableAllFrame()
         self.__viewNormal()
@@ -658,7 +669,7 @@ class guiCopilote:
             linkWeb="https://arrera-software.fr/")
 
     def __actionBTNAcceuil(self):
-        if self.__litleWindowsActived == False and self.__codeHelpActived == False:
+        if (self.__litleWindowsActived == 0 or self.__litleWindowsActived == 1 or self.__litleWindowsActived == 2) and self.__codeHelpActived == False:
             texte = self.__entryUserCopilote.get().lower()
             self.__entryUserCopilote.delete(0, END)
             self.__sendCopilote(texte)
@@ -671,16 +682,16 @@ class guiCopilote:
             self.__sendCopilote(texte)
 
     def __actionBTNLitleWindows(self):
-        if self.__litleWindowsActived:
+        if self.__litleWindowsActived != 0:
             texte = self.__entryUserLittle.get().lower()
             self.__entryUserLittle.delete(0, END)
             self.__sendCopilote(texte)
 
     def __sendCopilote(self, texte:str):
-        if ("mode normal" in texte and self.__litleWindowsActived == True):
+        if ("mode normal" in texte and self.__litleWindowsActived != 0):
             self.__modeBigWindows()
             return
-        elif ("mode petit" in texte or "mode discret" in texte and self.__litleWindowsActived == False):
+        elif ("mode petit" in texte or "mode discret" in texte and self.__litleWindowsActived == 0):
                 self.__modeLittleWindows()
                 return
         elif ("parametre" in texte):
@@ -1047,23 +1058,29 @@ class guiCopilote:
         self.__screen.maxsize(500, 200)
         self.__screen.minsize(500, 200)
         self.__fChoiceLitleWindows.pack()
-        self.__paroleLittle(self.__language.getPhActiveModeLitle())
-        #self.__backgroundLitleWindowsRyley.pack()
-        #self.__fBottomLitleWindows.pack()
-        #self.__litleWindowsActived = True
 
-    def modeLittleWindowsSix(self):
+    def __modeLittleWindowsRyley(self):
         self.__disableAllFrame()
-        self.__screen.maxsize(500, 200)
-        self.__screen.minsize(500, 200)
+        self.__backgroundLitleWindowsRyley.pack()
+        self.__fBottomLitleWindows.pack()
+        self.__litleWindowsActived = 1
+        self.__paroleLittle(self.__language.getPhActiveModeLitleRyley())
+
+    def __modeLittleWindowsSix(self):
+        self.__disableAllFrame()
+        self.__backgroundLitleWindowsSix.pack()
+        self.__fBottomLitleWindows.pack()
+        self.__litleWindowsActived = 2
+        self.__paroleLittle(self.__language.getPhActiveModelitleSix())
 
     def __modeBigWindows(self):
         self.__disableAllFrame()
         self.__screen.maxsize(500, 600)
         self.__screen.minsize(500, 600)
-        self.__paroleRyley(self.__language.getPhActiveModeNormal())
+        self.__paroleRyley(self.__language.getPhActiveModeNormalRyley())
+        self.__paroleSix(self.__language.getPhActiveModeNormalSix())
         self.__viewNormal()
-        self.__litleWindowsActived = False
+        self.__litleWindowsActived = 0
 
     def __ttsSpeak(self,text:str):
         """

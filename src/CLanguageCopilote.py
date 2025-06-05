@@ -71,11 +71,17 @@ class CLanguageCopilote :
     def getPhActiveCodehelp(self):
         return self.__languageCopilote.lectureJSON("phActiveCodehelp")
 
-    def getPhActiveModeLitle(self):
-        return self.__languageCopilote.lectureJSON("phActiveModeLitle")
+    def getPhActiveModeLitleRyley(self):
+        return self.__languageCopilote.lectureJSON("phActiveModeLittleRyley")
 
-    def getPhActiveModeNormal(self):
-        return self.__languageCopilote.lectureJSON("phActiveModeNormal")
+    def getPhActiveModelitleSix(self):
+        return self.__languageCopilote.lectureJSON("phActiveModeLittleSix").format(genre=self.__jsonUser.lectureJSON("genre"))
+
+    def getPhActiveModeNormalRyley(self):
+        return self.__languageCopilote.lectureJSON("phActiveModeNormalRyley")
+
+    def getPhActiveModeNormalSix(self):
+        return self.__languageCopilote.lectureJSON("phActiveModeNormalSix").format(genre=self.__jsonUser.lectureJSON("genre"))
 
     def getPhActiveSound(self):
         return  self.__languageSix.lectureJSON("phActiveSound").format(genre=self.__jsonUser.lectureJSON("genre"))
