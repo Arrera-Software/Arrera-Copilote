@@ -200,7 +200,7 @@ class CArreraTK :
                 label.configure(font=(ppolice, ptaille))
         return label
 
-    def createButton(self, screen, text: str = "", image = None, bg : str = "", fg : str = "", command = None,ppolice : str = "Arial", ptaille : int = 12,pstyle :str = "normal",width : int = 0,height : int = 0,hoverbg:str=""):
+    def createButton(self, screen, text: str = "", image = None, bg : str = "", fg : str = "", command = None,ppolice : str = "Arial", ptaille : int = 12,pstyle :str = "normal",width : int = 0,height : int = 0,hoverbg:str="",conerRadus:int = 0):
         if (self.__mode == 0):
             btn = (ctk.CTkButton(screen))
             if (text != ""):
@@ -222,6 +222,8 @@ class CArreraTK :
                 btn.configure(width=width)
             if (height != 0):
                 btn.configure(height=height)
+            if conerRadus != 0:
+                btn.configure(corner_radius=conerRadus)
             police = "Arial"
             style = "normal"
             taille = 12

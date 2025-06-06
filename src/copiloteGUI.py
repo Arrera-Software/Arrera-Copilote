@@ -280,14 +280,14 @@ class guiCopilote:
                                                        bg="#694d6b", hoverbg="#1d1020")
 
         btnChoiceSixLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows,
-                                                         image=imgSix,width=50,height=50
+                                                         image=imgSix,conerRadus=25
                                                          ,command=self.__modeLittleWindowsSix)
         btnChoiceRyleyLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows,
-                                                           image=imgRyley,width=50,height=50
+                                                           image=imgRyley,conerRadus=25
                                                            ,command=self.__modeLittleWindowsRyley)
         btnChoiceCancelLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows,
-                                                            image=imgCancel,width=50,height=50,
-                                                            command=self.__cancelLittleWindows)
+                                                            image=imgCancel,conerRadus=25
+                                                            ,command=self.__cancelLittleWindows)
 
         # Btn open
 
