@@ -286,7 +286,8 @@ class guiCopilote:
                                                            image=imgRyley,width=50,height=50
                                                            ,command=self.__modeLittleWindowsRyley)
         btnChoiceCancelLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows,
-                                                            image=imgCancel,width=50,height=50)
+                                                            image=imgCancel,width=50,height=50,
+                                                            command=self.__cancelLittleWindows)
 
         # Btn open
 
@@ -1123,3 +1124,10 @@ class guiCopilote:
             self.__paroleSix(self.__language.getPhDesactiveSound(1))
             self.__soundState = False
             self.__btnSound.configure(image=self.__imgBtnSoundOff)
+
+    def __cancelLittleWindows(self):
+        self.__disableAllFrame()
+        self.__viewNormal()
+        self.__litleWindowsActived = 0
+        self.__screen.maxsize(500, 600)
+        self.__screen.minsize(500, 600)
