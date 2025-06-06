@@ -688,6 +688,12 @@ class guiCopilote:
             self.__sendCopilote(texte)
 
     def __sendCopilote(self, texte:str):
+        specialFnc = False
+
+        out = ""
+        outSix = ""
+        outRyley = ""
+
         if ("mode normal" in texte and self.__litleWindowsActived != 0):
             self.__modeBigWindows()
             return
@@ -712,57 +718,63 @@ class guiCopilote:
                 out = self.__language.getPhOpenActu()
                 self.__paroleCopilote(out)
                 self.__viewResumer(listSortieRyley, 2)
-                self.__paroleSix(out)
-                self.__paroleRyley(out)
-                self.__paroleLittle(out)
-                self.__paroleCodehelp(out)
+                specialFnc = True
+
             elif (nbSortieRyley == 9 and nbSortieSix == 9):
                 out = self.__language.getPhReadWord()
                 self.__windowsReadFile(listSortieRyley, 2)
                 self.__paroleCopilote(out)
-                self.__paroleSix(out)
-                self.__paroleRyley(out)
-                self.__paroleLittle(out)
-                self.__paroleCodehelp(out)
+                specialFnc = True
             elif (nbSortieRyley == 12 and nbSortieSix == 12):
                 out = self.__language.getPhResumerActu()
                 self.__viewResumer(listSortieRyley, 1)
                 self.__paroleCopilote(out)
-                self.__paroleSix(out)
-                self.__paroleRyley(out)
-                self.__paroleLittle(out)
-                self.__paroleCodehelp(out)
+                specialFnc = True
             elif (nbSortieRyley == 13 and nbSortieSix == 13):
                 out = self.__language.getPhReadTableur()
                 self.__windowsReadFile(listSortieRyley, 1)
                 self.__paroleCopilote(out)
-                self.__paroleSix(out)
-                self.__paroleRyley(out)
-                self.__paroleLittle(out)
-                self.__paroleCodehelp(out)
+                specialFnc = True
             elif (nbSortieRyley == 17 and nbSortieSix == 17):
                 self.__windowsHelp(listSortieRyley)
             elif (nbSortieRyley == 18 and nbSortieSix == 18):
                 out = self.__language.getPhResumerAgenda()
                 self.__viewResumer(listSortieRyley, 3)
                 self.__paroleCopilote(out)
-                self.__paroleSix(out)
-                self.__paroleRyley(out)
-                self.__paroleLittle(out)
-                self.__paroleCodehelp(out)
+                specialFnc = True
             elif (nbSortieRyley == 19 and nbSortieSix == 19):
                 out = self.__language.getPhResumerAll()
                 self.__viewResumer(listSortieRyley, 4)
                 self.__paroleCopilote(out)
+                specialFnc = True
+            else :
+                outSix  = self.__traimentNeuronal(nbSortieSix, listSortieSix)
+                outRyley = self.__traimentNeuronal(nbSortieRyley, listSortieRyley)
+                specialFnc = False
+
+        if (specialFnc == True):
+            if self.__codeHelpActived == True:
+                self.__paroleCodehelp(out)
+
+            elif self.__litleWindowsActived == 1 or self.__litleWindowsActived == 2:
+                self.__paroleLittle(out)
+
+            else :
                 self.__paroleSix(out)
                 self.__paroleRyley(out)
-                self.__paroleLittle(out)
-                self.__paroleCodehelp(out)
+        else :
+            if self.__codeHelpActived == True:
+                self.__paroleCodehelp(outRyley)
+
+            elif self.__litleWindowsActived == 1:
+                self.__paroleLittle(outRyley)
+
+            elif self.__litleWindowsActived == 2 :
+                self.__paroleLittle(outSix)
+
             else :
-                self.__paroleSix(self.__traimentNeuronal(nbSortieSix, listSortieSix))
-                self.__paroleRyley(self.__traimentNeuronal(nbSortieRyley, listSortieRyley))
-                self.__paroleLittle(self.__traimentNeuronal(nbSortieSix, listSortieSix))
-                self.__paroleCodehelp(self.__traimentNeuronal(nbSortieRyley, listSortieRyley))
+                self.__paroleSix(outSix)
+                self.__paroleRyley(outRyley)
 
     def __traimentNeuronal(self, nb:int, liste:list):
         match nb:
