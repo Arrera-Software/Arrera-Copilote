@@ -17,6 +17,8 @@ class guiCopilote:
         self.__litleWindowsActived = 0
         # arguments sons micro 
         self.__soundState = False
+        self.__microState = False
+        self.__microTrigger = False
         # Boot ArreraTK
         self.__arrTK = CArreraTK()
 
@@ -25,6 +27,7 @@ class guiCopilote:
 
         #Theard de parole
         self.__threadParoleCopilote = th.Thread()
+        self.__theardMicrophone = th.Thread()
         self.__threadSpeaking = False
 
         # Demarage Neuron Network
@@ -276,7 +279,7 @@ class guiCopilote:
                                                           width=40, height=40, command = self.__actionSound,
                                                           bg="#694d6b", hoverbg="#1d1020")
         self.__btnMicroNormal = self.__arrTK.createButton(self.__frameBackgroud, image=self.__imgBtnMicroOff,
-                                                          width=40, height=40,
+                                                          width=40, height=40,command=self.__actionMicro,
                                                           bg="#694d6b", hoverbg="#1d1020")
 
         btnChoiceSixLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows,
@@ -390,7 +393,7 @@ class guiCopilote:
                                                           width=40, height=40, command = self.__actionSound,
                                                           bg="#694d6b", hoverbg="#1d1020")
         self.__btnMicroLitle = self.__arrTK.createButton(self.__fBottomLitleWindows, image=self.__imgBtnMicroOff,
-                                                          width=40, height=40,
+                                                          width=40, height=40,command=self.__actionMicro,
                                                           bg="#694d6b", hoverbg="#1d1020")
 
 
@@ -1162,3 +1165,48 @@ class guiCopilote:
         self.__litleWindowsActived = 0
         self.__screen.maxsize(500, 600)
         self.__screen.minsize(500, 600)
+
+    def __enableMicro(self):
+        if not self.__microState:
+            self.__theardMicrophone = th.Thread(target=self.__copiloteLlisten)
+            self.__microState = True
+            self.__btnMicroNormal.configure(image=self.__imgBtnMicroOn)
+            self.__btnMicroLitle.configure(image=self.__imgBtnMicroOn)
+            self.__theardMicrophone.start()
+            self.__screen.after(1000, self.__updateMicro)
+
+    def __updateMicro(self):
+        if (self.__theardMicrophone.is_alive()):
+            self.__screen.update()
+            self.__btnMicroNormal.configure(image=self.__imgBtnMicroOn)
+            self.__btnMicroLitle.configure(image=self.__imgBtnMicroOn)
+            self.__screen.after(1000, self.__updateMicro)
+        else :
+            self.__btnMicroNormal.configure(image=self.__imgBtnMicroOff)
+            self.__btnMicroLitle.configure(image=self.__imgBtnMicroOff)
+            self.__theardMicrophone = th.Thread()
+            self.__microState = False
+
+    def __actionMicro(self):
+         if not self.__microState:
+            if self.__arrVoice.getNbWord() == 0:
+                self.__enableMicro()
+
+    def __copiloteLlisten(self):
+        sortie = self.__arrVoice.listen()
+        if sortie == 0 :
+            if self.__litleWindowsActived == 2 or self.__litleWindowsActived == 1:
+                self.__entryUserLittle.delete(0, END)
+                self.__entryUserLittle.insert(0, self.__arrVoice.getTextMicro())
+                time.sleep(0.4)
+                self.__actionBTNLitleWindows()
+            elif self.__codeHelpActived :
+                self.__entryUserCodehelp.delete(0, END)
+                self.__entryUserCodehelp.insert(0, self.__arrVoice.getTextMicro())
+                time.sleep(0.4)
+                self.__actionBTNCodehelp()
+            else:
+                self.__entryUserCopilote.delete(0, END)
+                self.__entryUserCopilote.insert(0, self.__arrVoice.getTextMicro())
+                time.sleep(0.4)
+                self.__actionBTNAcceuil()
