@@ -61,8 +61,11 @@ class CArreraVoice:
     def getTextMicro(self):
         return self.__outPutText
 
+    def getNbWord(self):
+        return self.__nbWord
+
     def trigerWord(self):
-        if self.__nbWord == 0 or self.__nbWord > 3:
+        if self.__nbWord == 0:
             return -3
         r = sr.Recognizer()
         with sr.Microphone() as source:
