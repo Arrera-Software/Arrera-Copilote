@@ -52,6 +52,11 @@ class fncOrthagraphe:
 
         self.error_vars = []  # Réinitialiser les variables des erreurs
 
+        if self.matches == "erreur":
+            messagebox.showerror("Erreur", "Le correcteur n'a pas pu être lancé. Veuillez vérifier votre installation.")
+            self.__frameCorrect.pack_forget()
+            return
+
         if self.matches:
             for i, match in enumerate(self.matches):
                 error_message = f"Erreur {i + 1}: {match.message}\nContexte: {match.context}\n"

@@ -6,7 +6,12 @@ class COrthographe:
         Initialise l'outil LanguageTool pour la correction linguistique.
         :param language: Le code de langue pour LanguageTool (par défaut 'fr' pour français).
         """
-        self.tool = language_tool_python.LanguageToolPublicAPI(language)
+        self.__toolLaunched = False
+        try :
+            self.tool = language_tool_python.LanguageToolPublicAPI(language)
+            self.__toolLaunched = True
+        except Exception as e:
+            self.__toolLaunched = False
         self.corrected_text = ""
         self.matches = []
     
@@ -16,6 +21,8 @@ class COrthographe:
         :param text: Le texte à vérifier.
         :return: Liste des erreurs détectées.
         """
+        if (not self.__toolLaunched):
+            return "erreur"
         self.matches = self.tool.check(text)
         self.corrected_text = text  # Initialise le texte corrigé avec l'original
         return self.matches
@@ -27,6 +34,8 @@ class COrthographe:
         :param replacement_index: L'indice de la correction à appliquer.
         :return: Le texte corrigé.
         """
+        if (not self.__toolLaunched):
+            return "erreur"
         if match_index < 0 or match_index >= len(self.matches):
             raise ValueError("Index d'erreur invalide")
         
@@ -47,6 +56,8 @@ class COrthographe:
         :param match_index: L'indice de l'erreur à ignorer.
         :return: Le texte corrigé sans appliquer la correction.
         """
+        if (not self.__toolLaunched):
+            return "erreur"
         if match_index < 0 or match_index >= len(self.matches):
             raise ValueError("Index d'erreur invalide")
         
@@ -58,11 +69,15 @@ class COrthographe:
         Retourne le texte corrigé.
         :return: Le texte corrigé.
         """
+        if (not self.__toolLaunched):
+            return "erreur"
         return self.corrected_text
 
     def reset(self):
         """
         Réinitialise l'outil de correction pour un nouveau texte.
         """
+        if (not self.__toolLaunched):
+            return "erreur"
         self.corrected_text = ""
         self.matches = []
