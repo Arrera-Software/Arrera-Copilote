@@ -95,12 +95,12 @@ class guiCopilote:
                                                tailleX=30, tailleY=30)
 
         imgSix = self.__arrTK.createImage(pathLight="asset/six.png",pathDark="asset/six.png",
-                                          tailleX=50, tailleY=50)
+                                          tailleX=75, tailleY=75)
         imgRyley = self.__arrTK.createImage(pathLight="asset/ryley.png",pathDark="asset/ryley.png",
-                                            tailleX=50, tailleY=50)
+                                            tailleX=75, tailleY=75)
         imgCancel = self.__arrTK.createImage(pathLight=emplacementLight +"cancel.png",
                                              pathDark=emplacementDark +"cancel.png",
-                                             tailleX=50, tailleY=50)
+                                             tailleX=75, tailleY=75)
 
         imgTableurOpen = self.__arrTK.createImage(pathLight=emplacementLight + "tableur.png",
                                                     pathDark=emplacementDark + "tableur.png",
@@ -280,14 +280,17 @@ class guiCopilote:
                                                        bg="#694d6b", hoverbg="#1d1020")
 
         btnChoiceSixLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows,
-                                                         image=imgSix,conerRadus=25
-                                                         ,command=self.__modeLittleWindowsSix)
+                                                         image=imgSix,width=80,height=80
+                                                         ,command=self.__modeLittleWindowsSix
+                                                         ,bg="#694d6b", hoverbg="#1d1020")
         btnChoiceRyleyLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows,
-                                                           image=imgRyley,conerRadus=25
-                                                           ,command=self.__modeLittleWindowsRyley)
+                                                           image=imgRyley,width=80,height=80
+                                                           ,command=self.__modeLittleWindowsRyley
+                                                           ,bg="#694d6b", hoverbg="#1d1020")
         btnChoiceCancelLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows,
-                                                            image=imgCancel,conerRadus=25
-                                                            ,command=self.__cancelLittleWindows)
+                                                            image=imgCancel,width=80,height=80
+                                                            ,command=self.__cancelLittleWindows
+                                                            ,bg="#694d6b", hoverbg="#1d1020")
 
         # Btn open
 
