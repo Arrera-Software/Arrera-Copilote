@@ -272,12 +272,12 @@ class guiCopilote:
                                                        width=40,height=40,command=self.__modeLittleWindows,
                                                        bg="#694d6b", hoverbg="#1d1020")
 
-        self.__btnSound = self.__arrTK.createButton(self.__frameBackgroud, image=self.__imgBtnSoundOff,
-                                                         width=40, height=40,command = self.__actionSound,
-                                                         bg="#694d6b", hoverbg="#1d1020")
-        self.__btnMicro = self.__arrTK.createButton(self.__frameBackgroud, image=self.__imgBtnMicroOff,
-                                                       width=40, height=40,
-                                                       bg="#694d6b", hoverbg="#1d1020")
+        self.__btnSoundNormal = self.__arrTK.createButton(self.__frameBackgroud, image=self.__imgBtnSoundOff,
+                                                          width=40, height=40, command = self.__actionSound,
+                                                          bg="#694d6b", hoverbg="#1d1020")
+        self.__btnMicroNormal = self.__arrTK.createButton(self.__frameBackgroud, image=self.__imgBtnMicroOff,
+                                                          width=40, height=40,
+                                                          bg="#694d6b", hoverbg="#1d1020")
 
         btnChoiceSixLitleWin = self.__arrTK.createButton(self.__fChoiceLitleWindows,
                                                          image=imgSix,width=80,height=80
@@ -386,6 +386,13 @@ class guiCopilote:
                                                      width=40,height=40,command=self.__modeBigWindows,
                                                      bg="#694d6b", hoverbg="#1d1020")
 
+        self.__btnSoundLitle = self.__arrTK.createButton(self.__fBottomLitleWindows, image=self.__imgBtnSoundOff,
+                                                          width=40, height=40, command = self.__actionSound,
+                                                          bg="#694d6b", hoverbg="#1d1020")
+        self.__btnMicroLitle = self.__arrTK.createButton(self.__fBottomLitleWindows, image=self.__imgBtnMicroOff,
+                                                          width=40, height=40,
+                                                          bg="#694d6b", hoverbg="#1d1020")
+
 
         # Partie actu
         btnQuitActu = self.__arrTK.createButton(self.__backgroundActu, text="Retour",
@@ -455,8 +462,8 @@ class guiCopilote:
         self.__arrTK.placeBottomLeft(btnParaCodehelp)
         self.__arrTK.placeBottomRight(btnCopilote)
         self.__arrTK.placeBottomCenter(btnLittleWindows)
-        self.__arrTK.placeWidgetCenteredAtBottom(self.__btnSound, -125)
-        self.__arrTK.placeWidgetCenteredAtBottom(self.__btnMicro, 125)
+        self.__arrTK.placeWidgetCenteredAtBottom(self.__btnSoundNormal, -125)
+        self.__arrTK.placeWidgetCenteredAtBottom(self.__btnMicroNormal, 125)
 
         self.__labelActu.place(x=70, y=75)
         self.__labelFirstBoot.place(x=70, y=190)
@@ -653,6 +660,8 @@ class guiCopilote:
                 self.__lparoleLittleRyley.configure(text=text)
             elif self.__litleWindowsActived == 2:
                 self.__lparoleLittleSix.configure(text=text)
+                if self.__soundState:
+                    self.__ttsSpeak(text)
 
     def __quitCopilote(self):
         if (askyesno("Atention", "Voulez-vous vraiment fermer Arrera Copilote ?")):
@@ -1081,6 +1090,8 @@ class guiCopilote:
 
     def __modeLittleWindowsRyley(self):
         self.__disableAllFrame()
+        self.__btnSoundLitle.place_forget()
+        self.__btnMicroLitle.place_forget()
         self.__backgroundLitleWindowsRyley.pack()
         self.__fBottomLitleWindows.pack()
         self.__litleWindowsActived = 1
@@ -1091,6 +1102,8 @@ class guiCopilote:
         self.__backgroundLitleWindowsSix.pack()
         self.__fBottomLitleWindows.pack()
         self.__litleWindowsActived = 2
+        self.__arrTK.placeWidgetCenteredAtBottom(self.__btnSoundLitle, -125)
+        self.__arrTK.placeWidgetCenteredAtBottom(self.__btnMicroLitle, 125)
         self.__paroleLittle(self.__language.getPhActiveModelitleSix())
 
     def __modeBigWindows(self):
@@ -1125,12 +1138,23 @@ class guiCopilote:
     def __actionSound(self):
         if not self.__soundState:
             self.__soundState = True
-            self.__paroleSix(self.__language.getPhActiveSound())
-            self.__btnSound.configure(image=self.__imgBtnSoundOn)
+            if self.__litleWindowsActived == 2 :
+                self.__paroleLittle(self.__language.getPhActiveSoundLitle())
+            else :
+                self.__paroleSix(self.__language.getPhActiveSound())
+
+            self.__btnSoundNormal.configure(image=self.__imgBtnSoundOn)
+            self.__btnSoundLitle.configure(image=self.__imgBtnSoundOn)
+
         else :
-            self.__paroleSix(self.__language.getPhDesactiveSound(1))
+
+            if self.__litleWindowsActived == 2 :
+                self.__paroleLittle(self.__language.getPhDesactiveSound(2))
+            else :
+                self.__paroleSix(self.__language.getPhDesactiveSound(1))
             self.__soundState = False
-            self.__btnSound.configure(image=self.__imgBtnSoundOff)
+            self.__btnSoundNormal.configure(image=self.__imgBtnSoundOff)
+            self.__btnSoundLitle.configure(image=self.__imgBtnSoundOff)
 
     def __cancelLittleWindows(self):
         self.__disableAllFrame()

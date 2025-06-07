@@ -86,5 +86,8 @@ class CLanguageCopilote :
     def getPhActiveSound(self):
         return  self.__languageSix.lectureJSON("phActiveSound").format(genre=self.__jsonUser.lectureJSON("genre"))
 
+    def getPhActiveSoundLitle(self):
+        return  self.__languageSix.lectureJSON("phActiveSoundLitle").format(genre=self.__jsonUser.lectureJSON("genre"))
+
     def getPhDesactiveSound(self,nb:int):
         return  self.__languageSix.lectureJSON("phDisableSound" + str(nb)).format(genre=self.__jsonUser.lectureJSON("genre"), nb=nb)
