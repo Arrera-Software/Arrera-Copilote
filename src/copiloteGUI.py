@@ -550,7 +550,7 @@ class guiCopilote:
         self.__screen.minsize(500, 600)
         self.__viewNormal()
         self.__soundState = False
-        self.__screen.configure(bg_color="#081ec7", fg_color="#081ec7")
+        self.__screen.configure(bg_color="#482c4a", fg_color="#482c4a")
         self.__paroleRyley(self.__assistantRyley.shutdown())
         self.__paroleSix(self.__assistantSix.shutdown())
         time.sleep(3)
