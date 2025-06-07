@@ -545,6 +545,10 @@ class guiCopilote:
         self.setButtonOpen()
 
     def __sequenceStop(self):
+        self.__disableAllFrame()
+        self.__screen.maxsize(500, 600)
+        self.__screen.minsize(500, 600)
+        self.__viewNormal()
         self.__soundState = False
         self.__screen.configure(bg_color="#081ec7", fg_color="#081ec7")
         self.__paroleRyley(self.__assistantRyley.shutdown())
