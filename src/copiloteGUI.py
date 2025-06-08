@@ -1168,7 +1168,7 @@ class guiCopilote:
 
     def __enableMicro(self):
         if not self.__microState:
-            self.__theardMicrophone = th.Thread(target=self.__copiloteLlisten)
+            self.__theardMicrophone = th.Thread(target=self.__copiloteListen)
             self.__microState = True
             self.__btnMicroNormal.configure(image=self.__imgBtnMicroOn)
             self.__btnMicroLitle.configure(image=self.__imgBtnMicroOn)
@@ -1192,7 +1192,7 @@ class guiCopilote:
             if self.__arrVoice.getNbWord() == 0:
                 self.__enableMicro()
 
-    def __copiloteLlisten(self):
+    def __copiloteListen(self):
         sortie = self.__arrVoice.listen()
         if sortie == 0 :
             if self.__litleWindowsActived == 2 or self.__litleWindowsActived == 1:
