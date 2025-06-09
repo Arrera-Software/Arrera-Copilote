@@ -23,6 +23,8 @@ class gestionNetwork:
         self.__network = network()
         if (self.__etatNeuron.getSocket()==True):
             self.__serveurSocket = socketAssistant(self.__configFile.lectureJSON("name"))
+        else :
+            self.__serveurSocket = None
         # Varriable
         self.__oldRequette = ""
         self.__oldSorti = ""

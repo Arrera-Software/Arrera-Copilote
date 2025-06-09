@@ -19,31 +19,33 @@ class neuroneOpen(neuronBase) :
                         siteOpen = self._fonctionArreraNetwork.openWebSiteAssistant(requette)
                         if ( siteOpen == True):
                             self._listSortie = [self._fonctionArreraNetwork.sortieOpenSite(requette,siteOpen), ""]
-                        elif self._gestNeuron.getSocket() == True  and self._socket.getServeurOn()== True :
-                            soft = requette.replace("ouvre","").strip()
-                            soft = soft.replace("ouvrir","").strip()
-                            self._socket.sendData("ouvre " + soft)
-                            self._listSortie = [self._language.getPhraseSocket("openSoftSocket").format(softSocket=soft)
-                                ,""]
-                        elif (self._gestNeuron.getSocket() == True and self._socket.getServeurOn() == True):
-                            soft = requette.replace("ouvrir","").replace("ouvre","").strip()
-                            if (soft == ""):
-                                self._listSortie = [self._fonctionArreraNetwork.sortieNoOpen(), ""]
-                            elif (soft == "arrera postite" or soft == "postite"):
-                                self._listSortie = [self._language.getPhraseSocket("openArreraPostite")
-                                    , ""]
-                                self._socket.sendData("ouvre " + "arrerra postite")
-                            elif (soft == "arrera video download" or soft == "video download"):
-                                self._listSortie = [self._language.getPhraseSocket("openArreraVideoDownload")
-                                    , ""]
-                                self._socket.sendData("ouvre " + "arrera video download")
-                            elif (soft == "arrera raccourci" or soft == "raccourci"):
-                                self._listSortie = [self._language.getPhraseSocket("openArreraRaccourci")
-                                    , ""]
-                                self._socket.sendData("ouvre " + "arrera raccourci")
-                            else :
+                        elif self._gestNeuron.getSocket() == True :
+                            if self._socket.getServeurOn()== True:
+                                soft = requette.replace("ouvre","").strip()
+                                soft = soft.replace("ouvrir","").strip()
                                 self._socket.sendData("ouvre " + soft)
-                                self._listSortie = [self._language.getPhraseSocket("openSoftSocket").format(softSocket=soft),""]
+                                self._listSortie = [self._language.getPhraseSocket("openSoftSocket").format(softSocket=soft)
+                                    ,""]
+                        elif (self._gestNeuron.getSocket() == True):
+                            if self._socket.getServeurOn() == True :
+                                soft = requette.replace("ouvrir","").replace("ouvre","").strip()
+                                if (soft == ""):
+                                    self._listSortie = [self._fonctionArreraNetwork.sortieNoOpen(), ""]
+                                elif (soft == "arrera postite" or soft == "postite"):
+                                    self._listSortie = [self._language.getPhraseSocket("openArreraPostite")
+                                        , ""]
+                                    self._socket.sendData("ouvre " + "arrerra postite")
+                                elif (soft == "arrera video download" or soft == "video download"):
+                                    self._listSortie = [self._language.getPhraseSocket("openArreraVideoDownload")
+                                        , ""]
+                                    self._socket.sendData("ouvre " + "arrera video download")
+                                elif (soft == "arrera raccourci" or soft == "raccourci"):
+                                    self._listSortie = [self._language.getPhraseSocket("openArreraRaccourci")
+                                        , ""]
+                                    self._socket.sendData("ouvre " + "arrera raccourci")
+                                else :
+                                    self._socket.sendData("ouvre " + soft)
+                                    self._listSortie = [self._language.getPhraseSocket("openSoftSocket").format(softSocket=soft),""]
                         else :
                             self._listSortie = [self._fonctionArreraNetwork.sortieNoOpen(), ""]
 

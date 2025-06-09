@@ -420,10 +420,14 @@ class fncArreraNetwork:
     def sortieOpenYoutube(self):
         socket = self.__gestionNeuron.getSocketObjet()
 
-        if(socket.getServeurOn() == True):
-            sortie = socket.sendData("website " + "https://www.youtube.com/")
+        if (self.__gestionNeuron.getEtatNeuronObjet().getSocket() == True):
+            if(socket.getServeurOn() == True):
+                sortie = socket.sendData("website " + "https://www.youtube.com/")
+            else :
+                sortie = webbrowser.open("https://www.youtube.com/")
         else :
             sortie = webbrowser.open("https://www.youtube.com/")
+
         if sortie :
             text = self.__mLanguage.getPhraseOpen("6")
         else :
