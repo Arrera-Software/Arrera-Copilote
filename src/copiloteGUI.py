@@ -797,6 +797,19 @@ class guiCopilote:
                 self.__paroleSix(outSix)
                 self.__paroleRyley(outRyley)
 
+    def __sendRyley(self, texte:str):
+        self.__assistantRyley.neuron(texte)
+        nbSortieRyley = self.__assistantRyley.getValeurSortie()
+        listSortieRyley = self.__assistantRyley.getListSortie()
+
+        if nbSortieRyley == 5 :
+            # Parole ouverture logicil
+            print()
+
+
+
+
+
     def __traimentNeuronal(self, nb:int, liste:list):
         match nb:
             case 0:
