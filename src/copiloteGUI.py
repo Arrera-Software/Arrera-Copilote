@@ -19,6 +19,7 @@ class guiCopilote:
         self.__soundState = False
         self.__microState = False
         self.__microTrigger = False
+        self.__is_listening = False
         # Boot ArreraTK
         self.__arrTK = CArreraTK()
 
@@ -1191,6 +1192,16 @@ class guiCopilote:
          if not self.__microState:
             if self.__arrVoice.getNbWord() == 0:
                 self.__enableMicro()
+            else :
+                if not self.__is_listening:
+                    self.__is_listening = True
+                    self.listen_thread = th.Thread(target=self.__Tigerloop, daemon=True)
+                    self.listen_thread.start()
+                else:
+                    self.__is_listening = False
+                    self.__btnMicroNormal.configure(image=self.__imgBtnMicroOff)
+                    self.__btnMicroLitle.configure(image=self.__imgBtnMicroOff)
+
 
     def __copiloteListen(self):
         sortie = self.__arrVoice.listen()
@@ -1210,3 +1221,12 @@ class guiCopilote:
                 self.__entryUserCopilote.insert(0, self.__arrVoice.getTextMicro())
                 time.sleep(0.4)
                 self.__actionBTNAcceuil()
+
+
+    def __Tigerloop(self):
+        while self.__is_listening:
+            self.__btnMicroLitle.configure(image=self.__imgBtnMicroTiger)
+            self.__btnMicroNormal.configure(image=self.__imgBtnMicroTiger)
+            result = self.__arrVoice.trigerWord()
+            if result == 1 :
+                self.__enableMicro()
