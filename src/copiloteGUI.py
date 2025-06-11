@@ -203,10 +203,7 @@ class guiCopilote:
                                                                         imageDark=emplacementDark + "firstBoot.png",
                                                                         width=500, height=600)
 
-        self.__bottomBackgrownOpen = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                             imageLight=emplacementLight + "bottomOpen.png",
-                                                                             imageDark=emplacementDark + "bottomOpen.png",
-                                                                             width=500, height=70,)
+
 
         self.__backgroudBoot1 = self.__arrTK.createArreraBackgroudImage(self.__screen,
                                                                         imageLight=emplacementLight + "booting1.png",
@@ -298,17 +295,19 @@ class guiCopilote:
 
         # Btn open
 
-        self.__btnTableurOpenCopilote = self.__arrTK.createButton(self.__bottomBackgrownOpen, width=35, height=35,
+        # Temporaire pour le mode copilote
+
+        self.__btnTableurOpenCopilote = self.__arrTK.createButton(self.__screen, width=35, height=35,
                                                                   image=imgTableurOpen,
                                                                   command=lambda: self.__winHelpFileAndProjet(1),
                                                                   bg="#694d6b", hoverbg="#1d1020")
 
-        self.__btnWordOpenCopilote = self.__arrTK.createButton(self.__bottomBackgrownOpen, width=35, height=35,
+        self.__btnWordOpenCopilote = self.__arrTK.createButton(self.__screen, width=35, height=35,
                                                                image=imgWordOpen,
                                                                command=lambda: self.__winHelpFileAndProjet(2),
                                                                bg="#694d6b", hoverbg="#1d1020")
 
-        self.__btnProjetOpenCopilote = self.__arrTK.createButton(self.__bottomBackgrownOpen, width=35, height=35,
+        self.__btnProjetOpenCopilote = self.__arrTK.createButton(self.__screen, width=35, height=35,
                                                                  image=imgProjetOpen,
                                                                  command=lambda: self.__winHelpFileAndProjet(3),
                                                                  bg="#694d6b", hoverbg="#1d1020")
@@ -591,7 +590,7 @@ class guiCopilote:
         self.__copiloteSpeak.pack_forget()
         self.__topBackgrown.pack_forget()
         self.__frameBackgroud.pack_forget()
-        self.__bottomBackgrownOpen.pack_forget()
+        # self.__bottomBackgrownOpen.pack_forget()
         self.__backgroundActu.pack_forget()
         self.__backgroundFirstboot.pack_forget()
         self.__backgroundTopCodehelp.pack_forget()
@@ -608,7 +607,7 @@ class guiCopilote:
 
     def __viewOpen(self):
         self.__topBackgrown.pack()
-        self.__bottomBackgrownOpen.pack()
+        # self.__bottomBackgrownOpen.pack()
         self.__frameBackgroud.pack()
 
     def __viewCodehelp(self):
