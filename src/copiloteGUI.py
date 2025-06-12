@@ -35,6 +35,14 @@ class guiCopilote:
         self.__assistantRyley = ArreraNetwork(neuronConfigFileRyley)
         self.__assistantSix = ArreraNetwork(neuronConfigFileSix)
 
+        # Atribut pour les sortie des neuron
+        self.__listSortieRyley = []
+        self.__listSortieSix = []
+        self.__outSpecial= ""
+
+        self.__nbSortieSix = 0
+        self.__nbSortieRyley = 0
+
         # Demarage objet language Ryley
         self.__language = CLanguageCopilote("fichierJSON/paroleCopilote.json",
                                             "fichierJSON/paroleSix.json",
@@ -707,83 +715,91 @@ class guiCopilote:
             self.__entryUserLittle.delete(0, END)
             self.__sendCopilote(texte)
 
-    def __sendCopilote(self, texte:str):
-        specialFnc = False
-
-        out = ""
-        outSix = ""
-        outRyley = ""
-
-        if ("mode normal" in texte and self.__litleWindowsActived != 0):
+    def __copiloteBrain(self, texte: str):
+        if "mode normal" in texte and self.__litleWindowsActived != 0:
             self.__modeBigWindows()
             return
-        elif ("mode petit" in texte or "mode discret" in texte and self.__litleWindowsActived == 0):
-                self.__modeLittleWindows()
-                return
-        elif ("parametre" in texte):
+        elif "mode petit" in texte or "mode discret" in texte and self.__litleWindowsActived == 0:
+            self.__modeLittleWindows()
+            return
+        elif "parametre" in texte:
             self.__viewParametre()
-        elif ("codehelp" in texte):
+        elif "codehelp" in texte:
             self.__modeCodehelp()
-        else:
-            self.__assistantRyley.neuron(texte)
-            self.__assistantSix.neuron(texte)
 
-            nbSortieRyley = self.__assistantRyley.getValeurSortie()
-            listSortieRyley = self.__assistantRyley.getListSortie()
+    def __sixBrain(self,texte):
+        self.__assistantRyley.neuron(texte)
+        self.__nbSortieRyley = self.__assistantRyley.getValeurSortie()
+        self.__listSortieRyley = self.__assistantRyley.getListSortie()
+        return self.__traimentNeuronal(self.__nbSortieRyley, self.__listSortieRyley)
 
-            nbSortieSix = self.__assistantSix.getValeurSortie()
-            listSortieSix = self.__assistantSix.getListSortie()
+    def __ryleyBrain(self,texte):
+        self.__assistantSix.neuron(texte)
+        self.__nbSortieSix = self.__assistantSix.getValeurSortie()
+        self.__listSortieSix = self.__assistantSix.getListSortie()
+        return self.__traimentNeuronal(self.__nbSortieSix, self.__listSortieSix)
 
-            if (nbSortieRyley == 3 and nbSortieSix == 3):
-                out = self.__language.getPhOpenActu()
-                self.__paroleCopilote(out)
-                self.__viewResumer(listSortieRyley, 2)
-                specialFnc = True
+    def __traitementSpecial(self):
+        if self.__nbSortieRyley == 3 and self.__nbSortieSix == 3:
+            self.__outSpecial = self.__language.getPhOpenActu()
+            self.__paroleCopilote(self.__outSpecial)
+            self.__viewResumer(self.__listSortieRyley, 2)
+            return True
 
-            elif (nbSortieRyley == 9 and nbSortieSix == 9):
-                out = self.__language.getPhReadWord()
-                self.__windowsReadFile(listSortieRyley, 2)
-                self.__paroleCopilote(out)
-                specialFnc = True
-            elif (nbSortieRyley == 12 and nbSortieSix == 12):
-                out = self.__language.getPhResumerActu()
-                self.__viewResumer(listSortieRyley, 1)
-                self.__paroleCopilote(out)
-                specialFnc = True
-            elif (nbSortieRyley == 13 and nbSortieSix == 13):
-                out = self.__language.getPhReadTableur()
-                self.__windowsReadFile(listSortieRyley, 1)
-                self.__paroleCopilote(out)
-                specialFnc = True
-            elif (nbSortieRyley == 17 and nbSortieSix == 17):
-                self.__windowsHelp(listSortieRyley)
-            elif (nbSortieRyley == 18 and nbSortieSix == 18):
-                out = self.__language.getPhResumerAgenda()
-                self.__viewResumer(listSortieRyley, 3)
-                self.__paroleCopilote(out)
-                specialFnc = True
-            elif (nbSortieRyley == 19 and nbSortieSix == 19):
-                out = self.__language.getPhResumerAll()
-                self.__viewResumer(listSortieRyley, 4)
-                self.__paroleCopilote(out)
-                specialFnc = True
-            else :
-                outSix  = self.__traimentNeuronal(nbSortieSix, listSortieSix)
-                outRyley = self.__traimentNeuronal(nbSortieRyley, listSortieRyley)
-                specialFnc = False
+        elif self.__nbSortieRyley == 9 and self.__nbSortieSix == 9:
+            self.__outSpecial = self.__language.getPhReadWord()
+            self.__windowsReadFile(self.__listSortieRyley, 2)
+            self.__paroleCopilote(self.__outSpecial)
+            return True
 
-        if (specialFnc == True):
-            if self.__codeHelpActived == True:
-                self.__paroleCodehelp(out)
+        elif self.__nbSortieRyley == 12 and self.__nbSortieSix == 12:
+            self.__outSpecial = self.__language.getPhResumerActu()
+            self.__viewResumer(self.__listSortieRyley, 1)
+            self.__paroleCopilote(self.__outSpecial)
+            return True
+
+        elif self.__nbSortieRyley == 13 and self.__nbSortieSix == 13:
+            self.__outSpecial = self.__language.getPhReadTableur()
+            self.__windowsReadFile(self.__listSortieRyley, 1)
+            self.__paroleCopilote(self.__outSpecial)
+            return True
+
+        elif self.__nbSortieRyley == 17 and self.__nbSortieSix == 17:
+            self.__windowsHelp(self.__listSortieRyley)
+
+        elif self.__nbSortieRyley == 18 and self.__nbSortieSix == 18:
+            self.__outSpecial = self.__language.getPhResumerAgenda()
+            self.__viewResumer(self.__listSortieRyley, 3)
+            self.__paroleCopilote(self.__outSpecial)
+            return True
+
+        elif self.__nbSortieRyley == 19 and self.__nbSortieSix == 19:
+            self.__outSpecial = self.__language.getPhResumerAll()
+            self.__viewResumer(self.__listSortieRyley, 4)
+            self.__paroleCopilote(self.__outSpecial)
+            return True
+
+        else :
+            return False
+
+    def __sendCopilote(self, texte:str):
+        self.__outSpecial = ""
+        outSix = self.__ryleyBrain(texte)
+        outRyley = self.__sixBrain(texte)
+        specialFnc = self.__traitementSpecial()
+
+        if specialFnc:
+            if self.__codeHelpActived:
+                self.__paroleCodehelp(self.__outSpecial)
 
             elif self.__litleWindowsActived == 1 or self.__litleWindowsActived == 2:
-                self.__paroleLittle(out)
+                self.__paroleLittle(self.__outSpecial)
 
             else :
-                self.__paroleSix(out)
-                self.__paroleRyley(out)
+                self.__paroleSix(self.__outSpecial)
+                self.__paroleRyley(self.__outSpecial)
         else :
-            if self.__codeHelpActived == True:
+            if self.__codeHelpActived:
                 self.__paroleCodehelp(outRyley)
 
             elif self.__litleWindowsActived == 1:
@@ -795,19 +811,6 @@ class guiCopilote:
             else :
                 self.__paroleSix(outSix)
                 self.__paroleRyley(outRyley)
-
-    def __sendRyley(self, texte:str):
-        self.__assistantRyley.neuron(texte)
-        nbSortieRyley = self.__assistantRyley.getValeurSortie()
-        listSortieRyley = self.__assistantRyley.getListSortie()
-
-        if nbSortieRyley == 5 :
-            # Parole ouverture logicil
-            print()
-
-
-
-
 
     def __traimentNeuronal(self, nb:int, liste:list):
         match nb:
