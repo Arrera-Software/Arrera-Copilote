@@ -44,8 +44,9 @@ class guiCopilote:
         self.__nbSortieRyley = 0
 
         # Demarage objet language Ryley
-        self.__language = CLanguageCopilote("fichierJSON/paroleCopilote.json",
-                                            "fichierJSON/paroleSix.json",
+        self.__language = CLanguageCopilote("language/copilote/paroleCopilote.json",
+                                            "language/copilote/paroleSix.json",
+                                            "language/copilote/paroleRyley.json",
                                               "fichierJSON/aideRyley.json",
                                               "fichierJSON/firstBootCopilote.json",
                                             "fichierJSON/configUser.json")
@@ -781,6 +782,32 @@ class guiCopilote:
 
         else :
             return False
+
+    def __reponseRyley(self, outSix:str ,outRyley:str,nUsedSix:str,nUsedRyley:str):
+
+        if nUsedSix == "software" and  nUsedRyley == "none":
+            print()
+            # Phrase Ryley Six Open Soft
+        elif nUsedSix == "open" and  nUsedRyley == "none":
+            print()
+            # Phrase Ryley Six Open
+        elif nUsedSix == "word" and  nUsedRyley == "none":
+            print()
+            # Phrase ryley Six Work
+        else :
+            print()
+
+    def __reponseSix(self, outSix:str ,outRyley:str,nUsedSix:str,nUsedRyley:str):
+        if nUsedRyley == "search" and  nUsedSix == "none":
+            print()
+            # Phrase Six Ryley Search
+        elif nUsedRyley == "codehelp" and  nUsedSix == "none":
+            print()
+            # Phrase Six Ryley Codehelp
+        elif nUsedRyley == "service" and  nUsedSix == "none":
+            print()
+        else :
+            print()
 
     def __sendCopilote(self, texte:str):
         self.__outSpecial = ""
