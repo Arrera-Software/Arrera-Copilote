@@ -40,6 +40,9 @@ class guiCopilote:
         self.__listSortieSix = []
         self.__outSpecial= ""
 
+        self.__neuronUsedSix = ""
+        self.__neuronUsedRyley = ""
+
         self.__nbSortieSix = 0
         self.__nbSortieRyley = 0
 
@@ -728,16 +731,18 @@ class guiCopilote:
         elif "codehelp" in texte:
             self.__modeCodehelp()
 
-    def __sixBrain(self,texte):
+    def __ryleyBrain(self, texte):
         self.__assistantRyley.neuron(texte)
         self.__nbSortieRyley = self.__assistantRyley.getValeurSortie()
         self.__listSortieRyley = self.__assistantRyley.getListSortie()
+        self.__neuronUsedRyley = self.__assistantRyley.getNeuronUsed()
         return self.__traimentNeuronal(self.__nbSortieRyley, self.__listSortieRyley)
 
-    def __ryleyBrain(self,texte):
+    def __sixBrain(self, texte):
         self.__assistantSix.neuron(texte)
         self.__nbSortieSix = self.__assistantSix.getValeurSortie()
         self.__listSortieSix = self.__assistantSix.getListSortie()
+        self.__neuronUsedSix = self.__assistantSix.getNeuronUsed()
         return self.__traimentNeuronal(self.__nbSortieSix, self.__listSortieSix)
 
     def __traitementSpecial(self):
@@ -783,36 +788,41 @@ class guiCopilote:
         else :
             return False
 
-    def __reponseRyley(self, outSix:str ,outRyley:str,nUsedSix:str,nUsedRyley:str):
+    def __reponseRyley(self,outRyley:str,nUsedSix:str,nUsedRyley:str):
 
         if nUsedSix == "software" and  nUsedRyley == "none":
-            print()
-            # Phrase Ryley Six Open Soft
+            return self.__language.getRyleyPhOpenArrera()
         elif nUsedSix == "open" and  nUsedRyley == "none":
-            print()
-            # Phrase Ryley Six Open
+            return self.__language.getRyleyPhOpen()
         elif nUsedSix == "word" and  nUsedRyley == "none":
-            print()
-            # Phrase ryley Six Work
+            return self.__language.getRyleyPhWork()
+        if nUsedSix == "search" and  nUsedRyley == "none":
+            return self.__language.getRyleyPhSearch()
         else :
-            print()
+            return outRyley
 
-    def __reponseSix(self, outSix:str ,outRyley:str,nUsedSix:str,nUsedRyley:str):
-        if nUsedRyley == "search" and  nUsedSix == "none":
-            print()
-            # Phrase Six Ryley Search
-        elif nUsedRyley == "codehelp" and  nUsedSix == "none":
-            print()
-            # Phrase Six Ryley Codehelp
+    def __reponseSix(self,outSix:str,nUsedSix:str,nUsedRyley:str):
+        if nUsedRyley == "codehelp" and  nUsedSix == "none":
+            return self.__language.getSixPhOpenCodehelp()
         elif nUsedRyley == "service" and  nUsedSix == "none":
-            print()
+            return self.__language.getSixPhService()
         else :
-            print()
+            return outSix
 
     def __sendCopilote(self, texte:str):
         self.__outSpecial = ""
-        outSix = self.__ryleyBrain(texte)
-        outRyley = self.__sixBrain(texte)
+        outRyley = self.__ryleyBrain(texte)
+        outSix = self.__sixBrain(texte)
+
+        print(outSix)
+        print(outRyley)
+
+        outRyley = self.__reponseRyley(outRyley, self.__neuronUsedSix, self.__neuronUsedRyley)
+        outSix = self.__reponseSix(outSix, self.__neuronUsedSix, self.__neuronUsedRyley)
+
+        print(outSix)
+        print(outRyley)
+
         specialFnc = self.__traitementSpecial()
 
         if specialFnc:

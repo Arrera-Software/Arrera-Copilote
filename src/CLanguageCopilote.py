@@ -92,3 +92,21 @@ class CLanguageCopilote :
 
     def getPhDesactiveSound(self,nb:int):
         return  self.__languageSix.lectureJSON("phDisableSound" + str(nb)).format(genre=self.__jsonUser.lectureJSON("genre"), nb=nb)
+
+    def getRyleyPhOpenArrera(self):
+        return self.__languageRyley.lectureJSON("phOpenArrera")
+
+    def getRyleyPhOpen(self):
+        return self.__languageRyley.lectureJSON("phOpen")
+
+    def getRyleyPhWork(self):
+        return self.__languageRyley.lectureJSON("phWork")
+
+    def getRyleyPhSearch(self):
+        return self.__languageRyley.lectureJSON("phSearch")
+
+    def getSixPhService(self):
+        return self.__languageSix.lectureJSON("phService")
+
+    def getSixPhOpenCodehelp(self):
+        return self.__languageSix.lectureJSON("phOpenCodehelp")

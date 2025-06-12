@@ -2,5 +2,7 @@
   "phActiveSound": "Très bien {genre}, je passe en mode vocal pour t’assister au mieux. Ryley reste en mode texte.",
   "phDisableSound1": "Très bien {genre}, je désactive le mode vocal. Mais je reste en mode texte, comme Ryley, pour continuer à t’assister.",
   "phActiveSoundLitle": "Très bien {genre}, je passe en mode vocal pour t’assister au mieux.",
-  "phDisableSound2": "Très bien {genre}, je désactive le mode vocal. Mais je reste en mode texte pour continuer à t’assister."
+  "phDisableSound2": "Très bien {genre}, je désactive le mode vocal. Mais je reste en mode texte pour continuer à t’assister.",
+  "phService": "Ryley et plus capable de vous aidez que moi pour sur service.",
+  "phOpenCodehelp":"C'est Ryley qui s'occupe de CODEHELP, il est plus fort que moi en développement."
 }
