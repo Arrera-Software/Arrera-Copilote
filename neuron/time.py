@@ -6,7 +6,7 @@ class neuroneTime(neuronBase):
         #Initilisation des variable nbRand et text et valeur
         self._listSortie = ["",""]
         self._valeurOut = 0
-        if self._gestNeuron.getTime() == True :
+        if self._gestNeuron.getTime():
             #reponse neuron time
             if ((("resumer" in requette) and ("tache" in requette)) or
                     (("resumer" in requette) and ("agenda" in requette))):
@@ -15,33 +15,33 @@ class neuroneTime(neuronBase):
                     self._valeurOut = nb
                     self._objHistorique.setAction("Resumer des tache et des evenement du jour")
             elif self.__neuronTime(requette) == 1:
-                if (self._valeurOut==0):
+                if self._valeurOut==0:
                     self._valeurOut = self._gestionNeuron.verrifSortie(self._listSortie[0])
             elif self.__neuronAgenda(requette) == 1:
-                if (self._valeurOut==0):
+                if self._valeurOut==0:
                     self._valeurOut = self._gestionNeuron.verrifSortie(self._listSortie[0])
             elif self.neuronTache(requette) == 1:
-                if (self._valeurOut==0):
+                if self._valeurOut==0:
                     self._valeurOut = self._gestionNeuron.verrifSortie(self._listSortie[0])
 
     def __neuronTime(self,requette:str):
-        if ("heure" in requette) :
+        if "heure" in requette:
             self._listSortie = [self._fonctionArreraNetwork.sortieHeure(), ""]
             self._valeurOut = 1
             return 1
-        elif ("date" in requette) :
+        elif "date" in requette:
             self._listSortie = [self._fonctionArreraNetwork.sortieDate(), ""]
             self._valeurOut = 1
             return 1
-        elif ("chronometre" in requette or "chrono" in requette):
+        elif "chronometre" in requette or "chrono" in requette:
             self._listSortie = [self._fonctionArreraNetwork.sortieOpenChrono(), ""]
             self._valeurOut = 5
             return 1
-        elif ("horloge" in requette) :
+        elif "horloge" in requette:
             self._listSortie = [self._fonctionArreraNetwork.sortieOpenHorloge(), ""]
             self._valeurOut = 5
             return 1
-        elif ("minuteur" in requette) :
+        elif "minuteur" in requette:
             self._listSortie = [self._fonctionArreraNetwork.sortieOpenSimpleMinuteur(), ""]
             self._valeurOut = 5
             return 1

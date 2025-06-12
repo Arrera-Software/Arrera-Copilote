@@ -16,6 +16,10 @@ class ArreraNetwork :
         self.__listOut =  [] 
         self.__valeurOut = 0
         self.__networkRunning = True
+        self.__neuronUsed = str
+        self.__listNeuron = ["chatBot","service","api",
+                             "software","open","search",
+                             "time","codehelp","word"]
         #Ouverture fichier de configuration
         self.__configNeuron = jsonWork(fichierConfiguration)
         self.__fichierUtilisateur = jsonWork(self.__configNeuron.lectureJSON("fileUser"))
@@ -71,7 +75,10 @@ class ArreraNetwork :
         return str(text)
     
     def getListSortie(self)->list :
-        return self.__listOut 
+        return self.__listOut
+
+    def getNeuronUsed(self)-> type[str]:
+        return self.__neuronUsed
 
     def getValeurSortie(self)->int :
         """
@@ -117,6 +124,7 @@ class ArreraNetwork :
         # Var de l'objet
         self.__valeurOut = 0
         self.__listOut =  []
+        self.__neuronUsed = "none"
         # Service
         self.__service.neurone(requette)
         self.__valeurOut = self.__service.getValeurSortie()
@@ -133,17 +141,17 @@ class ArreraNetwork :
                     #code help
                     self.__codehelp.neurone(requette)
                     self.__valeurOut = self.__codehelp.getValeurSortie()
-                    if (self.__valeurOut == 0 ):
+                    if self.__valeurOut == 0:
                         #work
                         self.__work.neurone(requette)
                         self.__valeurOut = self.__work.getValeurSortie()
-                        if (self.__valeurOut == 0 ):
+                        if self.__valeurOut == 0:
                             #open
                             self.__open.neurone(requette)
                             self.__valeurOut = self.__open.getValeurSortie()
                             if self.__valeurOut == 0 :
                                 #search
-                                if self.__etatReseau == True :
+                                if self.__etatReseau:
                                     self.__search.neurone(requette)
                                     self.__valeurOut = self.__search.getValeurSortie()
                                 else :
@@ -155,7 +163,7 @@ class ArreraNetwork :
 
                                     if self.__valeurOut == 0 :
                                         #api
-                                        if self.__etatReseau == True :
+                                        if self.__etatReseau:
                                             self.__api.neurone(requette)
                                             self.__valeurOut = self.__api.getValeurSortie()
                                         else :
@@ -173,25 +181,34 @@ class ArreraNetwork :
                                                 self.__listOut = [self.__formuleNeuron.nocomprehension(),""]
                                         else :
                                             self.__listOut = self.__api.getListSortie()
+                                            self.__neuronUsed = self.__listNeuron[2]
                                     else :
                                         self.__listOut = self.__chatBot.getListSortie()
+                                        self.__neuronUsed = self.__listNeuron[0]
                                 else :
                                     self.__listOut = self.__search.getListSortie()
+                                    self.__neuronUsed = self.__listNeuron[5]
                             else :
                                 self.__listOut = self.__open.getListSortie()
+                                self.__neuronUsed = self.__listNeuron[4]
                         else :
                             self.__listOut = self.__work.getListSortie()
+                            self.__neuronUsed = self.__listNeuron[8]
                     else :
                         self.__listOut = self.__codehelp.getListSortie()
+                        self.__neuronUsed = self.__listNeuron[7]
                 else :
                     self.__listOut = self.__time.getListSortie()
+                    self.__neuronUsed = self.__listNeuron[6]
             else :
                 self.__listOut = self.__software.getListSortie()
+                self.__neuronUsed = self.__listNeuron[3]
         else :
             self.__listOut = self.__service.getListSortie()
+            self.__neuronUsed = self.__listNeuron[1]
 
         #Sauvegarde de la sortie et de l'entrée
-        if ((self.__valeurOut  == 3) or (self.__valeurOut == 12) or (self.__valeurOut == 11)) :
+        if (self.__valeurOut == 3) or (self.__valeurOut == 12) or (self.__valeurOut == 11):
             self.__gestionnaire.setOld("requette api",requette)
         else :
             self.__gestionnaire.setOld(self.__listOut[0],requette)

@@ -7,9 +7,9 @@ class neuroneCodehelp(neuronBase) :
         #Initilisation des variable nbRand et text et valeur
         self._listSortie = ["", ""]
         self._valeurOut = 0
-        if self._gestNeuron.getCodeHelp() == True:
-            if ("ouvre" in requette):
-                if (("organisateur de variable" in requette)or("orga var" in requette)):
+        if self._gestNeuron.getCodeHelp():
+            if "ouvre" in requette:
+                if ("organisateur de variable" in requette)or("orga var" in requette):
                     self._listSortie = [self._fonctionArreraNetwork.sortieOpenOrgaVar(), ""]
                     self._objHistorique.setAction("Ouverture organisateur de varriable")
                     self._valeurOut = 5
@@ -18,14 +18,14 @@ class neuroneCodehelp(neuronBase) :
                     self._listSortie=[self._fonctionArreraNetwork.sortieOpenColorSelecteur(), ""]
                     self._objHistorique.setAction("Ouverture selecteur de couleur")
                     self._valeurOut = 5
-                elif ("site github" in requette):
+                elif "site github" in requette:
                     self._listSortie = [self._fonctionArreraNetwork.sortieOpenSiteGithub(), ""]
                     self._objHistorique.setAction("Ouverture du site github")
-                elif (("gestion github" in requette) or ("gest github" in requette)):
+                elif ("gestion github" in requette) or ("gest github" in requette):
                     self._listSortie = [self._fonctionArreraNetwork.sortieOpenGuiGithub(), ""]
                     self._objHistorique.setAction("Ouverture de logiciel de gestion github")
                     self._valeurOut = 5
-                elif ("librairy" in requette):
+                elif "librairy" in requette:
                     self._listSortie = [self._fonctionArreraNetwork.sortieOpenLibrairy(), ""]
                     self._objHistorique.setAction("Ouverture de la librairy codehelp")
                     self._valeurOut = 5
@@ -45,5 +45,5 @@ class neuroneCodehelp(neuronBase) :
 
             
             #Mise a jour de la valeur
-            if (self._valeurOut == 0):
+            if self._valeurOut == 0:
                 self._valeurOut = self._gestionNeuron.verrifSortie(self._listSortie[0])

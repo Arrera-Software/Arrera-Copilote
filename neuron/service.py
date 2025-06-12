@@ -6,7 +6,7 @@ class neuroneService(neuronBase) :
         #Initilisation des variable nbRand et text et valeur
         self._listSortie = ["", ""]
         self._valeurOut = 0
-        if self._gestNeuron.getService() == True :
+        if self._gestNeuron.getService():
             #reponse du neuron main
             if (("lire" in requette or "lit" in requette or "lis" in requette) and
                     ("passage" in requette or "truc" in requette or "cela" in requette or
@@ -27,12 +27,12 @@ class neuroneService(neuronBase) :
                         self._objHistorique.setAction("Calcule par texte")
                     else :
                         self._listSortie = [self._fonctionArreraNetwork.sortieErrorCalcule(), ""]
-            elif (("ouvre la documentation" in requette)or("montre la documentation" in requette)):
+            elif ("ouvre la documentation" in requette)or("montre la documentation" in requette):
                     self._listSortie = [self._fonctionArreraNetwork.sortieOpenDocumentation(), ""]
                     webbrowser.open(self._gestionNeuron.getLinkDoc())
-            elif ("corrige" in requette):
+            elif "corrige" in requette:
                     self._listSortie = [self._fonctionArreraNetwork.sortieCorrection(requette), ""]
 
             #Mise a jour de la valeur
-            if (self._valeurOut==0):
+            if self._valeurOut==0:
                 self._valeurOut = self._gestionNeuron.verrifSortie(self._listSortie[0])

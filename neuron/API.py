@@ -103,12 +103,12 @@ class neuroneAPI(neuronBase) :
         self._valeurOut = 0
 
 
-        if self._gestNeuron.getAPI() == True :
+        if self._gestNeuron.getAPI():
             #reponse du neuron main
-            if (("resumer actualites" in requette) or ("resumer actu" in requette)) :
+            if ("resumer actualites" in requette) or ("resumer actu" in requette):
                 self._valeurOut,self._listSortie = self._fonctionArreraNetwork.sortieResumerActualite()
                 self._objHistorique.setAction("Resumer actualiter")
-            elif (("resumer" in requette) and (("jour" in requette) or ("aujourd'hui" in requette))) :
+            elif ("resumer" in requette) and (("jour" in requette) or ("aujourd'hui" in requette)):
                 nb,listout = self._fonctionArreraNetwork.sortieResumerAll()
                 self._listSortie = listout
                 self._valeurOut = nb
@@ -129,7 +129,7 @@ class neuroneAPI(neuronBase) :
                     self._listSortie = [self._fonctionArreraNetwork.sortieItineraire(requette), ""]
                     self._valeurOut = 1
                     self._objHistorique.setAction("Ouverture d'un itineraire sur google map")
-            elif ("gps aide" in requette):
+            elif "gps aide" in requette:
                     self._listSortie = [self._fonctionArreraNetwork.sortieHelpItineraire(), ""]
                     self._valeurOut = 1
             elif "traduis" in requette or "traduction" in requette or "traduire" in requette :
@@ -140,7 +140,7 @@ class neuroneAPI(neuronBase) :
                         if listeLang[i] in chaineCarractere :
                             presenceLang = True
                             break
-                    if presenceLang == True :
+                    if presenceLang:
                         presenceLang = False
                         firstLang = chaine.firstMots(chaineCarractere,listeLang)
                         chaineCarractere = chaineCarractere.replace(firstLang,"")
@@ -148,7 +148,7 @@ class neuroneAPI(neuronBase) :
                             if listeLang[i] in chaineCarractere :
                                 presenceLang = True
                                 break
-                        if presenceLang == True :
+                        if presenceLang:
                             secondLang = chaine.firstMots(chaineCarractere,listeLang)
                             self._listSortie= [
                                 self._fonctionArreraNetwork.sortieTraducteur(dictLang[firstLang], dictLang[secondLang])

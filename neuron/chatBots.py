@@ -18,7 +18,7 @@ class neuroneDiscution(neuronBase) :
         #Initilisation des variable nbRand et text et valeur
         self._listSortie = ["", ""]
         self._valeurOut = 0
-        if self._gestNeuron.getChatbot() == True :
+        if self._gestNeuron.getChatbot():
             #Recuperation de l'heure
             hour = datetime.now().hour
             text = ""
@@ -28,10 +28,10 @@ class neuroneDiscution(neuronBase) :
             oldsortie = listOldSortie[1]
             name = self._gestionNeuron.getName()
             #Reponse chat bot
-            if  (("salut" in requette)   or ("bonjour" in requette)  or( "bonsoir" in requette)):
+            if ("salut" in requette)   or ("bonjour" in requette)  or("bonsoir" in requette):
                 text = self.__formule.bootNoHist(hour)
 
-            elif (("raconter une blague" in requette) or ("raconte moi une blague" in requette) or ("raconte une blague" in requette)) :
+            elif ("raconter une blague" in requette) or ("raconte moi une blague" in requette) or ("raconte une blague" in requette):
                 if (("vous etes pas drole" in oldrequette) or( "tu es pas drole" in oldrequette)
                     or ("c'est pas drole" in oldrequette) or ("pas drole" in oldrequette)) :
 
@@ -57,12 +57,12 @@ class neuroneDiscution(neuronBase) :
             elif (("Avant de dire sa , laisse t'en raconter une" in oldsortie)
                     or ("Avant de dire sa , laissez-vous en raconter une" in oldsortie)) :
 
-                    if ("non" in requette) :
+                    if "non" in requette:
 
                         nbRand = random.randint(0,1)
                         text = self.__language.getPhraseChatBotList("ph4Blague")[nbRand]
 
-                    elif ("oui" in requette) :
+                    elif "oui" in requette:
 
                             nbRand = random.randint(0,8)
                             text = (self.__language.getPhraseChatBotNormal("ph5Blague") +
@@ -77,7 +77,7 @@ class neuroneDiscution(neuronBase) :
                                     self.__language.getBlague(nbRand) + " " +
                                     self.__language.getReponseBlague(nbRand) + " .")
 
-                    elif ("pas besoin" in requette) :
+                    elif "pas besoin" in requette:
 
                             nbRand = random.randint(0,1)
                             text = self.__language.getPhraseChatBotList("ph6Blague")[nbRand]
@@ -85,7 +85,7 @@ class neuroneDiscution(neuronBase) :
             elif (("Je peux vous en racontez une autre" in oldsortie)
                     or ("Je peux t'en raconter une autre" in oldsortie)
                     or ("Si tu veux je peux t'en raconter une autre" in oldsortie)) :
-                    if (("vasy" in requette) or ("comme tu veux" in requette) or ("si vous voulez" in requette)) :
+                    if ("vasy" in requette) or ("comme tu veux" in requette) or ("si vous voulez" in requette):
 
                         nbRand = random.randint(0,8)
                         text = self.__language.getPhraseChatBotNormal("ph7Blague")+self.__language.getBlague(nbRand)+" "+self.__language.getReponseBlague(nbRand)+"."
@@ -93,7 +93,7 @@ class neuroneDiscution(neuronBase) :
             elif (("Désoler de ne pas etre drole pour vous " in oldsortie)
                     or ("Désoler si je ne suis pas drole" in oldsortie)
                     or ("Désoler de ne pas etre drole pour toi" in oldsortie)) :
-                    if ("pas grave" in requette) :
+                    if "pas grave" in requette:
                         text = self.__language.getPhraseChatBotNormal("ph8Blague")
 
                     elif (("ne sois pas desoler" in requette)
@@ -134,16 +134,16 @@ class neuroneDiscution(neuronBase) :
 
                     text = self.__language.getPhraseListeFonction()
 
-            elif ("non" in requette) :
+            elif "non" in requette:
                     text = self.__language.getPhraseChatBotNormal("phNon")
 
-            elif ("oui" in requette) :
+            elif "oui" in requette:
                     text = self.__language.getPhraseChatBotNormal("phOui")
 
-            elif ("merci" in requette) :
+            elif "merci" in requette:
                     text = self.__language.getPhraseChatBotNormal("phMerci")
 
-            elif  ("ta gueule" in requette or "tais toi" in requette) :
+            elif "ta gueule" in requette or "tais toi" in requette:
                     text = self.__language.getPhraseChatBotNormal("phTG")
 
             #Mise a jour de la valeur
