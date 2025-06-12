@@ -1,9 +1,10 @@
 from librairy.travailJSON import *
 
 class CLanguageCopilote :
-    def __init__(self, languageCopilote:str,languageSix:str,fileHelp:str, fileFirstBoot:str, fileUser:str):
+    def __init__(self, languageCopilote:str,languageSix:str,languageRyley:str,fileHelp:str, fileFirstBoot:str, fileUser:str):
         self.__languageCopilote = jsonWork(languageCopilote)
         self.__languageSix = jsonWork(languageSix)
+        self.__languageRyley = jsonWork(languageRyley)
         self.__help = jsonWork(fileHelp)
         self.__firstBoot = jsonWork(fileFirstBoot)
         self.__jsonUser = jsonWork(fileUser)
