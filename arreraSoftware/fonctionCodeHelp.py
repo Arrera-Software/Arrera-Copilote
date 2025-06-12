@@ -40,7 +40,7 @@ class fncCodehelp :
         self.__githubObjet.search(requette)
     
     def openSiteGithub(self):
-        w.open("www.github.com")
+        w.open("https://github.com/")
     
     def openGestionGithub(self):
         self.__githubObjet.GUI()
