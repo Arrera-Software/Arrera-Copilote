@@ -1105,7 +1105,7 @@ class guiCopilote:
 
         match mode :
             case 1 :
-                winRead.title("Arrera RYLEY : Lecture Tableur")
+                winRead.title("Arrera COPILOTE : Lecture Tableur")
                 labelTitleRead.configure(text="Lecture : Tableur")
                 textContent = ""
                 for i in range(0, len(liste)):
@@ -1113,7 +1113,7 @@ class guiCopilote:
                 self.__arrTK.insertTextOnTextBox(content, textContent)
 
             case 2 :
-                winRead.title("Arrera RYLEY : Lecture Traitement de texte")
+                winRead.title("Arrera COPILOTE : Lecture Traitement de texte")
                 labelTitleRead.configure(text="Lecture : Traitement de texte")
                 self.__arrTK.insertTextOnTextBox(content, liste[0])
 
@@ -1262,7 +1262,7 @@ class guiCopilote:
             else :
                 if not self.__is_listening:
                     self.__is_listening = True
-                    self.listen_thread = th.Thread(target=self.__Tigerloop, daemon=True)
+                    self.listen_thread = th.Thread(target=self.__tigerloop, daemon=True)
                     self.listen_thread.start()
                 else:
                     self.__is_listening = False
@@ -1290,7 +1290,7 @@ class guiCopilote:
                 self.__actionBTNAcceuil()
 
 
-    def __Tigerloop(self):
+    def __tigerloop(self):
         while self.__is_listening:
             self.__btnMicroLitle.configure(image=self.__imgBtnMicroTiger)
             self.__btnMicroNormal.configure(image=self.__imgBtnMicroTiger)
