@@ -614,26 +614,31 @@ class guiCopilote:
         self.__backgroundLitleWindowsSix.pack_forget()
 
     def __viewNormal(self):
+        self.__screen.focus_set()
         self.__topBackgrown.pack()
         self.__frameBackgroud.pack()
 
     def __viewOpen(self):
+        self.__screen.focus_set()
         self.__topBackgrown.pack()
         # self.__bottomBackgrownOpen.pack()
         self.__frameBackgroud.pack()
 
     def __viewCodehelp(self):
+        self.__screen.focus_set()
         self.__backgroundTopCodehelp.pack()
         self.__backgroundBottomCodehelp.pack()
         self.__frameBackgroudCodehelp.pack()
 
     def __modeNormal(self):
+        self.__screen.focus_set()
         self.__codeHelpActived = False
         self.__disableAllFrame()
         self.__viewNormal()
         self.setButtonOpen()
 
     def __modeCodehelp(self):
+        self.__screen.focus_set()
         self.__codeHelpActived = True
         if self.__litleWindowsActived != 0:
             self.__modeBigWindows()
@@ -704,6 +709,7 @@ class guiCopilote:
         if (self.__litleWindowsActived == 0 or self.__litleWindowsActived == 1 or self.__litleWindowsActived == 2) and self.__codeHelpActived == False:
             texte = self.__entryUserCopilote.get().lower()
             self.__entryUserCopilote.delete(0, END)
+            self.__screen.focus_set()
             self.__sendCopilote(texte)
 
 
@@ -711,12 +717,14 @@ class guiCopilote:
         if self.__codeHelpActived:
             texte = self.__entryUserCodehelp.get().lower()
             self.__entryUserCodehelp.delete(0, END)
+            self.__screen.focus_set()
             self.__sendCopilote(texte)
 
     def __actionBTNLitleWindows(self):
         if self.__litleWindowsActived == 1 or self.__litleWindowsActived == 2:
             texte = self.__entryUserLittle.get().lower()
             self.__entryUserLittle.delete(0, END)
+            self.__screen.focus_set()
             self.__sendCopilote(texte)
 
     def __copiloteBrain(self, texte: str):
@@ -1113,11 +1121,13 @@ class guiCopilote:
         self.__arrTK.placeTopCenter(labelTitleRead)
 
     def __viewParametre(self):
+        self.__screen.focus_set()
         self.__disableAllFrame()
         self.__arrGazelle.active()
         self.__arrGazelle.passQUITFNC(self.__quitParametre)
 
     def __quitParametre(self):
+        self.__screen.focus_set()
         self.__screen.protocol("WM_DELETE_WINDOW", self.__quitCopilote)
         self.__screen.maxsize(500, 600)
         self.__viewNormal()
@@ -1140,12 +1150,14 @@ class guiCopilote:
         self.__paroleCodehelp(self.__assistantRyley.getListSortie()[0])
 
     def __modeLittleWindows(self):
+        self.__screen.focus_set()
         self.__disableAllFrame()
         self.__screen.maxsize(500, 200)
         self.__screen.minsize(500, 200)
         self.__fChoiceLitleWindows.pack()
 
     def __modeLittleWindowsRyley(self):
+        self.__screen.focus_set()
         self.__disableAllFrame()
         self.__btnSoundLitle.place_forget()
         self.__btnMicroLitle.place_forget()
@@ -1155,6 +1167,7 @@ class guiCopilote:
         self.__paroleLittle(self.__language.getPhActiveModeLitleRyley())
 
     def __modeLittleWindowsSix(self):
+        self.__screen.focus_set()
         self.__disableAllFrame()
         self.__backgroundLitleWindowsSix.pack()
         self.__fBottomLitleWindows.pack()
@@ -1164,6 +1177,7 @@ class guiCopilote:
         self.__paroleLittle(self.__language.getPhActiveModelitleSix())
 
     def __modeBigWindows(self):
+        self.__screen.focus_set()
         self.__disableAllFrame()
         self.__screen.maxsize(500, 600)
         self.__screen.minsize(500, 600)
@@ -1230,7 +1244,7 @@ class guiCopilote:
             self.__screen.after(1000, self.__updateMicro)
 
     def __updateMicro(self):
-        if (self.__theardMicrophone.is_alive()):
+        if self.__theardMicrophone.is_alive():
             self.__screen.update()
             self.__btnMicroNormal.configure(image=self.__imgBtnMicroOn)
             self.__btnMicroLitle.configure(image=self.__imgBtnMicroOn)
