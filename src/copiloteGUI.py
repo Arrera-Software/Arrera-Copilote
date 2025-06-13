@@ -394,7 +394,7 @@ class guiCopilote:
         # Button
 
         btnSendLittle = self.__arrTK.createButton(self.__fBottomLitleWindows, image=imgSend,
-                                                  width=40, height=40, command=self.__actionBTNAcceuil,
+                                                  width=40, height=40, command=self.__actionBTNLitleWindows,
                                                   bg="#694d6b", hoverbg="#1d1020")
 
         btnBigWindows = self.__arrTK.createButton(self.__fBottomLitleWindows,image=imgBTNBigWindows,
@@ -714,7 +714,7 @@ class guiCopilote:
             self.__sendCopilote(texte)
 
     def __actionBTNLitleWindows(self):
-        if self.__litleWindowsActived != 0:
+        if self.__litleWindowsActived == 1 or self.__litleWindowsActived == 2:
             texte = self.__entryUserLittle.get().lower()
             self.__entryUserLittle.delete(0, END)
             self.__sendCopilote(texte)
@@ -814,14 +814,8 @@ class guiCopilote:
         outRyley = self.__ryleyBrain(texte)
         outSix = self.__sixBrain(texte)
 
-        print(outSix)
-        print(outRyley)
-
         outRyley = self.__reponseRyley(outRyley, self.__neuronUsedSix, self.__neuronUsedRyley)
         outSix = self.__reponseSix(outSix, self.__neuronUsedSix, self.__neuronUsedRyley)
-
-        print(outSix)
-        print(outRyley)
 
         specialFnc = self.__traitementSpecial()
 
@@ -850,7 +844,6 @@ class guiCopilote:
                 self.__paroleRyley(outRyley)
 
     def __traimentNeuronal(self, nb:int, liste:list):
-        print(nb)
         match nb:
             case 0:
                 return liste[0]
@@ -897,14 +890,20 @@ class guiCopilote:
         def anychar(event):
             if self.__windowsOS:
                 if event.keycode == 13:
-                    self.__actionBTNAcceuil()
-                    self.__actionBTNCodehelp()
-                    self.__actionBTNLitleWindows()
+                    if not self.__codeHelpActived and self.__litleWindowsActived == 0:
+                        self.__actionBTNAcceuil()
+                    elif self.__codeHelpActived:
+                        self.__actionBTNCodehelp()
+                    elif self.__litleWindowsActived == 1 or self.__litleWindowsActived == 2:
+                        self.__actionBTNLitleWindows()
             else:
                 if event.keycode == 36:
-                    self.__actionBTNAcceuil()
-                    self.__actionBTNCodehelp()
-                    self.__actionBTNLitleWindows()
+                    if not self.__codeHelpActived and self.__litleWindowsActived == 0:
+                        self.__actionBTNAcceuil()
+                    elif self.__codeHelpActived:
+                        self.__actionBTNCodehelp()
+                    elif self.__litleWindowsActived == 1 or self.__litleWindowsActived == 2:
+                        self.__actionBTNLitleWindows()
         self.__screen.bind("<Key>", anychar)
 
     def setButtonOpen(self):
