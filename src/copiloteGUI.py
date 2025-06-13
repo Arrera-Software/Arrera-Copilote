@@ -850,6 +850,7 @@ class guiCopilote:
                 self.__paroleRyley(outRyley)
 
     def __traimentNeuronal(self, nb:int, liste:list):
+        print(nb)
         match nb:
             case 0:
                 return liste[0]
@@ -882,6 +883,8 @@ class guiCopilote:
                 return ""
             case 16:
                 return self.__assistantRyley.shutdown()
+            case 17 :
+                return self.__windowsHelp(liste)
             case 20:
                 return self.__language.getPhErreurResumerAll()
             case 21:
@@ -1040,7 +1043,7 @@ class guiCopilote:
 
     def __windowsHelp(self, list: list):
         winHelp = self.__arrTK.aTopLevel(width=500, height=600,
-                                         title="Arrera RYLEY : Aide",
+                                         title="Arrera Copilote : Aide",
                                          resizable=False,
                                          icon=self.__emplacementIcon)
         labelTitleHelp = self.__arrTK.createLabel(winHelp, ppolice="Arial", ptaille=25, pstyle="bold")
@@ -1073,8 +1076,7 @@ class guiCopilote:
 
         self.__arrTK.placeTopCenter(labelTitleHelp)
         self.__arrTK.placeCenter(aideView)
-        self.__paroleSix(textSpeak)
-        self.__paroleRyley(textSpeak)
+        return textSpeak
 
     def __windowsReadFile(self, liste:list, mode:int):
         """
