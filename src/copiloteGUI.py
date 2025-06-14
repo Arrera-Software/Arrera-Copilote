@@ -13,8 +13,10 @@ class guiCopilote:
         # Varriable
         self.__nameSoft = "Arrera Copilote"
         self.__version = version
+        # Argument pour l'interface
         self.__codeHelpActived = False
         self.__litleWindowsActived = 0
+        self.__fileOpen = False
         # arguments sons micro 
         self.__soundState = False
         self.__microState = False
@@ -173,10 +175,15 @@ class guiCopilote:
 
 
         # Frame
-        self.__topBackgrown = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                      imageLight=emplacementLight + "homeScree.png",
-                                                                      imageDark=emplacementDark + "homeScree.png",
-                                                                      width=500, height=470)
+        self.__homeBackgroud = self.__arrTK.createArreraBackgroudImage(self.__screen,
+                                                                       imageLight=emplacementLight + "homeScree.png",
+                                                                       imageDark=emplacementDark + "homeScree.png",
+                                                                       width=500, height=470)
+
+        self.__homeBackgroudFileOpen = self.__arrTK.createArreraBackgroudImage(self.__screen,
+                                                                               imageLight=emplacementLight + "homeScreenOpen.png",
+                                                                               imageDark=emplacementDark + "homeScreenOpen.png",
+                                                                               width=500, height=470)
 
         self.__copiloteSpeak = self.__arrTK.createArreraBackgroudImage(self.__screen,
                                                                       imageLight=emplacementLight + "copiloteSpeak.png",
@@ -307,22 +314,20 @@ class guiCopilote:
 
         # Btn open
 
-        # Temporaire pour le mode copilote
-
-        self.__btnTableurOpenCopilote = self.__arrTK.createButton(self.__screen, width=35, height=35,
+        self.__btnTableurOpenCopilote = self.__arrTK.createButton(self.__homeBackgroudFileOpen, width=35, height=35,
                                                                   image=imgTableurOpen,
                                                                   command=lambda: self.__winHelpFileAndProjet(1),
-                                                                  bg="#694d6b", hoverbg="#1d1020")
+                                                                  bg="#d1d1d1", hoverbg="#585858")
 
-        self.__btnWordOpenCopilote = self.__arrTK.createButton(self.__screen, width=35, height=35,
+        self.__btnWordOpenCopilote = self.__arrTK.createButton(self.__homeBackgroudFileOpen, width=35, height=35,
                                                                image=imgWordOpen,
                                                                command=lambda: self.__winHelpFileAndProjet(2),
-                                                               bg="#694d6b", hoverbg="#1d1020")
+                                                               bg="#d1d1d1", hoverbg="#585858")
 
-        self.__btnProjetOpenCopilote = self.__arrTK.createButton(self.__screen, width=35, height=35,
+        self.__btnProjetOpenCopilote = self.__arrTK.createButton(self.__homeBackgroudFileOpen, width=35, height=35,
                                                                  image=imgProjetOpen,
                                                                  command=lambda: self.__winHelpFileAndProjet(3),
-                                                                 bg="#694d6b", hoverbg="#1d1020")
+                                                                 bg="#d1d1d1", hoverbg="#585858")
 
         # Partie Codehelp
         btnSendCodehelp = self.__arrTK.createButton(self.__frameBackgroudCodehelp, image=imgSend,
@@ -360,17 +365,17 @@ class guiCopilote:
         self.__btnTableurOpenCodehelp = self.__arrTK.createButton(self.__backgroundBottomCodehelp, width=35, height=35,
                                                                image=imgTableurOpen,
                                                                command=lambda: self.__winHelpFileAndProjet(1),
-                                                               bg="#8c8c8c", hoverbg="#4e4e4e")
+                                                                  bg="#aaaaaa", hoverbg="#434343")
 
         self.__btnWordOpenCodehelp = self.__arrTK.createButton(self.__backgroundBottomCodehelp, width=35, height=35,
                                                             image=imgWordOpen,
                                                             command=lambda: self.__winHelpFileAndProjet(2),
-                                                            bg="#8c8c8c", hoverbg="#4e4e4e")
+                                                               bg="#aaaaaa", hoverbg="#434343")
 
         self.__btnProjetOpenCodehelp = self.__arrTK.createButton(self.__backgroundBottomCodehelp, width=35, height=35,
                                                               image=imgProjetOpen,
                                                               command=lambda: self.__winHelpFileAndProjet(3),
-                                                              bg="#8c8c8c", hoverbg="#4e4e4e")
+                                                                 bg="#aaaaaa", hoverbg="#434343")
 
         # Partie litle windows
 
@@ -379,17 +384,22 @@ class guiCopilote:
         self.__btnTableurOpenLittle = self.__arrTK.createButton(self.__fBottomLitleWindows, width=35, height=35,
                                                                image=imgTableurOpen,
                                                                command=lambda: self.__winHelpFileAndProjet(1),
-                                                               bg="#694d6b", hoverbg="#1d1020")
+                                                                bg="#694d6b", hoverbg="#1d1020")
 
         self.__btnWordOpenLitte = self.__arrTK.createButton(self.__fBottomLitleWindows, width=35, height=35,
                                                             image=imgWordOpen,
                                                             command=lambda: self.__winHelpFileAndProjet(2),
                                                             bg="#694d6b", hoverbg="#1d1020")
 
-        self.__btnProjetOpenLitte = self.__arrTK.createButton(self.__backgroundLitleWindowsRyley, width=35, height=35,
-                                                              image=imgProjetOpen,
-                                                              command=lambda: self.__winHelpFileAndProjet(3),
-                                                              bg="#694d6b", hoverbg="#1d1020")
+        self.__btnProjetOpenLitteRyley = self.__arrTK.createButton(self.__backgroundLitleWindowsRyley, width=35, height=35,
+                                                                   image=imgProjetOpen,
+                                                                   command=lambda: self.__winHelpFileAndProjet(3),
+                                                                   bg="#aaaaaa", hoverbg="#434343")
+
+        self.__btnProjetOpenLitteSix = self.__arrTK.createButton(self.__backgroundLitleWindowsSix, width=35, height=35,
+                                                                   image=imgProjetOpen,
+                                                                   command=lambda: self.__winHelpFileAndProjet(3),
+                                                                 bg="#aaaaaa", hoverbg="#434343")
 
         # Button
 
@@ -414,15 +424,25 @@ class guiCopilote:
                                                 command=self.__backActu)
 
         # Label
-        self.__lparoleRyley = self.__arrTK.createLabel(self.__topBackgrown,
-                                                       bg="#041f75", fg="white",
-                                                       ppolice="Arial", pstyle="bold",
-                                                       ptaille=18, justify="left", pwraplength=350)
+        self.__lparoleRyleyNormal = self.__arrTK.createLabel(self.__homeBackgroud,
+                                                             bg="#041f75", fg="white",
+                                                             ppolice="Arial", pstyle="bold",
+                                                             ptaille=18, justify="left", pwraplength=350)
 
-        self.__lparoleSix = self.__arrTK.createLabel(self.__topBackgrown,
-                                                       bg="#0018ff", fg="white",
-                                                       ppolice="Arial", pstyle="bold",
-                                                       ptaille=18, justify="left", pwraplength=350)
+        self.__lparoleSixNormal = self.__arrTK.createLabel(self.__homeBackgroud,
+                                                           bg="#0018ff", fg="white",
+                                                           ppolice="Arial", pstyle="bold",
+                                                           ptaille=18, justify="left", pwraplength=350)
+
+        self.__lparoleSixFileOpen = self.__arrTK.createLabel(self.__homeBackgroudFileOpen,
+                                                             bg="#0018ff", fg="white",
+                                                             ppolice="Arial", pstyle="bold",
+                                                             ptaille=18, justify="left", pwraplength=350)
+
+        self.__lparoleRyleyFileOpen = self.__arrTK.createLabel(self.__homeBackgroudFileOpen,
+                                                               bg="#041f75", fg="white",
+                                                               ppolice="Arial", pstyle="bold",
+                                                               ptaille=18, justify="left", pwraplength=350)
 
         self.__lparoleCopilote = self.__arrTK.createLabel(self.__copiloteSpeak,
                                                          bg="#482c4a", fg="white",
@@ -456,8 +476,12 @@ class guiCopilote:
         # Affichage des widgets
         self.__entryUserCopilote.place(relx=0.40, rely=0.3, anchor="center")
         btnSendCopilote.place(relx=0.90, rely=0.3, anchor="center")
-        self.__lparoleRyley.place(x=120, y=160)
-        self.__lparoleSix.place(x=120, y=340)
+        self.__lparoleRyleyNormal.place(x=120, y=160)
+        self.__lparoleSixNormal.place(x=120, y=340)
+
+        self.__lparoleRyleyFileOpen.place(x=120, y=110)
+        self.__lparoleSixFileOpen.place(x=120, y=290)
+
         self.__lparoleCopilote.place(x=75,y=260)
 
         self.__arrTK.placeBottomLeft(btnParaCopilote)
@@ -530,7 +554,7 @@ class guiCopilote:
         self.__paroleRyley(self.__assistantRyley.boot(2))
         self.__paroleSix(self.__assistantSix.boot(2))
         self.__viewNormal()
-        self.setButtonOpen()
+        self.__setButtonOpen()
 
     def __sequenceFirstBoot(self):
         self.__disableAllFrame()
@@ -564,7 +588,7 @@ class guiCopilote:
         self.__paroleSix(self.__assistantSix.boot(2))
         self.__disableAllFrame()
         self.__viewNormal()
-        self.setButtonOpen()
+        self.__setButtonOpen()
 
     def __sequenceStop(self):
         self.__disableAllFrame()
@@ -600,9 +624,9 @@ class guiCopilote:
 
     def __disableAllFrame(self):
         self.__copiloteSpeak.pack_forget()
-        self.__topBackgrown.pack_forget()
+        self.__homeBackgroud.pack_forget()
         self.__frameBackgroud.pack_forget()
-        # self.__bottomBackgrownOpen.pack_forget()
+        self.__homeBackgroudFileOpen.pack_forget()
         self.__backgroundActu.pack_forget()
         self.__backgroundFirstboot.pack_forget()
         self.__backgroundTopCodehelp.pack_forget()
@@ -615,13 +639,13 @@ class guiCopilote:
 
     def __viewNormal(self):
         self.__screen.focus_set()
-        self.__topBackgrown.pack()
+        self.__homeBackgroud.pack()
         self.__frameBackgroud.pack()
 
     def __viewOpen(self):
+        self.__disableAllFrame()
         self.__screen.focus_set()
-        self.__topBackgrown.pack()
-        # self.__bottomBackgrownOpen.pack()
+        self.__homeBackgroudFileOpen.pack()
         self.__frameBackgroud.pack()
 
     def __viewCodehelp(self):
@@ -635,7 +659,7 @@ class guiCopilote:
         self.__codeHelpActived = False
         self.__disableAllFrame()
         self.__viewNormal()
-        self.setButtonOpen()
+        self.__setButtonOpen()
 
     def __modeCodehelp(self):
         self.__screen.focus_set()
@@ -645,11 +669,12 @@ class guiCopilote:
         self.__disableAllFrame()
         self.__paroleCodehelp(self.__language.getPhActiveCodehelp())
         self.__viewCodehelp()
-        self.setButtonOpen()
+        self.__setButtonOpen()
 
     def __paroleRyley(self, text: str):
         if text != "":
-            self.__lparoleRyley.configure(text=text)
+            self.__lparoleRyleyNormal.configure(text=text)
+            self.__lparoleRyleyFileOpen.configure(text=text)
             self.__entryUserCopilote.delete(0, END)
 
     def __paroleCopilote(self,text: str):
@@ -663,7 +688,8 @@ class guiCopilote:
 
     def __paroleSix(self, text: str):
         if text != "":
-            self.__lparoleSix.configure(text=text)
+            self.__lparoleSixNormal.configure(text=text)
+            self.__lparoleSixFileOpen.configure(text=text)
             self.__entryUserCopilote.delete(0, END)
             if self.__soundState :
                 self.__ttsSpeak(text)
@@ -866,18 +892,18 @@ class guiCopilote:
             case 6:
                 return self.__language.getPhErreurActu()
             case 7:
-                self.setButtonOpen()
+                self.__setButtonOpen()
                 return liste[0]
             case 8:
-                self.setButtonOpen()
+                self.__setButtonOpen()
                 return liste[0]
             case 10:
-                self.setButtonOpen()
+                self.__setButtonOpen()
                 return liste[0]
             case 11:
                 return self.__language.getPhErreurResumerActu()
             case 14:
-                self.setButtonOpen()
+                self.__setButtonOpen()
                 return liste[0]
             case 15:
                 self.__close()
@@ -889,7 +915,7 @@ class guiCopilote:
             case 20:
                 return self.__language.getPhErreurResumerAll()
             case 21:
-                self.setButtonOpen()
+                self.__setButtonOpen()
                 return liste[0]
             case other:
                 return ""
@@ -914,14 +940,14 @@ class guiCopilote:
                         self.__actionBTNLitleWindows()
         self.__screen.bind("<Key>", anychar)
 
-    def setButtonOpen(self):
-        tableur = self.__assistantRyley.getTableur()
-        word = self.__assistantRyley.getWord()
-        projet = self.__assistantRyley.getProject()
+    def __setButtonOpen(self):
+        tableur = (self.__assistantSix.getTableur())
+        word = self.__assistantSix.getWord()
+        projet = self.__assistantSix.getProject()
 
         if tableur :
-            self.__arrTK.placeTopRight(self.__btnTableurOpenCopilote)
-            self.__arrTK.placeBottomRight(self.__btnTableurOpenCodehelp)
+            self.__arrTK.placeRightBottomNoStick(self.__btnTableurOpenCopilote)
+            self.__arrTK.placeRightBottomNoStick(self.__btnTableurOpenCodehelp)
             self.__arrTK.placeBottomLeft(self.__btnTableurOpenLittle)
         else :
             self.__btnTableurOpenCopilote.place_forget()
@@ -929,8 +955,8 @@ class guiCopilote:
             self.__btnTableurOpenLittle.place_forget()
 
         if word:
-            self.__arrTK.placeTopLeft(self.__btnWordOpenCopilote)
-            self.__arrTK.placeBottomLeft(self.__btnWordOpenCodehelp)
+            self.__arrTK.placeLeftBottomNoStick(self.__btnWordOpenCopilote)
+            self.__arrTK.placeLeftBottomNoStick(self.__btnWordOpenCodehelp)
             self.__arrTK.placeBottomRight(self.__btnWordOpenLitte)
         else :
             self.__btnWordOpenCopilote.place_forget()
@@ -938,13 +964,15 @@ class guiCopilote:
             self.__btnWordOpenLitte.place_forget()
 
         if projet:
-            self.__arrTK.placeTopCenter(self.__btnProjetOpenCopilote)
-            self.__arrTK.placeBottomCenter(self.__btnProjetOpenCodehelp)
-            self.__arrTK.placeBottomLeft(self.__btnProjetOpenLitte)
+            self.__arrTK.placeBottomCenterNoStick(self.__btnProjetOpenCopilote)
+            self.__arrTK.placeBottomCenterNoStick(self.__btnProjetOpenCodehelp)
+            self.__arrTK.placeLeftBottomNoStick(self.__btnProjetOpenLitteRyley)
+            self.__arrTK.placeLeftBottomNoStick(self.__btnProjetOpenLitteSix)
         else :
             self.__btnProjetOpenCopilote.place_forget()
             self.__btnProjetOpenCodehelp.place_forget()
-            self.__btnProjetOpenLitte.place_forget()
+            self.__btnProjetOpenLitteRyley.place_forget()
+            self.__btnProjetOpenLitteSix.place_forget()
 
         if self.__codeHelpActived == False:
             if tableur or word or projet :
