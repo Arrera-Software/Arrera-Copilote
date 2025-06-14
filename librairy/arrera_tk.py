@@ -400,7 +400,7 @@ class CArreraTK :
 
     def placeCenterOnWidth(self,widget,y :int = 0 ):
         if (y==0):
-            return False
+            return
         else :
             widget.place(relx=0.5, y=y, anchor='n')
 
@@ -424,6 +424,15 @@ class CArreraTK :
 
     def placeCenterLeft(self,widget):
         widget.place(relx=0, rely=0.5, anchor='w')
+
+    def placeLeftBottomNoStick(self, widget):
+        widget.place(relx=0, rely=1, anchor='sw', x=10, y=-10)
+
+    def placeRightBottomNoStick(self, widget):
+        widget.place(relx=1, rely=1, anchor='se', x=-10, y=-10)
+
+    def placeBottomCenterNoStick(self, widget):
+        widget.place(relx=0.5, rely=1, anchor='s', x=0, y=-10)
 
     def pack(self, widget,xExpand : bool = False , yExpand : bool = False):
         if (xExpand and yExpand):
