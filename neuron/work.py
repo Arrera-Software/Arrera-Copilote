@@ -157,18 +157,17 @@ class neuronWork(neuronBase):
             else :
                 return 0
 
-        elif "ouvre" in requette:
-            if ("projet" in requette) and ("nommer" in requette) and ("le" in requette):
-                text,file = self._fonctionArreraNetwork.sortieOpenFileProject(requette)
-                self._listSortie = [text, ""]
-                if ("Il a peux être pas un projet ouvert." not in self._listSortie[0]):
-                    self._objHistorique.setAction("Ouverture du fichier "
-                                                  + file + " du projet " +
-                                                  self._fonctionArreraNetwork.getNameProjetOpen())
-                    self._valeurOut = 7
-                else :
-                    self._valeurOut = 1
-                return 1
+        elif ("ouvre" in requette) and ("projet" in requette) and ("nommer" in requette) and ("le" in requette):
+            text,file = self._fonctionArreraNetwork.sortieOpenFileProject(requette)
+            self._listSortie = [text, ""]
+            if ("Il a peux être pas un projet ouvert." not in self._listSortie[0]):
+                self._objHistorique.setAction("Ouverture du fichier "
+                                              + file + " du projet " +
+                                              self._fonctionArreraNetwork.getNameProjetOpen())
+                self._valeurOut = 7
+            else :
+                self._valeurOut = 1
+            return 1
 
         elif "aide projet" in requette:
             self._listSortie = [self._fonctionArreraNetwork.sortieHelpArreraWork()
@@ -213,7 +212,7 @@ class neuronWork(neuronBase):
             self._valeurOut = 1
             return 1
         elif ("taches" in requette or "tache" in requette) and "projet" in requette:
-            if "montre" in requette or "fais voir" in requette:
+            if "montre" in requette or "fais voir" in requette or "ouvre" in requette:
                 self._listSortie = [self._fonctionArreraNetwork.sortieShowTacheProjet(), ""]
                 self._objHistorique.setAction("Activation de l'interface des tache du projet " +
                                               self._fonctionArreraNetwork.getNameProjetOpen())
