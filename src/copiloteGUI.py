@@ -1,6 +1,5 @@
 from ObjetsNetwork.arreraNeuron import *
 from src.CLanguageCopilote import *
-import threading as th
 import signal
 from setting.CArreraGazelleUIRyleyCopilote import *
 from src.arrera_voice import *
@@ -67,8 +66,10 @@ class guiCopilote:
 
         if self.__windowsOS and not self.__linuxOS:
             self.__emplacementIcon = "asset/icon.ico"
-        elif not self.__windowsOS and self.__linuxOS or self.__macOS:
+        elif not self.__windowsOS and self.__linuxOS :
             self.__emplacementIcon = "asset/icon.png"
+        elif self.__macOS :
+            self.__emplacementIcon = "asset/icon-macos.png"
 
         self.__screen = self.__arrTK.aTK(0,title=self.__nameSoft, resizable=False,
                                          width=500, height=600,icon=self.__emplacementIcon)
