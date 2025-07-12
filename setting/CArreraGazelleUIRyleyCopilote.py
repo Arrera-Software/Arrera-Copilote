@@ -103,30 +103,30 @@ class CArreraGazelleUIRyleyCopilote :
 
         #Widget
         labelTitreMenu = self.__arrTK.createLabel(self.__cadreMenu, text="Menu", ppolice="arial", ptaille=tailleTitle)
-
+        
         boutonMenu = [
-            self.__arrTK.createButton(self.__cadreMenu,ppolice="arial",ptaille=23,
-                                      text="Acceuil",command=self.__backAcceuil,width=20),#0
-            self.__arrTK.createButton(self.__cadreMenu,ppolice="arial",ptaille=23,
-                                      text="Utilisateur",command=self.__showUserFrame,width=20),#1
-            self.__arrTK.createButton(self.__cadreMenu, ppolice="arial", ptaille=23,
-                                      text="Meteo", command=lambda : self.__viewMeteo(), width=20),#2
-            self.__arrTK.createButton(self.__cadreMenu,ppolice="arial",ptaille=23,
-                                      text="GPS",command=lambda : self.__viewGPS(),width=20),#3
-            self.__arrTK.createButton(self.__cadreMenu,ppolice="arial",ptaille=23,
-                                      text="Recherche",command=self.__showRechercheFrame,width=20),#4
-            self.__arrTK.createButton(self.__cadreMenu,ppolice="arial",ptaille=23,
-                                      text="Logiciel",command=lambda : self.__viewSoft(),width=20),#5
-            self.__arrTK.createButton(self.__cadreMenu,ppolice="arial",ptaille=23,
-                                      text="Site Web",command=self.__viewSite,width=20),#6
-            self.__arrTK.createButton(self.__cadreMenu,ppolice="arial",ptaille=23,
-                                      text="Theme",command=self.__showThemeFrame,width=20),#7
-            self.__arrTK.createButton(self.__cadreMenu, ppolice="arial",ptaille=23,
-                                      text="Arrera Work", command=self.__showArreraWorkFolder, width=20),#8
-            self.__arrTK.createButton(self.__cadreMenu, ppolice="arial",ptaille=23,
+                        self.__arrTK.createButton(self.__cadreMenu,ppolice="arial",ptaille=23,
+                                                  text="Acceuil",command=self.__backAcceuil,width=20),#0
+                        self.__arrTK.createButton(self.__cadreMenu,ppolice="arial",ptaille=23,
+                                                  text="Utilisateur",command=self.__showUserFrame,width=20),#1
+                        self.__arrTK.createButton(self.__cadreMenu, ppolice="arial", ptaille=23,
+                                                  text="Meteo", command=lambda : self.__viewMeteo(), width=20),#2
+                        self.__arrTK.createButton(self.__cadreMenu,ppolice="arial",ptaille=23,
+                                                  text="GPS",command=lambda : self.__viewGPS(),width=20),#3
+                        self.__arrTK.createButton(self.__cadreMenu,ppolice="arial",ptaille=23,
+                                                  text="Recherche",command=self.__showRechercheFrame,width=20),#4
+                        self.__arrTK.createButton(self.__cadreMenu,ppolice="arial",ptaille=23,
+                                                  text="Logiciel",command=lambda : self.__viewSoft(),width=20),#5
+                        self.__arrTK.createButton(self.__cadreMenu,ppolice="arial",ptaille=23,
+                                                  text="Site Web",command=self.__viewSite,width=20),#6
+                        self.__arrTK.createButton(self.__cadreMenu,ppolice="arial",ptaille=23,
+                                                  text="Theme",command=self.__showThemeFrame,width=20),#7
+                        self.__arrTK.createButton(self.__cadreMenu, ppolice="arial",ptaille=23,
+                                                text="Arrera Work", command=self.__showArreraWorkFolder, width=20),#8
+                        self.__arrTK.createButton(self.__cadreMenu, ppolice="arial",ptaille=23,
                                       text="Downloader",command=self.__showArreraDownloadFolder, width=20),  # 9
-            self.__arrTK.createButton(self.__cadreMenu, ppolice="arial", ptaille=23,
-                                      text="Micro", command=self.__viewMicro, width=20),#10
+                        self.__arrTK.createButton(self.__cadreMenu, ppolice="arial", ptaille=23,
+                                                  text="Micro", command=self.__viewMicro, width=20),#10
         ]
 
         #mainFrame
@@ -157,7 +157,7 @@ class CArreraGazelleUIRyleyCopilote :
         ]
 
         self.__btnQuitMainFrame = self.__arrTK.createButton(self.__mainFrame,ppolice="arial",ptaille=17,width=200,
-                                                            text="Quitter")
+                                  text="Quitter")
 
         # Cadre User
         # Acceuil User
@@ -169,20 +169,20 @@ class CArreraGazelleUIRyleyCopilote :
                                              ,text="genre de\nl'utilisateur",command=self.__viewUserGenre)
         # Genre User
         labelTitleUserGenre = self.__arrTK.createLabel(self.__userGenre,text="Genre de l'utilisateur",
-                                                       ppolice="Arial", ptaille=tailleTitle)
+                                                         ppolice="Arial", ptaille=tailleTitle)
         menuSelectGenreUser = self.__arrTK.createOptionMenu(self.__userGenre,var=self.__varGenre,value=self.__listGenre)
         btnValidateGenreUser = self.__arrTK.createButton(self.__userGenre,text="Valider",
-                                                         ppolice = "arial" , ptaille = tailleMain,command=self.__validerUserGenre)
+                                                            ppolice = "arial" , ptaille = tailleMain,command=self.__validerUserGenre)
         btnCancelGenreUser = self.__arrTK.createButton(self.__userGenre,text="Annuler",
-                                                       ppolice = "arial" , ptaille = tailleMain,command=self.__viewUser)
+                                                         ppolice = "arial" , ptaille = tailleMain,command=self.__viewUser)
         # Name User
         labelTitleUserName = self.__arrTK.createLabel(self.__userName,text="Nom de l'utilisateur",
-                                                      ppolice="Arial", ptaille=tailleTitle)
+                                                       ppolice="Arial", ptaille=tailleTitle)
         self.__entryNameUser = self.__arrTK.createEntry(self.__userName,ppolice="Arial",ptaille=tailleMain,width=250)
         btnValidateNameUser = self.__arrTK.createButton(self.__userName,text="Valider",
-                                                        ppolice = "arial" , ptaille = tailleMain,command=self.__validerUserName)
+                                                         ppolice = "arial" , ptaille = tailleMain,command=self.__validerUserName)
         btnCancelNameUser = self.__arrTK.createButton(self.__userName,text="Annuler",
-                                                      ppolice = "arial" , ptaille = tailleMain,command=self.__viewUser)
+                                                       ppolice = "arial" , ptaille = tailleMain,command=self.__viewUser)
 
         # Cadre Meteo
         # Acceuil Meteo
@@ -201,7 +201,7 @@ class CArreraGazelleUIRyleyCopilote :
                                                           ,ppolice="Arial", ptaille=tailleTitle)
         self.__entryMeteoWork = self.__arrTK.createEntry(self.__meteoWork,ppolice="Arial",ptaille=tailleMain,width=220)
         btnAddValideMeteoWork = self.__arrTK.createButton(self.__meteoWork,text="Ajouter",
-                                                          ppolice="Arial",ptaille=tailleMain,command=self.__addMeteoWork)
+                                                        ppolice="Arial",ptaille=tailleMain,command=self.__addMeteoWork)
         btnCancelMeteoWork = self.__arrTK.createButton(self.__meteoWork,text="Annuler",
                                                        ppolice="Arial",ptaille=tailleMain,
                                                        command=lambda : self.__viewMeteo())
@@ -232,24 +232,24 @@ class CArreraGazelleUIRyleyCopilote :
         btnValidateSupprMeteo = self.__arrTK.createButton(self.__meteoSuppr,text="Supprimer",
                                                           ppolice="Arial",ptaille=tailleMain,command=self.__supprMeteo)
         btnCancelSupprMeteo = self.__arrTK.createButton(self.__meteoSuppr,text="Annuler",
-                                                        ppolice="Arial",ptaille=tailleMain,command=self.__viewMeteo)
+                                                          ppolice="Arial",ptaille=tailleMain,command=self.__viewMeteo)
 
         # Cadre GPS
         # Acceuil GPS
         labelTitleGpsAcceuil = self.__arrTK.createLabel(self.__gpsAcceuil, text="Gestion des\nadresses GPS",
                                                         ppolice="Arial", ptaille=tailleTitle)
         btnGpsHomeAcceuil = self.__arrTK.createButton(self.__gpsAcceuil,text="Adresse\nDomicile",
-                                                      ppolice = "arial" , ptaille = tailleMain,command=self.__viewGPSHome)
+                                                        ppolice = "arial" , ptaille = tailleMain,command=self.__viewGPSHome)
         btnGpsWorkAcceuil = self.__arrTK.createButton(self.__gpsAcceuil,text="Adresse\nTravail",
                                                       ppolice = "arial" , ptaille = tailleMain,command=self.__viewGPSWork)
         # Work GPS
         labelTitleGpsWork = self.__arrTK.createLabel(self.__gpsWork, text="Adresse de votre\nlieu de travail",
-                                                     ppolice="Arial", ptaille=tailleTitle)
+                                                        ppolice="Arial", ptaille=tailleTitle)
         self.__entryGpsWork = self.__arrTK.createEntry(self.__gpsWork,ppolice="Arial",ptaille=tailleMain,width=220)
         btnValideGpsWork = self.__arrTK.createButton(self.__gpsWork,text="Ajouter",
-                                                     ppolice="Arial",ptaille=tailleMain,command=self.__validateGpsWork)
+                                                        ppolice="Arial",ptaille=tailleMain,command=self.__validateGpsWork)
         btnCancelGpsWork = self.__arrTK.createButton(self.__gpsWork,text="Annuler",
-                                                     ppolice="Arial",ptaille=tailleMain,command=self.__viewGPS)
+                                                         ppolice="Arial",ptaille=tailleMain,command=self.__viewGPS)
         # Home GPS
         labelTitleGpsHome = self.__arrTK.createLabel(self.__gpsHome, text="Adresse de\nvotre domicile",
                                                      ppolice="Arial", ptaille=tailleTitle)
@@ -264,7 +264,7 @@ class CArreraGazelleUIRyleyCopilote :
         menuMoteurRecherche = self.__arrTK.createOptionMenu(self.__cadreRecherche,
                                                             var = self.__varMoteurRecherce,value = self.__listMoteur)
         btnvaliderMoteur = self.__arrTK.createButton(self.__cadreRecherche,text="Valider"
-                                                     ,ppolice = "arial" , ptaille = tailleMain,command=self.__validerMoteur)
+                                                            ,ppolice = "arial" , ptaille = tailleMain,command=self.__validerMoteur)
 
         # Cadre Software
         # Acceuil Software
@@ -284,20 +284,20 @@ class CArreraGazelleUIRyleyCopilote :
                                                              text="Il a pas de logiciel\nenregister dans l'assistant",
                                                              ppolice="arial",ptaille=tailleMain)
         self.__btnValidateSupprSoftware = self.__arrTK.createButton(self.__softSuppr,text="Valider",
-                                                                    ppolice="arial",ptaille=tailleMain,command=self.__supprSoft)
+                                                             ppolice="arial",ptaille=tailleMain,command=self.__supprSoft)
         self.__btnCancelSupprSoftware = self.__arrTK.createButton(self.__softSuppr,text="Annuler",
-                                                                  ppolice="Arial",ptaille=tailleMain,command=self.__backAcceuilSoft)
+                                                           ppolice="Arial",ptaille=tailleMain,command=self.__backAcceuilSoft)
 
         # Liste software
         labelTitleListSoftware = self.__arrTK.createLabel(self.__softList, text="Liste des logiciels\nenregistrés",
-                                                          ppolice="Arial", ptaille=tailleTitle)
+                                                              ppolice="Arial", ptaille=tailleTitle)
         self.__listSoftware = ctk.CTkTextbox(self.__softList, width=300, height=350,
                                              wrap="word", state="normal", font=("Arial", tailleMain))
         self.__labelNoSoftSave = self.__arrTK.createLabel(self.__softList, text="Aucun logiciel\najouté",
                                                           ppolice="Arial", ptaille=tailleMain)
         btnRetourListSoft = self.__arrTK.createButton(self.__softList,text="Retour",
-                                                      ppolice="arial",ptaille=tailleMain,
-                                                      command=self.__backAcceuilSoft)
+                                                        ppolice="arial",ptaille=tailleMain,
+                                                        command=self.__backAcceuilSoft)
         # Ajout software
         labelTitleAddSoftware = self.__arrTK.createLabel(self.__softAdd,text="Ajout d'un logiciel",
                                                          ppolice="Arial", ptaille=tailleMain)
@@ -311,15 +311,15 @@ class CArreraGazelleUIRyleyCopilote :
         # Cadre Internet
         # Acceuil Site
         labelTitleAcceuilSite = self.__arrTK.createLabel(self.__acceuilSite, text="Gestion des sites internet",
-                                                         ppolice="Arial", ptaille=tailleTitle)
+                                                            ppolice="Arial", ptaille=tailleTitle)
         btnAddSiteAcceuil = self.__arrTK.createButton(self.__acceuilSite, text="Ajouter\nun site",
-                                                      ppolice = "arial", ptaille = tailleMain,
+                                                        ppolice = "arial", ptaille = tailleMain,
                                                       command=self.__viewAddSite)
         btnSupprSiteAcceuil = self.__arrTK.createButton(self.__acceuilSite, text="Supprimer\nun site",
                                                         ppolice = "arial", ptaille = tailleMain,
                                                         command=self.__viewSupprSite)
         btnListSiteAcceuil = self.__arrTK.createButton(self.__acceuilSite, text="Liste\ndes sites",
-                                                       ppolice = "arial", ptaille = tailleMain,command=self.__viewListSite)
+                                                        ppolice = "arial", ptaille = tailleMain,command=self.__viewListSite)
         # add Site
         labelTitleAddSite = self.__arrTK.createLabel(self.__faddSite, text="Ajouter un site internet",
                                                      ppolice="Arial", ptaille=tailleTitle)
@@ -344,34 +344,34 @@ class CArreraGazelleUIRyleyCopilote :
 
         # List Site
         labelTitleListSite = self.__arrTK.createLabel(self.__listSite, text="Liste des sites internet\nenregistrés",
-                                                      ppolice="Arial", ptaille=tailleTitle)
+                                                        ppolice="Arial", ptaille=tailleTitle)
         self.__listSiteInternet = ctk.CTkTextbox(self.__listSite, width=300, height=350,
-                                                 wrap="word", state="normal", font=("Arial", tailleMain))
+                                                    wrap="word", state="normal", font=("Arial", tailleMain))
         self.__labelNoSiteSave = self.__arrTK.createLabel(self.__listSite, text="Aucun site internet\najouté",
-                                                          ppolice="Arial", ptaille=tailleMain)
+                                                            ppolice="Arial", ptaille=tailleMain)
         btnRetourListSite = self.__arrTK.createButton(self.__listSite, text="Retour",command=self.__backAcceuilSite,
-                                                      ppolice="arial", ptaille=tailleMain)
-        # Cardre theme
+                                                        ppolice="arial", ptaille=tailleMain)
+        # Cardre theme 
         labelTitreTheme = self.__arrTK.createLabel(self.__cadreTheme, text="Choix du thème\nde l'interface"
                                                    , ppolice="Arial", ptaille=tailleTitle)
         menuChoixTheme = self.__arrTK.createOptionMenu(self.__cadreTheme,var = self.__varChoixTheme,value=listeTheme)
         btnValiderTheme = self.__arrTK.createButton (self.__cadreTheme,text="Valider",
-                                                     ppolice = "arial" , ptaille = tailleMain,command=self.__validerTheme)
+                                                            ppolice = "arial" , ptaille = tailleMain,command=self.__validerTheme)
         # Cadre Micro
         # Acceuil Micro
         labelTitreAcceuilMicro = self.__arrTK.createLabel(self.__acceuilMicro, text="Paramètre du micro",
                                                           ppolice="Arial", ptaille=tailleTitle)
         btnAcceuilTigerVoice = self.__arrTK.createButton(self.__acceuilMicro, text="Empreinte\nvocale",
-                                                         ppolice = "arial" , ptaille = tailleMain,
+                                                        ppolice = "arial" , ptaille = tailleMain,
                                                          command=self.__viewTigerVoice)
         btnAcceuilSonsEmis = self.__arrTK.createButton(self.__acceuilMicro, text="Sons\némis",
                                                        ppolice = "arial", ptaille = tailleMain,
                                                        command=self.__viewMicroSound)
         # Tiger Voice
         labelTitleTigerWordMicro = self.__arrTK.createLabel(self.__fTigerVoice, text="Empreinte vocale",
-                                                            ppolice="Arial", ptaille=tailleTitle)
+                                                              ppolice="Arial", ptaille=tailleTitle)
         self.__btnVoicePrint1 = self.__arrTK.createButton(self.__fTigerVoice, text="Empreinte\nVocale 1",
-                                                          ppolice = "arial" , ptaille = tailleMain,
+                                                              ppolice = "arial" , ptaille = tailleMain,
                                                           command = lambda : self.__viewSaveTigerWord(1))
         self.__btnVoicePrint2 = self.__arrTK.createButton(self.__fTigerVoice, text="Empreinte\nVocale 2",
                                                           ppolice = "arial" , ptaille = tailleMain
@@ -380,55 +380,55 @@ class CArreraGazelleUIRyleyCopilote :
                                                           ppolice = "arial" , ptaille = tailleMain
                                                           ,command = lambda : self.__viewSaveTigerWord(3))
         btnBackAcceuilTigerVoice = self.__arrTK.createButton(self.__fTigerVoice, text="Retour",command=self.__backAcceuilMicro,
-                                                             ppolice = "arial" , ptaille = tailleMain)
+                                                                ppolice = "arial" , ptaille = tailleMain)
         # Sons Emis
         labelTitleSonsEmisMicro = self.__arrTK.createLabel(self.__fSonsEmis, text="Sons émis par le micro",
-                                                           ppolice="Arial", ptaille=tailleTitle)
+                                                            ppolice="Arial", ptaille=tailleTitle)
         menuSonsEmis = self.__arrTK.createOptionMenu(self.__fSonsEmis,value=self.__listChoixMicro,var=self.__varSonsEmis)
         btnValiderSonsEmis = self.__arrTK.createButton(self.__fSonsEmis, text="Valider",
-                                                       ppolice = "arial" , ptaille = tailleMain,command=self.__validerSoundMicro)
+                                                        ppolice = "arial" , ptaille = tailleMain,command=self.__validerSoundMicro)
         btnBackAcceuilSonsEmis = self.__arrTK.createButton(self.__fSonsEmis, text="Retour",
-                                                           ppolice = "arial" , ptaille = tailleMain,command=self.__backAcceuilMicro)
+                                                            ppolice = "arial" , ptaille = tailleMain,command=self.__backAcceuilMicro)
         # Save Word
         self.__labelTitleSaveWordMicro = self.__arrTK.createLabel(self.__fSaveWord, text="Sauvegarde des mots",
-                                                                  ppolice="Arial", ptaille=tailleTitle)
+                                                            ppolice="Arial", ptaille=tailleTitle)
         self.__btnSaveWord = self.__arrTK.createButton(self.__fSaveWord, text="Enregistrer",
-                                                       ppolice = "arial" , ptaille = tailleMain,command=self.__recordTigerWord)
+                                                        ppolice = "arial" , ptaille = tailleMain,command=self.__recordTigerWord)
         self.__btnSupprWord = self.__arrTK.createButton(self.__fSaveWord, text="Supprimer",
-                                                        ppolice = "arial" , ptaille = tailleMain)
+                                                       ppolice = "arial" , ptaille = tailleMain)
         self.__labelShowSavedWord = self.__arrTK.createLabel(self.__fSaveWord,ppolice = "arial" , ptaille = tailleMain)
-
+        
         self.__btnBackSaveWord = self.__arrTK.createButton(self.__fSaveWord, text="Retour",
-                                                           ppolice = "arial" , ptaille = tailleMain,
-                                                           command=self.__viewTigerVoice)
+                                                        ppolice = "arial" , ptaille = tailleMain,
+                                                        command=self.__viewTigerVoice)
         # view Word
         labelTitleViewWordMicro = self.__arrTK.createLabel(self.__fviewWord, text="Enregistrement de\nl'empreinte vocale",
-                                                           ppolice="Arial", ptaille=tailleTitle)
+                                                            ppolice="Arial", ptaille=tailleTitle)
         self.__labelViewWordSave = self.__arrTK.createLabel(self.__fviewWord,ppolice="Arial", ptaille=tailleTitle)
         self.__btnValidateWordSaved = self.__arrTK.createButton(self.__fviewWord, text="Valider",
-                                                                ppolice = "arial" , ptaille = tailleMain,command=self.__saveTigerWord)
+                                                            ppolice = "arial" , ptaille = tailleMain,command=self.__saveTigerWord)
         btnCancelSavedWord = self.__arrTK.createButton(self.__fviewWord, text="Annuler",
-                                                       ppolice = "arial" , ptaille = tailleMain,command=self.__viewTigerVoice)
-
+                                                        ppolice = "arial" , ptaille = tailleMain,command=self.__viewTigerVoice)
+        
         # Cader Work folder
         labelTitreArreraWork = self.__arrTK.createLabel(self.__cadreArreraWork,
-                                                        text="Choisir le dossier\npour Arrera Work",
-                                                        ppolice="Arial", ptaille=tailleTitle)
+                                                               text="Choisir le dossier\npour Arrera Work",
+                                                               ppolice="Arial", ptaille=tailleTitle)
         self.__btnFolderArreraWork = self.__arrTK.createButton(self.__cadreArreraWork, text="Choisir le dossier",
                                                                ppolice = "arial" , ptaille = tailleMain,command=lambda : self.__validerFolderWork(1))
         self.__btnSupprArreraWork = self.__arrTK.createButton(self.__cadreArreraWork, text="Supprimer le dossier",
                                                               ppolice = "arial" , ptaille = tailleMain,command = lambda : self.__validerFolderWork(2))
         # Cadre Download folder
         labelTitreDownload = self.__arrTK.createLabel(self.__cadreVideoDownload,
-                                                      text="Choisir le dossier pour\nArrera video download",
-                                                      ppolice="Arial", ptaille=tailleTitle)
+                                                             text="Choisir le dossier pour\nArrera video download",
+                                                             ppolice="Arial", ptaille=tailleTitle)
         self.__btnFolderDownload = self.__arrTK.createButton(self.__cadreVideoDownload, text="Choisir le dossier",
                                                              ppolice = "arial" , ptaille = tailleMain,command = lambda : self.__validerFolderDownload(1))
         self.__btnSupprDownload = self.__arrTK.createButton(self.__cadreVideoDownload, text="Supprimer le dossier",
                                                             ppolice = "arial" , ptaille = tailleMain,command = lambda : self.__validerFolderDownload(2))
         # Placement widget
         self.__arrTK.placeTopCenter(labelTitreMenu)
-
+        
         boutonMenu[0].place(relx=0.0,y=50)
         boutonMenu[1].place(relx=0.0,y=100)
         boutonMenu[2].place(relx=0.0,y=150)
@@ -474,14 +474,14 @@ class CArreraGazelleUIRyleyCopilote :
         self.__arrTK.placeCenter(menuSonsEmis)
         self.__arrTK.placeLeftBottom(btnBackAcceuilSonsEmis)
         self.__arrTK.placeRightBottom(btnValiderSonsEmis)
-
+        
         self.__arrTK.placeTopCenter(self.__labelTitleSaveWordMicro)
 
         self.__arrTK.placeTopCenter(labelTitleViewWordMicro)
         self.__arrTK.placeCenter(self.__labelViewWordSave)
         self.__arrTK.placeRightBottom(self.__btnValidateWordSaved)
         self.__arrTK.placeLeftBottom(btnCancelSavedWord)
-
+        
 
         self.__arrTK.placeTopCenter(labelTitreDownload)
         self.__arrTK.placeTopCenter(labelTitreArreraWork)
@@ -594,7 +594,7 @@ class CArreraGazelleUIRyleyCopilote :
         self.__cadreMicro.pack_forget()
         self.__cadreArreraWork.pack_forget()
         self.__cadreVideoDownload.pack_forget()
-
+    
     def __disableAllFrame(self):
         self.__mainFrame.pack_forget()
         self.__cadreUser.pack_forget()
@@ -608,7 +608,7 @@ class CArreraGazelleUIRyleyCopilote :
         self.__cadreArreraWork.pack_forget()
         self.__cadreVideoDownload.pack_forget()
         self.__cadreMenu.pack(side="left")
-
+    
     def __showUserFrame(self):
         self.__disableAllFrame()
         self.__arrTK.packRight(self.__cadreUser)
@@ -716,7 +716,7 @@ class CArreraGazelleUIRyleyCopilote :
         self.__arrTK.placeCenter(self.__faddSite)
         self.__entryNameSite.delete(0,END)
         self.__entryLinkSite.delete(0,END)
-
+    
     def __viewSupprSite(self):
         self.__disableSiteFrame()
         self.__arrTK.placeCenter(self.__fsupprSite)
@@ -786,7 +786,7 @@ class CArreraGazelleUIRyleyCopilote :
         self.__backAcceuilSite()
 
 
-
+    
     def __showThemeFrame(self):
         self.__disableAllFrame()
         self.__arrTK.packRight(self.__cadreTheme)
@@ -806,7 +806,7 @@ class CArreraGazelleUIRyleyCopilote :
         self.__fSonsEmis.place_forget()
         self.__fSaveWord.place_forget()
         self.__fviewWord.place_forget()
-
+    
     def __viewMicroSound(self):
         self.__disableMicroFrame()
         self.__arrTK.placeCenter(self.__fSonsEmis)
@@ -835,9 +835,9 @@ class CArreraGazelleUIRyleyCopilote :
             self.__arrTK.placeCenterOnWidth(self.__btnVoicePrint1,100)
             self.__arrTK.placeCenterOnWidth(self.__btnVoicePrint2,200)
             self.__arrTK.placeCenterOnWidth(self.__btnVoicePrint3,300)
-
+    
     def __viewSaveTigerWord(self,nbTiger:int):
-
+        
         self.__disableMicroFrame()
         self.__arrTK.placeCenter(self.__fSaveWord)
 
@@ -848,11 +848,11 @@ class CArreraGazelleUIRyleyCopilote :
 
         listWord = self.__gazelle.getTrigerWord()
         nb = len(listWord)
-
+        
         match nbTiger:
             case 1:
                 self.__labelTitleSaveWordMicro.configure(text="Gestion empreinte\nvocale 1")
-
+                
                 if nb == 0:
                     self.__arrTK.placeCenter(self.__btnSaveWord)
                     self.__arrTK.placeBottomCenter(self.__btnBackSaveWord)
@@ -928,7 +928,7 @@ class CArreraGazelleUIRyleyCopilote :
         self.__arrTK.placeCenter(self.__userGenre)
         self.__userAcceuil.place_forget()
         self.__userName.place_forget()
-
+    
     def __validerUserName(self):
         name = self.__entryNameUser.get()
         self.__entryNameUser.delete(0,END)
@@ -980,7 +980,7 @@ class CArreraGazelleUIRyleyCopilote :
                                                                   var = self.__varChoixSupprMeteo,
                                                                   value = listVille)
             self.__arrTK.placeCenter(self.__menuSupprMeteo)
-
+    
     def __addMeteoHome(self):
         home = self.__entryMeteoDomicile.get()
         if (home==""):
@@ -1030,14 +1030,14 @@ class CArreraGazelleUIRyleyCopilote :
         self.__menuSupprMeteo.place_forget()
         self.__menuSupprMeteo = None
         self.__viewMeteo()
-
+    
     def __viewGPS(self):
         self.__disableAllFrame()
         self.__gpsWork.place_forget()
         self.__gpsHome.place_forget()
         self.__arrTK.packRight(self.__cadreGPS)
         self.__arrTK.placeCenter(self.__gpsAcceuil)
-
+    
     def __viewGPSHome(self):
         self.__gpsAcceuil.place_forget()
         self.__gpsWork.place_forget()
@@ -1047,7 +1047,7 @@ class CArreraGazelleUIRyleyCopilote :
         self.__gpsAcceuil.place_forget()
         self.__gpsHome.place_forget()
         self.__arrTK.placeCenter(self.__gpsWork)
-
+    
     def __validateGpsHome(self):
         home = self.__entryGpsHome.get()
         if (home == ""):
@@ -1071,7 +1071,7 @@ class CArreraGazelleUIRyleyCopilote :
             else :
                 showinfo("Parametre","Adresse enregistré")
         self.__viewGPS()
-
+    
     def __validerMoteur(self):
         moteur = self.__varMoteurRecherce.get()
         if (self.__gazelle.changeMoteur(moteur)):
@@ -1080,13 +1080,13 @@ class CArreraGazelleUIRyleyCopilote :
             showerror("Parametre","Impossible d'enregistrer le moteur")
         self.__backAcceuil()
 
-
+    
     def __validerTheme(self):
         theme = self.__varChoixTheme.get()
         self.__gazelle.changeTheme(theme)
         showinfo("Parametre","Theme changer")
         self.__backAcceuil()
-
+    
     def __validerSoundMicro(self):
         sortie = self.__varSonsEmis.get()
         if (sortie=="ON"):

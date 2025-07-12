@@ -60,15 +60,15 @@ class guiCopilote:
         objOS = OS()
         self.__windowsOS = objOS.osWindows()
         self.__linuxOS = objOS.osLinux()
+        self.__macOS = objOS.osMac()
         del objOS
 
         # Demarage de l'interface
 
-        if (self.__windowsOS == True) and (self.__linuxOS == False):
+        if self.__windowsOS and not self.__linuxOS:
             self.__emplacementIcon = "asset/icon.ico"
-        else:
-            if (self.__windowsOS == False) and (self.__linuxOS == True):
-                self.__emplacementIcon = "asset/icon.png"
+        elif not self.__windowsOS and self.__linuxOS or self.__macOS:
+            self.__emplacementIcon = "asset/icon.png"
 
         self.__screen = self.__arrTK.aTK(0,title=self.__nameSoft, resizable=False,
                                          width=500, height=600,icon=self.__emplacementIcon)
@@ -83,12 +83,6 @@ class guiCopilote:
                                                           "fichierJSON/copiloteConfig.json",
                                                           "fichierJSON/configSetting.json")
         self.__arrGazelle.passApropos(self.__apropos)
-
-        # Icon
-        if self.__windowsOS:
-            self.__emplacementIcon = "asset/icon.ico"
-        else :
-            self.__emplacementIcon = "asset/icon.png"
 
         # Definition des images
         emplacementLight = "asset/GUI/light/"
@@ -615,11 +609,10 @@ class guiCopilote:
         time.sleep(0.2)
         self.__backgroudBoot2.pack_forget()
         self.__backgroudBoot1.pack()
-        if (self.__windowsOS==True) and (self.__linuxOS==False) :
+        if self.__windowsOS and not self.__linuxOS and not self.__macOS:
             os.kill(os.getpid(), signal.SIGINT)
-        else :
-            if (self.__windowsOS==False) and (self.__linuxOS==True) :
-                os.kill(os.getpid(), signal.SIGKILL)
+        elif not self.__windowsOS and self.__linuxOS or self.__macOS :
+            os.kill(os.getpid(), signal.SIGKILL)
 
 
     def __disableAllFrame(self):
@@ -930,8 +923,16 @@ class guiCopilote:
                         self.__actionBTNCodehelp()
                     elif self.__litleWindowsActived == 1 or self.__litleWindowsActived == 2:
                         self.__actionBTNLitleWindows()
-            else:
+            elif self.__linuxOS :
                 if event.keycode == 36:
+                    if not self.__codeHelpActived and self.__litleWindowsActived == 0:
+                        self.__actionBTNAcceuil()
+                    elif self.__codeHelpActived:
+                        self.__actionBTNCodehelp()
+                    elif self.__litleWindowsActived == 1 or self.__litleWindowsActived == 2:
+                        self.__actionBTNLitleWindows()
+            elif self.__macOS:
+                if event.keycode == 603979789:
                     if not self.__codeHelpActived and self.__litleWindowsActived == 0:
                         self.__actionBTNAcceuil()
                     elif self.__codeHelpActived:

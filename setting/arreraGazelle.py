@@ -12,44 +12,45 @@ class CArreraGazelle :
         self.__fileJsonAssistant = jsonWork(emplacementJsonAssistant)
         self.__soundMicro = soundMicro
         self.__record = ""
-        # Objet
+        # Objet 
         objOS = OS()
         self.__windowsOS = objOS.osWindows()
         self.__linuxOS = objOS.osLinux()
+        self.__appleOS = objOS.osMac()
 
-        if ((self.__linuxOS==False)and(self.__windowsOS==True)):
+        if not self.__linuxOS==False and self.__windowsOS :
             self.__softWin = gestionSoftWindows(self.__fileJsonNeuronNetwork.lectureJSON("emplacementSoftWindows"))
-
+    
     def changeUserName(self,newName:str):
         self.__fileJsonUser.EcritureJSON("user",newName)
-
+    
     def changeUserGenre(self,newGenre:str):
         self.__fileJsonUser.EcritureJSON("genre",newGenre)
-
+    
     def ajoutVilleMeteo(self,mode:int,ville:str):
         """
         1 : domicile
-        2 : Travail
+        2 : Travail 
         3 : Autre
         """
-        if (mode == 1 ):
+        if mode == 1:
             self.__fileJsonUser.EcritureJSON("lieuDomicile",ville)
             return True
         else :
-            if (mode==2):
+            if mode==2:
                 self.__fileJsonUser.EcritureJSON("lieuTravail",ville)
                 return True
             else :
-                if (mode==3):
+                if mode==3:
                     self.__fileJsonUser.EcritureJSONList("listVille",ville)
                     return True
                 else :
                     return False
-
+    
     def supprVilleMeteo(self,mode:int,ville:str):
         """
         1 : domicile
-        2 : Travail
+        2 : Travail 
         3 : Autre
         """
         if (mode == 1 ):
@@ -65,7 +66,7 @@ class CArreraGazelle :
                     return True
                 else :
                     return False
-
+    
     def getMeteoSave(self):
         listeMeteo = self.__fileJsonUser.lectureJSONList("listVille")
 
@@ -85,7 +86,7 @@ class CArreraGazelle :
                 return True
             else :
                 return False
-
+    
     def supprGPSAdresse(self,mode:int):
         """
         1 : Adresse domicile
@@ -132,7 +133,9 @@ class CArreraGazelle :
             bool: True si le logiciel a été ajouté avec succès, False sinon
         """
         # Si on est sous Windows et que l'emplacement des logiciels n'est pas défini
-        if not self.__linuxOS and self.__windowsOS and self.__fileJsonNeuronNetwork.lectureJSON("emplacementSoftWindows") == "":
+        if (not self.__linuxOS and not self.__appleOS and
+                self.__windowsOS and
+                self.__fileJsonNeuronNetwork.lectureJSON("emplacementSoftWindows") == ""):
             self.__fileJsonNeuronNetwork.EcritureJSON("emplacementSoftWindows", self.__softWin.setEmplacementSoft())
 
         # Si le nom du logiciel est vide, on ne peut pas continuer
@@ -140,7 +143,7 @@ class CArreraGazelle :
             return False
 
         # Traitement pour Linux
-        if self.__linuxOS and not self.__windowsOS:
+        if self.__linuxOS and not self.__windowsOS and not self.__appleOS:
             # Demande à l'utilisateur si le programme est dans son répertoire home
             reponse = messagebox.askquestion(
                 "Choix répertoire",
@@ -167,16 +170,47 @@ class CArreraGazelle :
             return True
 
         # Traitement pour Windows
-        elif not self.__linuxOS and self.__windowsOS:
+        elif not self.__linuxOS and self.__windowsOS and not self.__appleOS:
             self.__softWin.setName(name)
             if self.__softWin.saveSoftware():
                 self.__fileJsonUser.EcritureJSONDictionnaire("dictSoftWindows", name, self.__softWin.getName())
                 return True
             return False
+        elif not self.__linuxOS and not self.__windowsOS and self.__appleOS:
+            reponse = messagebox.askquestion(
+                "Choix répertoire",
+                "Votre application se trouve-t-elle dans le dossier Applications ?",
+                icon="question"
+            )
+            if reponse == "yes":
+                reponse = messagebox.askquestion(
+                    "Choix répertoire",
+                    "Votre application se trouve-t-elle dans le dossier Applications utilisateur ?",
+                    icon="question"
+                )
+                if reponse == "yes":
+                    initial_dir = "/Users/Applications"
+                else :
+                    initial_dir = "/Applications"
+            else:
+                initial_dir = "/"
 
-        # Si le système d'exploitation n'est ni Linux ni Windows
-        return False
+            command = filedialog.askopenfilename(
+                title="Sélectionner un programme",
+                initialdir=initial_dir,
+                filetypes=[("Tous les fichiers", "*")]
+            )
 
+            if not command:
+                return False
+
+            # Enregistrer le logiciel dans le fichier JSON pour Linux
+            self.__fileJsonUser.EcritureJSONDictionnaire("dictSoftLinux", name, command)
+            return True
+
+        else :
+            # Si le système d'exploitation n'est ni Linux ni Windows ou Apple
+            return False
 
     def supprSoft(self,name:str):
         """
@@ -188,28 +222,28 @@ class CArreraGazelle :
         """
         flags = ""
 
-        if ((self.__linuxOS==False)and(self.__windowsOS==True)):
+        if not self.__linuxOS and self.__windowsOS and not self.__appleOS:
             flags = "dictSoftWindows"
-        elif ((self.__linuxOS==True)and(self.__windowsOS==False)):
+        elif self.__linuxOS or self.__appleOS and not self.__windowsOS:
             flags = "dictSoftLinux"
         else :
             return False
 
         self.__fileJsonUser.supprJSONList(flags,name)
-        if ((self.__linuxOS==False)and(self.__windowsOS==True)):
+        if not self.__linuxOS and not self.__appleOS and self.__windowsOS:
             self.__softWin.supprSoft(name)
             return True
-        elif ((self.__linuxOS==True)and(self.__windowsOS==False)):
+        elif self.__linuxOS or self.__appleOS and not self.__windowsOS:
             return True
 
         return False
-
+        
     def getListSoft(self):
         listSortie = []
-        # Creation listFlag
-        if ((self.__linuxOS==False)and(self.__windowsOS==True)):
+        # Creation listFlag 
+        if not self.__linuxOS and self.__windowsOS:
             flags = "dictSoftWindows"
-        elif ((self.__linuxOS==True)and(self.__windowsOS==False)):
+        elif self.__linuxOS or self.__appleOS and not self.__windowsOS:
             flags = "dictSoftLinux"
         else :
             return ["error","error"]
@@ -233,13 +267,13 @@ class CArreraGazelle :
         match mode :
             case 1 :
                 if (name==""):
-                    return False
+                    return False 
                 self.__fileJsonUser.EcritureJSONDictionnaire("dictSite",name,link)
                 return True
-            case 2 :
+            case 2 : 
                 self.__fileJsonUser.EcritureJSON("lienCloud",link)
                 return True
-
+    
     def supprSite(self,mode:int,name:str):
         """
         1 : normal
@@ -248,13 +282,13 @@ class CArreraGazelle :
         match mode :
             case 1 :
                 if (name==""):
-                    return False
+                    return False 
                 self.__fileJsonUser.supprJSONList("dictSite",name)
                 return True
-            case 2 :
+            case 2 : 
                 self.__fileJsonUser.suppressionJson("lienCloud")
                 return True
-
+    
     def getListSite(self):
         listSortie = []
         """
@@ -270,14 +304,14 @@ class CArreraGazelle :
     def changeMoteur(self,moteur:str):
         self.__fileJsonUser.EcritureJSON("moteurRecherche",moteur)
         return True
-
+    
     def changeTheme(self,theme:str):
         self.__fileJsonAssistant.EcritureJSON("theme",theme)
         return True
 
     def getTheme(self):
         return self.__fileJsonAssistant.lectureJSON("theme")
-
+    
     def changeSoundMicro(self,enable:bool):
         if(enable==False):
             self.__fileJsonAssistant.EcritureJSON("soundMicro","0")
@@ -288,14 +322,14 @@ class CArreraGazelle :
                 return True
             else :
                 return False
-
+    
     def getSoundMicroAsEnable(self):
         sortie = self.__fileJsonAssistant.lectureJSON("soundMicro")
         if (sortie=="1"):
             return True
         else :
             return False
-
+    
     def getOS(self):
         if ((self.__linuxOS==True) and (self.__windowsOS==False)):
             return "linux"

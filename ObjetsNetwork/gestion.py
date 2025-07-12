@@ -21,7 +21,7 @@ class gestionNetwork:
                                       self.getListFonction())
         self.__etatNeuron = CArreraEnabledNeuron(self.__configFile)
         self.__network = network()
-        if (self.__etatNeuron.getSocket()==True):
+        if self.__etatNeuron.getSocket():
             self.__serveurSocket = socketAssistant(self.__configFile.lectureJSON("name"))
         else :
             self.__serveurSocket = None
@@ -95,21 +95,25 @@ class gestionNetwork:
     def getDictionnaireLogiciel(self):
         etatWindows = self.__detecteurOS.osWindows()
         etatLinux = self.__detecteurOS.osLinux()
+        etatMac = self.__detecteurOS.osMac()
         if etatWindows == True and etatLinux == False :
             return self.__fileUser.lectureJSONDict("dictSoftWindows")
+        elif etatWindows == False and etatLinux == True or etatMac == True:
+            return self.__fileUser.lectureJSONDict("dictSoftLinux")
         else :
-            if etatWindows == False and etatLinux == True :
-                return self.__fileUser.lectureJSONDict("dictSoftLinux")
-    
+            return None
+
     def getListLogiciel(self):
         etatWindows = self.__detecteurOS.osWindows()
         etatLinux = self.__detecteurOS.osLinux()
-        if etatWindows == True and etatLinux == False :
+        etatMac = self.__detecteurOS.osMac()
+        if etatWindows == True and etatLinux == False and etatMac == False:
             return list(self.__fileUser.lectureJSONDict("dictSoftWindows").keys())
+        elif etatWindows == False and etatLinux == True or etatMac == True :
+            return list(self.__fileUser.lectureJSONDict("dictSoftLinux").keys())
         else :
-            if etatWindows == False and etatLinux == True :
-                return list(self.__fileUser.lectureJSONDict("dictSoftLinux").keys())
-            
+            return None
+
     def getListWeb(self):
         return list(self.__fileUser.lectureJSONDict("dictSite").keys())
     

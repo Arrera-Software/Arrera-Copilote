@@ -9,7 +9,7 @@ class neuroneOpen(neuronBase) :
         if self._gestNeuron.getOpen():
             #fonction neuron Open
             if ("ouvre" in requette) or ("ouvrir" in requette):
-                if (self._fonctionArreraNetwork.openSoftwareAssistant(requette) == True):
+                if self._fonctionArreraNetwork.openSoftwareAssistant(requette):
                     self._listSortie = [self._fonctionArreraNetwork.sortieOpenSoftware(requette), ""]
                 else :
                     if "youtube" in requette:
@@ -17,7 +17,7 @@ class neuroneOpen(neuronBase) :
                         self._objHistorique.setAction("Ouverture de youtube")
                     else :
                         siteOpen = self._fonctionArreraNetwork.openWebSiteAssistant(requette)
-                        if siteOpen == True:
+                        if siteOpen:
                             self._listSortie = [self._fonctionArreraNetwork.sortieOpenSite(requette,siteOpen), ""]
                         elif self._gestNeuron.getSocket():
                             if self._socket.getServeurOn():

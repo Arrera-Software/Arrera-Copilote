@@ -5,14 +5,10 @@ class OS :
         self.__os = platform.system()
         
     def osWindows(self):
-        if self.__os == "Windows":
-           return True
-        else :
-            return False
+        return self.__os == "Windows"
     
     def osLinux(self):
-        if self.__os == "Linux":
-            return True
-        else :
-            return False
-                
+        return self.__os == "Linux"
+
+    def osMac(self):
+        return self.__os == "Darwin"
