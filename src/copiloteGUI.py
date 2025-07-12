@@ -1,4 +1,5 @@
 from ObjetsNetwork.arreraNeuron import *
+from guiWork.canwork import *
 from src.CLanguageCopilote import *
 import signal
 from setting.CArreraGazelleUIRyleyCopilote import *
@@ -21,6 +22,7 @@ class guiCopilote:
         self.__microState = False
         self.__microTrigger = False
         self.__is_listening = False
+
         # Boot ArreraTK
         self.__arrTK = CArreraTK()
 
@@ -89,6 +91,8 @@ class guiCopilote:
         emplacementLight = "asset/GUI/light/"
         emplacementDark = "asset/GUI/dark/"
 
+        # Interface aide pour Arrera Work
+        self.__guiWork = CAnWorkGUI(self.__arrTK,self.__nameSoft,"asset/work")
 
         # Creation des images
 
