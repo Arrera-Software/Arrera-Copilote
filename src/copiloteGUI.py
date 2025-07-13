@@ -128,6 +128,9 @@ class guiCopilote:
         imgProjetOpen = self.__arrTK.createImage(pathLight=emplacementLight + "projet.png",
                                                     pathDark=emplacementDark + "projet.png",
                                                     tailleX=30, tailleY=30)
+        imgBTNGUIWork = self.__arrTK.createImage(pathLight=emplacementLight + "work.png",
+                                                    pathDark=emplacementDark + "work.png",
+                                                    tailleX=30, tailleY=30)
 
         imgCHColorSelector = self.__arrTK.createImage(pathLight=emplacementLight + "btnColorSelector.png",
                                                     pathDark=emplacementDark + "btnColorSelector.png",
@@ -290,6 +293,10 @@ class guiCopilote:
         btnLittleWindows = self.__arrTK.createButton(self.__frameBackgroud,image=imgBTNLittleWindows,
                                                        width=40,height=40,command=self.__modeLittleWindows,
                                                        bg="#694d6b", hoverbg="#1d1020")
+
+        btnWorkGUI = self.__arrTK.createButton(self.__frameBackgroud, image=imgBTNGUIWork,
+                                                width=40, height=40, command= lambda: self.__guiWork.activeAcceuil(),
+                                                bg="#694d6b", hoverbg="#1d1020")
 
         self.__btnSoundNormal = self.__arrTK.createButton(self.__frameBackgroud, image=self.__imgBtnSoundOff,
                                                           width=40, height=40, command = self.__actionSound,
@@ -473,8 +480,10 @@ class guiCopilote:
                                                         ppolice="Arial", pstyle="bold",justify="left")
 
         # Affichage des widgets
-        self.__entryUserCopilote.place(relx=0.40, rely=0.3, anchor="center")
-        btnSendCopilote.place(relx=0.90, rely=0.3, anchor="center")
+
+        self.__entryUserCopilote.place(relx=0.40, rely=0.50, anchor="center")
+        btnSendCopilote.place(relx=0.90, rely=0.50, anchor="center")
+
         self.__lparoleRyleyNormal.place(x=120, y=160)
         self.__lparoleSixNormal.place(x=120, y=340)
 
@@ -502,6 +511,8 @@ class guiCopilote:
         self.__arrTK.placeBottomCenter(btnLittleWindows)
         self.__arrTK.placeWidgetCenteredAtBottom(self.__btnSoundNormal, -125)
         self.__arrTK.placeWidgetCenteredAtBottom(self.__btnMicroNormal, 125)
+
+        self.__arrTK.placeTopCenter(btnWorkGUI)
 
         self.__labelActu.place(x=70, y=75)
         self.__labelFirstBoot.place(x=70, y=190)
