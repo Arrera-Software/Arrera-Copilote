@@ -5,7 +5,7 @@ class CAnWorkGUI:
         # Attributs
         self.__tableurOpen = False
         self.__wordOpen = False
-        self.__projectOpen = True
+        self.__projectOpen = False
         # Attributs de l'interface
         self.__arrTk = arrtk
         self.__emplacementAsset = asset+"/"
