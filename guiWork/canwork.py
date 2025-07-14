@@ -404,20 +404,26 @@ class CAnWorkGUI:
         self.updateEtat()
         self.__activeProjet()
 
+    # Partie Projet
+
+    def __windowsTexteProjet(self,title:str, texte:str,fnc:callable):
+        screen = ctk.CTkToplevel()
+        screen.title(title)
+        screen.geometry("225x100")
+        screen.resizable(False, False)
+        self.__arrTk.placeTopCenter(self.__arrTk.createLabel(screen, text=texte,
+                                                             ppolice="Arial", ptaille=15))
+        self.__entryNameProjet = self.__arrTk.createEntry(screen)
+        self.__arrTk.placeCenter(self.__entryNameProjet)
+        self.__arrTk.placeBottomCenter(self.__arrTk.createButton(screen,text="Valider",
+                                                                 command= lambda :fnc(screen)))
+
     def __windowsNameNewProjet(self):
         """
         Crée un nouveau projet.
         """
-        screen = ctk.CTkToplevel()
-        screen.title("Création d'un projet")
-        screen.geometry("225x100")
-        screen.resizable(False, False)
-        self.__arrTk.placeTopCenter(self.__arrTk.createLabel(screen, text="Nom du projet",
-                                                            ppolice="Arial", ptaille=15))
-        self.__entryNameProjet = self.__arrTk.createEntry(screen)
-        self.__arrTk.placeCenter(self.__entryNameProjet)
-        self.__arrTk.placeBottomCenter(self.__arrTk.createButton(screen,text="Valider",
-                                                                 command= lambda :self.__createNewProjet(screen)))
+        self.__windowsTexteProjet("Création d'un projet","Nom du nouveau projet",self.__createNewProjet)
+
 
     def __createNewProjet(self,screen:ctk.CTkToplevel):
         name = self.__entryNameProjet.get()
