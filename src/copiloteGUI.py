@@ -92,7 +92,11 @@ class guiCopilote:
         emplacementDark = "asset/GUI/dark/"
 
         # Interface aide pour Arrera Work
-        self.__guiWork = CAnWorkGUI(self.__arrTK,self.__nameSoft,"asset/work",self.__assistantSix)
+        self.__guiWork = CAnWorkGUI(self.__arrTK,
+                                    self.__nameSoft,
+                                    "asset/work",
+                                    self.__assistantSix,
+                                    jsonWork(neuronConfigFileSix).lectureJSON("fileUser"))
 
         # Creation des images
 

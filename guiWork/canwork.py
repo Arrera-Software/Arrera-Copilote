@@ -2,7 +2,7 @@ from librairy.arrera_tk import *
 from ObjetsNetwork.arreraNeuron import *
 
 class CAnWorkGUI:
-    def __init__(self, arrtk : CArreraTK,nameAssistant : str,asset:str,arrNeuron:ArreraNetwork):
+    def __init__(self, arrtk : CArreraTK,nameAssistant : str,asset:str,arrNeuron:ArreraNetwork,fileUserAssistant:str):
         # Attributs
         self.__tableurOpen = False
         self.__wordOpen = False
@@ -13,6 +13,7 @@ class CAnWorkGUI:
         self.__nameAssistant = nameAssistant
         # Recuperation du neurone
         self.__arrNeuron = arrNeuron
+        self.__fileUser = jsonWork(fileUserAssistant)
 
     def __createWindows(self):
         self.__screen = self.__arrTk.aTopLevel(width=500, height=650,
@@ -133,7 +134,7 @@ class CAnWorkGUI:
         labelTitleNoOpenTableur = self.__arrTk.createLabel(self.__fTableurNoOpen, text="Travail sur un tableur",
                                                            ppolice="Arial",ptaille=25)
         btnOpenTableur = self.__arrTk.createButton(self.__fTableurNoOpen,width=90,height=90,
-                                                   image=imgOpenTableur)
+                                                   image=imgOpenTableur,command=self.__openTableur)
         labelTitleTableur = self.__arrTk.createLabel(self.__fTableur, text="Travail sur un tableur",
                                                      ppolice="Arial",ptaille=25)
         btnOpenTableurWithComputer = self.__arrTk.createButton(self.__fTableur,width=90,height=90,image=imgOpenTableurCoputerSoft,)
@@ -151,7 +152,8 @@ class CAnWorkGUI:
         # Widgets dans la frame Word
         labelTitleNoOpenWord = self.__arrTk.createLabel(self.__fWordNoOpen, text="Travail sur un document Word",
                                                         ppolice="Arial",ptaille=25)
-        btnOpenWord = self.__arrTk.createButton(self.__fWordNoOpen,width=90,height=90,image=imgOpenWord)
+        btnOpenWord = self.__arrTk.createButton(self.__fWordNoOpen,width=90,height=90,image=imgOpenWord,
+                                                command=self.__openWord)
 
         labelTitleWord = self.__arrTk.createLabel(self.__fWord, text="Travail sur un document Word",
                                                   ppolice="Arial",ptaille=25)
@@ -165,8 +167,11 @@ class CAnWorkGUI:
         labelTitleNoOpenProjet = self.__arrTk.createLabel(self.__fProjetNoOpen, text="Travail sur un projet",
                                                           ppolice="Arial", ptaille=25)
 
-        btnOpenProjet = self.__arrTk.createButton(self.__fProjetNoOpen, width=90, height=90,image=imgOpenProjet)
-        btnCreateProjet = self.__arrTk.createButton(self.__fProjetNoOpen, width=90, height=90,image=imgCreateProject)
+        btnOpenProjet = self.__arrTk.createButton(self.__fProjetNoOpen, width=90, height=90,
+                                                  image=imgOpenProjet,command=self.__openProjet)
+
+        btnCreateProjet = self.__arrTk.createButton(self.__fProjetNoOpen, width=90, height=90,
+                                                    image=imgCreateProject)
 
         # OPEN
         labelTitleProjet = self.__arrTk.createLabel(self.__fProjet, text="Travail sur un projet",
@@ -367,3 +372,32 @@ class CAnWorkGUI:
         self.__wordOpen = self.__arrNeuron.getWord()
         self.__tableurOpen = self.__arrNeuron.getTableur()
         self.__projectOpen = self.__arrNeuron.getProject()
+
+    def __openTableur(self):
+        """
+        Ouvre le tableur.
+        """
+        self.__arrNeuron.neuron("Ouvre un tableur")
+        self.updateEtat()
+        self.__activeTableur()
+
+    def __openWord(self):
+        """
+        Ouvre le document Word.
+        """
+        self.__arrNeuron.neuron("Ouvre un document Word")
+        self.updateEtat()
+        self.__activeWord()
+
+    def __openProjet(self):
+        """
+        Ouvre le projet.
+        """
+        emplacementProjects = self.__fileUser.lectureJSON("wordFolder")
+
+        dossier = filedialog.askdirectory(initialdir=emplacementProjects,
+                                          title="Selection du projet")
+        dossier = dossier.replace(emplacementProjects,"")
+        self.__arrNeuron.neuron("Ouvre un projet nommé "+dossier)
+        self.updateEtat()
+        self.__activeProjet()
