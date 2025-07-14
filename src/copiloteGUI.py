@@ -92,7 +92,7 @@ class guiCopilote:
         emplacementDark = "asset/GUI/dark/"
 
         # Interface aide pour Arrera Work
-        self.__guiWork = CAnWorkGUI(self.__arrTK,self.__nameSoft,"asset/work")
+        self.__guiWork = CAnWorkGUI(self.__arrTK,self.__nameSoft,"asset/work",self.__assistantSix)
 
         # Creation des images
 
@@ -564,7 +564,6 @@ class guiCopilote:
         self.__paroleRyley(self.__assistantRyley.boot(2))
         self.__paroleSix(self.__assistantSix.boot(2))
         self.__viewNormal()
-        self.__setButtonOpen()
 
     def __sequenceFirstBoot(self):
         self.__disableAllFrame()
@@ -1232,6 +1231,7 @@ class guiCopilote:
         self.__paroleSix(self.__language.getPhActiveModeNormalSix())
         self.__viewNormal()
         self.__litleWindowsActived = 0
+        self.__setButtonOpen()
 
     def __ttsSpeak(self,text:str):
         """
@@ -1280,6 +1280,7 @@ class guiCopilote:
         self.__litleWindowsActived = 0
         self.__screen.maxsize(500, 600)
         self.__screen.minsize(500, 600)
+        self.__setButtonOpen()
 
     def __enableMicro(self):
         if not self.__microState:
