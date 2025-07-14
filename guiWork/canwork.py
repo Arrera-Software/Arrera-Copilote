@@ -171,7 +171,7 @@ class CAnWorkGUI:
                                                   image=imgOpenProjet,command=self.__openProjet)
 
         btnCreateProjet = self.__arrTk.createButton(self.__fProjetNoOpen, width=90, height=90,
-                                                    image=imgCreateProject)
+                                                    image=imgCreateProject, command=self.__windowsNameNewProjet)
 
         # OPEN
         labelTitleProjet = self.__arrTk.createLabel(self.__fProjet, text="Travail sur un projet",
@@ -401,5 +401,31 @@ class CAnWorkGUI:
                    (emplacementProjects,"").replace
                    ("/","").replace("\\","")).strip()
         self.__arrNeuron.neuron("ouvre le projet nommer "+dossier)
+        self.updateEtat()
+        self.__activeProjet()
+
+    def __windowsNameNewProjet(self):
+        """
+        Crée un nouveau projet.
+        """
+        screen = ctk.CTkToplevel()
+        screen.title("Création d'un projet")
+        screen.geometry("225x100")
+        screen.resizable(False, False)
+        self.__arrTk.placeTopCenter(self.__arrTk.createLabel(screen, text="Nom du projet",
+                                                            ppolice="Arial", ptaille=15))
+        self.__entryNameProjet = self.__arrTk.createEntry(screen)
+        self.__arrTk.placeCenter(self.__entryNameProjet)
+        self.__arrTk.placeBottomCenter(self.__arrTk.createButton(screen,text="Valider",
+                                                                 command= lambda :self.__createNewProjet(screen)))
+
+    def __createNewProjet(self,screen:ctk.CTkToplevel):
+        name = self.__entryNameProjet.get()
+        screen.destroy()
+        if not name:
+            showerror("Erreur", "Le nom du projet ne peut pas être vide.")
+            return
+
+        self.__arrNeuron.neuron("cree un nouveau projet nomme "+name)
         self.updateEtat()
         self.__activeProjet()
