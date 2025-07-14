@@ -397,7 +397,9 @@ class CAnWorkGUI:
 
         dossier = filedialog.askdirectory(initialdir=emplacementProjects,
                                           title="Selection du projet")
-        dossier = dossier.replace(emplacementProjects,"")
-        self.__arrNeuron.neuron("Ouvre un projet nommé "+dossier)
+        dossier = (dossier.replace
+                   (emplacementProjects,"").replace
+                   ("/","").replace("\\","")).strip()
+        self.__arrNeuron.neuron("ouvre le projet nommer "+dossier)
         self.updateEtat()
         self.__activeProjet()
