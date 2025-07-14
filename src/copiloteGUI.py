@@ -958,6 +958,8 @@ class guiCopilote:
         self.__screen.bind("<Key>", anychar)
 
     def __setButtonOpen(self):
+        self.__guiWork.updateEtat()
+
         tableur = (self.__assistantSix.getTableur())
         word = self.__assistantSix.getWord()
         projet = self.__assistantSix.getProject()

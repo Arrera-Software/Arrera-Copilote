@@ -1,7 +1,8 @@
 from librairy.arrera_tk import *
+from ObjetsNetwork.arreraNeuron import *
 
 class CAnWorkGUI:
-    def __init__(self, arrtk : CArreraTK,nameAssistant : str,asset:str):
+    def __init__(self, arrtk : CArreraTK,nameAssistant : str,asset:str,arrNeuron:ArreraNetwork):
         # Attributs
         self.__tableurOpen = False
         self.__wordOpen = False
@@ -10,6 +11,8 @@ class CAnWorkGUI:
         self.__arrTk = arrtk
         self.__emplacementAsset = asset+"/"
         self.__nameAssistant = nameAssistant
+        # Recuperation du neurone
+        self.__arrNeuron = arrNeuron
 
     def __createWindows(self):
         self.__screen = self.__arrTk.aTopLevel(width=500, height=650,
@@ -354,3 +357,13 @@ class CAnWorkGUI:
 
         self.__fDock.grid(row=1, column=0, columnspan=3, sticky='ew')
         self.__screen.update()
+
+    # Partie fonctionnelle de l'application
+
+    def updateEtat(self):
+        """
+        Met à jour l'état des frames en fonction de l'ouverture des outils.
+        """
+        self.__wordOpen = self.__arrNeuron.getWord()
+        self.__tableurOpen = self.__arrNeuron.getTableur()
+        self.__projectOpen = self.__arrNeuron.getProject()
