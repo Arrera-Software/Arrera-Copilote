@@ -176,8 +176,8 @@ class CAnWorkGUI:
         # OPEN
         labelTitleProjet = self.__arrTk.createLabel(self.__fProjet, text="Travail sur un projet",
                                                     ppolice="Arial", ptaille=25)
-        btnAddTypeProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgSetTypeProjet)
-        btnShowTypeFile = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgViewTypeFileProjet)
+        btnAddTypeProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,
+                                                     image=imgSetTypeProjet,command=self.__windowsTypeFileProjet)
         btnCreateFileProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgCreateFileProjet)
         btnOpenFileProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgOpenFileProjet)
         btnViewTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgTaskViewProjet)
@@ -293,12 +293,11 @@ class CAnWorkGUI:
 
         # labelTitleProjet.grid(row=1, column=0, columnspan=3, pady=(10, 30))
         btnAddTypeProjet.grid(row=2, column=0, padx=5, pady=5)
-        btnShowTypeFile.grid(row=2, column=1, padx=5, pady=5)
-        btnCreateFileProjet.grid(row=2, column=2, padx=5, pady=5)
-        btnOpenFileProjet.grid(row=3, column=0, padx=5, pady=5)
-        btnViewTaskProjet.grid(row=3, column=1, padx=5, pady=5)
-        btnSayAllTaskProjet.grid(row=3, column=2, padx=5, pady=5)
-        btnCloseProjet.grid(row=4, column=1, padx=5, pady=(5, 20))
+        btnCreateFileProjet.grid(row=2, column=1, padx=5, pady=5)
+        btnOpenFileProjet.grid(row=2, column=2, padx=5, pady=5)
+        btnViewTaskProjet.grid(row=3, column=0, padx=5, pady=5)
+        btnSayAllTaskProjet.grid(row=3, column=1, padx=5, pady=5)
+        btnCloseProjet.grid(row=3, column=2, padx=5, pady=5)
 
 
     def activeAcceuil(self):
@@ -435,3 +434,39 @@ class CAnWorkGUI:
         self.__arrNeuron.neuron("cree un nouveau projet nomme "+name)
         self.updateEtat()
         self.__activeProjet()
+
+    def __windowsTypeFileProjet(self):
+        """
+        Ouvre une fenêtre pour définir le type de fichier du projet.
+        """
+        self.__windowsTexteProjet("Type de fichier du projet",
+                                  "Definir le type du projet",
+                                  self.__setTypeFileProjet)
+
+    def __setTypeFileProjet(self, screen: ctk.CTkToplevel):
+        """
+        Définit le type de fichier du projet.
+        """
+        type_file = self.__entryNameProjet.get()
+        screen.destroy()
+        if not type_file:
+            showerror("Erreur", "Le type de fichier ne peut pas être vide.")
+            return
+
+        self.__arrNeuron.neuron("Le type est "+type_file)
+
+    def __windowsCreateFileProjet(self):
+        """
+        Ouvre une fenêtre pour créer un fichier de projet.
+        """
+        listType = [" word","odt","txt","python","en tete","json","html","css","md","cpp","language c++",
+         "language c",
+         "exel",
+         "tableur",
+         "php",
+         "javascript",
+         "java script",
+         "js",
+         "java",
+         "kotlin",
+         "kt"]
