@@ -140,17 +140,30 @@ class CAnWorkGUI:
                                                    image=imgOpenTableur,command=self.__openTableur)
         labelTitleTableur = self.__arrTk.createLabel(self.__fTableur, text="Travail sur un tableur",
                                                      ppolice="Arial",ptaille=25)
-        btnOpenTableurWithComputer = self.__arrTk.createButton(self.__fTableur,width=90,height=90,image=imgOpenTableurCoputerSoft,)
-        btnCloseTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,image=imgCloseTableur)
-        btnReadTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,image=imgReadTableur)
-        btnAddValeurTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,image=imgAddValeur)
-        btnAddMoyenneTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,image=imgAddMoyenne)
-        btnAddSommeTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,image=imgAddSomme)
-        btnAddComptageTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,image=imgAddComptage)
-        btnAddMinimumTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,image=imgAddMinimum)
-        btnAddMaximumTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,image=imgAddMaxmum)
-        btnAffichageTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,image=imgViewTableur)
-        btnSupprDataTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,image=imgSupprValeur)
+        btnOpenTableurWithComputer = self.__arrTk.createButton(self.__fTableur,width=90,height=90,
+                                                               image=imgOpenTableurCoputerSoft,
+                                                               command=self.__openTableurCoputerSoft)
+        btnCloseTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,
+                                                    image=imgCloseTableur,command=self.__closeTableur)
+        btnReadTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,
+                                                   image=imgReadTableur,command=self.__addValeurTableur())
+        btnAddValeurTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,
+                                                        image=imgAddValeur,command=self.__addValeurTableur)
+        btnAddMoyenneTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,
+                                                         image=imgAddMoyenne,command=self.__addMoyenneTableur)
+        btnAddSommeTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,
+                                                       image=imgAddSomme,command=self.__addSommeTableur)
+        btnAddComptageTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,
+                                                          image=imgAddComptage,command=self.__addComptageTableur)
+        btnAddMinimumTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,
+                                                         image=imgAddMinimum,command=self.__addMinimumTableur)
+        btnAddMaximumTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,
+                                                         image=imgAddMaxmum,command=self.__addMaximumTableur)
+        btnAffichageTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,
+                                                        image=imgViewTableur,command=self.__viewTableur)
+        btnSupprDataTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,
+                                                        image=imgSupprValeur,
+                                                        command=self.__supprValeurTableur)
 
         # Widgets dans la frame Word
         labelTitleNoOpenWord = self.__arrTk.createLabel(self.__fWordNoOpen, text="Travail sur un document Word",
@@ -379,7 +392,7 @@ class CAnWorkGUI:
         if self.__projectOpen :
             self.__closeProjet()
         elif self.__tableurOpen :
-            pass
+            self.__closeTableur()
         elif self.__wordOpen :
             pass
         else :
@@ -393,6 +406,7 @@ class CAnWorkGUI:
         self.__tableurOpen = self.__arrNeuron.getTableur()
         self.__projectOpen = self.__arrNeuron.getProject()
 
+    # Partie Tableur
     def __openTableur(self):
         """
         Ouvre le tableur.
@@ -401,6 +415,43 @@ class CAnWorkGUI:
         self.updateEtat()
         self.__activeTableur()
 
+    def __openTableurCoputerSoft(self):
+        """
+        Ouvre le tableur avec un logiciel de tableur.
+        """
+        self.__arrNeuron.neuron("Ouvre le fichier tableur avec le logiciel de l'ordinateur")
+
+    def __closeTableur(self):
+        self.__arrNeuron.neuron("Ferme le tableur")
+        self.updateEtat()
+        self.__activeTableur()
+
+    def __addValeurTableur(self):
+        self.__arrNeuron.neuron("Ajoute une valeur au tableur")
+
+    def __addMoyenneTableur(self):
+        self.__arrNeuron.neuron("Ajout une moyenne au tableur")
+
+    def __addSommeTableur(self):
+        self.__arrNeuron.neuron("Ajoute une somme au tableur")
+
+    def __addComptageTableur(self):
+        self.__arrNeuron.neuron("Ajoute un comptage au tableur")
+
+    def __addMinimumTableur(self):
+        self.__arrNeuron.neuron("Ajout un minimun au tableur")
+
+    def __addMaximumTableur(self):
+        self.__arrNeuron.neuron("Ajout un maximun au tableur")
+
+    def __viewTableur(self):
+        self.__arrNeuron.neuron("Montre le tableur")
+
+    def __supprValeurTableur(self):
+        self.__arrNeuron.neuron("Supprime une valeur du tableur")
+
+
+    # Partie Word
     def __openWord(self):
         """
         Ouvre le document Word.
