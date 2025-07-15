@@ -568,8 +568,9 @@ class CArreraGazelleUIRyleyCopilote :
         self.__arrTK.placeBottomCenter(btnRetourListSite)
 
     def active(self):
-        self.__arrTK.setResizable(False)
+        self.__arrTK.setResizable(True)
         self.__arrTK.setGeometry(500,630)
+        self.__arrTK.setResizable(False)
         self.__mainFrame.pack()
 
     def passQUITFNC(self,quitFNC):
