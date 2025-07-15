@@ -189,7 +189,7 @@ class CAnWorkGUI:
                                                       command=self.__openTaskProjet)
         btnSayAllTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90, image=imgTaskSayProjet)
 
-        btnCloseProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgCloseProjet)
+        btnCloseProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgCloseProjet,command=self.__closeProjet)
 
         # Grille des frame
         self.__fAcceuil.rowconfigure(0, weight=1)
@@ -517,3 +517,12 @@ class CAnWorkGUI:
         Ouvre une tâche dans le projet.
         """
         self.__arrNeuron.neuron("ouvre une tache du projet")
+
+    def __closeProjet(self):
+        """
+        Ferme le projet.
+        """
+        self.__arrNeuron.neuron("Ferme le projet")
+        self.updateEtat()
+        self.__activeAcceuil()
+        self.__nameProjet = None
