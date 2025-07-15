@@ -14,6 +14,8 @@ class CAnWorkGUI:
         # Recuperation du neurone
         self.__arrNeuron = arrNeuron
         self.__fileUser = jsonWork(fileUserAssistant)
+        # Variables d'interface
+        self.__var = None
 
     def __createWindows(self):
         self.__screen = self.__arrTk.aTopLevel(width=500, height=650,
@@ -178,7 +180,8 @@ class CAnWorkGUI:
                                                     ppolice="Arial", ptaille=25)
         btnAddTypeProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,
                                                      image=imgSetTypeProjet,command=self.__windowsTypeFileProjet)
-        btnCreateFileProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgCreateFileProjet)
+        btnCreateFileProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgCreateFileProjet,
+                                                        command=self.__windowsCreateFileProjet)
         btnOpenFileProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgOpenFileProjet)
         btnViewTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgTaskViewProjet)
         btnSayAllTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90, image=imgTaskSayProjet)
@@ -450,7 +453,7 @@ class CAnWorkGUI:
         type_file = self.__entryNameProjet.get()
         screen.destroy()
         if not type_file:
-            showerror("Erreur", "Le type de fichier ne peut pas être vide.")
+            showerror("Erreur", "Le type du projet ne peut pas être vide.")
             return
 
         self.__arrNeuron.neuron("Le type est "+type_file)
@@ -459,14 +462,33 @@ class CAnWorkGUI:
         """
         Ouvre une fenêtre pour créer un fichier de projet.
         """
-        listType = [" word","odt","txt","python","en tete","json","html","css","md","cpp","language c++",
-         "language c",
-         "exel",
-         "tableur",
-         "php",
-         "javascript",
-         "java script",
-         "js",
-         "java",
-         "kotlin",
-         "kt"]
+        listType = [" word","odt","txt",
+                    "python","en tete","json",
+                    "html","css","md","cpp",
+                    "language c++","language c",
+                    "exel","php","js","java","kt"]
+        screen = ctk.CTkToplevel()
+        screen.title("Création d'un fichier de projet")
+        screen.geometry("300x200")
+        screen.resizable(False, False)
+
+        self.__var = StringVar(screen)
+
+        self.__arrTk.placeTopCenter(self.__arrTk.createLabel(screen, text="Creation d'un fichier dans le projet",
+                                                             ppolice="Arial", ptaille=15))
+        self.__entryNameFile = self.__arrTk.createEntry(screen)
+        self.__arrTk.placeLeftCenter(self.__entryNameFile)
+        self.__arrTk.placeRightCenter(self.__arrTk.createOptionMenu(screen, value=listType,var=self.__var))
+        self.__var.set(listType[0])
+        self.__arrTk.placeBottomCenter(self.__arrTk.createButton(screen, text="Valider",
+                                                                 command=lambda: self.__createFileProjet(screen)))
+
+    def __createFileProjet(self, screen: ctk.CTkToplevel):
+        name_file = self.__entryNameFile.get()
+        if not name_file:
+            showerror("Erreur", "Imposible de créer un fichier sans nom.")
+            return
+
+        type_file = self.__var.get()
+        screen.destroy()
+        self.__arrNeuron.neuron("cree un fichier "+type_file+" nommer "+name_file)
