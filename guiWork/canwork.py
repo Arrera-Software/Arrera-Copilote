@@ -129,9 +129,9 @@ class CAnWorkGUI:
         btnArreraProjectDock = self.__arrTk.createButton(self.__fDock, width=60,
                                                          height=60, image=imgProjectDock,
                                                          command=self.__activeProjet)
-        btnArreraBackAcceuilDock = self.__arrTk.createButton(self.__fDock, width=60,
-                                                             height=60,image =imgAnnulerDock,
-                                                             command=self.__activeAcceuil)
+        btnCloseAcceuilDock = self.__arrTk.createButton(self.__fDock, width=60,
+                                                        height=60, image =imgAnnulerDock,
+                                                        command=self.__closeDock)
 
         # Widgets du frame Tableur
         labelTitleNoOpenTableur = self.__arrTk.createLabel(self.__fTableurNoOpen, text="Travail sur un tableur",
@@ -171,10 +171,12 @@ class CAnWorkGUI:
                                                           ppolice="Arial", ptaille=25)
 
         btnOpenProjet = self.__arrTk.createButton(self.__fProjetNoOpen, width=90, height=90,
-                                                  image=imgOpenProjet,command=self.__openProjet)
+                                                  image=imgOpenProjet
+                                                  ,command=self.__openProjet)
 
         btnCreateProjet = self.__arrTk.createButton(self.__fProjetNoOpen, width=90, height=90,
-                                                    image=imgCreateProject, command=self.__windowsNameNewProjet)
+                                                    image=imgCreateProject,
+                                                    command=self.__windowsNameNewProjet)
 
         # OPEN
         labelTitleProjet = self.__arrTk.createLabel(self.__fProjet, text="Travail sur un projet",
@@ -189,7 +191,8 @@ class CAnWorkGUI:
                                                       command=self.__openTaskProjet)
         btnSayAllTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90, image=imgTaskSayProjet)
 
-        btnCloseProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgCloseProjet,command=self.__closeProjet)
+        btnCloseProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgCloseProjet,
+                                                   command=self.__closeProjet)
 
         # Grille des frame
         self.__fAcceuil.rowconfigure(0, weight=1)
@@ -261,7 +264,7 @@ class CAnWorkGUI:
         btnArreraTableurDock.grid(row=0, column=1, padx=5, pady=5)
         btnArreraWordDock.grid(row=0, column=2, padx=5, pady=5)
         btnArreraProjectDock.grid(row=0, column=3, padx=5, pady=5)
-        btnArreraBackAcceuilDock.grid(row=0, column=4, padx=5, pady=5)
+        btnCloseAcceuilDock.grid(row=0, column=4, padx=5, pady=5)
 
         # Placement widget des frame Tableur
         labelTitleNoOpenTableur.grid(row=0, column=1, sticky="n")
@@ -370,6 +373,18 @@ class CAnWorkGUI:
 
     # Partie fonctionnelle de l'application
 
+    # Dock
+
+    def __closeDock(self):
+        if self.__projectOpen :
+            self.__closeProjet()
+        elif self.__tableurOpen :
+            pass
+        elif self.__wordOpen :
+            pass
+        else :
+            self.__activeAcceuil()
+
     def updateEtat(self):
         """
         Met à jour l'état des frames en fonction de l'ouverture des outils.
@@ -394,6 +409,8 @@ class CAnWorkGUI:
         self.updateEtat()
         self.__activeWord()
 
+    # Partie Projet
+
     def __openProjet(self):
         """
         Ouvre le projet.
@@ -409,8 +426,6 @@ class CAnWorkGUI:
         self.updateEtat()
         self.__activeProjet()
         self.__nameProjet = dossier
-
-    # Partie Projet
 
     def __windowsTexteProjet(self,title:str, texte:str,fnc:callable):
         screen = ctk.CTkToplevel()
