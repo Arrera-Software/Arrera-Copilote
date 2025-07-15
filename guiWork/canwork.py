@@ -185,7 +185,8 @@ class CAnWorkGUI:
                                                         command=self.__windowsCreateFileProjet)
         btnOpenFileProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgOpenFileProjet,
                                                       command=self.__openFileProjet)
-        btnViewTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgTaskViewProjet)
+        btnViewTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgTaskViewProjet,
+                                                      command=self.__openTaskProjet)
         btnSayAllTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90, image=imgTaskSayProjet)
 
         btnCloseProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgCloseProjet)
@@ -510,3 +511,9 @@ class CAnWorkGUI:
             self.__arrNeuron.neuron("ouvre le fichier "+file_name)
             self.updateEtat()
             self.__activeProjet()
+
+    def __openTaskProjet(self):
+        """
+        Ouvre une tâche dans le projet.
+        """
+        self.__arrNeuron.neuron("ouvre une tache du projet")
