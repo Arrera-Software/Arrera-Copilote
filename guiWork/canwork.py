@@ -16,6 +16,7 @@ class CAnWorkGUI:
         self.__fileUser = jsonWork(fileUserAssistant)
         # Variables d'interface
         self.__var = None
+        self.__nameProjet = None
 
     def __createWindows(self):
         self.__screen = self.__arrTk.aTopLevel(width=500, height=650,
@@ -182,7 +183,8 @@ class CAnWorkGUI:
                                                      image=imgSetTypeProjet,command=self.__windowsTypeFileProjet)
         btnCreateFileProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgCreateFileProjet,
                                                         command=self.__windowsCreateFileProjet)
-        btnOpenFileProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgOpenFileProjet)
+        btnOpenFileProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgOpenFileProjet,
+                                                      command=self.__openFileProjet)
         btnViewTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgTaskViewProjet)
         btnSayAllTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90, image=imgTaskSayProjet)
 
@@ -405,6 +407,7 @@ class CAnWorkGUI:
         self.__arrNeuron.neuron("ouvre le projet nommer "+dossier)
         self.updateEtat()
         self.__activeProjet()
+        self.__nameProjet = dossier
 
     # Partie Projet
 
@@ -437,6 +440,7 @@ class CAnWorkGUI:
         self.__arrNeuron.neuron("cree un nouveau projet nomme "+name)
         self.updateEtat()
         self.__activeProjet()
+        self.__nameProjet = name
 
     def __windowsTypeFileProjet(self):
         """
@@ -492,3 +496,17 @@ class CAnWorkGUI:
         type_file = self.__var.get()
         screen.destroy()
         self.__arrNeuron.neuron("cree un fichier "+type_file+" nommer "+name_file)
+
+    def __openFileProjet(self):
+        """
+        Ouvre un fichier de projet.
+        """
+        emplacementProjects = self.__fileUser.lectureJSON("wordFolder")+"/"+self.__nameProjet
+        file_path = filedialog.askopenfilename(initialdir=emplacementProjects,
+                                               title="Selection du fichier du projet",
+                                               filetypes=[("All files", "*.*")])
+        if file_path:
+            file_name = file_path.split("/")[-1]
+            self.__arrNeuron.neuron("ouvre le fichier "+file_name)
+            self.updateEtat()
+            self.__activeProjet()
