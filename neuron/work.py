@@ -301,44 +301,59 @@ class neuronWork(neuronBase):
                 self._valeurOut = 17
                 return 1
         else :
-            if (("ouvre" in requette) and ((("word" in requette) or ("traitement de texte" in requette)
-                or ("document" in requette)) and  ("ordinateur" in requette))):
+            if (("ouvre" in requette) and (("word" in requette)or
+                                           ("traitement de texte" in requette)or (
+                                                   "document" in requette))and ("ordinateur" in requette)):
                 self._listSortie = [self._fonctionArreraNetwork.sortieOpenSoftWorkFile(), ""]
-                self._objHistorique.setAction("Ouverture du fichier word " +
-                                              self._fonctionArreraNetwork.getFileWord() + " sur l'ordinateur")
+                self._objHistorique.setAction(
+                    "Ouverture du fichier word " +
+                    self._fonctionArreraNetwork.getFileWord() + " sur l'ordinateur"
+                )
                 self._valeurOut = 1
                 return 1
-            elif (("ferme" in requette) and ("word" in requette) or ("traitement de texte" in requette)):
+
+            elif (("ferme" in requette)and (("word" in requette)or ("traitement de texte" in requette))):
                 name = self._fonctionArreraNetwork.getFileWord()
                 self._listSortie = [self._fonctionArreraNetwork.sortieCloseDocx(), ""]
                 self._objHistorique.setAction("Fermeture du fichier word " + name)
                 self._valeurOut = 8
                 return 1
-            elif (("lis" in requette) or ("liste" not in requette) and ("word" in requette)):
+
+            elif (("lis" in requette)and ("word" in requette)and ("liste" not in requette)):
                 self._listSortie = [self._fonctionArreraNetwork.sortieReadDocx(), ""]
-                self._objHistorique.setAction("Lecture du fichier word " +
-                                              self._fonctionArreraNetwork.getFileWord())
+                self._objHistorique.setAction(
+                    "Lecture du fichier word " +
+                    self._fonctionArreraNetwork.getFileWord()
+                )
                 self._valeurOut = 9
                 return 1
-            elif ("ecrit dans le word" in requette) :
+
+            elif (("ecrit" in requette)and ("word" in requette)):
+                # C'est plus souple, reconnaît toute phrase avec ces deux mots !
                 self._listSortie = [self._fonctionArreraNetwork.sortieWriteDocx(requette), ""]
-                self._objHistorique.setAction("Ecriture dans le fichier docx" +
-                                              self._fonctionArreraNetwork.getFileWord())
+                self._objHistorique.setAction(
+                    "Ecriture dans le fichier docx " +
+                    self._fonctionArreraNetwork.getFileWord()
+                )
                 self._valeurOut = 1
                 return 1
-            elif (("montre" in requette) and ("word" in requette)
-                        or ("traitement de texte" in requette) or ("document" in requette)):
+
+            elif (("montre" in requette)and (("word" in requette)or
+                 ("traitement de texte" in requette)or ("document" in requette))):
                 self._listSortie = [self._fonctionArreraNetwork.sortieOpenWordGUI(), ""]
-                self._objHistorique.setAction("Ouverture du word " +
-                                              self._fonctionArreraNetwork.getFileWord() +
-                                              " dans l'interface de l'assistant")
+                self._objHistorique.setAction(
+                    "Ouverture du word " +
+                    self._fonctionArreraNetwork.getFileWord() +
+                    " dans l'interface de l'assistant"
+                )
                 self._valeurOut = 5
                 return 1
+
             elif ("aide word" in requette):
-                self._listSortie = [self._fonctionArreraNetwork.sortieHelpWorkTraitementTexte()
-                    ,"word"]
+                self._listSortie = [self._fonctionArreraNetwork.sortieHelpWorkTraitementTexte(), "word"]
                 self._valeurOut = 17
                 return 1
+
             else :
                 return 0
         return 0

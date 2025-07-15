@@ -1,10 +1,6 @@
 {
   "2025-7-15": [
-    "Ouverture du projet test",
-    "Fermeture du projet test",
-    "Ouverture du projet test",
-    "Creation du fichier test.txt dans le projet test",
-    "Ouverture du fichier test.txt du projet test",
-    "Fermeture du projet test"
+    "Ouverture d'un fichier word /home/baptistep/Bureau/tmp/fichier-texte-word.docx",
+    "Ouverture du word /home/baptistep/Bureau/tmp/fichier-texte-word.docx dans l'interface de l'assistant"
   ]
 }
