@@ -173,10 +173,14 @@ class CAnWorkGUI:
 
         labelTitleWord = self.__arrTk.createLabel(self.__fWord, text="Travail sur un document Word",
                                                   ppolice="Arial",ptaille=25)
-        btnOpenWordWithComputer = self.__arrTk.createButton(self.__fWord,width=90,height=90,image=imgOpenWordWithComputer)
-        btnCloseWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,image=imgCloseWord)
-        btnReadWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,image=imgReadWord)
-        btnWriteWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,image=imgWriteWord)
+        btnOpenWordWithComputer = self.__arrTk.createButton(self.__fWord,width=90,height=90,
+                                                            image=imgOpenWordWithComputer,command=self.__openWordCoputerSoft)
+        btnCloseWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,
+                                                 image=imgCloseWord,command=self.__closeWord)
+        btnReadWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,
+                                                image=imgReadWord)
+        btnWriteWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,image=imgWriteWord,
+                                                 command=self.__writeWord)
 
         # Widget dans la frame Projet
         # No OPEN
@@ -394,7 +398,7 @@ class CAnWorkGUI:
         elif self.__tableurOpen :
             self.__closeTableur()
         elif self.__wordOpen :
-            pass
+            self.__closeWord()
         else :
             self.__activeAcceuil()
 
@@ -459,6 +463,28 @@ class CAnWorkGUI:
         self.__arrNeuron.neuron("Ouvre un document Word")
         self.updateEtat()
         self.__activeWord()
+
+    def __openWordCoputerSoft(self):
+        """
+        Ouvre le document Word avec un logiciel de traitement de texte.
+        """
+        self.__arrNeuron.neuron("Ouvre le fichier Word avec l'ordinateur")
+
+    def __closeWord(self):
+        """
+        Ferme le document Word.
+        """
+        self.__arrNeuron.neuron("Ferme le Word")
+        self.updateEtat()
+        self.__activeWord()
+
+    def __writeWord(self):
+        """
+        Écrit dans le document Word.
+        """
+        self.__arrNeuron.neuron("Ecrit dans le document Word")
+
+    # Lis le Word
 
     # Partie Projet
 
