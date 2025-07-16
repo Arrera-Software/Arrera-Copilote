@@ -565,8 +565,8 @@ class guiCopilote:
         self.__backgroudBoot5.pack()
         time.sleep(0.2)
         self.__backgroudBoot5.pack_forget()
-        self.__paroleRyley(self.__assistantRyley.boot(2))
-        self.__paroleSix(self.__assistantSix.boot(2))
+        self.__paroleRyley(self.__assistantRyley.boot(1))
+        self.__paroleSix(self.__assistantSix.boot(1))
         self.__viewNormal()
 
     def __sequenceFirstBoot(self):
