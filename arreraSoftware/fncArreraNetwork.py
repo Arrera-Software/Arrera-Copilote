@@ -836,17 +836,11 @@ class fncArreraNetwork:
         return text
     
     def sortieWriteDocx(self,texte:str):
-        if (texte != ""):
-            ligne = texte.replace("ecrit dans le word","")
-            ligne = ligne.replace("ecrit" ,"")
-            sortie = self.__objetArreraWork.writeDocxFile(ligne)
-            if (sortie == True):
-                text = self.__mLanguage.getPhraseMeteoError("18")
-            else :
-                text = self.__mLanguage.getPhraseMeteoError("19")
+        sortie = self.__objetArreraWork.writeDocxFile()
+        if sortie:
+            return self.__mLanguage.getPhraseWork("18")
         else :
-            text = self.__mLanguage.getPhraseMeteoError("20")
-        return text
+            return self.__mLanguage.getPhraseWork("19")
     
     def sortieReadDocx(self):
         sortie = self.__objetArreraWork.readDocxFile()

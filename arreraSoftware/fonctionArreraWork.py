@@ -169,11 +169,31 @@ class fncArreraWork :
         else :
             return False
 
-    def writeDocxFile(self,text:str):
-        if (self.__wordOpen == True):
-            return self.__objWord.write(text)
+    def writeDocxFile(self):
+        if self.__wordOpen:
+            screen = Toplevel()
+            screen.title("Ecriture dans un word")
+            screen.geometry("500x200")
+            screen.resizable(False, False)
+            self.__entryTextWord = Entry(screen)
+            self.__entryTextWord.place(relx=0.5, rely=0.5, anchor="center")
+            Button(screen,text="Valider",command= lambda  : self.__writeWord(screen)).place(relx=0.5, rely=1, anchor='s')
+            return True
         else :
             return False
+
+    def __writeWord(self,screen:Toplevel):
+        text = self.__entryTextWord.get()
+        screen.destroy()
+        self.__entryTextWord.delete(0, END)
+        if (self.__wordOpen == True):
+            sortie = self.__objWord.writeEcrase(text)
+            if (sortie == True):
+                showinfo("Word","Ecriture reussie")
+                return True
+            else :
+                showerror("Word","Ecriture non reussie")
+                return False
     
     def readDocxFile(self):
         if (self.__wordOpen == True):
