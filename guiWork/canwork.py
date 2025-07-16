@@ -183,7 +183,7 @@ class CAnWorkGUI:
         btnCloseWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,
                                                  image=imgCloseWord,command=self.__closeWord)
         btnReadWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,
-                                                image=imgReadWord)
+                                                image=imgReadWord,command=self.__readWord)
         btnWriteWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,image=imgWriteWord,
                                                  command=self.__writeWord)
 
@@ -426,6 +426,9 @@ class CAnWorkGUI:
         self.__activeTableur()
         self.__parent._setButtonOpen()
 
+    def __readTableur(self):
+
+
     def __openTableurCoputerSoft(self):
         """
         Ouvre le tableur avec un logiciel de tableur.
@@ -494,8 +497,13 @@ class CAnWorkGUI:
         """
         self.__arrNeuron.neuron("Ecrit dans le document Word")
 
-    # Lis le Word
-
+    def __readWord(self):
+        """
+        Lit le document Word.
+        """
+        self.__arrNeuron.neuron("Lis le Word")
+        self.__paroleFenetreCopilote(self.__arrNeuron.getValeurSortie(),
+                                     self.__arrNeuron.getListSortie())
     # Partie Projet
 
     def __openProjet(self):

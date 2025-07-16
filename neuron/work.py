@@ -319,7 +319,7 @@ class neuronWork(neuronBase):
                 self._valeurOut = 8
                 return 1
 
-            elif (("lis" in requette)and ("word" in requette)and ("liste" not in requette)):
+            elif ((("lis" in requette) or ("liste" not in requette)) and ("word" in requette)):
                 self._listSortie = [self._fonctionArreraNetwork.sortieReadDocx(), ""]
                 self._objHistorique.setAction(
                     "Lecture du fichier word " +
