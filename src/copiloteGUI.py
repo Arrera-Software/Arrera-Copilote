@@ -9,7 +9,9 @@ import threading as th
 VERSION = "I2025-1.00"
 
 class guiCopilote:
+    instance = None
     def __init__(self, neuronConfigFileRyley: str, neuronConfigFileSix: str, version: str):
+        guiCopilote.instance = self
         # Varriable
         self.__nameSoft = "Arrera Copilote"
         self.__version = version
@@ -92,7 +94,8 @@ class guiCopilote:
         emplacementDark = "asset/GUI/dark/"
 
         # Interface aide pour Arrera Work
-        self.__guiWork = CAnWorkGUI(self.__arrTK,
+        self.__guiWork = CAnWorkGUI(guiCopilote.instance,
+                                    self.__arrTK,
                                     self.__nameSoft,
                                     "asset/work",
                                     self.__assistantSix,
@@ -565,8 +568,8 @@ class guiCopilote:
         self.__backgroudBoot5.pack()
         time.sleep(0.2)
         self.__backgroudBoot5.pack_forget()
-        self.__paroleRyley(self.__assistantRyley.boot(2))
-        self.__paroleSix(self.__assistantSix.boot(2))
+        self._paroleRyley(self.__assistantRyley.boot(2))
+        self._paroleSix(self.__assistantSix.boot(2))
         self.__viewNormal()
 
     def __sequenceFirstBoot(self):
@@ -597,8 +600,8 @@ class guiCopilote:
         self.__arrVoice.say(self.__language.getFirstBoot(4))
         self.__labelFirstBoot.configure(text=self.__language.getFirstBoot(5))
         self.__arrVoice.say(self.__language.getFirstBoot(5))
-        self.__paroleRyley(self.__assistantRyley.boot(2))
-        self.__paroleSix(self.__assistantSix.boot(2))
+        self._paroleRyley(self.__assistantRyley.boot(2))
+        self._paroleSix(self.__assistantSix.boot(2))
         self.__disableAllFrame()
         self.__viewNormal()
         self.__setButtonOpen()
@@ -610,8 +613,8 @@ class guiCopilote:
         self.__viewNormal()
         self.__soundState = False
         self.__screen.configure(bg_color="#482c4a", fg_color="#482c4a")
-        self.__paroleRyley(self.__assistantRyley.shutdown())
-        self.__paroleSix(self.__assistantSix.shutdown())
+        self._paroleRyley(self.__assistantRyley.shutdown())
+        self._paroleSix(self.__assistantSix.shutdown())
         time.sleep(3)
         self.__screen.configure(bg_color="white", fg_color="white")
         self.__disableAllFrame()
@@ -679,17 +682,17 @@ class guiCopilote:
         if self.__litleWindowsActived != 0:
             self.__modeBigWindows()
         self.__disableAllFrame()
-        self.__paroleCodehelp(self.__language.getPhActiveCodehelp())
+        self._paroleCodehelp(self.__language.getPhActiveCodehelp())
         self.__viewCodehelp()
         self.__setButtonOpen()
 
-    def __paroleRyley(self, text: str):
+    def _paroleRyley(self, text: str):
         if text != "":
             self.__lparoleRyleyNormal.configure(text=text)
             self.__lparoleRyleyFileOpen.configure(text=text)
             self.__entryUserCopilote.delete(0, END)
 
-    def __paroleCopilote(self,text: str):
+    def _paroleCopilote(self, text: str):
         if text != "":
             self.__disableAllFrame()
             self.__copiloteSpeak.pack()
@@ -698,7 +701,7 @@ class guiCopilote:
             self.__screen.update()
             time.sleep(0.8)
 
-    def __paroleSix(self, text: str):
+    def _paroleSix(self, text: str):
         if text != "":
             self.__lparoleSixNormal.configure(text=text)
             self.__lparoleSixFileOpen.configure(text=text)
@@ -706,12 +709,12 @@ class guiCopilote:
             if self.__soundState :
                 self.__ttsSpeak(text)
 
-    def __paroleCodehelp(self, text: str):
+    def _paroleCodehelp(self, text: str):
         if text != "":
             self.__lparoleCodehelp.configure(text=text)
             self.__entryUserCodehelp.delete(0, END)
 
-    def __paroleLittle(self, text: str):
+    def _paroleLittle(self, text: str):
         if text != "":
             self.__entryUserLittle.delete(0, END)
             if self.__litleWindowsActived == 1:
@@ -782,38 +785,38 @@ class guiCopilote:
         self.__nbSortieRyley = self.__assistantRyley.getValeurSortie()
         self.__listSortieRyley = self.__assistantRyley.getListSortie()
         self.__neuronUsedRyley = self.__assistantRyley.getNeuronUsed()
-        return self.__traimentNeuronal(self.__nbSortieRyley, self.__listSortieRyley)
+        return self._traimentNeuronal(self.__nbSortieRyley, self.__listSortieRyley)
 
     def __sixBrain(self, texte):
         self.__assistantSix.neuron(texte)
         self.__nbSortieSix = self.__assistantSix.getValeurSortie()
         self.__listSortieSix = self.__assistantSix.getListSortie()
         self.__neuronUsedSix = self.__assistantSix.getNeuronUsed()
-        return self.__traimentNeuronal(self.__nbSortieSix, self.__listSortieSix)
+        return self._traimentNeuronal(self.__nbSortieSix, self.__listSortieSix)
 
     def __traitementSpecial(self):
         if self.__nbSortieRyley == 3 and self.__nbSortieSix == 3:
             self.__outSpecial = self.__language.getPhOpenActu()
-            self.__paroleCopilote(self.__outSpecial)
+            self._paroleCopilote(self.__outSpecial)
             self.__viewResumer(self.__listSortieRyley, 2)
             return True
 
         elif self.__nbSortieRyley == 9 and self.__nbSortieSix == 9:
             self.__outSpecial = self.__language.getPhReadWord()
             self.__windowsReadFile(self.__listSortieRyley, 2)
-            self.__paroleCopilote(self.__outSpecial)
+            self._paroleCopilote(self.__outSpecial)
             return True
 
         elif self.__nbSortieRyley == 12 and self.__nbSortieSix == 12:
             self.__outSpecial = self.__language.getPhResumerActu()
             self.__viewResumer(self.__listSortieRyley, 1)
-            self.__paroleCopilote(self.__outSpecial)
+            self._paroleCopilote(self.__outSpecial)
             return True
 
         elif self.__nbSortieRyley == 13 and self.__nbSortieSix == 13:
             self.__outSpecial = self.__language.getPhReadTableur()
             self.__windowsReadFile(self.__listSortieRyley, 1)
-            self.__paroleCopilote(self.__outSpecial)
+            self._paroleCopilote(self.__outSpecial)
             return True
 
         elif self.__nbSortieRyley == 17 and self.__nbSortieSix == 17:
@@ -822,13 +825,13 @@ class guiCopilote:
         elif self.__nbSortieRyley == 18 and self.__nbSortieSix == 18:
             self.__outSpecial = self.__language.getPhResumerAgenda()
             self.__viewResumer(self.__listSortieRyley, 3)
-            self.__paroleCopilote(self.__outSpecial)
+            self._paroleCopilote(self.__outSpecial)
             return True
 
         elif self.__nbSortieRyley == 19 and self.__nbSortieSix == 19:
             self.__outSpecial = self.__language.getPhResumerAll()
             self.__viewResumer(self.__listSortieRyley, 4)
-            self.__paroleCopilote(self.__outSpecial)
+            self._paroleCopilote(self.__outSpecial)
             return True
 
         else :
@@ -867,29 +870,29 @@ class guiCopilote:
 
         if specialFnc:
             if self.__codeHelpActived:
-                self.__paroleCodehelp(self.__outSpecial)
+                self._paroleCodehelp(self.__outSpecial)
 
             elif self.__litleWindowsActived == 1 or self.__litleWindowsActived == 2:
-                self.__paroleLittle(self.__outSpecial)
+                self._paroleLittle(self.__outSpecial)
 
             else :
-                self.__paroleSix(self.__outSpecial)
-                self.__paroleRyley(self.__outSpecial)
+                self._paroleSix(self.__outSpecial)
+                self._paroleRyley(self.__outSpecial)
         else :
             if self.__codeHelpActived:
-                self.__paroleCodehelp(outRyley)
+                self._paroleCodehelp(outRyley)
 
             elif self.__litleWindowsActived == 1:
-                self.__paroleLittle(outRyley)
+                self._paroleLittle(outRyley)
 
             elif self.__litleWindowsActived == 2 :
-                self.__paroleLittle(outSix)
+                self._paroleLittle(outSix)
 
             else :
-                self.__paroleSix(outSix)
-                self.__paroleRyley(outRyley)
+                self._paroleSix(outSix)
+                self._paroleRyley(outRyley)
 
-    def __traimentNeuronal(self, nb:int, liste:list):
+    def _traimentNeuronal(self, nb:int, liste:list):
         match nb:
             case 0:
                 return liste[0]
@@ -1181,23 +1184,23 @@ class guiCopilote:
         self.__screen.protocol("WM_DELETE_WINDOW", self.__quitCopilote)
         self.__screen.maxsize(500, 600)
         self.__viewNormal()
-        self.__paroleRyley(self.__language.getPhParametre())
+        self._paroleRyley(self.__language.getPhParametre())
 
     def __activeOrgaVar(self):
         self.__assistantRyley.neuron("ouvre orga var")
-        self.__paroleCodehelp(self.__assistantRyley.getListSortie()[0])
+        self._paroleCodehelp(self.__assistantRyley.getListSortie()[0])
 
     def __activeColorSelecteur(self):
         self.__assistantRyley.neuron("ouvre color selecteur")
-        self.__paroleCodehelp(self.__assistantRyley.getListSortie()[0])
+        self._paroleCodehelp(self.__assistantRyley.getListSortie()[0])
 
     def __activeGestGit(self):
         self.__assistantRyley.neuron("ouvre gest github")
-        self.__paroleCodehelp(self.__assistantRyley.getListSortie()[0])
+        self._paroleCodehelp(self.__assistantRyley.getListSortie()[0])
 
     def __activeLibrairy(self):
         self.__assistantRyley.neuron("ouvre librairy")
-        self.__paroleCodehelp(self.__assistantRyley.getListSortie()[0])
+        self._paroleCodehelp(self.__assistantRyley.getListSortie()[0])
 
     def __modeLittleWindows(self):
         self.__screen.focus_set()
@@ -1214,7 +1217,7 @@ class guiCopilote:
         self.__backgroundLitleWindowsRyley.pack()
         self.__fBottomLitleWindows.pack()
         self.__litleWindowsActived = 1
-        self.__paroleLittle(self.__language.getPhActiveModeLitleRyley())
+        self._paroleLittle(self.__language.getPhActiveModeLitleRyley())
 
     def __modeLittleWindowsSix(self):
         self.__screen.focus_set()
@@ -1224,15 +1227,15 @@ class guiCopilote:
         self.__litleWindowsActived = 2
         self.__arrTK.placeWidgetCenteredAtBottom(self.__btnSoundLitle, -125)
         self.__arrTK.placeWidgetCenteredAtBottom(self.__btnMicroLitle, 125)
-        self.__paroleLittle(self.__language.getPhActiveModelitleSix())
+        self._paroleLittle(self.__language.getPhActiveModelitleSix())
 
     def __modeBigWindows(self):
         self.__screen.focus_set()
         self.__disableAllFrame()
         self.__screen.maxsize(500, 600)
         self.__screen.minsize(500, 600)
-        self.__paroleRyley(self.__language.getPhActiveModeNormalRyley())
-        self.__paroleSix(self.__language.getPhActiveModeNormalSix())
+        self._paroleRyley(self.__language.getPhActiveModeNormalRyley())
+        self._paroleSix(self.__language.getPhActiveModeNormalSix())
         self.__viewNormal()
         self.__litleWindowsActived = 0
         self.__setButtonOpen()
@@ -1261,9 +1264,9 @@ class guiCopilote:
         if not self.__soundState:
             self.__soundState = True
             if self.__litleWindowsActived == 2 :
-                self.__paroleLittle(self.__language.getPhActiveSoundLitle())
+                self._paroleLittle(self.__language.getPhActiveSoundLitle())
             else :
-                self.__paroleSix(self.__language.getPhActiveSound())
+                self._paroleSix(self.__language.getPhActiveSound())
 
             self.__btnSoundNormal.configure(image=self.__imgBtnSoundOn)
             self.__btnSoundLitle.configure(image=self.__imgBtnSoundOn)
@@ -1271,9 +1274,9 @@ class guiCopilote:
         else :
 
             if self.__litleWindowsActived == 2 :
-                self.__paroleLittle(self.__language.getPhDesactiveSound(2))
+                self._paroleLittle(self.__language.getPhDesactiveSound(2))
             else :
-                self.__paroleSix(self.__language.getPhDesactiveSound(1))
+                self._paroleSix(self.__language.getPhDesactiveSound(1))
             self.__soundState = False
             self.__btnSoundNormal.configure(image=self.__imgBtnSoundOff)
             self.__btnSoundLitle.configure(image=self.__imgBtnSoundOff)

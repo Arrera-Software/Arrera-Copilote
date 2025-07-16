@@ -1,8 +1,9 @@
 from librairy.arrera_tk import *
 from ObjetsNetwork.arreraNeuron import *
+from src.copiloteGUI import *
 
 class CAnWorkGUI:
-    def __init__(self, arrtk : CArreraTK,nameAssistant : str,asset:str,arrNeuron:ArreraNetwork,fileUserAssistant:str):
+    def __init__(self,parent,arrtk : CArreraTK,nameAssistant : str,asset:str,arrNeuron:ArreraNetwork,fileUserAssistant:str):
         # Attributs
         self.__tableurOpen = False
         self.__wordOpen = False
@@ -17,6 +18,10 @@ class CAnWorkGUI:
         # Variables d'interface
         self.__var = None
         self.__nameProjet = None
+        self.__parent = parent
+
+    def __paroleFenetreCopilote(self,nb,texte:list):
+        self.__parent._paroleSix(self.__parent._traimentNeuronal(nb,texte))
 
     def __createWindows(self):
         self.__screen = self.__arrTk.aTopLevel(width=500, height=650,
@@ -206,7 +211,8 @@ class CAnWorkGUI:
                                                       command=self.__openFileProjet)
         btnViewTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgTaskViewProjet,
                                                       command=self.__openTaskProjet)
-        btnSayAllTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90, image=imgTaskSayProjet)
+        btnSayAllTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,
+                                                        image=imgTaskSayProjet,command=self.__sayTaskProjet)
 
         btnCloseProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgCloseProjet,
                                                    command=self.__closeProjet)
@@ -522,6 +528,14 @@ class CAnWorkGUI:
         """
         self.__windowsTexteProjet("Création d'un projet","Nom du nouveau projet",self.__createNewProjet)
 
+
+    def __sayTaskProjet(self):
+        """
+        Ouvre une fenêtre pour dire une tâche dans le projet.
+        """
+        self.__arrNeuron.neuron("Dit moi le nombre de tache que j'ai sur le projet")
+        self.__paroleFenetreCopilote(self.__arrNeuron.getValeurSortie(),
+                                     self.__arrNeuron.getListSortie())
 
     def __createNewProjet(self,screen:ctk.CTkToplevel):
         name = self.__entryNameProjet.get()
