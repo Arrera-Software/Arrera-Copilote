@@ -424,6 +424,7 @@ class CAnWorkGUI:
         self.__arrNeuron.neuron("Ouvre un tableur")
         self.updateEtat()
         self.__activeTableur()
+        self.__parent._setButtonOpen()
 
     def __openTableurCoputerSoft(self):
         """
@@ -435,6 +436,7 @@ class CAnWorkGUI:
         self.__arrNeuron.neuron("Ferme le tableur")
         self.updateEtat()
         self.__activeTableur()
+        self.__parent._setButtonOpen()
 
     def __addValeurTableur(self):
         self.__arrNeuron.neuron("Ajoute une valeur au tableur")
@@ -469,6 +471,7 @@ class CAnWorkGUI:
         self.__arrNeuron.neuron("Ouvre un document Word")
         self.updateEtat()
         self.__activeWord()
+        self.__parent._setButtonOpen()
 
     def __openWordCoputerSoft(self):
         """
@@ -483,6 +486,7 @@ class CAnWorkGUI:
         self.__arrNeuron.neuron("Ferme le Word")
         self.updateEtat()
         self.__activeWord()
+        self.__parent._setButtonOpen()
 
     def __writeWord(self):
         """
@@ -509,6 +513,7 @@ class CAnWorkGUI:
         self.updateEtat()
         self.__activeProjet()
         self.__nameProjet = dossier
+        self.__parent._setButtonOpen()
 
     def __windowsTexteProjet(self,title:str, texte:str,fnc:callable):
         screen = ctk.CTkToplevel()
@@ -632,3 +637,4 @@ class CAnWorkGUI:
         self.updateEtat()
         self.__activeAcceuil()
         self.__nameProjet = None
+        self.__parent._setButtonOpen()

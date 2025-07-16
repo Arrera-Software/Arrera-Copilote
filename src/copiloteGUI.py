@@ -604,7 +604,7 @@ class guiCopilote:
         self._paroleSix(self.__assistantSix.boot(2))
         self.__disableAllFrame()
         self.__viewNormal()
-        self.__setButtonOpen()
+        self._setButtonOpen()
 
     def __sequenceStop(self):
         self.__disableAllFrame()
@@ -674,7 +674,7 @@ class guiCopilote:
         self.__codeHelpActived = False
         self.__disableAllFrame()
         self.__viewNormal()
-        self.__setButtonOpen()
+        self._setButtonOpen()
 
     def __modeCodehelp(self):
         self.__screen.focus_set()
@@ -684,7 +684,7 @@ class guiCopilote:
         self.__disableAllFrame()
         self._paroleCodehelp(self.__language.getPhActiveCodehelp())
         self.__viewCodehelp()
-        self.__setButtonOpen()
+        self._setButtonOpen()
 
     def _paroleRyley(self, text: str):
         if text != "":
@@ -907,18 +907,18 @@ class guiCopilote:
             case 6:
                 return self.__language.getPhErreurActu()
             case 7:
-                self.__setButtonOpen()
+                self._setButtonOpen()
                 return liste[0]
             case 8:
-                self.__setButtonOpen()
+                self._setButtonOpen()
                 return liste[0]
             case 10:
-                self.__setButtonOpen()
+                self._setButtonOpen()
                 return liste[0]
             case 11:
                 return self.__language.getPhErreurResumerActu()
             case 14:
-                self.__setButtonOpen()
+                self._setButtonOpen()
                 return liste[0]
             case 15:
                 self.__close()
@@ -930,7 +930,7 @@ class guiCopilote:
             case 20:
                 return self.__language.getPhErreurResumerAll()
             case 21:
-                self.__setButtonOpen()
+                self._setButtonOpen()
                 return liste[0]
             case other:
                 return ""
@@ -963,7 +963,7 @@ class guiCopilote:
                         self.__actionBTNLitleWindows()
         self.__screen.bind("<Key>", anychar)
 
-    def __setButtonOpen(self):
+    def _setButtonOpen(self):
         self.__guiWork.updateEtat()
 
         tableur = (self.__assistantSix.getTableur())
@@ -1238,7 +1238,7 @@ class guiCopilote:
         self._paroleSix(self.__language.getPhActiveModeNormalSix())
         self.__viewNormal()
         self.__litleWindowsActived = 0
-        self.__setButtonOpen()
+        self._setButtonOpen()
 
     def __ttsSpeak(self,text:str):
         """
@@ -1287,7 +1287,7 @@ class guiCopilote:
         self.__litleWindowsActived = 0
         self.__screen.maxsize(500, 600)
         self.__screen.minsize(500, 600)
-        self.__setButtonOpen()
+        self._setButtonOpen()
 
     def __enableMicro(self):
         if not self.__microState:
