@@ -1,8 +1,9 @@
 from librairy.arrera_tk import *
 from ObjetsNetwork.arreraNeuron import *
+from src.copiloteGUI import *
 
 class CAnWorkGUI:
-    def __init__(self, arrtk : CArreraTK,nameAssistant : str,asset:str,arrNeuron:ArreraNetwork,fileUserAssistant:str):
+    def __init__(self,parent,arrtk : CArreraTK,nameAssistant : str,asset:str,arrNeuron:ArreraNetwork,fileUserAssistant:str):
         # Attributs
         self.__tableurOpen = False
         self.__wordOpen = False
@@ -17,6 +18,10 @@ class CAnWorkGUI:
         # Variables d'interface
         self.__var = None
         self.__nameProjet = None
+        self.__parent = parent
+
+    def __paroleFenetreCopilote(self,nb,texte:list):
+        self.__parent._paroleSix(self.__parent._traimentNeuronal(nb,texte))
 
     def __createWindows(self):
         self.__screen = self.__arrTk.aTopLevel(width=500, height=650,
@@ -178,7 +183,7 @@ class CAnWorkGUI:
         btnCloseWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,
                                                  image=imgCloseWord,command=self.__closeWord)
         btnReadWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,
-                                                image=imgReadWord)
+                                                image=imgReadWord,command=self.__readWord)
         btnWriteWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,image=imgWriteWord,
                                                  command=self.__writeWord)
 
@@ -206,7 +211,8 @@ class CAnWorkGUI:
                                                       command=self.__openFileProjet)
         btnViewTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgTaskViewProjet,
                                                       command=self.__openTaskProjet)
-        btnSayAllTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90, image=imgTaskSayProjet)
+        btnSayAllTaskProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,
+                                                        image=imgTaskSayProjet,command=self.__sayTaskProjet)
 
         btnCloseProjet = self.__arrTk.createButton(self.__fProjet, width=90, height=90,image=imgCloseProjet,
                                                    command=self.__closeProjet)
@@ -418,6 +424,10 @@ class CAnWorkGUI:
         self.__arrNeuron.neuron("Ouvre un tableur")
         self.updateEtat()
         self.__activeTableur()
+        self.__parent._setButtonOpen()
+
+    def __readTableur(self):
+
 
     def __openTableurCoputerSoft(self):
         """
@@ -429,6 +439,7 @@ class CAnWorkGUI:
         self.__arrNeuron.neuron("Ferme le tableur")
         self.updateEtat()
         self.__activeTableur()
+        self.__parent._setButtonOpen()
 
     def __addValeurTableur(self):
         self.__arrNeuron.neuron("Ajoute une valeur au tableur")
@@ -463,6 +474,7 @@ class CAnWorkGUI:
         self.__arrNeuron.neuron("Ouvre un document Word")
         self.updateEtat()
         self.__activeWord()
+        self.__parent._setButtonOpen()
 
     def __openWordCoputerSoft(self):
         """
@@ -477,6 +489,7 @@ class CAnWorkGUI:
         self.__arrNeuron.neuron("Ferme le Word")
         self.updateEtat()
         self.__activeWord()
+        self.__parent._setButtonOpen()
 
     def __writeWord(self):
         """
@@ -484,8 +497,13 @@ class CAnWorkGUI:
         """
         self.__arrNeuron.neuron("Ecrit dans le document Word")
 
-    # Lis le Word
-
+    def __readWord(self):
+        """
+        Lit le document Word.
+        """
+        self.__arrNeuron.neuron("Lis le Word")
+        self.__paroleFenetreCopilote(self.__arrNeuron.getValeurSortie(),
+                                     self.__arrNeuron.getListSortie())
     # Partie Projet
 
     def __openProjet(self):
@@ -503,6 +521,7 @@ class CAnWorkGUI:
         self.updateEtat()
         self.__activeProjet()
         self.__nameProjet = dossier
+        self.__parent._setButtonOpen()
 
     def __windowsTexteProjet(self,title:str, texte:str,fnc:callable):
         screen = ctk.CTkToplevel()
@@ -522,6 +541,14 @@ class CAnWorkGUI:
         """
         self.__windowsTexteProjet("Création d'un projet","Nom du nouveau projet",self.__createNewProjet)
 
+
+    def __sayTaskProjet(self):
+        """
+        Ouvre une fenêtre pour dire une tâche dans le projet.
+        """
+        self.__arrNeuron.neuron("Dit moi le nombre de tache que j'ai sur le projet")
+        self.__paroleFenetreCopilote(self.__arrNeuron.getValeurSortie(),
+                                     self.__arrNeuron.getListSortie())
 
     def __createNewProjet(self,screen:ctk.CTkToplevel):
         name = self.__entryNameProjet.get()
@@ -618,3 +645,4 @@ class CAnWorkGUI:
         self.updateEtat()
         self.__activeAcceuil()
         self.__nameProjet = None
+        self.__parent._setButtonOpen()
