@@ -150,8 +150,8 @@ class CAnWorkGUI:
                                                                command=self.__openTableurCoputerSoft)
         btnCloseTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,
                                                     image=imgCloseTableur,command=self.__closeTableur)
-        btnReadTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,
-                                                   image=imgReadTableur,command=self.__addValeurTableur())
+        # btnReadTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,image=imgReadTableur,command=self.__addValeurTableur())
+
         btnAddValeurTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,
                                                         image=imgAddValeur,command=self.__addValeurTableur)
         btnAddMoyenneTableur = self.__arrTk.createButton(self.__fTableur,width=90,height=90,
@@ -182,8 +182,8 @@ class CAnWorkGUI:
                                                             image=imgOpenWordWithComputer,command=self.__openWordCoputerSoft)
         btnCloseWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,
                                                  image=imgCloseWord,command=self.__closeWord)
-        btnReadWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,
-                                                image=imgReadWord,command=self.__readWord)
+        # btnReadWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,
+                                                #image=imgReadWord,command=self.__readWord)
         btnWriteWord = self.__arrTk.createButton(self.__fWord,width=90,height=90,image=imgWriteWord,
                                                  command=self.__writeWord)
 
@@ -297,16 +297,17 @@ class CAnWorkGUI:
 
         btnOpenTableurWithComputer.grid(row=1, column=0, padx=20, pady=20)
 
-        btnReadTableur.grid(row=1, column=1, padx=20, pady=20)
-        btnAddValeurTableur.grid(row=1, column=2, padx=20, pady=20)
-        btnAddMoyenneTableur.grid(row=2, column=0, padx=20, pady=20)
-        btnAddSommeTableur.grid(row=2, column=1, padx=20, pady=20)
-        btnAddComptageTableur.grid(row=2, column=2, padx=20, pady=20)
-        btnAddMinimumTableur.grid(row=3, column=0, padx=20, pady=20)
-        btnAddMaximumTableur.grid(row=3, column=1, padx=20, pady=20)
-        btnAffichageTableur.grid(row=3, column=2, padx=20, pady=20)
-        btnSupprDataTableur.grid(row=4, column=0, padx=20, pady=20)
-        btnCloseTableur.grid(row=4, column=1, padx=20, pady=20)
+
+        btnAddValeurTableur.grid(row=1, column=1, padx=20, pady=20)
+        btnAddMoyenneTableur.grid(row=1, column=2, padx=20, pady=20)
+        btnAddSommeTableur.grid(row=2, column=0, padx=20, pady=20)
+        btnAddComptageTableur.grid(row=2, column=1, padx=20, pady=20)
+        btnAddMinimumTableur.grid(row=2, column=2, padx=20, pady=20)
+        btnAddMaximumTableur.grid(row=3, column=0, padx=20, pady=20)
+        btnAffichageTableur.grid(row=3, column=1, padx=20, pady=20)
+        btnSupprDataTableur.grid(row=3, column=2, padx=20, pady=20)
+        btnCloseTableur.grid(row=4, column=0, padx=20, pady=20)
+        #btnReadTableur.grid(row=4, column=1, padx=20, pady=20)
 
         labelTitleNoOpenWord.grid(row=0, column=1, sticky="n")
         btnOpenWord.grid(row=2, column=1, sticky="n")
@@ -314,8 +315,8 @@ class CAnWorkGUI:
         labelTitleWord.grid(row=0, column=0, columnspan=3, sticky='ew')
         btnOpenWordWithComputer.grid(row=1, column=0, padx=20, pady=20)
         btnCloseWord.grid(row=1, column=1, padx=20, pady=20)
-        btnReadWord.grid(row=1, column=2, padx=20, pady=20)
-        btnWriteWord.grid(row=2, column=0, padx=20, pady=20)
+        btnWriteWord.grid(row=1, column=2, padx=20, pady=20)
+        # btnReadWord.grid(row=2, column=0, padx=20, pady=20)
 
         # Placement des widgets dans la frame Projet
         labelTitleProjet.grid(row=0, column=0, columnspan=3, sticky='new')
@@ -426,7 +427,8 @@ class CAnWorkGUI:
         self.__activeTableur()
         self.__parent._setButtonOpen()
 
-    #def __readTableur(self):
+    def __readTableur(self):
+        pass
 
 
     def __openTableurCoputerSoft(self):
