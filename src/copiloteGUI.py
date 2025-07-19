@@ -9,6 +9,7 @@ import threading as th
 VERSION = "I2025-1.00"
 
 class guiCopilote:
+    instance = None
     def __init__(self, neuronConfigFileRyley: str, neuronConfigFileSix: str, version: str):
         # Varriable
         self.__nameSoft = "Arrera Copilote"
@@ -48,6 +49,8 @@ class guiCopilote:
 
         self.__nbSortieSix = 0
         self.__nbSortieRyley = 0
+
+        guiCopilote.instance = self
 
         # Demarage objet language Ryley
         self.__language = CLanguageCopilote("language/copilote/paroleCopilote.json",
@@ -92,7 +95,8 @@ class guiCopilote:
         emplacementDark = "asset/GUI/dark/"
 
         # Interface aide pour Arrera Work
-        self.__guiWork = CAnWorkGUI(self.__arrTK,
+        self.__guiWork = CAnWorkGUI(guiCopilote.instance,
+                                    self.__arrTK,
                                     self.__nameSoft,
                                     "asset/work",
                                     self.__assistantSix,

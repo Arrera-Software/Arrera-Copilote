@@ -426,7 +426,7 @@ class CAnWorkGUI:
         self.__activeTableur()
         self.__parent._setButtonOpen()
 
-    def __readTableur(self):
+    #def __readTableur(self):
 
 
     def __openTableurCoputerSoft(self):
