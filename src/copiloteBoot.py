@@ -1,27 +1,22 @@
 from src.copiloteGUI import *
 from arreraLynx.arreraLynx import *
 from src.CTigerDemon import *
+from ObjetsNetwork.userConf import *
 
 class copiloteBoot:
     def __init__(self):
+        self.__userConf = userConf()
         # Ouverture JSON
-        json = jsonWork("fichierJSON/configUser.json")
         # Declaration des var
         self.__sortieLynx = False
-
         # Verification de la configuration de l'assistant
-        if ((json.lectureJSON("user") == "") and
-                (json.lectureJSON("genre") == "")):
-            self.__firstStart = True
-        else:
-            self.__firstStart = False
-        del json
+        self.__firstStart = self.__userConf.getFirstRun()
         self.__demonTiger = CTigerDemon("arrera-copilote","https://arrera-software.fr/depots.json")
 
     def active(self):
-        if (self.__firstStart):
+        if self.__firstStart:
             lynx = ArreraLynx("fichierJSON/configLynx.json",
-                              "fichierJSON/configUser.json",
+                              self.__userConf.getUserSettingPath(),
                               "fichierJSON/configNeuron.json")
             lynx.active()
             self.__sortieLynx = lynx.confiCreate()
@@ -35,7 +30,7 @@ class copiloteBoot:
         arrTk = CArreraTK()
         self.__checkUpdate(arrTk)
         if (self.__sortieLynx == False):
-            screen = arrTk.aTK(title="Arrera Ryley",resizable=False,width=500,height=350)
+            screen = arrTk.aTK(title="Arrera Copilote",resizable=False,width=500,height=350)
             imgCavas = arrTk.createArreraBackgroudImage(screen,
                                                         imageDark="asset/GUI/dark/NoConfig.png",
                                                         imageLight="asset/GUI/light/NoConfig.png",

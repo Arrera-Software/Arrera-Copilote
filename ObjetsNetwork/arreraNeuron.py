@@ -9,6 +9,7 @@ from neuron.search import*
 from neuron.time import*
 from neuron.codehelp import*
 from neuron.work import*
+from ObjetsNetwork.userConf import *
 
 class ArreraNetwork :
     def __init__(self,fichierConfiguration:str):
@@ -20,12 +21,13 @@ class ArreraNetwork :
         self.__listNeuron = ["chatBot","service","api",
                              "software","open","search",
                              "time","codehelp","word"]
+        self.__userConf = userConf()
         #Ouverture fichier de configuration
         self.__configNeuron = jsonWork(fichierConfiguration)
-        self.__fichierUtilisateur = jsonWork(self.__configNeuron.lectureJSON("fileUser"))
+        self.__fichierUtilisateur = jsonWork(self.__userConf.getUserSettingPath())
         self.__fichierVille = jsonWork(self.__configNeuron.lectureJSON("fileFete"))
         # Gestionnaire
-        self.__gestionnaire = gestionNetwork(fichierConfiguration)
+        self.__gestionnaire = gestionNetwork(fichierConfiguration,self.__userConf)
         # Partie serveur
         self.__socket = self.__gestionnaire.getSocketObjet()
         #initilisation du gestionnaire du reseau de neuron
@@ -47,6 +49,9 @@ class ArreraNetwork :
 
     def getNeuronRunning(self):
         return self.__networkRunning
+
+    def getUserConf(self):
+        return self.__userConf
 
     def boot(self,mode:int):
         """_summary_

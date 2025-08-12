@@ -57,7 +57,7 @@ class guiCopilote:
                                             "language/copilote/paroleRyley.json",
                                               "fichierJSON/aideRyley.json",
                                               "fichierJSON/firstBootCopilote.json",
-                                            "fichierJSON/configUser.json")
+                                            self.__assistantSix.getUserConf().getUserSettingPath())
 
         # Teste sur de l'OS hote
         objOS = OS()
@@ -83,7 +83,7 @@ class guiCopilote:
         # Demage de l'objet parametre
 
         self.__arrGazelle = CArreraGazelleUIRyleyCopilote(self.__arrTK, self.__screen,
-                                                          "fichierJSON/configUser.json",
+                                                          self.__assistantSix.getUserConf().getUserSettingPath(),
                                                           "fichierJSON/configNeuron.json",
                                                           "fichierJSON/copiloteConfig.json",
                                                           "fichierJSON/configSetting.json")

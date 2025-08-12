@@ -4,14 +4,16 @@ from librairy.dectectionOS import*
 from ObjetsNetwork.CAlanguage import *
 from ObjetsNetwork.network import*
 from ObjetsNetwork.enabledNeuron import*
+from ObjetsNetwork.userConf import *
 
 
 class gestionNetwork:
-    def __init__(self,configFile:str):
+    def __init__(self,configFile:str,userConf:userConf):
         # Fichier JSON
         self.__configFile = jsonWork(configFile)
-        self.__fileUser = jsonWork(self.__configFile.lectureJSON("fileUser"))
+        self.__fileUser = jsonWork(userConf.getUserSettingPath())
         self.__fichierFete = jsonWork(self.__configFile.lectureJSON("fileFete"))
+        self.__userConf = userConf
         # Objet
         self.__detecteurOS = OS()
         self.__mLanguage = CAlanguage(self.__configFile.lectureJSON("moduleLanguage"),
@@ -84,13 +86,13 @@ class gestionNetwork:
         return str(self.__configFile.lectureJSON("moteurRechercheDefault"))
 
     def getEmplacementFileAgenda(self)->str :
-        return self.__fileUser.lectureJSON("emplacementEvenenement")
+        return self.__userConf.getEventPath()
 
     def getEmplacemntfileTache(self)->str:
-        return self.__fileUser.lectureJSON("emplacementTache")
+        return self.__userConf.getTaskPath()
 
     def getEmplacementFileHist(self)->str:
-        return self.__fileUser.lectureJSON("emplacementHistorique")
+        return self.__userConf.getTaskPath()
     
     def getDictionnaireLogiciel(self):
         etatWindows = self.__detecteurOS.osWindows()
