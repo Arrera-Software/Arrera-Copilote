@@ -1,9 +1,9 @@
 # -*- mode: python ; coding: utf-8 -*-
 
 # ========= CONFIG À ADAPTER (Windows) =========
-APP_NAME = "MonAppli"            # Nom du binaire (PyInstaller ajoutera .exe)
+APP_NAME = "arrera-copilote"            # Nom du binaire (PyInstaller ajoutera .exe)
 ENTRY_SCRIPT = "main.py"         # Script d'entrée (if __name__ == "__main__")
-ICON_FILE = None                 # Exemple: r"assets\icon.ico" (doit être .ico sous Windows)
+ICON_FILE = icon.ico                 # Exemple: r"assets\icon.ico" (doit être .ico sous Windows)
 UPX_ENABLED = True               # Désactive si UPX n'est pas installé sur la machine
 DEBUG_BUILD = False              # True pour debug
 HIDDENIMPORTS = []               # Ajoute ici des imports dynamiques si nécessaire

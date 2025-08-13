@@ -1,9 +1,9 @@
 # -*- mode: python ; coding: utf-8 -*-
 
 # ========= CONFIG À ADAPTER (Linux, Arch x86_64) =========
-APP_NAME = "MonAppli"            # Nom du dossier/binaire final
+APP_NAME = "arrera-copilote"            # Nom du dossier/binaire final
 ENTRY_SCRIPT = "main.py"         # Script d'entrée (if __name__ == "__main__")
-ICON_FILE = None                 # Exemple: "assets/icon.png" ou ".ico" (optionnel)
+ICON_FILE =  icon.png                # Exemple: "assets/icon.png" ou ".ico" (optionnel)
 UPX_ENABLED = True               # Désactive si UPX indisponible
 DEBUG_BUILD = False              # True pour debug
 HIDDENIMPORTS = []               # Ajoute ici des imports dynamiques si nécessaire

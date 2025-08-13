@@ -1,10 +1,10 @@
 # -*- mode: python ; coding: utf-8 -*-
 
 # ========= CONFIG À ADAPTER =========
-APP_NAME = "MonAppli"                 # Nom de l'app .app
+APP_NAME = "arrera-copilote"                 # Nom de l'app .app
 ENTRY_SCRIPT = "main.py"              # Script d'entrée (contient if __name__ == '__main__')
-ICON_ICNS = None                      # Exemple: "assets/icon.icns" (ou laisse None)
-BUNDLE_ID = "com.exemple.monappli"    # Identifiant de bundle macOS (optionnel mais conseillé)
+ICON_ICNS = copilote-icon.icns                      # Exemple: "assets/icon.icns" (ou laisse None)
+BUNDLE_ID = "com.arrera.copilote"    # Identifiant de bundle macOS (optionnel mais conseillé)
 MIN_MACOS = "10.13"                   # Version minimale macOS (à ajuster)
 # Si tu connais l’archi visée, tu peux fixer target_arch: "arm64" (Apple Silicon) ou "x86_64"
 TARGET_ARCH = None
