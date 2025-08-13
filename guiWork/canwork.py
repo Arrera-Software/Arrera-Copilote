@@ -1,6 +1,7 @@
 from librairy.arrera_tk import *
 from ObjetsNetwork.arreraNeuron import *
 from src.copiloteGUI import *
+from librairy.asset_manage import *
 
 class CAnWorkGUI:
     def __init__(self,parent,arrtk : CArreraTK,nameAssistant : str,asset:str,arrNeuron:ArreraNetwork,fileUserAssistant:str):
@@ -34,71 +35,78 @@ class CAnWorkGUI:
         self.__screen.columnconfigure(2, weight=1)
 
         # Recuperation des image
-        imgTableurAcceuil = self.__arrTk.createImage(self.__emplacementAsset + "acceuil/tableur.png",tailleX=100, tailleY=100)
-        imgWordAcceuil = self.__arrTk.createImage(self.__emplacementAsset + "acceuil/word.png",tailleX=100, tailleY=100)
-        imgProjectAcceuil = self.__arrTk.createImage(self.__emplacementAsset + "acceuil/project.png",tailleX=100, tailleY=100)
+        imgTableurAcceuil = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "acceuil/tableur.png"),
+                                                     tailleX=100, tailleY=100)
+        imgWordAcceuil = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "acceuil/word.png"),
+                                                  tailleX=100, tailleY=100)
+        imgProjectAcceuil = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "acceuil/project.png"),
+                                                     tailleX=100, tailleY=100)
 
-        imgTableurDock = self.__arrTk.createImage(self.__emplacementAsset + "acceuil/tableur.png",tailleX=50, tailleY=50)
-        imgWordDock = self.__arrTk.createImage(self.__emplacementAsset + "acceuil/word.png",tailleX=50, tailleY=50)
-        imgProjectDock = self.__arrTk.createImage(self.__emplacementAsset + "acceuil/project.png",tailleX=50, tailleY=50)
-        imgAnnulerDock = self.__arrTk.createImage(self.__emplacementAsset + "acceuil/annuler.png",tailleX=50, tailleY=50)
+        imgTableurDock = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "acceuil/tableur.png"),
+                                                  tailleX=50, tailleY=50)
+        imgWordDock = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "acceuil/word.png"),
+                                               tailleX=50, tailleY=50)
+        imgProjectDock = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "acceuil/project.png"),
+                                                  tailleX=50, tailleY=50)
+        imgAnnulerDock = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "acceuil/annuler.png"),
+                                                  tailleX=50, tailleY=50)
 
         # Images pour la frame Tableur
-        imgAddComptage = self.__arrTk.createImage(self.__emplacementAsset + "tableur/add-comptagexcf.png",
+        imgAddComptage = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "tableur/add-comptagexcf.png"),
                                                   tailleX=90, tailleY=90)
-        imgAddMaxmum = self.__arrTk.createImage(self.__emplacementAsset + "tableur/add-maxmum.png",
+        imgAddMaxmum = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "tableur/add-maxmum.png"),
                                                 tailleX=90, tailleY=90)
-        imgAddMinimum = self.__arrTk.createImage(self.__emplacementAsset + "tableur/add-minimum.png",
+        imgAddMinimum = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "tableur/add-minimum.png"),
                                                  tailleX=90, tailleY=90)
-        imgAddMoyenne = self.__arrTk.createImage(self.__emplacementAsset + "tableur/add-moyenne.png",
+        imgAddMoyenne = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "tableur/add-moyenne.png"),
                                                  tailleX=90, tailleY=90)
-        imgAddSomme = self.__arrTk.createImage(self.__emplacementAsset + "tableur/add-somme.png"
+        imgAddSomme = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "tableur/add-somme.png")
                                                ,tailleX=90, tailleY=90)
-        imgAddValeur = self.__arrTk.createImage(self.__emplacementAsset + "tableur/add-valeur.png"
+        imgAddValeur = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "tableur/add-valeur.png")
                                                 ,tailleX=90, tailleY=90)
-        imgCloseTableur = self.__arrTk.createImage(self.__emplacementAsset + "tableur/close-tableur.png"
+        imgCloseTableur = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "tableur/close-tableur.png")
                                                    ,tailleX=90, tailleY=90)
-        imgOpenTableur = self.__arrTk.createImage(self.__emplacementAsset + "tableur/open-tableur.png"
+        imgOpenTableur = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "tableur/open-tableur.png")
                                                   ,tailleX=90, tailleY=90)
-        imgOpenTableurCoputerSoft = self.__arrTk.createImage(self.__emplacementAsset + "tableur/open-tableur-coputer-soft.png"
+        imgOpenTableurCoputerSoft = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "tableur/open-tableur-coputer-soft.png")
                                                              ,tailleX=90, tailleY=90)
-        imgReadTableur = self.__arrTk.createImage(self.__emplacementAsset + "tableur/read-tableur.png"
+        imgReadTableur = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "tableur/read-tableur.png")
                                                   ,tailleX=90, tailleY=90)
-        imgSupprValeur = self.__arrTk.createImage(self.__emplacementAsset + "tableur/suppr-valeur.png"
+        imgSupprValeur = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "tableur/suppr-valeur.png")
                                                   ,tailleX=90, tailleY=90)
-        imgViewTableur = self.__arrTk.createImage(self.__emplacementAsset + "tableur/view-tableur.png"
+        imgViewTableur = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "tableur/view-tableur.png")
                                                   ,tailleX=90, tailleY=90)
 
         # Images pour la frame Word
-        imgOpenWord = self.__arrTk.createImage(self.__emplacementAsset + "word/open-word.png",
+        imgOpenWord = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "word/open-word.png"),
                                                tailleX=90, tailleY=90)
-        imgOpenWordWithComputer = self.__arrTk.createImage(self.__emplacementAsset + "word/open-word-coputer-soft.png",
+        imgOpenWordWithComputer = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "word/open-word-coputer-soft.png"),
                                                            tailleX=90, tailleY=90)
-        imgCloseWord = self.__arrTk.createImage(self.__emplacementAsset + "word/close-word.png",
+        imgCloseWord = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "word/close-word.png"),
                                                 tailleX=90, tailleY=90)
-        imgReadWord = self.__arrTk.createImage(self.__emplacementAsset + "word/read-word.png",
+        imgReadWord = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "word/read-word.png"),
                                                tailleX=90, tailleY=90)
-        imgWriteWord = self.__arrTk.createImage(self.__emplacementAsset + "word/write-word.png",
+        imgWriteWord = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "word/write-word.png"),
                                                 tailleX=90, tailleY=90)
 
         # Images pour la frame Projet
-        imgCreateFileProjet = self.__arrTk.createImage(self.__emplacementAsset + "project/create-file-project.png",
+        imgCreateFileProjet = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "project/create-file-project.png"),
                                                        tailleX=90, tailleY=90)
-        imgCreateProject = self.__arrTk.createImage(self.__emplacementAsset + "project/create-projet.png",
+        imgCreateProject = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "project/create-projet.png"),
                                                     tailleX=90, tailleY=90)
-        imgOpenFileProjet = self.__arrTk.createImage(self.__emplacementAsset + "project/open-file-project.png",
+        imgOpenFileProjet = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "project/open-file-project.png"),
                                                      tailleX=90, tailleY=90)
-        imgOpenProjet = self.__arrTk.createImage(self.__emplacementAsset + "project/open-project.png",
+        imgOpenProjet = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "project/open-project.png"),
                                                  tailleX=90, tailleY=90)
-        imgSetTypeProjet = self.__arrTk.createImage(self.__emplacementAsset + "project/setType-project.png",
+        imgSetTypeProjet = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "project/setType-project.png"),
                                                     tailleX=90, tailleY=90)
-        imgTaskSayProjet = self.__arrTk.createImage(self.__emplacementAsset + "project/task-say.png",
+        imgTaskSayProjet = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "project/task-say.png"),
                                                     tailleX=90, tailleY=90)
-        imgTaskViewProjet = self.__arrTk.createImage(self.__emplacementAsset + "project/view-task-project.png",
+        imgTaskViewProjet = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "project/view-task-project.png"),
                                                      tailleX=90, tailleY=90)
-        imgViewTypeFileProjet = self.__arrTk.createImage(self.__emplacementAsset + "project/view-type.png",
+        imgViewTypeFileProjet = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "project/view-type.png"),
                                                          tailleX=90, tailleY=90)
-        imgCloseProjet = self.__arrTk.createImage(self.__emplacementAsset + "project/close-project.png",
+        imgCloseProjet = self.__arrTk.createImage(resource_path(self.__emplacementAsset + "project/close-project.png"),
                                                   tailleX=90, tailleY=90)
 
         # Frames
