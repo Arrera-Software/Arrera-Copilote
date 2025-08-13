@@ -5,6 +5,7 @@ from ObjetsNetwork.CAlanguage import *
 from ObjetsNetwork.network import*
 from ObjetsNetwork.enabledNeuron import*
 from ObjetsNetwork.userConf import *
+from librairy.asset_manage import resource_path
 
 
 class gestionNetwork:
@@ -16,11 +17,18 @@ class gestionNetwork:
         self.__userConf = userConf
         # Objet
         self.__detecteurOS = OS()
-        self.__mLanguage = CAlanguage(self.__configFile.lectureJSON("moduleLanguage"),
-                                      self.__fileUser,[self.__configFile.lectureJSON("name"),
-                                                       self.__configFile.lectureJSON("bute"),
-                                                       self.__configFile.lectureJSON("createur")],
-                                      self.getListFonction())
+        if OS().osMac():
+            self.__mLanguage = CAlanguage(resource_path(self.__configFile.lectureJSON("moduleLanguage")),
+                                          self.__fileUser,[self.__configFile.lectureJSON("name"),
+                                                           self.__configFile.lectureJSON("bute"),
+                                                           self.__configFile.lectureJSON("createur")],
+                                          self.getListFonction())
+        else:
+            self.__mLanguage = CAlanguage(self.__configFile.lectureJSON("moduleLanguage"),
+                                          self.__fileUser,[self.__configFile.lectureJSON("name"),
+                                                           self.__configFile.lectureJSON("bute"),
+                                                           self.__configFile.lectureJSON("createur")],
+                                          self.getListFonction())
         self.__etatNeuron = CArreraEnabledNeuron(self.__configFile)
         self.__network = network()
         if self.__etatNeuron.getSocket():
