@@ -119,7 +119,9 @@ class neuroneAPI(neuronBase) :
             elif "meteo" in requette :
                    self._valeurOut = self.__meteo(requette)
             elif "temperature" in requette :
-                    self._valeurOut,self._listSortie = self._fonctionArreraNetwork.sortieTemperature()
+                    var,text = self._fonctionArreraNetwork.sortieTemperature()
+                    self._valeurOut = var
+                    self._listSortie = [text, ""]
                     self._objHistorique.setAction("Temperature")
             elif "coordonnee gps" in requette or "position gps" in requette :
                     self._valeurOut,self._listSortie = self._fonctionArreraNetwork.sortieGPS()
