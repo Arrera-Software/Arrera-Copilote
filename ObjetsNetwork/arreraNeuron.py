@@ -1,4 +1,4 @@
-import threading as th
+from librairy.asset_manage import *
 from neuron.chatBots import*
 from ObjetsNetwork.formule import*
 from neuron.service import*
@@ -13,7 +13,11 @@ from ObjetsNetwork.userConf import *
 
 class ArreraNetwork :
     def __init__(self,fichierConfiguration:str):
-        # Declaration des diferente var 
+        # Declaration des diferente var
+        if OS().osMac():
+            self.__assistantConf = resource_path(fichierConfiguration)
+        else:
+            self.__assistantConf = fichierConfiguration
         self.__listOut =  [] 
         self.__valeurOut = 0
         self.__networkRunning = True
@@ -23,10 +27,14 @@ class ArreraNetwork :
                              "time","codehelp","word"]
         self.__userConf = userConf()
         #Ouverture fichier de configuration
-        self.__configNeuron = jsonWork(fichierConfiguration)
+        self.__configNeuron = jsonWork(self.__assistantConf)
         self.__fichierUtilisateur = jsonWork(self.__userConf.getUserSettingPath())
         self.__fichierVille = jsonWork(self.__configNeuron.lectureJSON("fileFete"))
         # Gestionnaire
+        if OS().osMac():
+            self.__fichierVille = jsonWork(resource_path(self.__configNeuron.lectureJSON("fileFete")))
+        else:
+            self.__fichierVille = jsonWork(self.__configNeuron.lectureJSON("fileFete"))
         self.__gestionnaire = gestionNetwork(fichierConfiguration,self.__userConf)
         # Partie serveur
         self.__socket = self.__gestionnaire.getSocketObjet()

@@ -2,6 +2,7 @@ from librairy.arrera_tk import *
 from setting.arreraGazelle import*
 from tkinter.messagebox import*
 from typing import Union
+from librairy.asset_manage import resource_path
 
 class CArreraGazelleUIRyleyCopilote :
     def __init__(self,atk:CArreraTK,windows:Union[ctk.CTk,ctk.CTkToplevel],
@@ -36,7 +37,7 @@ class CArreraGazelleUIRyleyCopilote :
         spacingVertical = 150  # Espacement vertical entre les lignes
 
         # Image
-        imgSoft = self.__arrTK.createImage(jsonSetting.lectureJSON("iconSoft"),
+        imgSoft = self.__arrTK.createImage(resource_path(jsonSetting.lectureJSON("iconSoft")),
                                            tailleX=90,tailleY=90)
 
         # Liste

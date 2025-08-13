@@ -1,3 +1,4 @@
+from librairy.asset_manage import resource_path
 from librairy.jsonWorkOnline import *
 from librairy.dectectionOS import *
 import requests
@@ -6,7 +7,7 @@ class CTigerDemon :
     def __init__(self,nameSoft : str,url :str):
         # Teste internet
         try:
-            response = requests.get("https://www.google.com/", timeout=5)
+            requests.get("https://www.google.com/", timeout=5)
             self.__internet = True
         except requests.RequestException:
             self.__internet = False
@@ -35,7 +36,11 @@ class CTigerDemon :
 
     def getVersionSoft(self):
         versionInstalled = ""
-        with open("VERSION", "r") as fichier:
+        if self.__system.osMac():
+            versionFile = resource_path("VERSION")
+        else:
+            versionFile = "VERSION"
+        with open(versionFile, "r") as fichier:
             for ligne in fichier:
                 # Si la ligne commence par "VERSION="
                 if ligne.startswith("VERSION="):

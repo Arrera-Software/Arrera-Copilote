@@ -2,6 +2,7 @@ from src.copiloteGUI import *
 from arreraLynx.arreraLynx import *
 from src.CTigerDemon import *
 from ObjetsNetwork.userConf import *
+from librairy.asset_manage import resource_path
 
 class copiloteBoot:
     def __init__(self):
@@ -15,9 +16,9 @@ class copiloteBoot:
 
     def active(self):
         if self.__firstStart:
-            lynx = ArreraLynx("fichierJSON/configLynx.json",
+            lynx = ArreraLynx(resource_path("fichierJSON/configLynx.json"),
                               self.__userConf.getUserSettingPath(),
-                              "fichierJSON/configNeuron.json")
+                              resource_path("fichierJSON/configNeuron.json"))
             lynx.active()
             self.__sortieLynx = lynx.confiCreate()
         else :
@@ -32,8 +33,8 @@ class copiloteBoot:
         if (self.__sortieLynx == False):
             screen = arrTk.aTK(title="Arrera Copilote",resizable=False,width=500,height=350)
             imgCavas = arrTk.createArreraBackgroudImage(screen,
-                                                        imageDark="asset/GUI/dark/NoConfig.png",
-                                                        imageLight="asset/GUI/light/NoConfig.png",
+                                                        imageDark=resource_path("asset/GUI/dark/NoConfig.png"),
+                                                        imageLight=resource_path("asset/GUI/light/NoConfig.png"),
                                                         width=500,height=350)
             labeltext = arrTk.createLabel(screen,
                                           text="Désoler mais vous avez pas configuer l'assistant correctement",
@@ -48,8 +49,8 @@ class copiloteBoot:
             arrTk.placeBottomCenter(btnConf)
             arrTk.view()
         else :
-            assistant = guiCopilote("fichierJSON/configNeuronRyley.json",
-                                    "fichierJSON/configNeuronSix.json",
+            assistant = guiCopilote(resource_path("fichierJSON/configNeuronRyley.json"),
+                                    resource_path("fichierJSON/configNeuronSix.json"),
                                     self.__demonTiger.getVersionSoft())
             assistant.active(self.__firstStart)
 
@@ -61,8 +62,8 @@ class copiloteBoot:
         if (self.__demonTiger.checkUpdate()):
             screen = arrTk.aTK(title="Arrera Six",resizable=False,width=500,height=350)
             imgCavas = arrTk.createArreraBackgroudImage(screen,
-                                                        imageDark="asset/GUI/dark/NoConfig.png",
-                                                        imageLight="asset/GUI/light/NoConfig.png",
+                                                        imageDark=resource_path("asset/GUI/dark/NoConfig.png"),
+                                                        imageLight=resource_path("asset/GUI/light/NoConfig.png"),
                                                         width=500,height=350)
             labeltext = arrTk.createLabel(screen,
                                           text="Une mise à jour d'Arrera copilote est disponible. Installez-la pour bénéficier des dernières fonctionnalités.",
