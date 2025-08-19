@@ -3,6 +3,7 @@ from tkinter import messagebox
 import time
 from playsound import *
 from librairy.travailJSON import*
+from librairy.asset_manage import resource_path
 
 class fncArreraHorloge :
     def __init__(self):
@@ -23,9 +24,9 @@ class fncArreraHorloge :
     def setAtributJSON(self,fileJSON:jsonWork):
         self.__mainColor = fileJSON.lectureJSON("interfaceColor")
         self.__textColor = fileJSON.lectureJSON("interfaceTextColor")
-        self.__icon = fileJSON.lectureJSON("iconAssistant")
+        self.__icon = resource_path(fileJSON.lectureJSON("iconAssistant"))
         self.__name = fileJSON.lectureJSON("name")
-        self.__emplacementBIP = fileJSON.lectureJSON("emplacementAssetHorloge")
+        self.__emplacementBIP = resource_path(fileJSON.lectureJSON("emplacementAssetHorloge"))
           
     def __fenetreTK(self):
         self.__screen = Toplevel()

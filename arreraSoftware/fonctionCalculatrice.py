@@ -2,12 +2,13 @@ from tkinter import *
 from tkinter.messagebox import*
 from librairy.travailJSON import *
 import math
+from librairy.asset_manage import resource_path
 
 class fncCalculatrice :
     def __init__(self,ConfigNeuron:jsonWork):
         self.__configNeuron = ConfigNeuron
         self.__name = self.__configNeuron.lectureJSON("name")
-        self.__icon = self.__configNeuron.lectureJSON("iconAssistant")
+        self.__icon = resource_path(self.__configNeuron.lectureJSON("iconAssistant"))
         self.__color = self.__configNeuron.lectureJSON("interfaceColor")
         self.__textColor = self.__configNeuron.lectureJSON("interfaceTextColor")
         self.__emplacementTouche = self.__configNeuron.lectureJSON("toucheCalculatrice")+"/"
@@ -50,73 +51,73 @@ class fncCalculatrice :
                                   ,font=("arial","25"),bg=self.__color,fg=self.__textColor)
         #touche clavier
         #chiffre
-        self.__btnNb0 = Button(self.__fclavier,image=self.imgNb0,
+        self.__btnNb0 = Button(self.__fclavier, image=self.__imgNb0,
                                command= lambda : self.__ecritureCarractere("0"))
-        self.__btnNb1 = Button(self.__fclavier,image=self.imgNb1,
+        self.__btnNb1 = Button(self.__fclavier, image=self.__imgNb1,
                                command= lambda : self.__ecritureCarractere("1"))
-        self.__btnNb2 = Button(self.__fclavier,image=self.imgNb2,
+        self.__btnNb2 = Button(self.__fclavier, image=self.__imgNb2,
                                command= lambda : self.__ecritureCarractere("2"))
-        self.__btnNb3 = Button(self.__fclavier,image=self.imgNb3,
+        self.__btnNb3 = Button(self.__fclavier, image=self.__imgNb3,
                                command= lambda : self.__ecritureCarractere("3"))
-        self.__btnNb4 = Button(self.__fclavier,image=self.imgNb4,
+        self.__btnNb4 = Button(self.__fclavier, image=self.__imgNb4,
                                command= lambda : self.__ecritureCarractere("4"))
-        self.__btnNb5 = Button(self.__fclavier,image=self.imgNb5,
+        self.__btnNb5 = Button(self.__fclavier, image=self.__imgNb5,
                                command= lambda : self.__ecritureCarractere("5"))
-        self.__btnNb6 = Button(self.__fclavier,image=self.imgNb6,
+        self.__btnNb6 = Button(self.__fclavier, image=self.__imgNb6,
                                command= lambda : self.__ecritureCarractere("6"))
-        self.__btnNb7 = Button(self.__fclavier,image=self.imgNb7,
+        self.__btnNb7 = Button(self.__fclavier, image=self.__imgNb7,
                                command= lambda : self.__ecritureCarractere("7"))
-        self.__btnNb8 = Button(self.__fclavier,image=self.imgNb8,
+        self.__btnNb8 = Button(self.__fclavier, image=self.__imgNb8,
                                command= lambda : self.__ecritureCarractere("8"))
-        self.__btnNb9 = Button(self.__fclavier,image=self.imgNb9,
+        self.__btnNb9 = Button(self.__fclavier, image=self.__imgNb9,
                                command= lambda : self.__ecritureCarractere("9"))
-        self.__btnPI = Button(self.__fclavier,image=self.imgPI,
+        self.__btnPI = Button(self.__fclavier, image=self.__imgPI,
                               command= lambda : self.__ecritureCarractere("3.1415926535897932"))
         # operateur
-        self.__btnVirgule = Button(self.__fclavier,image=self.imgVirgule,
+        self.__btnVirgule = Button(self.__fclavier, image=self.__imgVirgule,
                                    command= lambda : self.__ecritureCarractere("."))
-        self.__btnPuissanceDix = Button(self.__fclavier,image=self.imgPuissanceDix,
+        self.__btnPuissanceDix = Button(self.__fclavier, image=self.__imgPuissanceDix,
                                         command= lambda : self.__ecritureCarractere("*10**"))
-        self.__btnEgal = Button(self.__fclavier,image=self.imgEgal,
+        self.__btnEgal = Button(self.__fclavier, image=self.__imgEgal,
                                 command=self.__calcule)
-        self.__btnplus = Button(self.__fclavier,image=self.imgPlus,
+        self.__btnplus = Button(self.__fclavier, image=self.__imgPlus,
                                 command= lambda : self.__ecritureCarractere("+"))
-        self.__btnMoin = Button(self.__fclavier,image=self.imgMoin,
+        self.__btnMoin = Button(self.__fclavier, image=self.__imgMoin,
                                 command= lambda : self.__ecritureCarractere("-"))
-        self.__btnFois = Button(self.__fclavier,image=self.imgFois,
+        self.__btnFois = Button(self.__fclavier, image=self.__imgFois,
                                 command= lambda : self.__ecritureCarractere("*"))
-        self.__btnDiviser = Button(self.__fclavier,image=self.imgDiviser,
+        self.__btnDiviser = Button(self.__fclavier, image=self.__imgDiviser,
                                    command= lambda : self.__ecritureCarractere("/"))
-        self.__btnParenthese1 = Button(self.__fclavier,image=self.imgParenthese1,
+        self.__btnParenthese1 = Button(self.__fclavier, image=self.__imgParenthese1,
                                        command= lambda : self.__ecritureCarractere("("))
-        self.__btnParenthese2 = Button(self.__fclavier,image=self.imgParenthese2,
+        self.__btnParenthese2 = Button(self.__fclavier, image=self.__imgParenthese2,
                                        command= lambda : self.__ecritureCarractere(")"))
-        self.__btnRacine = Button(self.__fclavier,image=self.imgRacine,
+        self.__btnRacine = Button(self.__fclavier, image=self.__imgRacine,
                                   command= lambda : self.__ecritureCarractere("math.sqrt("))
-        self.__btnExposant = Button(self.__fclavier,image=self.imgExposant,
+        self.__btnExposant = Button(self.__fclavier, image=self.__imgExposant,
                                     command= lambda : self.__ecritureCarractere("**"))
-        self.__btnExpodentiel = Button(self.__fclavier,image=self.imgExpodentiel,
+        self.__btnExpodentiel = Button(self.__fclavier, image=self.__imgExpodentiel,
                                        command= lambda : self.__ecritureCarractere("math.exp("))
-        self.__btnLN = Button(self.__fclavier,image=self.imgLN,
+        self.__btnLN = Button(self.__fclavier, image=self.__imgLN,
                               command= lambda : self.__ecritureCarractere("math.log(x,math.e)"))
-        self.__btnLOG = Button(self.__fclavier,image=self.imgLOG,
+        self.__btnLOG = Button(self.__fclavier, image=self.__imgLOG,
                                command= lambda : self.__ecritureCarractere("math.log(x,10)"))
         #cercle trigo
-        self.__btnSIN = Button(self.__fclavier,image=self.imgSIN,
+        self.__btnSIN = Button(self.__fclavier, image=self.__imgSIN,
                                command=lambda : self.__ecritureCarractere("math.sin("))
-        self.__btnCOS = Button(self.__fclavier,image=self.imgCOS,
+        self.__btnCOS = Button(self.__fclavier, image=self.__imgCOS,
                                command=lambda : self.__ecritureCarractere("math.cos("))
-        self.__btnTAN = Button(self.__fclavier,image=self.imgTAN,
+        self.__btnTAN = Button(self.__fclavier, image=self.__imgTAN,
                                command=lambda :self.__ecritureCarractere("math.tan("))
-        self.__btnARCSIN = Button(self.__fclavier,image=self.imgARCSIN,
+        self.__btnARCSIN = Button(self.__fclavier, image=self.__imgARCSIN,
                                   command=lambda : self.__ecritureCarractere("math.asin("))
-        self.__btnARCCOS = Button(self.__fclavier,image=self.imgARCCOS,
+        self.__btnARCCOS = Button(self.__fclavier, image=self.__imgARCCOS,
                                   command=lambda : self.__ecritureCarractere("math.acos("))
-        self.__btnARCTAN = Button(self.__fclavier,image=self.imgARCTAN,
+        self.__btnARCTAN = Button(self.__fclavier, image=self.__imgARCTAN,
                                   command=lambda : self.__ecritureCarractere("math.cos("))
         #autre
-        self.__btnClear = Button(self.__fclavier,image=self.imgClear,command=self.__clearAll)
-        self.__btnSuppr = Button(self.__fclavier,image=self.imgSuppr,command=self.__suppr)
+        self.__btnClear = Button(self.__fclavier, image=self.__imgClear, command=self.__clearAll)
+        self.__btnSuppr = Button(self.__fclavier, image=self.__imgSuppr, command=self.__suppr)
         #btn fonction special
         self.__btnAngle = Button(self.__fclavier,text="Randian en degres",font=("arial","15")
                                  ,bg=self.__color,fg=self.__textColor,command=self.__convertiseurDegRad)
@@ -125,15 +126,15 @@ class fncCalculatrice :
         self.__btnNbComplex = Button(self.__fclavier,text="Nombre Complex",font=("arial","15")
                                      ,bg=self.__color,fg=self.__textColor,command=self.__modeComplex)
         #btn nb complex
-        self.__btnEgalComplex = Button(self.__fResultatComplex,image=self.imgEgal
+        self.__btnEgalComplex = Button(self.__fResultatComplex,image=self.__imgEgal
                                        ,command= lambda : self.__calculeComplex())
-        self.__btnplusComplex = Button(self.__foperateurComplex,image=self.imgPlus
+        self.__btnplusComplex = Button(self.__foperateurComplex,image=self.__imgPlus
                                        ,command= lambda : self.__setOperateurComplex("+"))
-        self.__btnMoinComplex = Button(self.__foperateurComplex,image=self.imgMoin
+        self.__btnMoinComplex = Button(self.__foperateurComplex,image=self.__imgMoin
                                        ,command= lambda : self.__setOperateurComplex("-"))
-        self.__btnFoisComplex = Button(self.__foperateurComplex,image=self.imgFois
+        self.__btnFoisComplex = Button(self.__foperateurComplex,image=self.__imgFois
                                        ,command= lambda : self.__setOperateurComplex("*"))
-        self.__btnDiviserComplex = Button(self.__foperateurComplex,image=self.imgDiviser
+        self.__btnDiviserComplex = Button(self.__foperateurComplex,image=self.__imgDiviser
                                           ,command= lambda : self.__setOperateurComplex("/"))
         self.__btnCancelComplex = Button(self.__fnbComplex,text="Annuler",font=("arial","15")
                                          ,bg=self.__color,fg=self.__textColor,command=self.__resetOperateurComplex)
@@ -147,10 +148,10 @@ class fncCalculatrice :
         self.__btnRetourPythagore = Button(self.__fpythagore,text="Retour",font=("arial","15")
                                            ,bg=self.__color,fg=self.__textColor,command=self.__modeCalcule)
         #label
-        self.__labelPlus = Label(self.__foperateurComplex,image=self.imgPlus)
-        self.__labelMois = Label(self.__foperateurComplex,image=self.imgMoin)
-        self.__labelDiviser = Label(self.__foperateurComplex,image=self.imgDiviser)
-        self.__labelFois = Label(self.__foperateurComplex,image=self.imgFois)
+        self.__labelPlus = Label(self.__foperateurComplex, image=self.__imgPlus)
+        self.__labelMois = Label(self.__foperateurComplex, image=self.__imgMoin)
+        self.__labelDiviser = Label(self.__foperateurComplex, image=self.__imgDiviser)
+        self.__labelFois = Label(self.__foperateurComplex, image=self.__imgFois)
         self.__affichageHistorique = Label(self.__fhistorique,text="Historique :"
                                            ,width=30,bg=self.__color,fg=self.__textColor,font=("arial","20"), anchor="w")
         self.__affichageComplexOut = Label(self.__fResultatComplex,width=42,font=("arial","15"),bg="grey",fg="white")
@@ -289,42 +290,42 @@ class fncCalculatrice :
         self.__zoneCalcule.update() 
        
     def __imageTouche(self):
-        self.imgNb0 = PhotoImage(file=self.__emplacementTouche+"tchNB0.png")
-        self.imgNb1 = PhotoImage(file=self.__emplacementTouche+"tchNB1.png")
-        self.imgNb2 = PhotoImage(file=self.__emplacementTouche+"tchNB2.png")
-        self.imgNb3 = PhotoImage(file=self.__emplacementTouche+"tchNB3.png")
-        self.imgNb4 = PhotoImage(file=self.__emplacementTouche+"tchNB4.png")
-        self.imgNb5 = PhotoImage(file=self.__emplacementTouche+"tchNB5.png")
-        self.imgNb6 = PhotoImage(file=self.__emplacementTouche+"tchNB6.png")
-        self.imgNb7 = PhotoImage(file=self.__emplacementTouche+"tchNB7.png")
-        self.imgNb8 = PhotoImage(file=self.__emplacementTouche+"tchNB8.png")
-        self.imgNb9 = PhotoImage(file=self.__emplacementTouche+"tchNB9.png")
-        self.imgPI = PhotoImage(file=self.__emplacementTouche+"tchPI.png")
+        self.__imgNb0 = PhotoImage(file=resource_path(self.__emplacementTouche + "tchNB0.png"))
+        self.__imgNb1 = PhotoImage(file=resource_path(self.__emplacementTouche + "tchNB1.png"))
+        self.__imgNb2 = PhotoImage(file=resource_path(self.__emplacementTouche + "tchNB2.png"))
+        self.__imgNb3 = PhotoImage(file=resource_path(self.__emplacementTouche + "tchNB3.png"))
+        self.__imgNb4 = PhotoImage(file=resource_path(self.__emplacementTouche + "tchNB4.png"))
+        self.__imgNb5 = PhotoImage(file=resource_path(self.__emplacementTouche + "tchNB5.png"))
+        self.__imgNb6 = PhotoImage(file=resource_path(self.__emplacementTouche + "tchNB6.png"))
+        self.__imgNb7 = PhotoImage(file=resource_path(self.__emplacementTouche + "tchNB7.png"))
+        self.__imgNb8 = PhotoImage(file=resource_path(self.__emplacementTouche + "tchNB8.png"))
+        self.__imgNb9 = PhotoImage(file=resource_path(self.__emplacementTouche + "tchNB9.png"))
+        self.__imgPI = PhotoImage(file=resource_path(self.__emplacementTouche + "tchPI.png"))
         
-        self.imgVirgule = PhotoImage(file=self.__emplacementTouche+"tchVirgule.png")
-        self.imgPuissanceDix = PhotoImage(file=self.__emplacementTouche+"tchDixPuissance.png")
-        self.imgEgal = PhotoImage(file=self.__emplacementTouche+"tchEgal.png")
-        self.imgPlus = PhotoImage(file=self.__emplacementTouche+"tchPlus.png")
-        self.imgMoin = PhotoImage(file=self.__emplacementTouche+"tchMoin.png")
-        self.imgFois = PhotoImage(file=self.__emplacementTouche+"tchFois.png")
-        self.imgDiviser = PhotoImage(file=self.__emplacementTouche+"tchDiviser.png")
-        self.imgParenthese1 = PhotoImage(file=self.__emplacementTouche+"tchParenthese1.png")
-        self.imgParenthese2 = PhotoImage(file=self.__emplacementTouche+"tchParenthese2.png")
-        self.imgRacine = PhotoImage(file=self.__emplacementTouche+"tchRacine.png")
-        self.imgExposant = PhotoImage(file=self.__emplacementTouche+"tchExposant.png")
-        self.imgExpodentiel = PhotoImage(file=self.__emplacementTouche+"tchExpodentiel.png")
-        self.imgLN = PhotoImage(file=self.__emplacementTouche+"tchLN.png")
-        self.imgLOG = PhotoImage(file=self.__emplacementTouche+"tchLOG.png")
+        self.__imgVirgule = PhotoImage(file=resource_path(self.__emplacementTouche + "tchVirgule.png"))
+        self.__imgPuissanceDix = PhotoImage(file=resource_path(self.__emplacementTouche + "tchDixPuissance.png"))
+        self.__imgEgal = PhotoImage(file=resource_path(self.__emplacementTouche + "tchEgal.png"))
+        self.__imgPlus = PhotoImage(file=resource_path(self.__emplacementTouche + "tchPlus.png"))
+        self.__imgMoin = PhotoImage(file=resource_path(self.__emplacementTouche + "tchMoin.png"))
+        self.__imgFois = PhotoImage(file=resource_path(self.__emplacementTouche + "tchFois.png"))
+        self.__imgDiviser = PhotoImage(file=resource_path(self.__emplacementTouche + "tchDiviser.png"))
+        self.__imgParenthese1 = PhotoImage(file=resource_path(self.__emplacementTouche + "tchParenthese1.png"))
+        self.__imgParenthese2 = PhotoImage(file=resource_path(self.__emplacementTouche + "tchParenthese2.png"))
+        self.__imgRacine = PhotoImage(file=resource_path(self.__emplacementTouche + "tchRacine.png"))
+        self.__imgExposant = PhotoImage(file=resource_path(self.__emplacementTouche + "tchExposant.png"))
+        self.__imgExpodentiel = PhotoImage(file=resource_path(self.__emplacementTouche + "tchExpodentiel.png"))
+        self.__imgLN = PhotoImage(file=resource_path(self.__emplacementTouche + "tchLN.png"))
+        self.__imgLOG = PhotoImage(file=resource_path(self.__emplacementTouche + "tchLOG.png"))
         
-        self.imgClear = PhotoImage(file=self.__emplacementTouche+"tchClear.png")
-        self.imgSuppr = PhotoImage(file=self.__emplacementTouche+"tchSuppr.png")
+        self.__imgClear = PhotoImage(file=resource_path(self.__emplacementTouche + "tchClear.png"))
+        self.__imgSuppr = PhotoImage(file=resource_path(self.__emplacementTouche + "tchSuppr.png"))
         
-        self.imgSIN = PhotoImage(file=self.__emplacementTouche+"tchSIN.png")
-        self.imgCOS = PhotoImage(file=self.__emplacementTouche+"tchCOS.png")
-        self.imgTAN = PhotoImage(file=self.__emplacementTouche+"tchTAN.png")
-        self.imgARCSIN = PhotoImage(file=self.__emplacementTouche+"tchARCSIN.png")
-        self.imgARCCOS = PhotoImage(file=self.__emplacementTouche+"tchARCCOS.png")
-        self.imgARCTAN = PhotoImage(file=self.__emplacementTouche+"tchARCTAN.png")
+        self.__imgSIN = PhotoImage(file=resource_path(self.__emplacementTouche + "tchSIN.png"))
+        self.__imgCOS = PhotoImage(file=resource_path(self.__emplacementTouche + "tchCOS.png"))
+        self.__imgTAN = PhotoImage(file=resource_path(self.__emplacementTouche + "tchTAN.png"))
+        self.__imgARCSIN = PhotoImage(file=resource_path(self.__emplacementTouche + "tchARCSIN.png"))
+        self.__imgARCCOS = PhotoImage(file=resource_path(self.__emplacementTouche + "tchARCCOS.png"))
+        self.__imgARCTAN = PhotoImage(file=resource_path(self.__emplacementTouche + "tchARCTAN.png"))
     
     def __carractereInterdit(self,event):
         carractereSpeciaux = "'_,?;§!ùµ*£$¤¨@ç|~&²¹#`\°"

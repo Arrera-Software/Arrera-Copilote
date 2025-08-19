@@ -31,10 +31,7 @@ class gestionNetwork:
                                           self.getListFonction())
         self.__etatNeuron = CArreraEnabledNeuron(self.__configFile)
         self.__network = network()
-        if self.__etatNeuron.getSocket():
-            self.__serveurSocket = socketAssistant(self.__configFile.lectureJSON("name"))
-        else :
-            self.__serveurSocket = None
+        self.__serveurSocket = socketAssistant(self.__configFile.lectureJSON("name"),self.__etatNeuron.getSocket())
         # Varriable
         self.__oldRequette = ""
         self.__oldSorti = ""

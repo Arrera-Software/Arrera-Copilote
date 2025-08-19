@@ -2,12 +2,13 @@ from tkinter import*
 import webbrowser as w
 from github import Github
 from ObjetsNetwork.gestion import*
+from librairy.asset_manage import  resource_path
 
 class CHGithub:
     def __init__(self,ConfigNeuron:jsonWork,gestion:gestionNetwork):
         self.__mainColor = ConfigNeuron.lectureJSON("interfaceColor")
         self.__mainTextColor = ConfigNeuron.lectureJSON("interfaceTextColor")
-        self.__iconAssistant = ConfigNeuron.lectureJSON("iconAssistant") 
+        self.__iconAssistant = resource_path(ConfigNeuron.lectureJSON("iconAssistant"))
         self.__name = ConfigNeuron.lectureJSON("name")
         self.__tokenGithub = gestion.getTokenGithub()
         self.__listDepo = []

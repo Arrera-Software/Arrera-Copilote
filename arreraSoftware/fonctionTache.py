@@ -3,13 +3,14 @@ from tkinter.messagebox import *
 from ObjetsNetwork.gestion import *
 from tkcalendar import DateEntry
 from arreraSoftware.fonctionDate import*
+from librairy.asset_manage import resource_path
 
 class fncArreraTache :
     def __init__(self,fncDate:fncDate,fichierConfig:jsonWork,taskFile:str,projet:bool=False,nameProjet:str=""):
         self.__taskFile = jsonWork(taskFile)
         self.__mainColor = fichierConfig.lectureJSON("interfaceColor")
         self.__textColor = fichierConfig.lectureJSON("interfaceTextColor")
-        self.__icon = fichierConfig.lectureJSON("iconAssistant")
+        self.__icon = resource_path(fichierConfig.lectureJSON("iconAssistant"))
         self.__nameAssistant = fichierConfig.lectureJSON("name")
         self.__objDate = fncDate
         if projet == True :

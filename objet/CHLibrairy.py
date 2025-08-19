@@ -2,6 +2,7 @@ from tkinter import*
 import webbrowser as w
 from librairy.travailJSON import*
 from ObjetsNetwork.gestion import*
+from librairy.asset_manage import resource_path
 
 
 class CHLibrairy:
@@ -12,7 +13,7 @@ class CHLibrairy:
         self.__lienObjetCPP = "https://github.com/Arrera-Software/Arrera-librairy/tree/main/C%2B%2B"
         self.__mainColor = ConfigNeuron.lectureJSON("interfaceColor")
         self.__textColor = ConfigNeuron.lectureJSON("interfaceTextColor")
-        self.__iconAssistant = ConfigNeuron.lectureJSON("iconAssistant") 
+        self.__iconAssistant = resource_path(ConfigNeuron.lectureJSON("iconAssistant"))
         self.__name = ConfigNeuron.lectureJSON("name")
         self.objNET = gest.getNetworkObjet()
     

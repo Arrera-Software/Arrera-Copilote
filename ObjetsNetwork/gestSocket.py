@@ -2,10 +2,10 @@ from objet.parreraclient import *
 from ObjetsNetwork.gestion import*
 
 class socketAssistant :
-    def __init__(self,name:str):
+    def __init__(self,name:str,enable:bool):
         self.__socket = PArreraClient(name)
         self.__serverOn = self.__socket.connectToServeur("ws://127.0.0.1:6666")
-        if self.__serverOn == False :
+        if not self.__serverOn and enable:
             self.__socket = None
 
 

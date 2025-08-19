@@ -2,12 +2,13 @@ from tkinter import*
 from tkinter.filedialog import*
 from tkinter.messagebox import*
 from ObjetsNetwork.gestion import*
+from librairy.asset_manage import resource_path
 
 class CHOrgraVarriable:
     def __init__(self,ConfigNeuron:jsonWork,dectOS:OS):
         self.__mainColor = ConfigNeuron.lectureJSON("interfaceColor")
         self.__mainTextColor = ConfigNeuron.lectureJSON("interfaceTextColor")
-        self.__iconAssistant = ConfigNeuron.lectureJSON("iconAssistant") 
+        self.__iconAssistant = resource_path(ConfigNeuron.lectureJSON("iconAssistant"))
         self.__name = ConfigNeuron.lectureJSON("name")
         self.__docOpen = False
         self.__file = ""

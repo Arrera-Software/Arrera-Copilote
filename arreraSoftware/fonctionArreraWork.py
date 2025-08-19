@@ -12,6 +12,7 @@ import subprocess
 import re
 import os
 from pathlib import Path
+from librairy.asset_manage import resource_path
 
 
 class fncArreraWork:
@@ -34,7 +35,7 @@ class fncArreraWork:
         self.__fileWord = ""
         # Chargement des variable
         self.__nameAssistant = self.__configFile.lectureJSON("name")
-        self.__iconAssistant = self.__configFile.lectureJSON("iconAssistant")
+        self.__iconAssistant = resource_path(self.__configFile.lectureJSON("iconAssistant"))
         self.__guiColor = self.__configFile.lectureJSON("interfaceColor")
         self.__textColor = self.__configFile.lectureJSON("interfaceTextColor")
         # Varriable Projet

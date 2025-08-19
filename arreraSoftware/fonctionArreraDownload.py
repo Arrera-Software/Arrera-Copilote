@@ -2,13 +2,14 @@ from objet.CArreraDownload import*
 from ObjetsNetwork.gestion import*
 import threading as th
 from tkinter import*
+from librairy.asset_manage import resource_path
 
 class fncArreraVideoDownload :
     def __init__(self,configNeuron:jsonWork,gestUser:gestionNetwork) :
         self.__nameAssistant = configNeuron.lectureJSON("name")+" : Video Download"
         self.__interfaceColor = configNeuron.lectureJSON("interfaceColor")
         self.__textColor = configNeuron.lectureJSON("interfaceTextColor")
-        self.__icon = configNeuron.lectureJSON("iconAssistant")
+        self.__icon = resource_path(configNeuron.lectureJSON("iconAssistant"))
         self.__aDownload = CArreraDownload()
         self.__gestUser = gestUser
 

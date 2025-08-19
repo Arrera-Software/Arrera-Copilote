@@ -1,12 +1,13 @@
 from tkinter import*
 from librairy.travailJSON import*
 from tkinter import colorchooser
+from librairy.asset_manage import resource_path
 
 class CCHcolorSelector:
     def __init__(self,ConfigNeuron:jsonWork):
         self.__mainColor = ConfigNeuron.lectureJSON("interfaceColor")
         self.__mainTextColor = ConfigNeuron.lectureJSON("interfaceTextColor")
-        self.__iconAssistant = ConfigNeuron.lectureJSON("iconAssistant") 
+        self.__iconAssistant = resource_path(ConfigNeuron.lectureJSON("iconAssistant"))
         self.__name = ConfigNeuron.lectureJSON("name")
 
     def bootSelecteur(self):

@@ -4,6 +4,7 @@ from tkinter import messagebox
 from tkcalendar import DateEntry
 from ObjetsNetwork.gestion import *
 from arreraSoftware.fonctionDate import *
+from librairy.asset_manage import resource_path
 
 
 
@@ -12,7 +13,7 @@ class fncArreraAgenda :
         self.__agendaFile = jsonWork(gest.getEmplacementFileAgenda())
         self.__mainColor = fichierConfig.lectureJSON("interfaceColor")
         self.__textColor = fichierConfig.lectureJSON("interfaceTextColor")
-        self.__icon = fichierConfig.lectureJSON("iconAssistant")
+        self.__icon = resource_path(fichierConfig.lectureJSON("iconAssistant"))
         self.__nameAssistant = fichierConfig.lectureJSON("name")
         self.__objetDate = fncDate()
         locale.setlocale(locale.LC_TIME, 'fr_FR.UTF-8')

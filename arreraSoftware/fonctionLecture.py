@@ -3,13 +3,14 @@ from librairy.travailJSON import *
 from librairy.speak import*
 from librairy.dectectionOS import*
 import threading as th
+from librairy.asset_manage import resource_path
 
 class fncLecture :
     def __init__(self,ConfigNeuron:jsonWork,detecteurSys:OS):
         #initilation objet
         self.__configNeuron = ConfigNeuron
         self.__name = self.__configNeuron.lectureJSON("name")
-        self.__icon = self.__configNeuron.lectureJSON("iconAssistant")
+        self.__icon = resource_path(self.__configNeuron.lectureJSON("iconAssistant"))
         self.__lang = ""
         self.__langSet = 0
         self.__thSpeak = None

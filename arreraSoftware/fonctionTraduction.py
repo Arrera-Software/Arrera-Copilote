@@ -2,6 +2,7 @@ from translate import Translator
 from librairy.travailJSON import*
 from tkinter import messagebox
 from tkinter import*
+from librairy.asset_manage import resource_path
 
 class fncArreraTrad :
     def __init__(self,ConfigNeuron:jsonWork):
@@ -9,7 +10,7 @@ class fncArreraTrad :
         self.__configNeuron = ConfigNeuron
         #varriable fenetre Tkinter
         self.__name = self.__configNeuron.lectureJSON("name")
-        self.__icon = self.__configNeuron.lectureJSON("iconAssistant")
+        self.__icon = resource_path(self.__configNeuron.lectureJSON("iconAssistant"))
         self.__color = self.__configNeuron.lectureJSON("interfaceColor")
         self.__textColor = self.__configNeuron.lectureJSON("interfaceTextColor")
     
