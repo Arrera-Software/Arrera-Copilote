@@ -608,6 +608,7 @@ class guiCopilote:
 
     def __sequenceStop(self):
         self.__disableAllFrame()
+        self.__arrGazelle.leaveSetting()
         self.__screen.maxsize(500, 600)
         self.__screen.minsize(500, 600)
         self.__viewNormal()
