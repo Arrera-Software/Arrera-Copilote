@@ -33,8 +33,8 @@ class copiloteBoot:
         if (self.__sortieLynx == False):
             screen = arrTk.aTK(title="Arrera Copilote",resizable=False,width=500,height=350)
             imgCavas = arrTk.createArreraBackgroudImage(screen,
-                                                        imageDark=resource_path("asset/GUI/dark/NoConfig.png"),
-                                                        imageLight=resource_path("asset/GUI/light/NoConfig.png"),
+                                                        imageDark=("asset/GUI/dark/NoConfig.png"),
+                                                        imageLight=("asset/GUI/light/NoConfig.png"),
                                                         width=500,height=350)
             labeltext = arrTk.createLabel(screen,
                                           text="Désoler mais vous avez pas configuer l'assistant correctement",
@@ -62,8 +62,8 @@ class copiloteBoot:
         if (self.__demonTiger.checkUpdate()):
             screen = arrTk.aTK(title="Arrera Six",resizable=False,width=500,height=350)
             imgCavas = arrTk.createArreraBackgroudImage(screen,
-                                                        imageDark=resource_path("asset/GUI/dark/NoConfig.png"),
-                                                        imageLight=resource_path("asset/GUI/light/NoConfig.png"),
+                                                        imageDark=("asset/GUI/dark/NoConfig.png"),
+                                                        imageLight=("asset/GUI/light/NoConfig.png"),
                                                         width=500,height=350)
             labeltext = arrTk.createLabel(screen,
                                           text="Une mise à jour d'Arrera copilote est disponible. Installez-la pour bénéficier des dernières fonctionnalités.",

@@ -103,115 +103,115 @@ class guiCopilote:
 
         # Creation des images
 
-        imgSend = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "send.png"),
-                                           pathDark=resource_path(emplacementDark + "send.png"),
+        imgSend = self.__arrTK.createImage(pathLight=(emplacementLight + "send.png"),
+                                           pathDark=(emplacementDark + "send.png"),
                                            tailleX=30, tailleY=30)
-        imgPara = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "settings.png"),
-                                             pathDark=resource_path(emplacementDark + "settings.png"),
+        imgPara = self.__arrTK.createImage(pathLight=(emplacementLight + "settings.png"),
+                                             pathDark=(emplacementDark + "settings.png"),
                                              tailleX=30, tailleY=30)
 
-        imgCodehelp = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "iconRyleyCodehelp.png"),
-                                             pathDark=resource_path(emplacementDark + "iconRyleyCodehelp.png"),
+        imgCodehelp = self.__arrTK.createImage(pathLight=(emplacementLight + "iconRyleyCodehelp.png"),
+                                             pathDark=(emplacementDark + "iconRyleyCodehelp.png"),
                                              tailleX=30, tailleY=30)
 
         imgCopilote = self.__arrTK.createImage(pathLight=self.__emplacementIcon,
                                                pathDark=self.__emplacementIcon,
                                                tailleX=30, tailleY=30)
 
-        imgSix = self.__arrTK.createImage(pathLight=resource_path("asset/six.png"),pathDark=resource_path("asset/six.png"),
+        imgSix = self.__arrTK.createImage(pathLight=("asset/six.png"),pathDark=("asset/six.png"),
                                           tailleX=75, tailleY=75)
-        imgRyley = self.__arrTK.createImage(pathLight=resource_path("asset/ryley.png"),pathDark=resource_path("asset/ryley.png"),
+        imgRyley = self.__arrTK.createImage(pathLight=("asset/ryley.png"),pathDark=("asset/ryley.png"),
                                             tailleX=75, tailleY=75)
-        imgCancel = self.__arrTK.createImage(pathLight=resource_path(emplacementLight +"cancel.png"),
-                                             pathDark=resource_path(emplacementDark +"cancel.png"),
+        imgCancel = self.__arrTK.createImage(pathLight=(emplacementLight +"cancel.png"),
+                                             pathDark=(emplacementDark +"cancel.png"),
                                              tailleX=75, tailleY=75)
 
-        imgTableurOpen = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "tableur.png"),
-                                                    pathDark=resource_path(emplacementDark + "tableur.png"),
+        imgTableurOpen = self.__arrTK.createImage(pathLight=(emplacementLight + "tableur.png"),
+                                                    pathDark=(emplacementDark + "tableur.png"),
                                                     tailleX=30, tailleY=30)
-        imgWordOpen = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "word.png"),
-                                                    pathDark=resource_path(emplacementDark + "word.png"),
+        imgWordOpen = self.__arrTK.createImage(pathLight=(emplacementLight + "word.png"),
+                                                    pathDark=(emplacementDark + "word.png"),
                                                     tailleX=30, tailleY=30)
-        imgProjetOpen = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "projet.png"),
-                                                    pathDark=resource_path(emplacementDark + "projet.png"),
+        imgProjetOpen = self.__arrTK.createImage(pathLight=(emplacementLight + "projet.png"),
+                                                    pathDark=(emplacementDark + "projet.png"),
                                                     tailleX=30, tailleY=30)
-        imgBTNGUIWork = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "work.png"),
-                                                    pathDark=resource_path(emplacementDark + "work.png"),
-                                                    tailleX=30, tailleY=30)
-
-        imgCHColorSelector = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "btnColorSelector.png"),
-                                                    pathDark=resource_path(emplacementDark + "btnColorSelector.png"),
+        imgBTNGUIWork = self.__arrTK.createImage(pathLight=(emplacementLight + "work.png"),
+                                                    pathDark=(emplacementDark + "work.png"),
                                                     tailleX=30, tailleY=30)
 
-        imgCHGestGithub = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "btnGestGithub.png"),
-                                                     pathDark=resource_path(emplacementDark + "btnGestGithub.png"),
+        imgCHColorSelector = self.__arrTK.createImage(pathLight=(emplacementLight + "btnColorSelector.png"),
+                                                    pathDark=(emplacementDark + "btnColorSelector.png"),
+                                                    tailleX=30, tailleY=30)
+
+        imgCHGestGithub = self.__arrTK.createImage(pathLight=(emplacementLight + "btnGestGithub.png"),
+                                                     pathDark=(emplacementDark + "btnGestGithub.png"),
                                                      tailleX=30, tailleY=30)
 
-        imgCHLibrairy = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "btnLibrairy.png"),
-                                                   pathDark=resource_path(emplacementDark + "btnLibrairy.png"),
+        imgCHLibrairy = self.__arrTK.createImage(pathLight=(emplacementLight + "btnLibrairy.png"),
+                                                   pathDark=(emplacementDark + "btnLibrairy.png"),
                                                    tailleX=30, tailleY=30)
 
-        imgCHOrgaVar = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "btnOrgaVar.png"),
-                                                   pathDark=resource_path(emplacementDark + "btnOrgaVar.png"),
+        imgCHOrgaVar = self.__arrTK.createImage(pathLight=(emplacementLight + "btnOrgaVar.png"),
+                                                   pathDark=(emplacementDark + "btnOrgaVar.png"),
                                                    tailleX=30, tailleY=30)
 
-        imgBTNBigWindows = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "btnbigwindows.png"),
-                                                pathDark=resource_path(emplacementDark + "btnbigwindows.png"),
+        imgBTNBigWindows = self.__arrTK.createImage(pathLight=(emplacementLight + "btnbigwindows.png"),
+                                                pathDark=(emplacementDark + "btnbigwindows.png"),
                                                 tailleX=30, tailleY=30)
 
-        imgBTNLittleWindows = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "btnlittlewindows.png"),
-                                                pathDark=resource_path(emplacementDark + "btnlittlewindows.png"),
+        imgBTNLittleWindows = self.__arrTK.createImage(pathLight=(emplacementLight + "btnlittlewindows.png"),
+                                                pathDark=(emplacementDark + "btnlittlewindows.png"),
                                                 tailleX=30, tailleY=30)
 
-        self.__imgBtnSoundOff = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "soundOff.png"),
-                                               pathDark=resource_path(emplacementDark + "soundOff.png"),
+        self.__imgBtnSoundOff = self.__arrTK.createImage(pathLight=(emplacementLight + "soundOff.png"),
+                                               pathDark=(emplacementDark + "soundOff.png"),
                                                tailleX=30, tailleY=30)
 
-        self.__imgBtnMicroOff = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "microOff.png"),
-                                               pathDark=resource_path(emplacementDark + "microOff.png"),
+        self.__imgBtnMicroOff = self.__arrTK.createImage(pathLight=(emplacementLight + "microOff.png"),
+                                               pathDark=(emplacementDark + "microOff.png"),
                                                tailleX=30, tailleY=30)
 
-        self.__imgBtnSoundOn = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "soundOn.png"),
-                                                 pathDark=resource_path(emplacementDark + "soundOn.png"),
+        self.__imgBtnSoundOn = self.__arrTK.createImage(pathLight=(emplacementLight + "soundOn.png"),
+                                                 pathDark=(emplacementDark + "soundOn.png"),
                                                  tailleX=30, tailleY=30)
 
-        self.__imgBtnMicroOn = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "microOn.png"),
-                                                 pathDark=resource_path(emplacementDark + "microOn.png"),
+        self.__imgBtnMicroOn = self.__arrTK.createImage(pathLight=(emplacementLight + "microOn.png"),
+                                                 pathDark=(emplacementDark + "microOn.png"),
                                                  tailleX=30, tailleY=30)
-        self.__imgBtnMicroTiger = self.__arrTK.createImage(pathLight=resource_path(emplacementLight + "microTriger.png"),
-                                                    pathDark=resource_path(emplacementDark + "microTriger.png"),
+        self.__imgBtnMicroTiger = self.__arrTK.createImage(pathLight=(emplacementLight + "microTriger.png"),
+                                                    pathDark=(emplacementDark + "microTriger.png"),
                                                     tailleX=30, tailleY=30)
 
 
         # Frame
         self.__homeBackgroud = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                       imageLight=resource_path(emplacementLight + "homeScree.png"),
-                                                                       imageDark=resource_path(emplacementDark + "homeScree.png"),
+                                                                       imageLight=(emplacementLight + "homeScree.png"),
+                                                                       imageDark=(emplacementDark + "homeScree.png"),
                                                                        width=500, height=470)
 
         self.__homeBackgroudFileOpen = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                               imageLight=resource_path(emplacementLight + "homeScreenOpen.png"),
-                                                                               imageDark=resource_path(emplacementDark + "homeScreenOpen.png"),
+                                                                               imageLight=(emplacementLight + "homeScreenOpen.png"),
+                                                                               imageDark=(emplacementDark + "homeScreenOpen.png"),
                                                                                width=500, height=470)
 
         self.__copiloteSpeak = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                      imageLight=resource_path(emplacementLight + "copiloteSpeak.png"),
-                                                                      imageDark=resource_path(emplacementDark + "copiloteSpeak.png"),
+                                                                      imageLight=(emplacementLight + "copiloteSpeak.png"),
+                                                                      imageDark=(emplacementDark + "copiloteSpeak.png"),
                                                                       width=500, height=470)
 
         self.__backgroundActu = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=resource_path(emplacementLight + "actu.png"),
-                                                                        imageDark=resource_path(emplacementDark + "actu.png"),
+                                                                        imageLight=(emplacementLight + "actu.png"),
+                                                                        imageDark=(emplacementDark + "actu.png"),
                                                                         width=500, height=600)
 
         self.__backgroundLitleWindowsRyley = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                                     imageLight=resource_path(emplacementLight + "litlewindows-ryley.png"),
-                                                                                     imageDark=resource_path(emplacementDark + "litlewindows-ryley.png"),
+                                                                                     imageLight=(emplacementLight + "litlewindows-ryley.png"),
+                                                                                     imageDark=(emplacementDark + "litlewindows-ryley.png"),
                                                                                      width=500, height=110)
 
         self.__backgroundLitleWindowsSix = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                                     imageLight=resource_path(emplacementLight + "litlewindows-six.png"),
-                                                                                     imageDark=resource_path(emplacementDark + "litlewindows-six.png"),
+                                                                                     imageLight=(emplacementLight + "litlewindows-six.png"),
+                                                                                     imageDark=(emplacementDark + "litlewindows-six.png"),
                                                                                      width=500, height=110)
 
         self.__fChoiceLitleWindows = self.__arrTK.createFrame(self.__screen,
@@ -227,41 +227,41 @@ class guiCopilote:
                                                          bg="#482c4a",corner_radius=0)
 
         self.__backgroundFirstboot = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=resource_path(emplacementLight + "firstBoot.png"),
-                                                                        imageDark=resource_path(emplacementDark + "firstBoot.png"),
+                                                                        imageLight=(emplacementLight + "firstBoot.png"),
+                                                                        imageDark=(emplacementDark + "firstBoot.png"),
                                                                         width=500, height=600)
 
 
 
         self.__backgroudBoot1 = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=resource_path(emplacementLight + "booting1.png"),
-                                                                        imageDark=resource_path(emplacementDark + "booting1.png"),
+                                                                        imageLight=(emplacementLight + "booting1.png"),
+                                                                        imageDark=(emplacementDark + "booting1.png"),
                                                                         width=500, height=600)
 
         self.__backgroudBoot2 = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=resource_path(emplacementLight + "booting2.png"),
-                                                                        imageDark=resource_path(emplacementDark + "booting2.png"),
+                                                                        imageLight=(emplacementLight + "booting2.png"),
+                                                                        imageDark=(emplacementDark + "booting2.png"),
                                                                         width=500, height=600)
         self.__backgroudBoot3 = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=resource_path(emplacementLight + "booting3.png"),
-                                                                        imageDark=resource_path(emplacementDark + "booting3.png"),
+                                                                        imageLight=(emplacementLight + "booting3.png"),
+                                                                        imageDark=(emplacementDark + "booting3.png"),
                                                                         width=500, height=600)
         self.__backgroudBoot4 = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=resource_path(emplacementLight + "booting4.png"),
-                                                                        imageDark=resource_path(emplacementDark + "booting4.png"),
+                                                                        imageLight=(emplacementLight + "booting4.png"),
+                                                                        imageDark=(emplacementDark + "booting4.png"),
                                                                         width=500, height=600)
         self.__backgroudBoot5 = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                        imageLight=resource_path(emplacementLight + "booting5.png"),
-                                                                        imageDark=resource_path(emplacementDark + "booting5.png"),
+                                                                        imageLight=(emplacementLight + "booting5.png"),
+                                                                        imageDark=(emplacementDark + "booting5.png"),
                                                                         width=500, height=600)
 
         self.__backgroundTopCodehelp = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                      imageLight=resource_path(emplacementLight + "topCodehelp.png"),
-                                                                      imageDark=resource_path(emplacementDark + "topCodehelp.png"),
+                                                                      imageLight=(emplacementLight + "topCodehelp.png"),
+                                                                      imageDark=(emplacementDark + "topCodehelp.png"),
                                                                       width=500, height=400)
         self.__backgroundBottomCodehelp = self.__arrTK.createArreraBackgroudImage(self.__screen,
-                                                                             imageLight=resource_path(emplacementLight + "bottomCodeHelp.png"),
-                                                                             imageDark=resource_path(emplacementDark + "bottomCodeHelp.png"),
+                                                                             imageLight=(emplacementLight + "bottomCodeHelp.png"),
+                                                                             imageDark=(emplacementDark + "bottomCodeHelp.png"),
                                                                              width=500, height=70)
         self.__frameBackgroudCodehelp = self.__arrTK.createFrame(self.__screen,
                                                          width=500, height=130,
