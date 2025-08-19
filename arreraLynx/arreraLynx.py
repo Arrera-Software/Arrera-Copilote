@@ -19,9 +19,11 @@ class ArreraLynx:
         # Variable
         nomSoft = self.__fichierLynx.lectureJSON("nameSoft")
 
-        if self.__dectOS.osWindows() == True:
+        if self.__dectOS.osWindows():
             iconLogiciel = os.path.abspath(self.__fichierLynx.lectureJSON("iconSoftWin"))
-        else:
+        elif self.__dectOS.osLinux():
+            iconLogiciel = os.path.abspath(self.__fichierLynx.lectureJSON("iconSoftLinux"))
+        elif self.__dectOS.osMac():
             iconLogiciel = os.path.abspath(self.__fichierLynx.lectureJSON("iconSoftLinux"))
 
         listGenre = self.__fichierLynx.lectureJSONList("listGenre")
