@@ -3,6 +3,7 @@ from setting.arreraGazelle import*
 from tkinter.messagebox import*
 from typing import Union
 from librairy.asset_manage import resource_path
+import threading as th
 
 class CArreraGazelleUIRyleyCopilote :
     def __init__(self,atk:CArreraTK,windows:Union[ctk.CTk,ctk.CTkToplevel],
@@ -12,6 +13,9 @@ class CArreraGazelleUIRyleyCopilote :
 
         self.__gazelle = CArreraGazelle(emplacementJsonUser,emplacementJsonNeuronNetwork,emplacementJsonAssistant)
         jsonSetting = jsonWork(emplacementConfigSetting)
+
+        # Var qui contient les thead
+        self.__threadSaveVoicePrint = th.Thread()
 
         # Mise de la fenetre dans un atribut
 
@@ -94,6 +98,7 @@ class CArreraGazelleUIRyleyCopilote :
         self.__fTigerVoice = self.__arrTK.createFrame(self.__cadreMicro,width=325,height=630)
         self.__fSonsEmis = self.__arrTK.createFrame(self.__cadreMicro,width=325,height=630)
         self.__fSaveWord = self.__arrTK.createFrame(self.__cadreMicro,width=325,height=630)
+        self.__fmicroDuringSave = self.__arrTK.createFrame(self.__cadreMicro,width=500,height=330)
         self.__fviewWord = self.__arrTK.createFrame(self.__cadreMicro,width=325,height=630)
 
         # Arrera Work
@@ -410,11 +415,16 @@ class CArreraGazelleUIRyleyCopilote :
                                                             ppolice = "arial" , ptaille = tailleMain,command=self.__saveTigerWord)
         btnCancelSavedWord = self.__arrTK.createButton(self.__fviewWord, text="Annuler",
                                                         ppolice = "arial" , ptaille = tailleMain,command=self.__viewTigerVoice)
+
+        # fmicroDuringSave
+        labelDuringSave = self.__arrTK.createLabel(self.__fmicroDuringSave, text="Enregistrement en cours...\nVeuillez patienter"
+                                                   ,ppolice = "arial" , ptaille = tailleMain)
         
         # Cader Work folder
         labelTitreArreraWork = self.__arrTK.createLabel(self.__cadreArreraWork,
-                                                               text="Choisir le dossier\npour Arrera Work",
-                                                               ppolice="Arial", ptaille=tailleTitle)
+                                                        text="Choisir le dossier\npour Arrera Work",
+                                                        ppolice="Arial", ptaille=tailleTitle)
+
         self.__btnFolderArreraWork = self.__arrTK.createButton(self.__cadreArreraWork, text="Choisir le dossier",
                                                                ppolice = "arial" , ptaille = tailleMain,command=lambda : self.__validerFolderWork(1))
         self.__btnSupprArreraWork = self.__arrTK.createButton(self.__cadreArreraWork, text="Supprimer le dossier",
@@ -482,7 +492,8 @@ class CArreraGazelleUIRyleyCopilote :
         self.__arrTK.placeCenter(self.__labelViewWordSave)
         self.__arrTK.placeRightBottom(self.__btnValidateWordSaved)
         self.__arrTK.placeLeftBottom(btnCancelSavedWord)
-        
+
+        self.__arrTK.placeTopCenter(labelDuringSave)
 
         self.__arrTK.placeTopCenter(labelTitreDownload)
         self.__arrTK.placeTopCenter(labelTitreArreraWork)
@@ -575,10 +586,10 @@ class CArreraGazelleUIRyleyCopilote :
         self.__mainFrame.pack()
 
     def passQUITFNC(self,quitFNC):
-        self.__btnQuitMainFrame.configure(command=lambda : self.__fncQuit(quitFNC))
+        self.__btnQuitMainFrame.configure(command=lambda : self.leaveSetting(quitFNC))
         self.__arrTK.placeBottomCenter(self.__btnQuitMainFrame)
 
-    def __fncQuit(self,quitFnc):
+    def leaveSetting(self, quitFnc):
         self.__disableAllFrame()
         self.__cadreMenu.pack_forget()
         quitFnc()
@@ -808,6 +819,7 @@ class CArreraGazelleUIRyleyCopilote :
         self.__fSonsEmis.place_forget()
         self.__fSaveWord.place_forget()
         self.__fviewWord.place_forget()
+        self.__fmicroDuringSave.place_forget()
     
     def __viewMicroSound(self):
         self.__disableMicroFrame()
@@ -894,12 +906,25 @@ class CArreraGazelleUIRyleyCopilote :
                 return
 
     def __recordTigerWord(self):
-        sortie = self.__gazelle.recordTrigerWord()
+        self.__threadSaveVoicePrint = th.Thread(target=self.__thsaveTigerWord)
+        self.__threadSaveVoicePrint.start()
+        self.__disableMicroFrame()
+        self.__arrTK.placeCenter(self.__fmicroDuringSave)
+        self.__windows.after(100, self.__duringSaveTigerWord)
 
+    def __thsaveTigerWord(self):
+        sortie = self.__gazelle.recordTrigerWord()
         if sortie:
+            self.__labelViewWordSave.configure(text="Mots enregistrer : "+self.__gazelle.getRecordTrigerWord())
+
+    def __duringSaveTigerWord(self):
+        if self.__threadSaveVoicePrint.is_alive():
+            self.__windows.update()
+            self.__windows.after(100, self.__duringSaveTigerWord)
+        else :
             self.__disableMicroFrame()
             self.__arrTK.placeCenter(self.__fviewWord)
-            self.__labelViewWordSave.configure(text="Mots enregistrer : "+self.__gazelle.getRecordTrigerWord())
+
 
     def __saveTigerWord(self):
         self.__backAcceuilMicro()
@@ -1109,7 +1134,6 @@ class CArreraGazelleUIRyleyCopilote :
             self.__arrTK.placeCenter(self.__btnFolderArreraWork)
 
     def __showArreraDownloadFolder(self):
-        print("test")
         folderExist = self.__gazelle.downloadFolderExist()
         self.__disableAllFrame()
         self.__btnSupprDownload.place_forget()

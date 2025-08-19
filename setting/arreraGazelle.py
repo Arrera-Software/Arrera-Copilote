@@ -12,6 +12,7 @@ class CArreraGazelle :
         self.__fileJsonAssistant = jsonWork(emplacementJsonAssistant)
         self.__soundMicro = soundMicro
         self.__record = ""
+        self.__stateRecordTigerWord = False
         # Objet 
         objOS = OS()
         self.__windowsOS = objOS.osWindows()
@@ -386,11 +387,17 @@ class CArreraGazelle :
         try:
             text = r.recognize_google(audio, language='fr-FR')
             self.__record = text
+            self.__stateRecordTigerWord = True
             return True
         except sr.UnknownValueError:
+            self.__stateRecordTigerWord = False
             return False
         except sr.RequestError as e:
+            self.__stateRecordTigerWord = False
             return False
+
+    def getStateRecordTigerWord(self):
+        return self.__stateRecordTigerWord
 
     def getRecordTrigerWord(self):
         return self.__record
