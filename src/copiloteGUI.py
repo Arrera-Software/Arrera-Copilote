@@ -7,8 +7,6 @@ from src.arrera_voice import *
 import threading as th
 from src.copiloteConf import CopiloteConf
 
-VERSION = "I2025-1.00"
-
 class guiCopilote:
     instance = None
     def __init__(self, neuronConfigFileRyley: str, neuronConfigFileSix: str, version: str):
@@ -1188,8 +1186,11 @@ class guiCopilote:
         self.__screen.focus_set()
         self.__screen.protocol("WM_DELETE_WINDOW", self.__quitCopilote)
         self.__screen.maxsize(500, 600)
+        self.__screen.update()
         self.__viewNormal()
+        self.__screen.update()
         self._paroleRyley(self.__language.getPhParametre())
+        self.__screen.update()
 
     def __activeOrgaVar(self):
         self.__assistantRyley.neuron("ouvre orga var")
