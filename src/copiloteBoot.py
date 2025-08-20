@@ -30,7 +30,7 @@ class copiloteBoot:
     def __boot(self):
         arrTk = CArreraTK()
         self.__checkUpdate(arrTk)
-        if (self.__sortieLynx == False):
+        if not self.__sortieLynx :
             screen = arrTk.aTK(title="Arrera Copilote",resizable=False,width=500,height=350)
             imgCavas = arrTk.createArreraBackgroudImage(screen,
                                                         imageDark=("asset/GUI/dark/NoConfig.png"),
