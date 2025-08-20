@@ -5,6 +5,7 @@ import signal
 from setting.CArreraGazelleUIRyleyCopilote import *
 from src.arrera_voice import *
 import threading as th
+from src.copiloteConf import CopiloteConf
 
 VERSION = "I2025-1.00"
 
@@ -12,6 +13,8 @@ class guiCopilote:
     instance = None
     def __init__(self, neuronConfigFileRyley: str, neuronConfigFileSix: str, version: str):
         guiCopilote.instance = self
+        # Copilote conf
+        self.__copiloteConf = CopiloteConf()
         # Varriable
         self.__nameSoft = "Arrera Copilote"
         self.__version = version
@@ -29,7 +32,8 @@ class guiCopilote:
         self.__arrTK = CArreraTK()
 
         # Arrera Voice
-        self.__arrVoice = CArreraVoice(jsonWork(resource_path("fichierJSON/copiloteConfig.json")))
+        self.__arrVoice = CArreraVoice(self.__copiloteConf.getRyleySettingPath(),
+                                       "asset/Sound/bootMicro.mp3")
 
         #Theard de parole
         self.__threadParoleCopilote = th.Thread()
@@ -85,7 +89,7 @@ class guiCopilote:
         self.__arrGazelle = CArreraGazelleUIRyleyCopilote(self.__arrTK, self.__screen,
                                                           self.__assistantSix.getUserConf().getUserSettingPath(),
                                                           resource_path("fichierJSON/configNeuron.json"),
-                                                          resource_path("fichierJSON/copiloteConfig.json"),
+                                                          self.__copiloteConf.getRyleySettingPath(),
                                                           resource_path("fichierJSON/configSetting.json"))
         self.__arrGazelle.passApropos(self.__apropos)
 
