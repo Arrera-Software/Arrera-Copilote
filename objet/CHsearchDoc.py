@@ -6,14 +6,20 @@ class CHsearchDoc :
         self.__lienMicrosoft = "https://learn.microsoft.com/en-us/search/?terms="
         self.__lienPython = "https://www.python.org/search/?q="
 
-    def rechercheDevDoc(self,recherche:str)->bool:
+    def searchDevDoc(self, recherche:str)->bool:
+        if recherche == "":
+            return False
         url = self.__lienDevDoc+recherche
         return w.open(url)
     
-    def rechercheMicrosoft(self,recherche:str)->bool:
+    def searchMicrosoft(self, recherche:str)->bool:
+        if recherche == "":
+            return False
         url = self.__lienMicrosoft+recherche
         return w.open(url)
     
-    def recherchePython(self,recherche:str):
+    def searchPython(self, recherche:str):
+        if recherche == "":
+            return False
         url = self.__lienPython+recherche
         return w.open(url)

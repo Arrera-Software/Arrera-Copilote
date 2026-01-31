@@ -1,0 +1,10 @@
+{
+    "icon_unix": "",
+    "icon_win": "",
+    "text_presentation": "",
+    "list_genre": ["Monsieur","Madame","Maitre"],
+    "list_engine_search": ["Google","Bing","Duckduckgo"],
+    "text_end": "",
+    "github_integration": "1",
+    "micro_use": "1"
+}

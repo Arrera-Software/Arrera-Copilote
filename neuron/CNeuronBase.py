@@ -1,20 +1,19 @@
 from abc import abstractmethod
-from ObjetsNetwork.gestion import*
-from arreraSoftware.fncArreraNetwork import*
-from ObjetsNetwork.chaineCarractere import*
-from ObjetsNetwork.enabledNeuron import*
-from ObjetsNetwork.historique import*
+from gestionnaire.gestion import gestionnaire
 
 class neuronBase :
-    def __init__(self, fncArreraNetwork:fncArreraNetwork, gestionnaire:gestionNetwork,objHist:CHistorique):
+    def __init__(self,gestionnaire:gestionnaire):
         #Init objet
-        self._gestionNeuron = gestionnaire
-        self._fonctionArreraNetwork = fncArreraNetwork
-        self._gestNeuron = self._gestionNeuron.getEtatNeuronObjet()
-        self._objHistorique = objHist
+        self._gestionnaire = gestionnaire
+        self._gestFNC = self._gestionnaire.getGestFNC()
+        self._gestGUI = self._gestionnaire.getGestGUI()
+        self._gestHist = self._gestionnaire.getGestHist()
+        self._userConf = self._gestionnaire.getUserConf()
+        self._objHistorique = None
         self._listSortie = ["",""]
-        self._socket = self._gestionNeuron.getSocketObjet()
-        self._language = self._gestionNeuron.getLanguageObjet()
+        self._socket = self._gestionnaire.getSocketObjet()
+        self._language = self._gestionnaire.getLanguageObjet()
+        self._keyword = self._gestionnaire.getKeywordObjet()
         self._valeurOut = 0
 
     def getListSortie(self)->list:

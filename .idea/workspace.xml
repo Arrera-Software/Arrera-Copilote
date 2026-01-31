@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="51337ad8-32f8-4159-a123-52824e24cd43" name="Changes" comment="Ajout de l'icon mac os">
+      <change beforePath="$PROJECT_DIR$/ObjetsNetwork/CAlanguage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjetsNetwork/arreraNeuron.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjetsNetwork/chaineCarractere.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjetsNetwork/enabledNeuron.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjetsNetwork/formule.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjetsNetwork/gestSocket.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjetsNetwork/gestion.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjetsNetwork/historique.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjetsNetwork/network.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjetsNetwork/userConf.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraLynx/arreraLynx.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fncArreraNetwork.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fncOrthographe.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fonctionArreraDownload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fonctionArreraWork.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fonctionCalculatrice.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fonctionCalendar.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fonctionCodeHelp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fonctionDate.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fonctionGPS.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fonctionHorloge.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fonctionLecture.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fonctionMeteoActu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fonctionRadio.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fonctionRecherche.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fonctionTache.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arreraSoftware/fonctionTraduction.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/assetHorloge/bip.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchARCCOS.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchARCSIN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchARCTAN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchCOS.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchClear.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchDiviser.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchDixPuissance.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchEgal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchExpodentiel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchExposant.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchFois.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchLN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchLOG.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchMoin.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchNB0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchNB1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchNB2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchNB3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchNB4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchNB5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchNB6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchNB7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchNB8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchNB9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchPI.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchParenthese1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchParenthese2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchPlus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchRacine.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchSIN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchSuppr.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchTAN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/calculatrice/tchVirgule.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/copilote-icon.icns" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/icon-macos.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/icon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/ryley.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/six.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assetHorloge/bip.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guiWork/canwork.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/copilote/paroleCopilote.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/copilote/paroleRyley.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/copilote/paroleSix.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/tutoiment/api.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/tutoiment/api.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/tutoiment/chatbot.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/tutoiment/chatbot.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/tutoiment/codeHelp.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/tutoiment/codeHelp.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/tutoiment/formule.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/tutoiment/formule.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/tutoiment/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/tutoiment/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/tutoiment/open.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/tutoiment/open.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/tutoiment/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/tutoiment/search.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/tutoiment/service.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/tutoiment/service.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/tutoiment/socket.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/tutoiment/socket.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/tutoiment/software.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/tutoiment/time.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/tutoiment/time.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/tutoiment/work.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/tutoiment/work.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/vouvoiment/api.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/vouvoiment/api.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/vouvoiment/chatbot.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/vouvoiment/chatbot.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/vouvoiment/codeHelp.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/vouvoiment/codeHelp.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/vouvoiment/formule.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/vouvoiment/formule.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/vouvoiment/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/vouvoiment/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/vouvoiment/open.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/vouvoiment/open.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/vouvoiment/service.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/vouvoiment/service.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/vouvoiment/socket.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/vouvoiment/socket.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/vouvoiment/software.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/vouvoiment/time.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/vouvoiment/time.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/language/vouvoiment/work.json" beforeDir="false" afterPath="$PROJECT_DIR$/language/vouvoiment/work.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/librairy/arrera_tk.py" beforeDir="false" afterPath="$PROJECT_DIR$/librairy/arrera_tk.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/librairy/asset_manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/librairy/gestionSoftWindows.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/librairy/jsonWorkOnline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/librairy/openSoftware.py" beforeDir="false" afterPath="$PROJECT_DIR$/librairy/openSoftware.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/librairy/speak.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/librairy/travailJSON.py" beforeDir="false" afterPath="$PROJECT_DIR$/librairy/travailJSON.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neuron/API.py" beforeDir="false" afterPath="$PROJECT_DIR$/neuron/API.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neuron/CNeuronBase.py" beforeDir="false" afterPath="$PROJECT_DIR$/neuron/CNeuronBase.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neuron/chatBots.py" beforeDir="false" afterPath="$PROJECT_DIR$/neuron/chatBots.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neuron/codehelp.py" beforeDir="false" afterPath="$PROJECT_DIR$/neuron/codehelp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neuron/open.py" beforeDir="false" afterPath="$PROJECT_DIR$/neuron/open.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neuron/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/neuron/search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neuron/service.py" beforeDir="false" afterPath="$PROJECT_DIR$/neuron/service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neuron/software.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/neuron/time.py" beforeDir="false" afterPath="$PROJECT_DIR$/neuron/time.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neuron/work.py" beforeDir="false" afterPath="$PROJECT_DIR$/neuron/work.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objet/CArreraDownload.py" beforeDir="false" afterPath="$PROJECT_DIR$/objet/CArreraDownload.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objet/CCHcolorSelector.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/objet/CHGithub.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/objet/CHLibrairy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/objet/CHOrgraVarriable.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/objet/CHsearchDoc.py" beforeDir="false" afterPath="$PROJECT_DIR$/objet/CHsearchDoc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objet/COrthographe.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/objet/arreradocument.py" beforeDir="false" afterPath="$PROJECT_DIR$/objet/arreradocument.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objet/arreratableur.py" beforeDir="false" afterPath="$PROJECT_DIR$/objet/arreratableur.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objet/parreraclient.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setting/CArreraGazelleUIRyleyCopilote.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/setting/arreraGazelle.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_/home/baptistep/Documents/Developpement/Arrera-Copilote" value="2vBcBgi4QCIuiwNnD46BbeTrgRX" />
+    </persistenceIdMap>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;baptistepau&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Arrera-Software/Arrera-Copilote.git&quot;,
+    &quot;accountId&quot;: &quot;e7a2e04e-de2f-4a23-83e5-20a178852a3c&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2vBcBgi4QCIuiwNnD46BbeTrgRX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;I2026&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/baptistep/Documents/Developpement/Arrera-Copilote/asset&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/asset" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/librairy" />
+      <recent name="$PROJECT_DIR$/arreraLynx" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/language/copilote" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Arrera-Copilote" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.30387.127" />
+        <option value="bundled-python-sdk-3944b0c99280-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.30387.127" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="51337ad8-32f8-4159-a123-52824e24cd43" name="Changes" comment="" />
+      <created>1743621774014</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1743621774014</updated>
+      <workItem from="1743621775799" duration="103000" />
+      <workItem from="1747307645292" duration="428000" />
+      <workItem from="1747324962123" duration="5432000" />
+      <workItem from="1747376537468" duration="9606000" />
+      <workItem from="1747411104238" duration="3923000" />
+      <workItem from="1747474170534" duration="1811000" />
+      <workItem from="1747500115203" duration="1663000" />
+      <workItem from="1747510570938" duration="1173000" />
+      <workItem from="1747555857417" duration="6273000" />
+      <workItem from="1747587316331" duration="5219000" />
+      <workItem from="1747682371878" duration="1752000" />
+      <workItem from="1747766902288" duration="1642000" />
+      <workItem from="1747846721600" duration="1175000" />
+      <workItem from="1747941338838" duration="994000" />
+      <workItem from="1748109965575" duration="999000" />
+      <workItem from="1748186394143" duration="7223000" />
+      <workItem from="1748285853087" duration="381000" />
+      <workItem from="1748533843232" duration="2673000" />
+      <workItem from="1748590554779" duration="2048000" />
+      <workItem from="1748603503678" duration="643000" />
+      <workItem from="1748780473939" duration="32000" />
+      <workItem from="1748790893362" duration="4400000" />
+      <workItem from="1748802209939" duration="40000" />
+      <workItem from="1748881967618" duration="7568000" />
+      <workItem from="1748968618609" duration="3067000" />
+      <workItem from="1748977054250" duration="1757000" />
+      <workItem from="1749053431475" duration="4900000" />
+      <workItem from="1749141140210" duration="3893000" />
+      <workItem from="1749227341870" duration="3673000" />
+      <workItem from="1749285413138" duration="940000" />
+      <workItem from="1749323397697" duration="1932000" />
+      <workItem from="1749373041251" duration="2487000" />
+      <workItem from="1749401271705" duration="2856000" />
+      <workItem from="1749467520215" duration="5123000" />
+      <workItem from="1749478891992" duration="3282000" />
+      <workItem from="1749645734350" duration="2044000" />
+      <workItem from="1749658281570" duration="2888000" />
+      <workItem from="1749709057694" duration="14010000" />
+      <workItem from="1749755728858" duration="1232000" />
+      <workItem from="1749797844014" duration="12153000" />
+      <workItem from="1749832763706" duration="5556000" />
+      <workItem from="1749887650162" duration="8723000" />
+      <workItem from="1749978665210" duration="4639000" />
+      <workItem from="1750002717005" duration="19000" />
+      <workItem from="1750496904816" duration="3446000" />
+      <workItem from="1750582637904" duration="921000" />
+      <workItem from="1752347808666" duration="3451000" />
+      <workItem from="1752491930247" duration="2556000" />
+      <workItem from="1752506823588" duration="7938000" />
+      <workItem from="1752596902061" duration="7091000" />
+      <workItem from="1752681146203" duration="1247000" />
+      <workItem from="1752868766842" duration="467000" />
+      <workItem from="1752913913739" duration="4804000" />
+      <workItem from="1752921753872" duration="902000" />
+      <workItem from="1755092306849" duration="5354000" />
+      <workItem from="1755104339582" duration="3802000" />
+      <workItem from="1755343752879" duration="759000" />
+      <workItem from="1755628946531" duration="982000" />
+      <workItem from="1755629966733" duration="513000" />
+      <workItem from="1755706240693" duration="1126000" />
+      <workItem from="1756025301492" duration="2441000" />
+      <workItem from="1769534019165" duration="1989000" />
+      <workItem from="1769673498244" duration="1000" />
+      <workItem from="1769876324977" duration="694000" />
+    </task>
+    <task id="LOCAL-00054" summary="Ajout du parole Ryley">
+      <option name="closed" value="true" />
+      <created>1749730384184</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1749730384184</updated>
+    </task>
+    <task id="LOCAL-00055" summary="MAJ de l'objet de language pour surporter les nouveau document">
+      <option name="closed" value="true" />
+      <created>1749730425576</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1749730425576</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Creation des methode de reponse si l'autre assistant peux repondre">
+      <option name="closed" value="true" />
+      <created>1749730444854</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1749730444854</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Debut de reponse special copilote">
+      <option name="closed" value="true" />
+      <created>1749756863892</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1749756863893</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Revu un peux de la page d'aide">
+      <option name="closed" value="true" />
+      <created>1749798810534</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1749798810534</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Fixe d'un bug lors de la validation avec le bouton entrer + suppression de tout les print de debug">
+      <option name="closed" value="true" />
+      <created>1749805862690</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1749805862690</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Ajout du focus sur pour les fenetre">
+      <option name="closed" value="true" />
+      <created>1749818333208</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1749818333208</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Changement de nom des certain truc">
+      <option name="closed" value="true" />
+      <created>1749822954045</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1749822954045</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Mise a jour d'ArreraTK">
+      <option name="closed" value="true" />
+      <created>1749903374018</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1749903374018</updated>
+    </task>
+    <task id="LOCAL-00063" summary="D'un fond quand un fichier est ouvert">
+      <option name="closed" value="true" />
+      <created>1749903414182</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1749903414182</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Mise des icon lien a Arrera Word">
+      <option name="closed" value="true" />
+      <created>1749903437118</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1749903437118</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Mise en place des nouveau placement des boutons">
+      <option name="closed" value="true" />
+      <created>1749903471773</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1749903471773</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Update reseau">
+      <option name="closed" value="true" />
+      <created>1749981556221</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1749981556223</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Ajout de l'interface d'Arrera Work">
+      <option name="closed" value="true" />
+      <created>1752352257345</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1752352257345</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Fixe de la partie ouverture d'un projet">
+      <option name="closed" value="true" />
+      <created>1752507597359</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1752507597359</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Ajout de la partie creation du projet">
+      <option name="closed" value="true" />
+      <created>1752511012391</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1752511012391</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Creation la fonction de fenetre pour le projet">
+      <option name="closed" value="true" />
+      <created>1752515316784</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1752515316784</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Debut de la partie projet">
+      <option name="closed" value="true" />
+      <created>1752518225626</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1752518225626</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Ajout de l'ouverture d'un fichier dans le projet">
+      <option name="closed" value="true" />
+      <created>1752597924959</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1752597924959</updated>
+    </task>
+    <task id="LOCAL-00073" summary="AJout du bouton pour l'ouverture d'une tache">
+      <option name="closed" value="true" />
+      <created>1752601635984</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1752601635984</updated>
+    </task>
+    <task id="LOCAL-00074" summary="AJout de la fermeture d'un projet">
+      <option name="closed" value="true" />
+      <created>1752601842311</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1752601842311</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Ajout d'un optimisation">
+      <option name="closed" value="true" />
+      <created>1752602314137</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1752602314137</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Ajout de tout la partie tableur">
+      <option name="closed" value="true" />
+      <created>1752605331115</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1752605331115</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Debut du fixe du package word">
+      <option name="closed" value="true" />
+      <created>1752606489013</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1752606489013</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Fin de la versio 2025">
+      <option name="closed" value="true" />
+      <created>1752918786457</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1752918786457</updated>
+    </task>
+    <task id="LOCAL-00079" summary="AJout du num de version">
+      <option name="closed" value="true" />
+      <created>1752922005612</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1752922005612</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Renomage">
+      <option name="closed" value="true" />
+      <created>1755092528678</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1755092528678</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Fichier de compilation pour Linux x86_64">
+      <option name="closed" value="true" />
+      <created>1755101114747</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1755101114747</updated>
+    </task>
+    <task id="LOCAL-00082" summary="Creation de compile-win.spec">
+      <option name="closed" value="true" />
+      <created>1755101260420</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1755101260420</updated>
+    </task>
+    <task id="LOCAL-00083" summary="Clear">
+      <option name="closed" value="true" />
+      <created>1755111568922</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1755111568922</updated>
+    </task>
+    <task id="LOCAL-00084" summary="Fixe d'un bug">
+      <option name="closed" value="true" />
+      <created>1755111579780</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1755111579780</updated>
+    </task>
+    <task id="LOCAL-00085" summary="Mise a jour du reseau de neuron">
+      <option name="closed" value="true" />
+      <created>1755112077785</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1755112077785</updated>
+    </task>
+    <task id="LOCAL-00086" summary="SUppr de fichier inutile">
+      <option name="closed" value="true" />
+      <created>1755112316139</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1755112316139</updated>
+    </task>
+    <task id="LOCAL-00087" summary="Ajout des fichier spec">
+      <option name="closed" value="true" />
+      <created>1755112365497</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1755112365497</updated>
+    </task>
+    <task id="LOCAL-00088" summary="Ajout des fichier ico">
+      <option name="closed" value="true" />
+      <created>1755112467595</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1755112467595</updated>
+    </task>
+    <task id="LOCAL-00089" summary="Ecriture des fichier spec">
+      <option name="closed" value="true" />
+      <created>1755112646871</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1755112646872</updated>
+    </task>
+    <task id="LOCAL-00090" summary="FIXE">
+      <option name="closed" value="true" />
+      <created>1755112777519</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1755112777519</updated>
+    </task>
+    <task id="LOCAL-00091" summary="Mise a jour du reseau de neuron">
+      <option name="closed" value="true" />
+      <created>1755629011411</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1755629011411</updated>
+    </task>
+    <task id="LOCAL-00092" summary="Preparation a la mise a niveau d'Arrera TK">
+      <option name="closed" value="true" />
+      <created>1755629348903</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1755629348903</updated>
+    </task>
+    <task id="LOCAL-00093" summary="Mise a jour Arrera TK">
+      <option name="closed" value="true" />
+      <created>1755629433751</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1755629433751</updated>
+    </task>
+    <task id="LOCAL-00094" summary="Mise a jour Arrera Gazelle">
+      <option name="closed" value="true" />
+      <created>1755629774886</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1755629774886</updated>
+    </task>
+    <task id="LOCAL-00095" summary="Mise a jour Arrera Gazelle">
+      <option name="closed" value="true" />
+      <created>1755630197446</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1755630197446</updated>
+    </task>
+    <task id="LOCAL-00096" summary="Fixe d'un probleme d'interface">
+      <option name="closed" value="true" />
+      <created>1755630236010</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1755630236010</updated>
+    </task>
+    <task id="LOCAL-00097" summary="Mise a jour d'Arrera Lynx">
+      <option name="closed" value="true" />
+      <created>1755630345068</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1755630345068</updated>
+    </task>
+    <task id="LOCAL-00098" summary="Mise a niveau d'Arrera Voice">
+      <option name="closed" value="true" />
+      <created>1755630467497</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1755630467497</updated>
+    </task>
+    <task id="LOCAL-00099" summary="Creation des fichier .spec">
+      <option name="closed" value="true" />
+      <created>1755707142938</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1755707142939</updated>
+    </task>
+    <task id="LOCAL-00100" summary="Mise de la version">
+      <option name="closed" value="true" />
+      <created>1755707149600</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1755707149600</updated>
+    </task>
+    <task id="LOCAL-00101" summary="Ajout de l'icon mac os">
+      <option name="closed" value="true" />
+      <created>1755707186782</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1755707186782</updated>
+    </task>
+    <task id="LOCAL-00102" summary="Ajout de l'icon mac os">
+      <option name="closed" value="true" />
+      <created>1755707201342</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1755707201342</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ajout d'un optimisation" />
+    <MESSAGE value="Ajout de tout la partie tableur" />
+    <MESSAGE value="Debut du fixe du package word" />
+    <MESSAGE value="Fin de la versio 2025" />
+    <MESSAGE value="AJout du num de version" />
+    <MESSAGE value="Renomage" />
+    <MESSAGE value="Fichier de compilation pour Linux x86_64" />
+    <MESSAGE value="Creation de compile-win.spec" />
+    <MESSAGE value="Clear" />
+    <MESSAGE value="Fixe d'un bug" />
+    <MESSAGE value="SUppr de fichier inutile" />
+    <MESSAGE value="Ajout des fichier spec" />
+    <MESSAGE value="Ajout des fichier ico" />
+    <MESSAGE value="Ecriture des fichier spec" />
+    <MESSAGE value="FIXE" />
+    <MESSAGE value="Mise a jour du reseau de neuron" />
+    <MESSAGE value="Preparation a la mise a niveau d'Arrera TK" />
+    <MESSAGE value="Mise a jour Arrera TK" />
+    <MESSAGE value="Mise a jour Arrera Gazelle" />
+    <MESSAGE value="Fixe d'un probleme d'interface" />
+    <MESSAGE value="Mise a jour d'Arrera Lynx" />
+    <MESSAGE value="Mise a niveau d'Arrera Voice" />
+    <MESSAGE value="Creation des fichier .spec" />
+    <MESSAGE value="Mise de la version" />
+    <MESSAGE value="Ajout de l'icon mac os" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout de l'icon mac os" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Arrera_Copilote$main.coverage" NAME="main Coverage Results" MODIFIED="1755630165696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
