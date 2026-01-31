@@ -16,7 +16,9 @@ class copilote_gui(aTk):
         self.__nameSoft = "Arrera Copilote"
         self.__first_boot = False
         self.__assistant_load = False
+        self.__speak_is_enable = True
         self.__L_img_boot_gui = []
+        self.__D_img_speak_gui = {}
         self.__dir_gui_dark = "asset/GUI/dark/"
         self.__dir_gui_light = "asset/GUI/light/"
 
@@ -55,6 +57,8 @@ class copilote_gui(aTk):
 
         self.__c_boot = self.__canvas_boot()
 
+        self.__c_speak = self.__canvas_speak()
+
     def active(self,firstBoot:bool,update_available:bool):
 
         self.__first_boot = firstBoot
@@ -67,7 +71,7 @@ class copilote_gui(aTk):
         # TODO : Gerer le first boot
         #self.__c_maj.place_forget()
         self.__sequence_boot()
-        #self.__sequence_speak(self.__brain.boot())
+        self.__sequence_speak(self.__six_brain.boot())
 
 
     # Creation des widget
@@ -86,6 +90,21 @@ class copilote_gui(aTk):
 
         return c
 
+    def __canvas_speak(self):
+        self.__D_img_speak_gui = {"copilote":(self.__dir_gui_light+"parole_copilote.png",self.__dir_gui_dark+"parole_copilote.png"),
+                                  "six":(self.__dir_gui_light+"parole_six.png",self.__dir_gui_dark+"parole_six.png"),
+                                  "ryley":(self.__dir_gui_light+"parole_ryley.png",self.__dir_gui_dark+"parole_ryley.png"),
+                                  "speak":(self.__dir_gui_light+"during_parole.png",self.__dir_gui_dark+"during_parole.png")}
+
+        l_img,d_img = self.__D_img_speak_gui["copilote"]
+        c = aBackgroundImage(self,background_light=l_img,background_dark=d_img,
+                             fg_color=("#ffffff","#000000"),width=500,height=350)
+
+        self.__l_speak = aLabel(self,text="",justify="left",wraplength=440,
+                                police_size=20,corner_radius=0)
+
+        return c
+
     # Methode change IMG
 
     def __change_img_boot(self,index:int):
@@ -96,6 +115,50 @@ class copilote_gui(aTk):
 
         self.__c_boot.change_background(background_light=l_img, background_dark=d_img)
         self.update()
+
+    def __change_gui_speak(self):
+        nb = random.randint(0,2)
+        match nb :
+            case 0 :
+                self.__set_copilote_speak()
+            case 1 :
+                self.__set_six_speak()
+            case 2 :
+                self.__set_ryley_speak()
+
+
+    def __set_copilote_speak(self):
+        l_img,d_img = self.__D_img_speak_gui["copilote"]
+
+        self.__c_speak.change_background(background_light=l_img, background_dark=d_img)
+
+        self.__l_speak.configure(fg_color=("#ffffff","#000000"),text_color=("#000000","#ffffff"))
+        self.__l_speak.place(x=25, y=90)
+
+    def __set_six_speak(self):
+        l_img,d_img = self.__D_img_speak_gui["six"]
+
+        self.__c_speak.change_background(background_light=l_img, background_dark=d_img)
+
+        self.__l_speak.configure(fg_color=("#ffffff","#000000"),text_color=("#000000","#ffffff"))
+        self.__l_speak.place(x=25, y=90)
+
+    def __set_ryley_speak(self):
+        l_img,d_img = self.__D_img_speak_gui["ryley"]
+
+        self.__c_speak.change_background(background_light=l_img, background_dark=d_img)
+
+        self.__l_speak.configure(fg_color=("#ffffff","#000000"),text_color=("#000000","#ffffff"))
+        self.__l_speak.place(x=25, y=90)
+
+
+    def __set_voice_speak(self):
+        l_img,d_img = self.__D_img_speak_gui["speak"]
+
+        self.__c_speak.change_background(background_light=l_img, background_dark=d_img)
+
+        self.__l_speak.configure(fg_color=("#3b224a","#3b224a"),text_color=("#ffffff","#ffffff"))
+        self.__l_speak.place(x=40, y=100)
 
     # Methode des sequence
 
@@ -114,3 +177,26 @@ class copilote_gui(aTk):
 
 
     # Partie parole
+
+    def __sequence_speak(self,text:str):
+        self.__c_boot.place_forget()
+        self.__c_speak.place(x=0, y=0)
+
+        self.__l_speak.configure(text=text)
+
+        if self.__speak_is_enable:
+            self.__set_voice_speak()
+            self.__th_speak = th.Thread(target=self.__arr_voice.say,args=(text,))
+            self.__th_speak.start()
+            self.__update_during_speak()
+        else :
+            self.__change_gui_speak()
+
+    # Methode update
+
+    def __update_during_speak(self):
+        if self.__th_speak.is_alive():
+            self.after(100,self.__update_during_speak)
+        else :
+            self.__th_speak = th.Thread()
+            self.__change_gui_speak()
