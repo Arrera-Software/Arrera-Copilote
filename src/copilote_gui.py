@@ -42,11 +42,14 @@ class copilote_gui(aTk):
         #self.protocol("WM_DELETE_WINDOW", self.__on_close)
 
         if self.__objOS.osLinux():
-            pass
+            self.__emplacementIcon = iconFolder+"linux/"+iconName+".png"
+            self.iconphoto(False,PhotoImage(file=self.__emplacementIcon))
         elif self.__objOS.osWindows():
-            pass
+            self.__emplacementIcon = iconFolder+"win/"+iconName+".ico"
+            self.iconbitmap(self.__emplacementIcon)
         elif self.__objOS.osMac():
-            pass
+            self.__emplacementIcon = resource_path(iconFolder+"mac/"+iconName+".png")
+            self.iconphoto(False,PhotoImage(file=self.__emplacementIcon))
 
         # Canvas
 
@@ -108,3 +111,6 @@ class copilote_gui(aTk):
         time.sleep(0.2)
         self.__change_img_boot(4)
         time.sleep(0.2)
+
+
+    # Partie parole
