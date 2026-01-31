@@ -1,0 +1,101 @@
+from brain.brain import ABrain,confNeuron
+from lynx_gui.arrera_lynx import arrera_lynx
+from src.copilote_gui import copilote_gui
+from src.version_demon import demon,soft_config
+from lib.arrera_tk import *
+
+THEME_FILE = "asset/theme/theme_bleu_violet.json"
+
+SOFT_CONF = soft_config(
+    name_soft="arrera-copilote",
+    version="I2026-0.00"
+)
+
+class copilote_assistant():
+    def __init__(self):
+        self.__conf_ryley = confNeuron(
+            name="Arrera Ryley",
+            lang="fr",
+            asset="asset/",
+            icon="asset/icone/six-ryley/ryley.png",
+            assistant_color="#041f75",
+            assistant_texte_color="white",
+            bute="",
+            createur="Baptiste P",
+            listFonction=[],
+            moteurderecherche="google",
+            etatService=1,
+            etatTime=1,
+            etatOpen=1,
+            etatSearch=1,
+            etatChatbot=0,
+            etatApi=1,
+            etatCodehelp=1,
+            etatWork=1,
+            etatSocket=1,
+            lienDoc="www.google.com", # TODO : A changer plus tart
+            fichierLangue="language/tutoiment/", # Path to language files
+            fichierKeyword="keyword/",            # Path to keyword files
+            voiceAssistant=False
+        )
+
+        self.__conf_six = confNeuron(
+            name="Arrera SIX",
+            lang="fr",
+            asset="asset/",
+            icon="asset/icone/six-ryley/six.png",
+            assistant_color="#e0e0e0",
+            assistant_texte_color="black",
+            bute="",
+            createur="Baptiste P",
+            listFonction=[],
+            moteurderecherche="google",
+            etatService=1,
+            etatTime=1,
+            etatOpen=1,
+            etatSearch=1,
+            etatChatbot=1,
+            etatApi=1,
+            etatCodehelp=0,
+            etatWork=1,
+            etatSocket=1,
+            lienDoc="www.google.com", # TODO : A changer plus tart
+            fichierLangue="language/vouvoiment/", # Path to language files
+            fichierKeyword="keyword/",            # Path to keyword files
+            voiceAssistant=True
+        )
+
+        # Demon de MAJ
+        self.__demon = demon(SOFT_CONF, "https://arrera-software.fr/depots.json")
+
+        # Demarage du reseau de neuron
+        self.__ryley = ABrain(self.__conf_ryley)
+        self.__six = ABrain(self.__conf_six)
+
+        self.__gestionnaire = self.__six.getGestionnaire()
+
+        # Var
+        self.__firt_boot = self.__gestionnaire.getUserConf().getFirstRun()
+        self.__state_conf = False
+
+    def active(self):
+        if self.__firt_boot:
+            l = arrera_lynx(self.__gestionnaire,
+                            "json_conf/configLynx.json",
+                            THEME_FILE)
+            self.__state_conf = l.return_state_lynx()
+        else :
+            self.__state_conf = True
+        self.__boot()
+
+    def __boot(self):
+        if not self.__state_conf:
+            pass # TODO : Faire la partie non conf
+        else :
+            assistant = copilote_gui(iconFolder="asset/icone/",
+                                     iconName="icon",
+                                     six_brain=self.__six,
+                                     ryley_brain=self.__ryley,
+                                     theme_file=THEME_FILE,
+                                     version=self.__demon.getVersionSoft())
+            assistant.active(self.__firt_boot,self.__demon.checkUpdate())
