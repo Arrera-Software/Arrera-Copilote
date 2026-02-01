@@ -48,6 +48,11 @@ class copilote_gui(aTk):
         self.geometry("500x400+5+30")
         self.protocol("WM_DELETE_WINDOW", self.__on_close)
 
+        # Init des parametre
+        self.__gazelleUI = arrera_gazelle(self,self.__gestionnaire,"json_conf/conf-setting.json")
+        self.__gazelleUI.passFNCQuit(self.__quit_setting)
+        self.__gazelleUI.passFNCBTNIcon(self.__about)
+
         # Init de keyboad manager
         self.__key_manage = keyboad_manager(self)
 
@@ -78,7 +83,7 @@ class copilote_gui(aTk):
                                                 fonc_speed_setting=lambda : print("Speed setting"),
                                                 fonc_mode=lambda : print("Codehelp"),
                                                 fonc_windows_mode= lambda : print("mode little"),
-                                                fonc_setting=lambda : print("setting"),
+                                                fonc_setting=self.__active_setting,
                                                 fonc_send= self.__send_on_assistants)
 
     def active(self,firstBoot:bool,update_available:bool):
@@ -242,6 +247,11 @@ class copilote_gui(aTk):
         self.__back_widget_normal.clear_entry()
 
         if text != "":
+
+            if "parametre" in text or "settings" in text:
+                self.__active_setting()
+                return
+
             self.__back_widget_normal.place_forget()
 
             self.__th_reflect_six = th.Thread(target=self.__six_brain.neuron,args=(text,))
@@ -400,3 +410,16 @@ class copilote_gui(aTk):
                       copyright="Copyright Arrera Software by Baptiste P 2023-2026",
                       linkSource="https://github.com/Arrera-Software/Arrera-Copilote",
                       linkWeb="https://arrera-software.fr/")
+
+    # Methode des parametres
+
+    def __active_setting(self):
+        self.__c_load.place_forget()
+        self.__back_widget_normal.place_forget()
+        self.__c_speak.place_forget()
+        self.__c_boot.place_forget()
+        self.__gazelleUI.active()
+
+    def __quit_setting(self):
+        self.__gazelleUI.clearAllFrame()
+        self.__sequence_speak("Fin parametre") # Todo : Mettre une vrai phrase

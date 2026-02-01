@@ -1,7 +1,7 @@
 {
-    "listGenre":[],
-    "iconSoft": "",
+    "listGenre":["Monsieur","Madame","Mademoiselle","Maitre"],
+    "iconSoft": "asset/icone/linux/icon.png",
     "listMoteurRecherche": ["google","brave","duckduckgo","qwant","ecosia","bing","perplexity"],
-    "github_integration": "0",
-    "micro_use": "0"
+    "github_integration": "1",
+    "micro_use": "1"
 }
