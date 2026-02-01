@@ -194,7 +194,6 @@ class ABrain :
                                         self.__neuronUsed = self.__listNeuron[2]
                                 else :
                                     self.__listOut = self.__gestNeuron.napi.getListSortie()
-                                    print(self.__listOut)
                                     self.__neuronUsed = self.__listNeuron[0]
                             else :
                                 self.__listOut = self.__gestNeuron.nsearch.getListSortie()
