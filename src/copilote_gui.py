@@ -59,17 +59,22 @@ class copilote_gui(aTk):
 
         self.__c_speak = self.__canvas_speak()
 
+        self.__c_maj = self.__canvas_maj()
+
     def active(self,firstBoot:bool,update_available:bool):
 
         self.__first_boot = firstBoot
 
-        self.__boot()
+        if update_available:
+            self.__c_maj.place(x=0,y=0)
+        else :
+            self.__boot()
 
         self.mainloop()
 
     def __boot(self):
         # TODO : Gerer le first boot
-        #self.__c_maj.place_forget()
+        self.__c_maj.place_forget()
         self.__sequence_boot()
         self.__sequence_speak(self.__six_brain.boot())
 
@@ -103,6 +108,27 @@ class copilote_gui(aTk):
         self.__l_speak = aLabel(self,text="",justify="left",wraplength=440,
                                 police_size=20,corner_radius=0)
 
+        return c
+
+    def __canvas_maj(self):
+        c = aBackgroundImage(self,background_light=self.__dir_gui_light+"MAJ.png",
+                             background_dark=self.__dir_gui_dark+"MAJ.png",
+                             fg_color=("#ffffff","#000000"),width=500,height=350)
+
+        label_text = aLabel(c,
+                            text="La version d’Arrera Copilote la plus récente est disponible. Installez-la pour avoir de nouvelles fonctionnalités et des corrections de bugs.",
+                            police_size=20,
+                            fg_color=("#ffffff","#000000"),text_color=("#000000","#ffffff"),
+                            wraplength=250, justify="left")
+
+        btn_update = aButton(c, text="Mettre a jour", size=20,
+                             command=lambda: wb.open("https://github.com/Arrera-Software/Arrera-Copilote/releases/"))
+
+        btn_continuer = aButton(c, text="Me rappeler plus tart", size=20, command=self.__boot)
+
+        label_text.place(x=190, y=40)
+        btn_update.placeBottomLeft()
+        btn_continuer.placeBottomRight()
         return c
 
     # Methode change IMG
