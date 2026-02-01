@@ -18,9 +18,12 @@ class copilote_gui(aTk):
         self.__assistant_load = False
         self.__speak_is_enable = True
         self.__L_img_boot_gui = []
+        self.__L_img_load_gui = []
         self.__D_img_speak_gui = {}
         self.__dir_gui_dark = "asset/GUI/dark/"
         self.__dir_gui_light = "asset/GUI/light/"
+        self.__index_load = 0
+        self.__version = version
 
         # Recuperation des cerveau
         self.__six_brain = six_brain
@@ -34,14 +37,16 @@ class copilote_gui(aTk):
         self.__arr_voice = self.__gestionnaire.getArrVoice()
 
         # Theard
-        self.__th_reflect = th.Thread()
+        self.__th_reflect_six = th.Thread()
+        self.__th_reflect_ryley = th.Thread()
+        self.__th_speak_stop = th.Thread()
         self.__th_speak = th.Thread()
 
         super().__init__(title=self.__nameSoft,resizable=False,theme_file=theme_file,
                          fg_color=("#ffffff","#000000"))
 
         self.geometry("500x400+5+30")
-        #self.protocol("WM_DELETE_WINDOW", self.__on_close)
+        self.protocol("WM_DELETE_WINDOW", self.__on_close)
 
         # Init de keyboad manager
         self.__key_manage = keyboad_manager(self)
@@ -64,6 +69,8 @@ class copilote_gui(aTk):
 
         self.__c_maj = self.__canvas_maj()
 
+        self.__c_load = self.__canvas_load()
+
         self.__back_widget_normal = back_widget(self,key_gest=self.__key_manage,
                                                 dirImg=[self.__dir_gui_light,self.__dir_gui_dark],
                                                 img_windows_mode="icon-lttle.png",img_mode="iconRyleyCodehelp.png",
@@ -72,7 +79,7 @@ class copilote_gui(aTk):
                                                 fonc_mode=lambda : print("Codehelp"),
                                                 fonc_windows_mode= lambda : print("mode little"),
                                                 fonc_setting=lambda : print("setting"),
-                                                fonc_send= lambda : print("send"))
+                                                fonc_send= self.__send_on_assistants)
 
     def active(self,firstBoot:bool,update_available:bool):
 
@@ -118,7 +125,7 @@ class copilote_gui(aTk):
         c = aBackgroundImage(self,background_light=l_img,background_dark=d_img,
                              fg_color=("#ffffff","#000000"),width=500,height=350)
 
-        self.__l_speak = aLabel(self,text="",justify="left",wraplength=440,
+        self.__l_speak = aLabel(c,text="",justify="left",wraplength=455,
                                 police_size=20,corner_radius=0)
 
         return c
@@ -144,6 +151,21 @@ class copilote_gui(aTk):
         btn_continuer.placeBottomRight()
         return c
 
+    def __canvas_load(self):
+        self.__L_img_load_gui.append((self.__dir_gui_light+"load0.png",self.__dir_gui_dark+"load0.png"))
+        self.__L_img_load_gui.append((self.__dir_gui_light+"load1.png",self.__dir_gui_dark+"load1.png"))
+        self.__L_img_load_gui.append((self.__dir_gui_light+"load2.png",self.__dir_gui_dark+"load2.png"))
+        self.__L_img_load_gui.append((self.__dir_gui_light+"load3.png",self.__dir_gui_dark+"load3.png"))
+        self.__L_img_load_gui.append((self.__dir_gui_light+"load4.png",self.__dir_gui_dark+"load4.png"))
+
+        l_img,d_img = self.__L_img_load_gui[0]
+
+        c = aBackgroundImage(self,background_light=l_img,
+                             background_dark=d_img,
+                             fg_color=("#ffffff","#000000"),width=500,height=350)
+        return c
+
+
     # Methode change IMG
 
     def __change_img_boot(self,index:int):
@@ -153,6 +175,15 @@ class copilote_gui(aTk):
             l_img,d_img = self.__L_img_boot_gui[0]
 
         self.__c_boot.change_background(background_light=l_img, background_dark=d_img)
+        self.update()
+
+    def __change_img_load(self,index:int):
+        if index < len(self.__L_img_load_gui):
+            l_img,d_img = self.__L_img_load_gui[index]
+        else :
+            l_img,d_img = self.__L_img_load_gui[0]
+
+        self.__c_load.change_background(background_light=l_img, background_dark=d_img)
         self.update()
 
     def __change_gui_speak(self):
@@ -199,6 +230,40 @@ class copilote_gui(aTk):
         self.__l_speak.configure(fg_color=("#3b224a","#3b224a"),text_color=("#ffffff","#ffffff"))
         self.__l_speak.place(x=40, y=100)
 
+    # Partie reflection de l'assistant
+
+    def __send_on_assistants(self):
+        text = self.__back_widget_normal.get_text_entry()
+        self.__back_widget_normal.clear_entry()
+
+        if text != "":
+            self.__back_widget_normal.place_forget()
+
+            self.__th_reflect_six = th.Thread(target=self.__six_brain.neuron,args=(text,))
+            self.__th_reflect_ryley = th.Thread(target=self.__ryley_brain.neuron,args=(text,))
+            self.__th_reflect_six.start()
+            self.__th_reflect_ryley.start()
+
+            self.__index_load = 0
+            self.__change_img_load(0)
+            self.__c_speak.place_forget()
+            self.__c_load.place(x=0, y=0)
+
+            self.__update_during_reflect()
+
+    def __treatment_out_assistant(self,var_six:int,var_ryley:int,out_six:list,out_ryley:list):
+        if var_six == 15 and var_ryley == 15:
+            self.__on_close()
+        elif var_six == 17 and var_ryley == 17:
+            print("Help")
+        else :
+            if var_ryley != 0 :
+                self.__sequence_speak(out_ryley[0])
+            elif var_six != 0 :
+                self.__sequence_speak(out_six[0])
+
+        # self.__manage_btn_open_fnc()
+
     # Methode des sequence
 
     def __sequence_boot(self):
@@ -214,10 +279,8 @@ class copilote_gui(aTk):
         self.__change_img_boot(4)
         time.sleep(0.2)
 
-
-    # Partie parole
-
     def __sequence_speak(self,text:str):
+        self.__c_load.place_forget()
         self.__c_boot.place_forget()
         self.__c_speak.place(x=0, y=0)
 
@@ -232,6 +295,23 @@ class copilote_gui(aTk):
             self.__change_gui_speak()
             self.__back_widget_normal.placeBottomCenter()
 
+    def __sequence_stop(self):
+        if random.randint(0,1) == 0 :
+            texte_stop = self.__six_brain.shutdown()
+        else :
+            texte_stop = self.__ryley_brain.shutdown()
+
+        self.__l_speak.configure(text=texte_stop)
+        self.__back_widget_normal.place_forget()
+
+        if self.__speak_is_enable:
+            self.__c_speak.place(x=0,y=0)
+            self.__th_speak_stop = th.Thread(target=self.__arr_voice.say,args=(texte_stop,))
+            self.__th_speak_stop.start()
+            self.__set_voice_speak()
+
+        self.__update_during_stop()
+
     # Methode update
 
     def __update_during_speak(self):
@@ -241,3 +321,77 @@ class copilote_gui(aTk):
             self.__th_speak = th.Thread()
             self.__change_gui_speak()
             self.__back_widget_normal.placeBottomCenter()
+
+    def __update_during_reflect(self):
+        if self.__th_reflect_ryley.is_alive() or self.__th_reflect_six.is_alive():
+            self.after(200,self.__update_during_reflect)
+            self.__index_load += 1
+            self.__change_img_load(self.__index_load)
+            if self.__index_load == 4 :
+                self.__index_load = 0
+        else :
+            self.__th_reflect_ryley = th.Thread()
+            self.__th_reflect_six = th.Thread()
+            self.__c_load.place_forget()
+            var_six = self.__six_brain.getValeurSortie()
+            list_six = self.__six_brain.getListSortie()
+
+            var_ryley = self.__ryley_brain.getValeurSortie()
+            list_ryley = self.__ryley_brain.getListSortie()
+
+            self.__treatment_out_assistant(var_six,var_ryley,
+                                           list_six,list_ryley)
+
+    def __update_during_stop(self):
+        if self.__th_speak_stop.is_alive():
+            self.after(100,self.__update_during_stop)
+        else :
+            self.__th_speak_stop = th.Thread()
+            self.__change_gui_speak()
+            time.sleep(0.2)
+            self.__c_speak.place_forget()
+            self.__change_img_boot(4)
+            self.__c_boot.place(x=0, y=0)
+            time.sleep(0.2)
+            self.__change_img_boot(3)
+            time.sleep(0.2)
+            self.__change_img_boot(2)
+            time.sleep(0.2)
+            self.__change_img_boot(1)
+            time.sleep(0.2)
+            self.__change_img_boot(0)
+            time.sleep(0.2)
+
+            if self.__objOS.osWindows():
+                os.kill(os.getpid(), signal.SIGINT)
+            elif self.__objOS.osLinux() or self.__objOS.osMac():
+                os.kill(os.getpid(), signal.SIGKILL)
+
+
+    # Methode qui agit sur la fenetre
+
+    def __on_close(self):
+        self.__change_img_boot(4)
+        self.__c_boot.place(x=0,y=0)
+        self.update()
+        if askyesno("Atention", "Voulez-vous vraiment fermer Arrera Copilote ?"):
+            self.title(self.__nameSoft)
+            # self.__gazelleUI.clearAllFrame()
+            self.update()
+            self.__c_boot.place_forget()
+            self.__sequence_stop()
+        else :
+            self.__l_speak.configure(text="RETOUR") # ToDo : Mettre un petit texte
+            self.__c_boot.place_forget()
+            self.__change_gui_speak()
+            self.__c_speak.place(x=0,y=0)
+            self.__back_widget_normal.placeBottomCenter()
+
+
+    def __about(self):
+        windows_about(nameSoft=self.__nameSoft,
+                      iconFile="asset/icone/linux/icon.png",
+                      version=self.__version,
+                      copyright="Copyright Arrera Software by Baptiste P 2023-2026",
+                      linkSource="https://github.com/Arrera-Software/Arrera-Copilote",
+                      linkWeb="https://arrera-software.fr/")
