@@ -96,7 +96,12 @@ class copilote_gui(aTk):
         # TODO : Gerer le first boot
         self.__c_maj.place_forget()
         self.__sequence_boot()
-        self.__sequence_speak(self.__six_brain.boot())
+
+        if random.randint(0,1) == 0 :
+            self.__sequence_speak(self.__six_brain.boot())
+        else :
+            self.__sequence_speak(self.__ryley_brain.boot())
+
 
 
     # Creation des widget
@@ -228,7 +233,7 @@ class copilote_gui(aTk):
         self.__c_speak.change_background(background_light=l_img, background_dark=d_img)
 
         self.__l_speak.configure(fg_color=("#3b224a","#3b224a"),text_color=("#ffffff","#ffffff"))
-        self.__l_speak.place(x=40, y=100)
+        self.__l_speak.place(x=30, y=100)
 
     # Partie reflection de l'assistant
 
