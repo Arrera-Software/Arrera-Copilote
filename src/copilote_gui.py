@@ -43,6 +43,9 @@ class copilote_gui(aTk):
         self.geometry("500x400+5+30")
         #self.protocol("WM_DELETE_WINDOW", self.__on_close)
 
+        # Init de keyboad manager
+        self.__key_manage = keyboad_manager(self)
+
         if self.__objOS.osLinux():
             self.__emplacementIcon = iconFolder+"linux/"+iconName+".png"
             self.iconphoto(False,PhotoImage(file=self.__emplacementIcon))
@@ -60,6 +63,16 @@ class copilote_gui(aTk):
         self.__c_speak = self.__canvas_speak()
 
         self.__c_maj = self.__canvas_maj()
+
+        self.__back_widget_normal = back_widget(self,key_gest=self.__key_manage,
+                                                dirImg=[self.__dir_gui_light,self.__dir_gui_dark],
+                                                img_windows_mode="icon-lttle.png",img_mode="iconRyleyCodehelp.png",
+                                                dectOS=self.__objOS,
+                                                fonc_speed_setting=lambda : print("Speed setting"),
+                                                fonc_mode=lambda : print("Codehelp"),
+                                                fonc_windows_mode= lambda : print("mode little"),
+                                                fonc_setting=lambda : print("setting"),
+                                                fonc_send= lambda : print("send"))
 
     def active(self,firstBoot:bool,update_available:bool):
 
@@ -217,6 +230,7 @@ class copilote_gui(aTk):
             self.__update_during_speak()
         else :
             self.__change_gui_speak()
+            self.__back_widget_normal.placeBottomCenter()
 
     # Methode update
 
@@ -226,3 +240,4 @@ class copilote_gui(aTk):
         else :
             self.__th_speak = th.Thread()
             self.__change_gui_speak()
+            self.__back_widget_normal.placeBottomCenter()
