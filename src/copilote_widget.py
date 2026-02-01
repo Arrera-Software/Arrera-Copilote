@@ -67,8 +67,8 @@ class back_widget(aFrame):
 
     def __on_focus(self, event):
         # Agrandir l'entry
-        self.__entry.configure(width=300)
-        self.__entry.placeLeftBottomNoStick()
+        self.__entry.configure(width=325)
+        self.__entry.placeBottomCenterNoStick()
 
         # Afficher les boutons
         self.__btn_mode.place_forget()
