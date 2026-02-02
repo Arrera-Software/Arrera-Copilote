@@ -1,5 +1,6 @@
 from lib.arrera_tk import *
 from librairy.dectectionOS import OS
+from src.copilote_setting import copilote_setting
 
 class back_widget(aFrame):
     def __init__(self, master:aTk, key_gest:keyboad_manager,

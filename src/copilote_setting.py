@@ -10,10 +10,10 @@ class copilote_setting:
         self.__osDect = objOs
 
         if self.__osDect.osLinux() or self.__osDect.osMac():
-            self.__copiloteSettingFile = str(os.path.expanduser("~")) + "/.config/arrera-assistant/user-config.json"
+            self.__copiloteSettingFile = str(os.path.expanduser("~")) + "/.config/arrera-assistant/copilote-config.json"
         elif self.__osDect.osWindows():
             self.__copiloteSettingFile = (str(os.path.join(os.path.expanduser("~"), "AppData", "Roaming")) +
-                                          "/arrera-assistant/user-config.json")
+                                          "/arrera-assistant/copilote-config.json")
         else :
             self.__copiloteSettingFile = None
 

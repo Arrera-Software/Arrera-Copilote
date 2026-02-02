@@ -7,7 +7,8 @@ from lib.arrera_tk import *
 import threading as th
 from brain.brain import ABrain
 import random
-from src.copilote_widget import *
+from src.copilote_widget import back_widget
+from src.copilote_setting import copilote_setting
 
 class copilote_gui(aTk):
     def __init__(self,iconFolder:str,iconName:str,
@@ -35,6 +36,9 @@ class copilote_gui(aTk):
         # Recuperation librairy
         self.__objOS = self.__gestionnaire.getOSObjet()
         self.__arr_voice = self.__gestionnaire.getArrVoice()
+
+        # Init des parametre de copilote
+        self.__copilote_setting = copilote_setting(self.__objOS)
 
         # Theard
         self.__th_reflect_six = th.Thread()
