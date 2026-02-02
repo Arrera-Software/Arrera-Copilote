@@ -7,7 +7,7 @@ from lib.arrera_tk import *
 import threading as th
 from brain.brain import ABrain
 import random
-from src.copilote_widget import back_widget
+from src.copilote_widget import back_widget,quick_setting
 from src.copilote_setting import copilote_setting
 
 class copilote_gui(aTk):
@@ -17,7 +17,8 @@ class copilote_gui(aTk):
         self.__nameSoft = "Arrera Copilote"
         self.__first_boot = False
         self.__assistant_load = False
-        self.__speak_is_enable = True
+        self.__speak_is_enable = False
+        self.__micro_is_enable = False
         self.__L_img_boot_gui = []
         self.__L_img_load_gui = []
         self.__D_img_speak_gui = {}
@@ -80,11 +81,16 @@ class copilote_gui(aTk):
 
         self.__c_load = self.__canvas_load()
 
+        self.__quick_setting = quick_setting(self,self.__copilote_setting,
+                                             [self.__dir_gui_light,self.__dir_gui_dark],
+                                             self.__unview_quick_setting,
+                                             self.__active_setting)
+
         self.__back_widget_normal = back_widget(self,key_gest=self.__key_manage,
                                                 dirImg=[self.__dir_gui_light,self.__dir_gui_dark],
                                                 img_windows_mode="icon-lttle.png",img_mode="iconRyleyCodehelp.png",
                                                 dectOS=self.__objOS,
-                                                fonc_speed_setting=lambda : print("Speed setting"),
+                                                fonc_speed_setting=self.__view_quick_setting,
                                                 fonc_mode=lambda : print("Codehelp"),
                                                 fonc_windows_mode= lambda : print("mode little"),
                                                 fonc_setting=self.__active_setting,
@@ -102,6 +108,7 @@ class copilote_gui(aTk):
         self.mainloop()
 
     def __boot(self):
+        self.__set_state_micro_sound()
         # TODO : Gerer le first boot
         self.__c_maj.place_forget()
         self.__sequence_boot()
@@ -324,6 +331,7 @@ class copilote_gui(aTk):
         self.__back_widget_normal.place_forget()
 
         if self.__speak_is_enable:
+            self.__quick_setting.unview()
             self.__c_speak.place(x=0,y=0)
             self.__th_speak_stop = th.Thread(target=self.__arr_voice.say,args=(texte_stop,))
             self.__th_speak_stop.start()
@@ -365,6 +373,7 @@ class copilote_gui(aTk):
         if self.__th_speak_stop.is_alive():
             self.after(100,self.__update_during_stop)
         else :
+            self.__quick_setting.unview()
             self.__th_speak_stop = th.Thread()
             self.__change_gui_speak()
             time.sleep(0.2)
@@ -418,6 +427,7 @@ class copilote_gui(aTk):
     # Methode des parametres
 
     def __active_setting(self):
+        self.__quick_setting.unview()
         self.__c_load.place_forget()
         self.__back_widget_normal.place_forget()
         self.__c_speak.place_forget()
@@ -427,3 +437,24 @@ class copilote_gui(aTk):
     def __quit_setting(self):
         self.__gazelleUI.clearAllFrame()
         self.__sequence_speak("Fin parametre") # Todo : Mettre une vrai phrase
+
+    # Methode des bouton
+
+    def __view_quick_setting(self):
+        self.__c_load.place_forget()
+        self.__c_speak.place_forget()
+        self.__c_boot.place_forget()
+        self.__back_widget_normal.place_forget()
+        self.__quick_setting.view_normal()
+
+    def __unview_quick_setting(self):
+        self.__quick_setting.unview()
+        self.__c_load.place_forget()
+        self.__c_speak.place(x=0,y=0)
+        self.__c_boot.place_forget()
+        self.__back_widget_normal.placeBottomCenter()
+        self.__set_state_micro_sound()
+
+    def __set_state_micro_sound(self):
+        self.__speak_is_enable = self.__copilote_setting.get_sound()
+        self.__micro_is_enable = self.__copilote_setting.get_micophone()
