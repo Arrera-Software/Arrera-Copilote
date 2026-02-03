@@ -225,6 +225,7 @@ class copilote_gui(aTk):
 
         self.__l_speak.configure(fg_color=("#ffffff","#000000"),text_color=("#000000","#ffffff"))
         self.__l_speak.place(x=25, y=90)
+        self.update()
 
     def __set_six_speak(self):
         l_img,d_img = self.__D_img_speak_gui["six"]
@@ -233,6 +234,7 @@ class copilote_gui(aTk):
 
         self.__l_speak.configure(fg_color=("#ffffff","#000000"),text_color=("#000000","#ffffff"))
         self.__l_speak.place(x=25, y=90)
+        self.update()
 
     def __set_ryley_speak(self):
         l_img,d_img = self.__D_img_speak_gui["ryley"]
@@ -241,6 +243,7 @@ class copilote_gui(aTk):
 
         self.__l_speak.configure(fg_color=("#ffffff","#000000"),text_color=("#000000","#ffffff"))
         self.__l_speak.place(x=25, y=90)
+        self.update()
 
 
     def __set_voice_speak(self):
@@ -250,10 +253,13 @@ class copilote_gui(aTk):
 
         self.__l_speak.configure(fg_color=("#3b224a","#3b224a"),text_color=("#ffffff","#ffffff"))
         self.__l_speak.place(x=30, y=100)
+        self.update()
 
     # Partie reflection de l'assistant
 
     def __send_on_assistants(self):
+        self.focus()
+
         text = self.__back_widget_normal.get_text_entry()
         self.__back_widget_normal.clear_entry()
 
