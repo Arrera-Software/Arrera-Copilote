@@ -119,7 +119,6 @@ class neuroneAPI(neuronBase) :
                 else:
                     out = self.__fncBreef.summarizeAll()
                     texte = self._language.getPhraseResumerAll("2")
-                    print(texte)
                     if out is not None:
                         outInt = 19
                         self._gestGUI.setGUIActive("resumer",[out,None,outInt])
@@ -127,7 +126,6 @@ class neuroneAPI(neuronBase) :
                         outInt = 20
 
                 if outInt == 12 or outInt == 18 or outInt == 19 or outInt == 5:
-                    print(texte)
                     self._listSortie = [texte,""]
                 else :
                     self._listSortie = [self._language.getPhraseResumerAll("1"),""]
