@@ -18,7 +18,10 @@ class copilote_gui(aTk):
         self.__first_boot = False
         self.__assistant_load = False
         self.__speak_is_enable = False
+        self.__assistant_speaking = False
         self.__micro_is_enable = False
+        self.__setting_is_enabled = False
+        self.__timer = 0
         self.__L_img_boot_gui = []
         self.__L_img_load_gui = []
         self.__D_img_speak_gui = {}
@@ -259,7 +262,7 @@ class copilote_gui(aTk):
 
     def __send_on_assistants(self):
         self.focus()
-
+        self.__assistant_speaking = True
         text = self.__back_widget_normal.get_text_entry()
         self.__back_widget_normal.clear_entry()
 
@@ -314,6 +317,7 @@ class copilote_gui(aTk):
         time.sleep(0.2)
 
     def __sequence_speak(self,text:str):
+        self.__timer = 0
         self.__c_load.place_forget()
         self.__c_boot.place_forget()
         self.__c_speak.place(x=0, y=0)
@@ -328,6 +332,7 @@ class copilote_gui(aTk):
         else :
             self.__change_gui_speak()
             self.__back_widget_normal.placeBottomCenter()
+            self.__assistant_speaking = False
 
     def __sequence_stop(self):
         if random.randint(0,1) == 0 :
@@ -356,6 +361,7 @@ class copilote_gui(aTk):
             self.__th_speak = th.Thread()
             self.__change_gui_speak()
             self.__back_widget_normal.placeBottomCenter()
+            self.__assistant_speaking = False
 
     def __update_during_reflect(self):
         if self.__th_reflect_ryley.is_alive() or self.__th_reflect_six.is_alive():
@@ -447,6 +453,7 @@ class copilote_gui(aTk):
     # Methode des parametres
 
     def __active_setting(self):
+        self.__setting_is_enabled = True
         self.__quick_setting.unview()
         self.__c_load.place_forget()
         self.__back_widget_normal.place_forget()
@@ -457,10 +464,13 @@ class copilote_gui(aTk):
     def __quit_setting(self):
         self.__gazelleUI.clearAllFrame()
         self.__sequence_speak("Fin parametre") # Todo : Mettre une vrai phrase
+        self.__setting_is_enabled = False
+        self.__timer = 0
 
     # Methode des bouton
 
     def __view_quick_setting(self):
+        self.__timer = 0
         self.__c_load.place_forget()
         self.__c_speak.place_forget()
         self.__c_boot.place_forget()
@@ -468,6 +478,7 @@ class copilote_gui(aTk):
         self.__quick_setting.view_normal()
 
     def __unview_quick_setting(self):
+        self.__timer = 0
         self.__quick_setting.unview()
         self.__c_load.place_forget()
         self.__c_speak.place(x=0,y=0)
