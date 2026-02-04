@@ -75,11 +75,11 @@ class copilote_gui(aTk):
 
         self.__c_boot = self.__canvas_boot()
 
-        self.__c_speak = self.__canvas_speak()
+        self.__c_speak = self.__canvas_speak_normal()
 
         self.__c_maj = self.__canvas_maj()
 
-        self.__c_load = self.__canvas_load()
+        self.__c_load = self.__canvas_load_normal()
 
         self.__quick_setting = quick_setting(self,self.__copilote_setting,
                                              [self.__dir_gui_light,self.__dir_gui_dark],
@@ -136,7 +136,7 @@ class copilote_gui(aTk):
 
         return c
 
-    def __canvas_speak(self):
+    def __canvas_speak_normal(self):
         self.__D_img_speak_gui = {"copilote":(self.__dir_gui_light+"parole_copilote.png",self.__dir_gui_dark+"parole_copilote.png"),
                                   "six":(self.__dir_gui_light+"parole_six.png",self.__dir_gui_dark+"parole_six.png"),
                                   "ryley":(self.__dir_gui_light+"parole_ryley.png",self.__dir_gui_dark+"parole_ryley.png"),
@@ -172,7 +172,7 @@ class copilote_gui(aTk):
         btn_continuer.placeBottomRight()
         return c
 
-    def __canvas_load(self):
+    def __canvas_load_normal(self):
         self.__L_img_load_gui.append((self.__dir_gui_light+"load0.png",self.__dir_gui_dark+"load0.png"))
         self.__L_img_load_gui.append((self.__dir_gui_light+"load1.png",self.__dir_gui_dark+"load1.png"))
         self.__L_img_load_gui.append((self.__dir_gui_light+"load2.png",self.__dir_gui_dark+"load2.png"))
