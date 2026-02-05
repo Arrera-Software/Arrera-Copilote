@@ -21,6 +21,7 @@ class copilote_gui(aTk):
         self.__assistant_speaking = False
         self.__micro_is_enable = False
         self.__setting_is_enabled = False
+        self.__assistant_booting = False
         self.__timer = 0
         self.__L_img_boot_gui = []
         self.__L_img_load_gui = []
@@ -112,6 +113,7 @@ class copilote_gui(aTk):
 
     def __boot(self):
         self.__set_state_micro_sound()
+        self.__assistant_booting = True
         # TODO : Gerer le first boot
         self.__c_maj.place_forget()
         self.__sequence_boot()
@@ -302,7 +304,7 @@ class copilote_gui(aTk):
         # self.__manage_btn_open_fnc()
 
     def __update__assistant(self):
-        if not self.__setting_is_enabled and not self.__assistant_speaking :
+        if not self.__setting_is_enabled and not self.__assistant_speaking and not self.__assistant_booting :
             self.__timer += 1
             if self.__six_brain.updateAssistant():
                 varOut = self.__six_brain.getValeurSortie()
@@ -332,8 +334,10 @@ class copilote_gui(aTk):
         time.sleep(0.2)
         self.__change_img_boot(4)
         time.sleep(0.2)
+        self.__assistant_booting = False
 
     def __sequence_speak(self,text:str):
+        self.__assistant_speaking = True
         self.__timer = 0
         self.__c_load.place_forget()
         self.__c_boot.place_forget()
