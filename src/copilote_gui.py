@@ -121,7 +121,7 @@ class copilote_gui(aTk):
         else :
             self.__sequence_speak(self.__ryley_brain.boot())
 
-
+        self.__update__assistant()
 
     # Creation des widget
 
@@ -300,6 +300,23 @@ class copilote_gui(aTk):
                 self.__sequence_speak(out_six[0])
 
         # self.__manage_btn_open_fnc()
+
+    def __update__assistant(self):
+        if not self.__setting_is_enabled and not self.__assistant_speaking :
+            self.__timer += 1
+            if self.__six_brain.updateAssistant():
+                varOut = self.__six_brain.getValeurSortie()
+                listOut = self.__six_brain.getListSortie()
+                self.__treatment_out_assistant(varOut,0,listOut,[])
+            """
+            elif self.__timer >= 10:
+                if self.__timer == 10:
+                    self.__c_speak.place_forget()
+                    self.__c_emotion.place(x=0, y=0)
+                self.__sequence_emotion()
+            """
+
+        self.after(1000,self.__update__assistant)
 
     # Methode des sequence
 
