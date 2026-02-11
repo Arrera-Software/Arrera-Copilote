@@ -154,13 +154,28 @@ class copilote_gui(aTk):
                                   "six":(self.__dir_gui_light+"parole_six.png",self.__dir_gui_dark+"parole_six.png"),
                                   "ryley":(self.__dir_gui_light+"parole_ryley.png",self.__dir_gui_dark+"parole_ryley.png"),
                                   "speak":(self.__dir_gui_light+"during_parole.png",self.__dir_gui_dark+"during_parole.png")}
-
+        tableurIMG = aImage(path_dark="asset/GUI/dark/tableur.png",
+                            path_light="asset/GUI/light/tableur.png", width=30, height=30)
+        wordIMG = aImage(path_dark="asset/GUI/dark/word.png",
+                         path_light="asset/GUI/light/word.png", width=30, height=30)
+        projetrIMG = aImage(path_dark="asset/GUI/dark/projet.png",
+                            path_light="asset/GUI/light/projet.png", width=30, height=30)
         l_img,d_img = self.__D_img_speak_gui["copilote"]
         c = aBackgroundImage(self,background_light=l_img,background_dark=d_img,
                              fg_color=("#ffffff","#000000"),width=500,height=350)
 
         self.__l_speak = aLabel(c,text="",justify="left",wraplength=455,
                                 police_size=20,corner_radius=0)
+
+        self.__btn_tableur_is_open_speak = aButton(c, width=30, height=30, text="", image=tableurIMG,
+                                                   dark_color="#1f1f1f", light_color="#e0e0e0",
+                                                   hover_color=("#949494", "#505050"))
+        self.__btn_word_is_open_speak = aButton(c, width=30, height=30, text="", image=wordIMG,
+                                                dark_color="#1f1f1f", light_color="#e0e0e0",
+                                                hover_color=("#949494", "#505050"))
+        self.__btn_project_is_open_speak = aButton(c, width=30, height=30, text="", image=projetrIMG,
+                                                   dark_color="#1f1f1f", light_color="#e0e0e0",
+                                                   hover_color=("#949494", "#505050"))
 
         return c
 
@@ -309,7 +324,7 @@ class copilote_gui(aTk):
             elif var_six != 0 :
                 self.__sequence_speak(out_six[0])
 
-        # self.__manage_btn_open_fnc()
+        self.__manage_btn_open_fnc()
 
     def __update__assistant(self):
         if not self.__setting_is_enabled and not self.__assistant_speaking and not self.__assistant_booting :
@@ -345,6 +360,10 @@ class copilote_gui(aTk):
         self.__assistant_booting = False
 
     def __sequence_speak(self,text:str):
+        self.__btn_tableur_is_open_speak.place_forget()
+        self.__btn_word_is_open_speak.place_forget()
+        self.__btn_project_is_open_speak.place_forget()
+
         self.__assistant_speaking = True
         self.__timer = 0
         self.__c_load.place_forget()
@@ -552,3 +571,19 @@ class copilote_gui(aTk):
     def __set_state_micro_sound(self):
         self.__speak_is_enable = self.__copilote_setting.get_sound()
         self.__micro_is_enable = self.__copilote_setting.get_micophone()
+
+    def __manage_btn_open_fnc(self):
+        if self.__six_brain.getTableur() :
+            self.__btn_tableur_is_open_speak.placeBottomRight()
+        else :
+            self.__btn_tableur_is_open_speak.place_forget()
+
+        if self.__six_brain.getWord():
+            self.__btn_word_is_open_speak.placeBottomLeft()
+        else :
+            self.__btn_word_is_open_speak.place_forget()
+
+        if self.__six_brain.getProject():
+            self.__btn_project_is_open_speak.placeBottomCenter()
+        else :
+            self.__btn_project_is_open_speak.place_forget()
