@@ -526,7 +526,7 @@ class copilote_gui(aTk):
 
     def __quit_setting(self):
         self.__gazelleUI.clearAllFrame()
-        self.__sequence_speak("Fin parametre") # Todo : Mettre une vrai phrase
+        self.__sequence_speak(self.__copilote_language.get_ph_setting())
         self.__setting_is_enabled = False
         self.__timer = 0
 
