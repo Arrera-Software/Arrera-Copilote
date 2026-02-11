@@ -1,7 +1,0 @@
-{
-    "gestionMicro":"1",
-    "listeTheme":["Dark","Light"],
-    "listGenre":["monsieur","madame"],
-    "iconSoft": "asset/icon.png",
-    "listMoteurRecherche": ["google","brave","duckduckgo","qwant","ecosia","bing","perplexity"]
-}

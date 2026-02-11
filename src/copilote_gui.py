@@ -9,6 +9,7 @@ from brain.brain import ABrain
 import random
 from src.copilote_widget import back_widget,quick_setting
 from src.copilote_setting import copilote_setting
+from src.copilote_language import copilote_language
 
 class copilote_gui(aTk):
     def __init__(self,iconFolder:str,iconName:str,
@@ -45,11 +46,15 @@ class copilote_gui(aTk):
         # Init des parametre de copilote
         self.__copilote_setting = copilote_setting(self.__objOS)
 
+        # Init de la langue
+        self.__copilote_language = copilote_language("json_conf/langue_copilote.json")
+
         # Theard
         self.__th_reflect_six = th.Thread()
         self.__th_reflect_ryley = th.Thread()
         self.__th_speak_stop = th.Thread()
         self.__th_speak = th.Thread()
+        self.__th_first_boot = th.Thread()
 
         super().__init__(title=self.__nameSoft,resizable=False,theme_file=theme_file,
                          fg_color=("#ffffff","#000000"))
@@ -114,14 +119,17 @@ class copilote_gui(aTk):
     def __boot(self):
         self.__set_state_micro_sound()
         self.__assistant_booting = True
-        # TODO : Gerer le first boot
         self.__c_maj.place_forget()
-        self.__sequence_boot()
 
-        if random.randint(0,1) == 0 :
-            self.__sequence_speak(self.__six_brain.boot())
+        if self.__first_boot :
+            self.__sequence_first_boot(1)
         else :
-            self.__sequence_speak(self.__ryley_brain.boot())
+            self.__sequence_boot()
+
+            if random.randint(0,1) == 0 :
+                self.__sequence_speak(self.__six_brain.boot())
+            else :
+                self.__sequence_speak(self.__ryley_brain.boot())
 
         self.__update__assistant()
 
@@ -373,6 +381,24 @@ class copilote_gui(aTk):
 
         self.__update_during_stop()
 
+    def __sequence_first_boot(self,nb:int):
+        self.__assistant_speaking = True
+        self.__timer = 0
+        self.__c_load.place_forget()
+        self.__c_boot.place_forget()
+        self.__c_speak.place(x=0, y=0)
+
+        texte = self.__copilote_language.get_first_boot(nb)
+        self.__l_speak.configure(text=texte)
+
+        if self.__speak_is_enable:
+            self.__set_voice_speak()
+            self.__th_first_boot = th.Thread(target=self.__arr_voice.say,args=(texte,))
+            self.__th_first_boot.start()
+            self.__update_during_first_boot(nb)
+        else :
+            self.__change_gui_speak()
+
     # Methode update
 
     def __update_during_speak(self):
@@ -429,6 +455,22 @@ class copilote_gui(aTk):
                 os.kill(os.getpid(), signal.SIGINT)
             elif self.__objOS.osLinux() or self.__objOS.osMac():
                 os.kill(os.getpid(), signal.SIGKILL)
+
+    def __update_during_first_boot(self,nb:int):
+        if self.__th_first_boot.is_alive():
+            self.after(100,self.__update_during_first_boot,nb)
+        else :
+            self.__th_first_boot = th.Thread()
+            if nb == 1 :
+                time.sleep(0.2)
+                self.__sequence_first_boot(2)
+            else :
+                time.sleep(0.2)
+                if random.randint(0, 1) == 0:
+                    self.__sequence_speak(self.__six_brain.boot())
+                else:
+                    self.__sequence_speak(self.__ryley_brain.boot())
+
 
 
     # Methode qui agit sur la fenetre

@@ -1,8 +1,0 @@
-{
-    "color":"white",
-    "textColor":"black",
-    "nameSoft":"Copilote",
-    "iconSoftWin":"asset/icon.ico",
-    "iconSoftLinux":"asset/icon.png",
-    "listGenre":["monsieur","madame","maitre","maitresse"]
-}

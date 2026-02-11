@@ -2,7 +2,7 @@ from librairy.travailJSON import *
 from librairy.dectectionOS import OS
 import os
 
-DICTBASE = {"sound":0,
+DICTBASE = {"sound":1,
             "microphone":0}
 
 class copilote_setting:
