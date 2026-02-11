@@ -14,7 +14,7 @@ SOFT_CONF = soft_config(
 class copilote_assistant():
     def __init__(self):
         self.__conf_ryley = confNeuron(
-            name="Arrera Ryley",
+            name="Arrera Copilote Ryley",
             lang="fr",
             asset="asset/",
             icon="asset/icone/six-ryley/ryley.png",
@@ -40,7 +40,7 @@ class copilote_assistant():
         )
 
         self.__conf_six = confNeuron(
-            name="Arrera SIX",
+            name="Arrera Coipilote",
             lang="fr",
             asset="asset/",
             icon="asset/icone/six-ryley/six.png",
@@ -69,8 +69,8 @@ class copilote_assistant():
         self.__demon = demon(SOFT_CONF, "https://arrera-software.fr/depots.json")
 
         # Demarage du reseau de neuron
-        self.__ryley = ABrain(self.__conf_ryley)
         self.__six = ABrain(self.__conf_six)
+        self.__ryley = ABrain(self.__conf_ryley)
 
         self.__gestionnaire = self.__six.getGestionnaire()
 
