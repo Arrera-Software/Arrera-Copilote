@@ -26,6 +26,7 @@ class copilote_gui(aTk):
         self.__timer = 0
         self.__L_img_boot_gui = []
         self.__L_img_load_gui = []
+        self.__L_img_emotion = []
         self.__D_img_speak_gui = {}
         self.__dir_gui_dark = "asset/GUI/dark/"
         self.__dir_gui_light = "asset/GUI/light/"
@@ -95,6 +96,8 @@ class copilote_gui(aTk):
 
         self.__c_load = self.__canvas_load_normal()
 
+        self.__c_emotion_normal = self.__canvas_emmotion_normal()
+
         self.__quick_setting = quick_setting(self,self.__copilote_setting,
                                              [self.__dir_gui_light,self.__dir_gui_dark],
                                              self.__unview_quick_setting,
@@ -102,7 +105,7 @@ class copilote_gui(aTk):
 
         self.__back_widget_normal = back_widget(self,key_gest=self.__key_manage,
                                                 dirImg=[self.__dir_gui_light,self.__dir_gui_dark],
-                                                img_windows_mode="icon-lttle.png",img_mode="iconRyleyCodehelp.png",
+                                                img_windows_mode="icon-lttle.png",img_mode="codehelp.png",
                                                 dectOS=self.__objOS,
                                                 fonc_speed_setting=self.__view_quick_setting,
                                                 fonc_mode=lambda : print("Codehelp"),
@@ -222,6 +225,18 @@ class copilote_gui(aTk):
                              fg_color=("#ffffff","#000000"),width=500,height=350)
         return c
 
+    def __canvas_emmotion_normal(self):
+        self.__L_img_emotion.append((self.__dir_gui_light + "w0.png", self.__dir_gui_dark + "w0.png"))
+        self.__L_img_emotion.append((self.__dir_gui_light + "w1.png", self.__dir_gui_dark + "w1.png"))
+        self.__L_img_emotion.append((self.__dir_gui_light + "w2.png", self.__dir_gui_dark + "w2.png"))
+        self.__L_img_emotion.append((self.__dir_gui_light + "w3.png", self.__dir_gui_dark + "w3.png"))
+        self.__L_img_emotion.append((self.__dir_gui_light + "w4.png", self.__dir_gui_dark + "w4.png"))
+
+        l_img,d_img = self.__L_img_emotion[0]
+        c = aBackgroundImage(self,background_light=l_img,background_dark=d_img,width=500,height=350)
+
+        return c
+
 
     # Methode change IMG
 
@@ -291,6 +306,15 @@ class copilote_gui(aTk):
         self.__l_speak.place(x=30, y=100)
         self.update()
 
+    def __change_img_emotion(self,index:int):
+        if index < len(self.__L_img_emotion):
+            l_img,d_img = self.__L_img_emotion[index]
+        else :
+            l_img,d_img = self.__L_img_emotion[0]
+
+        self.__c_emotion_normal.change_background(background_light=l_img, background_dark=d_img)
+        self.update()
+
     # Partie reflection de l'assistant
 
     def __send_on_assistants(self):
@@ -341,13 +365,11 @@ class copilote_gui(aTk):
                 varOut = self.__six_brain.getValeurSortie()
                 listOut = self.__six_brain.getListSortie()
                 self.__treatment_out_assistant(varOut,0,listOut,[])
-            """
             elif self.__timer >= 10:
                 if self.__timer == 10:
                     self.__c_speak.place_forget()
-                    self.__c_emotion.place(x=0, y=0)
+                    self.__c_emotion_normal.place(x=0, y=0)
                 self.__sequence_emotion()
-            """
 
         self.__manage_btn_open_fnc()
 
@@ -401,6 +423,7 @@ class copilote_gui(aTk):
             self.__assistant_speaking = False
 
     def __sequence_stop(self):
+        self.__c_emotion_normal.place_forget()
         if random.randint(0,1) == 0 :
             texte_stop = self.__six_brain.shutdown()
         else :
@@ -435,6 +458,20 @@ class copilote_gui(aTk):
             self.__update_during_first_boot(nb)
         else :
             self.__change_gui_speak()
+
+    def __sequence_emotion(self):
+        if 10 >= self.__timer >= 40:
+            self.__change_img_emotion(0)
+        elif 41 <= self.__timer >= 80:
+            self.__change_img_emotion(1)
+        elif 81 <= self.__timer >= 120:
+            self.__change_img_emotion(2)
+        elif 121 <= self.__timer >= 160:
+            self.__change_img_emotion(3)
+        elif 161 <= self.__timer >= 200:
+            self.__change_img_emotion(4)
+        else :
+            self.__change_img_emotion(0)
 
     # Methode update
 
