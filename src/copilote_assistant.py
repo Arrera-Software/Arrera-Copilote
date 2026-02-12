@@ -40,7 +40,7 @@ class copilote_assistant():
         )
 
         self.__conf_six = confNeuron(
-            name="Arrera Coipilote",
+            name="Arrera Copilote Six",
             lang="fr",
             asset="asset/",
             icon="asset/icone/six-ryley/six.png",

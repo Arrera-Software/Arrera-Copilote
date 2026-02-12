@@ -32,6 +32,11 @@ class copilote_gui(aTk):
         self.__index_load = 0
         self.__version = version
 
+        # Liste de widget
+        self.__L_btn_tableur_normal = []
+        self.__L_btn_word_normal = []
+        self.__L_btn_project_normal = []
+
         # Recuperation des cerveau
         self.__six_brain = six_brain
         self.__ryley_brain = ryley_brain
@@ -167,15 +172,15 @@ class copilote_gui(aTk):
         self.__l_speak = aLabel(c,text="",justify="left",wraplength=455,
                                 police_size=20,corner_radius=0)
 
-        self.__btn_tableur_is_open_speak = aButton(c, width=30, height=30, text="", image=tableurIMG,
+        self.__L_btn_tableur_normal.append(aButton(c, width=30, height=30, text="", image=tableurIMG,
                                                    dark_color="#1f1f1f", light_color="#e0e0e0",
-                                                   hover_color=("#949494", "#505050"))
-        self.__btn_word_is_open_speak = aButton(c, width=30, height=30, text="", image=wordIMG,
+                                                   hover_color=("#949494", "#505050")))
+        self.__L_btn_word_normal.append(aButton(c, width=30, height=30, text="", image=wordIMG,
                                                 dark_color="#1f1f1f", light_color="#e0e0e0",
-                                                hover_color=("#949494", "#505050"))
-        self.__btn_project_is_open_speak = aButton(c, width=30, height=30, text="", image=projetrIMG,
+                                                hover_color=("#949494", "#505050")))
+        self.__L_btn_project_normal.append(aButton(c, width=30, height=30, text="", image=projetrIMG,
                                                    dark_color="#1f1f1f", light_color="#e0e0e0",
-                                                   hover_color=("#949494", "#505050"))
+                                                   hover_color=("#949494", "#505050")))
 
         return c
 
@@ -341,6 +346,8 @@ class copilote_gui(aTk):
                 self.__sequence_emotion()
             """
 
+        self.__manage_btn_open_fnc()
+
         self.after(1000,self.__update__assistant)
 
     # Methode des sequence
@@ -360,9 +367,12 @@ class copilote_gui(aTk):
         self.__assistant_booting = False
 
     def __sequence_speak(self,text:str):
-        self.__btn_tableur_is_open_speak.place_forget()
-        self.__btn_word_is_open_speak.place_forget()
-        self.__btn_project_is_open_speak.place_forget()
+        for btn in self.__L_btn_tableur_normal:
+            btn.place_forget()
+        for btn in self.__L_btn_word_normal:
+            btn.place_forget()
+        for btn in self.__L_btn_project_normal:
+            btn.place_forget()
 
         self.__assistant_speaking = True
         self.__timer = 0
@@ -574,16 +584,22 @@ class copilote_gui(aTk):
 
     def __manage_btn_open_fnc(self):
         if self.__six_brain.getTableur() :
-            self.__btn_tableur_is_open_speak.placeBottomRight()
+            for btn in self.__L_btn_tableur_normal:
+                btn.placeBottomRight()
         else :
-            self.__btn_tableur_is_open_speak.place_forget()
+            for btn in self.__L_btn_tableur_normal:
+                btn.place_forget()
 
         if self.__six_brain.getWord():
-            self.__btn_word_is_open_speak.placeBottomLeft()
+            for btn in self.__L_btn_word_normal:
+                btn.placeBottomLeft()
         else :
-            self.__btn_word_is_open_speak.place_forget()
+            for btn in self.__L_btn_word_normal:
+                btn.place_forget()
 
         if self.__six_brain.getProject():
-            self.__btn_project_is_open_speak.placeBottomCenter()
+            for btn in self.__L_btn_project_normal:
+                btn.placeBottomCenter()
         else :
-            self.__btn_project_is_open_speak.place_forget()
+            for btn in self.__L_btn_project_normal:
+                btn.place_forget()
