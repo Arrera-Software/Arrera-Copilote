@@ -94,6 +94,9 @@ class back_widget(aFrame):
     def clear_entry(self):
         self.__entry.delete(0,END)
 
+    def insert_text(self,text:str):
+        self.__entry.insert(0,text)
+
 class quick_setting(aFrame):
     def __init__(self,master:aTk,setting:copilote_setting,list_dir:list,fonc_close:Callable,fonc_setting:Callable):
         super().__init__(master)

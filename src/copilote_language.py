@@ -9,3 +9,6 @@ class copilote_language :
 
     def get_ph_setting(self):
         return self.__f_copilote.getContentJsonFlag("setting_close")
+
+    def get_ph_help(self):
+        return self.__f_copilote.getContentJsonFlag("aide")
