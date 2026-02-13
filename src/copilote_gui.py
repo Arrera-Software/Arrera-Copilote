@@ -127,6 +127,8 @@ class copilote_gui(aTk):
                                                 fonc_setting=self.__active_setting,
                                                 fonc_send=self.__send_on_assistants)
 
+        self.__quick_setting.mode_normal()
+
     def active(self,firstBoot:bool,update_available:bool):
 
         self.__first_boot = firstBoot
@@ -209,13 +211,13 @@ class copilote_gui(aTk):
                                          "speak":(self.__dir_gui_light+"during_parole_little.png",self.__dir_gui_dark+"during_parole_little.png")}
 
         l_img,d_img = self.__D_img_speak_gui_little["copilote"]
-        c = aBackgroundImage(self,background_light=l_img,background_dark=d_img,
-                             fg_color=("#ffffff","#000000"),width=500,height=70)
+        c = aBackgroundImage(self,background_light=l_img,background_dark=d_img
+                             ,width=500,height=70)
 
         self.__l_speak_little = aLabel(c, text="ASSISTANT", justify="left", wraplength=455,
                                        police_size=20, corner_radius=0)
 
-        self.__l_speak_little.place(x=10,y=10)
+        self.__l_speak_little.place(x=15,y=15)
         return c
 
     def __canvas_maj(self):
@@ -288,13 +290,16 @@ class copilote_gui(aTk):
 
     def __change_gui_speak(self):
         nb = random.randint(0,2)
-        match nb :
-            case 0 :
-                self.__set_copilote_speak()
-            case 1 :
-                self.__set_six_speak()
-            case 2 :
-                self.__set_ryley_speak()
+        if not self.__little_is_enabled:
+            match nb :
+                case 0 :
+                    self.__set_copilote_speak()
+                case 1 :
+                    self.__set_six_speak()
+                case 2 :
+                    self.__set_ryley_speak()
+        else :
+            self.__set_copilote_speak()
 
 
     def __set_copilote_speak(self):
@@ -305,7 +310,7 @@ class copilote_gui(aTk):
         self.__c_speak_little.change_background(background_light=l_img_little, background_dark=d_img_little)
 
         self.__l_speak_normal.configure(fg_color=("#ffffff", "#000000"), text_color=("#000000", "#ffffff"))
-        self.__l_speak_little.configure(fg_color=("#ffffff", "#000000"), text_color=("#000000", "#ffffff"))
+        self.__l_speak_little.configure(fg_color=("#402941", "#402941"), text_color=("#ffffff", "#ffffff"))
 
         self.__l_speak_normal.place(x=25, y=90)
         self.update()
@@ -358,8 +363,13 @@ class copilote_gui(aTk):
     def __send_on_assistants(self):
         self.focus()
         self.__assistant_speaking = True
-        text = self.__back_widget_normal.get_text_entry()
-        self.__back_widget_normal.clear_entry()
+
+        if not self.__little_is_enabled:
+            text = self.__back_widget_normal.get_text_entry()
+            self.__back_widget_normal.clear_entry()
+        else :
+            text = self.__back_widget_little.get_text_entry()
+            self.__back_widget_little.clear_entry()
 
         if text != "":
 
@@ -420,8 +430,13 @@ class copilote_gui(aTk):
         self.after(1000,self.__update__assistant)
 
     def __set_requette_with_btn(self,requette:str):
-        self.__back_widget_normal.clear_entry()
-        self.__back_widget_normal.insert_text(requette)
+        if self.__little_is_enabled:
+            self.__back_widget_little.clear_entry()
+            self.__back_widget_little.insert_text(requette)
+        else :
+            self.__back_widget_normal.clear_entry()
+            self.__back_widget_normal.insert_text(requette)
+
         self.__send_on_assistants()
 
     # Methode des sequence
@@ -481,6 +496,10 @@ class copilote_gui(aTk):
 
     def __sequence_stop(self):
         self.__set_normal()
+
+        self.__c_speak_little.place_forget()
+        self.__back_widget_little.place_forget()
+
         self.__c_emotion_normal.place_forget()
         if random.randint(0,1) == 0 :
             texte_stop = self.__six_brain.shutdown()
@@ -669,8 +688,11 @@ class copilote_gui(aTk):
         self.__c_load.place_forget()
         self.__c_speak_normal.place_forget()
         self.__c_boot.place_forget()
-        self.__back_widget_normal.place_forget()
-        self.__quick_setting.view_normal()
+        if not self.__little_is_enabled:
+            self.__back_widget_normal.place_forget()
+        else :
+            self.__back_widget_little.place_forget()
+        self.__quick_setting.view()
 
     def __unview_quick_setting(self):
         self.__timer = 0
@@ -678,7 +700,10 @@ class copilote_gui(aTk):
         self.__c_load.place_forget()
         self.__c_speak_normal.place(x=0, y=0)
         self.__c_boot.place_forget()
-        self.__back_widget_normal.placeBottomCenter()
+        if not self.__little_is_enabled:
+            self.__back_widget_normal.placeBottomCenter()
+        else :
+            self.__back_widget_little.placeBottomCenter()
         self.__set_state_micro_sound()
 
     def __set_state_micro_sound(self):
@@ -723,6 +748,7 @@ class copilote_gui(aTk):
         self.__c_speak_little.place_forget()
         self.__little_is_enabled = False
         self.__sequence_speak("MODE NORMAL") # ToDo : Mettre un petit texte
+        self.__quick_setting.mode_normal()
 
     def __mode_little(self):
         self.geometry("500x120+5+30")
@@ -731,3 +757,4 @@ class copilote_gui(aTk):
         self.__c_emotion_normal.place_forget()
         self.__little_is_enabled = True
         self.__sequence_speak("MODE LITTLE") # ToDo : Mettre un petit texte
+        self.__quick_setting.mode_little()

@@ -100,7 +100,9 @@ class back_widget(aFrame):
 class quick_setting(aFrame):
     def __init__(self,master:aTk,setting:copilote_setting,list_dir:list,fonc_close:Callable,fonc_setting:Callable):
         super().__init__(master)
-        
+
+        self.__little_mode = False
+
         self.__l_dir = list_dir[0]
         self.__d_dir = list_dir[1]
         
@@ -119,14 +121,15 @@ class quick_setting(aFrame):
         self.__btn_close = aButton(self,text="Fermer",size=25,command=fonc_close)
         self.__btn_setting = aButton(self,text="Paramètres",size=25,command=fonc_setting)
 
-    def view_normal(self):
+        self.__create_widget()
+
+    def view(self):
         self.place(x=0,y=0)
-        self.__mode_normal()
 
     def unview(self):
         self.place_forget()
     
-    def __mode_normal(self):
+    def __create_widget(self):
         self.configure(width=500,height=400)
 
         self.__l_title.configure(font=("Roboto",30,"bold"))
@@ -145,6 +148,19 @@ class quick_setting(aFrame):
                                                  path_light=self.__l_dir+"microphone.png",
                                                  path_dark=self.__d_dir+"microphone.png")]
 
+        self.__L_img_sound_little = [aImage(width=30,height=30,
+                                            path_light=self.__l_dir+"sound_disable.png",
+                                            path_dark=self.__d_dir+"sound_disable.png"),
+                                     aImage(width=30,height=30,
+                                            path_light=self.__l_dir+"sound_enable.png",
+                                            path_dark=self.__d_dir+"sound_enable.png")]
+        self.__L_img_microphone_little = [aImage(width=30,height=30,
+                                                 path_light=self.__l_dir+"microphone_disable.png",
+                                                 path_dark=self.__d_dir+"microphone_disable.png"),
+                                          aImage(width=30,height=30,
+                                                 path_light=self.__l_dir+"microphone.png",
+                                                 path_dark=self.__d_dir+"microphone.png")]
+
         self.__btn_sound.configure(width=70,height=70)
         self.__btn_microphone.configure(width=70,height=70)
 
@@ -157,15 +173,26 @@ class quick_setting(aFrame):
         self.__set_state_btn()
 
     def __set_state_btn(self):
-        if self.__copilote_setting.get_sound():
-            self.__btn_sound.configure(image=self.__L_img_sound_normal[0])
-        else :
-            self.__btn_sound.configure(image=self.__L_img_sound_normal[1])
+        if not self.__little_mode :
+            if self.__copilote_setting.get_sound():
+                self.__btn_sound.configure(image=self.__L_img_sound_normal[0])
+            else :
+                self.__btn_sound.configure(image=self.__L_img_sound_normal[1])
 
-        if self.__copilote_setting.get_micophone():
-            self.__btn_microphone.configure(image=self.__L_img_microphone_normal[0])
+            if self.__copilote_setting.get_micophone():
+                self.__btn_microphone.configure(image=self.__L_img_microphone_normal[0])
+            else :
+                self.__btn_microphone.configure(image=self.__L_img_microphone_normal[1])
         else :
-            self.__btn_microphone.configure(image=self.__L_img_microphone_normal[1])
+            if self.__copilote_setting.get_sound():
+                self.__btn_sound.configure(image=self.__L_img_sound_little[0])
+            else :
+                self.__btn_sound.configure(image=self.__L_img_sound_little[1])
+
+            if self.__copilote_setting.get_micophone():
+                self.__btn_microphone.configure(image=self.__L_img_microphone_little[0])
+            else :
+                self.__btn_microphone.configure(image=self.__L_img_microphone_little[1])
 
     def __change_sound(self):
         if self.__copilote_setting.get_sound():
@@ -181,4 +208,43 @@ class quick_setting(aFrame):
         else :
             self.__copilote_setting.set_microphone(True)
 
+        self.__set_state_btn()
+
+    def mode_little(self):
+        self.__l_title.configure(font=("Roboto",15,"bold"))
+        self.configure(width=500,height=120)
+        self.__btn_sound.configure(width=30,height=30)
+        self.__btn_microphone.configure(width=30,height=30)
+
+        self.__btn_microphone.placeCenterLeft()
+        self.__btn_sound.placeCenterRight()
+
+        self.__btn_close.place_forget()
+        self.__btn_setting.place_forget()
+
+        self.__btn_close.placeBottomCenter()
+
+        self.__btn_close.configure(font=("Roboto",13,"normal"))
+
+        self.__little_mode = True
+        self.__set_state_btn()
+
+    def mode_normal(self):
+        self.__l_title.configure(font=("Roboto",30,"bold"))
+        self.__l_title.placeTopCenter()
+        self.configure(width=500,height=400)
+        self.__btn_sound.configure(width=70,height=70)
+        self.__btn_microphone.configure(width=70,height=70)
+
+        self.__btn_close.placeBottomRight()
+        self.__btn_setting.placeBottomLeft()
+
+        self.__btn_close.configure(font=("Roboto",25,"bold"))
+
+        self.__btn_microphone.placeLeftCenter()
+        self.__btn_sound.placeRightCenter()
+        self.__btn_close.placeBottomRight()
+        self.__btn_setting.placeBottomLeft()
+
+        self.__little_mode = False
         self.__set_state_btn()
