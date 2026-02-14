@@ -29,6 +29,7 @@ class copilote_gui(aTk):
         self.__L_img_load_gui = []
         self.__L_img_load_gui_little = []
         self.__L_img_emotion = []
+        self.__L_img_emotion_litte = []
         self.__D_img_speak_gui_normal = {}
         self.__D_img_speak_gui_little = {}
         self.__dir_gui_dark = "asset/GUI/dark/"
@@ -104,6 +105,8 @@ class copilote_gui(aTk):
         self.__c_load_little = self.__canvas_load_little()
 
         self.__c_emotion_normal = self.__canvas_emmotion_normal()
+
+        self.__c_emotion_little = self.__canvas_emmotion_little()
 
         self.__quick_setting = quick_setting(self,self.__copilote_setting,
                                              [self.__dir_gui_light,self.__dir_gui_dark],
@@ -285,6 +288,18 @@ class copilote_gui(aTk):
 
         return c
 
+    def __canvas_emmotion_little(self):
+        self.__L_img_emotion_litte.append((self.__dir_gui_light + "little_w0.png", self.__dir_gui_dark + "little_w0.png"))
+        self.__L_img_emotion_litte.append((self.__dir_gui_light + "little_w1.png", self.__dir_gui_dark + "little_w1.png"))
+        self.__L_img_emotion_litte.append((self.__dir_gui_light + "little_w2.png", self.__dir_gui_dark + "little_w2.png"))
+        self.__L_img_emotion_litte.append((self.__dir_gui_light + "little_w3.png", self.__dir_gui_dark + "little_w3.png"))
+        self.__L_img_emotion_litte.append((self.__dir_gui_light + "little_w4.png", self.__dir_gui_dark + "little_w4.png"))
+
+        l_img,d_img = self.__L_img_emotion_litte[0]
+        c = aBackgroundImage(self,background_light=l_img,background_dark=d_img,width=500,height=70)
+
+        return c
+
 
     # Methode change IMG
 
@@ -373,10 +388,13 @@ class copilote_gui(aTk):
     def __change_img_emotion(self,index:int):
         if index < len(self.__L_img_emotion):
             l_img,d_img = self.__L_img_emotion[index]
+            l_img_little,d_img_little = self.__L_img_emotion_litte[index]
         else :
             l_img,d_img = self.__L_img_emotion[0]
+            l_img_little,d_img_little = self.__L_img_emotion_litte[0]
 
         self.__c_emotion_normal.change_background(background_light=l_img, background_dark=d_img)
+        self.__c_emotion_little.change_background(background_light=l_img_little, background_dark=d_img_little)
         self.update()
 
     # Partie reflection de l'assistant
@@ -441,11 +459,14 @@ class copilote_gui(aTk):
                 listOut = self.__six_brain.getListSortie()
                 self.__treatment_out_assistant(varOut,0,listOut,[])
             elif self.__timer >= 10:
-                if not self.__little_is_enabled:
                     if self.__timer == 10:
-                        self.__c_speak_normal.place_forget()
-                        self.__c_emotion_normal.place(x=0, y=0)
-                self.__sequence_emotion()
+                        if not self.__little_is_enabled:
+                            self.__c_speak_normal.place_forget()
+                            self.__c_emotion_normal.place(x=0, y=0)
+                        else :
+                            self.__c_speak_little.place_forget()
+                            self.__c_emotion_little.place(x=0, y=0)
+                    self.__sequence_emotion()
 
         self.__manage_btn_open_fnc()
 
@@ -524,6 +545,7 @@ class copilote_gui(aTk):
         self.__back_widget_little.place_forget()
 
         self.__c_emotion_normal.place_forget()
+        self.__c_emotion_little.place_forget()
         if random.randint(0,1) == 0 :
             texte_stop = self.__six_brain.shutdown()
         else :
@@ -784,6 +806,7 @@ class copilote_gui(aTk):
     def __mode_normal(self):
         self.geometry("500x400+5+30")
         self.__c_speak_little.place_forget()
+        self.__c_emotion_little.place_forget()
         self.__little_is_enabled = False
         self.__sequence_speak(self.__copilote_language.get_ph_windows_mode(1))
         self.__quick_setting.mode_normal()
