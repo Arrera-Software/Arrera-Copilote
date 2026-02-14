@@ -27,6 +27,7 @@ class copilote_gui(aTk):
         self.__timer = 0
         self.__L_img_boot_gui = []
         self.__L_img_load_gui = []
+        self.__L_img_load_gui_little = []
         self.__L_img_emotion = []
         self.__D_img_speak_gui_normal = {}
         self.__D_img_speak_gui_little = {}
@@ -98,7 +99,9 @@ class copilote_gui(aTk):
 
         self.__c_maj = self.__canvas_maj()
 
-        self.__c_load = self.__canvas_load_normal()
+        self.__c_load_normal = self.__canvas_load_normal()
+
+        self.__c_load_little = self.__canvas_load_little()
 
         self.__c_emotion_normal = self.__canvas_emmotion_normal()
 
@@ -255,6 +258,21 @@ class copilote_gui(aTk):
                              fg_color=("#ffffff","#000000"),width=500,height=350)
         return c
 
+    def __canvas_load_little(self):
+        self.__L_img_load_gui_little.append((self.__dir_gui_light+"little-load0.png",self.__dir_gui_dark+"little-load0.png"))
+        self.__L_img_load_gui_little.append((self.__dir_gui_light+"little-load1.png",self.__dir_gui_dark+"little-load1.png"))
+        self.__L_img_load_gui_little.append((self.__dir_gui_light+"little-load2.png",self.__dir_gui_dark+"little-load2.png"))
+        self.__L_img_load_gui_little.append((self.__dir_gui_light+"little-load3.png",self.__dir_gui_dark+"little-load3.png"))
+        self.__L_img_load_gui_little.append((self.__dir_gui_light+"little-load4.png",self.__dir_gui_dark+"little-load4.png"))
+
+        l_img,d_img = self.__L_img_load_gui_little[0]
+
+        c = aBackgroundImage(self,background_light=l_img,
+                             background_dark=d_img,
+                             fg_color=("#ffffff","#000000"),width=500,height=70)
+
+        return c
+
     def __canvas_emmotion_normal(self):
         self.__L_img_emotion.append((self.__dir_gui_light + "w0.png", self.__dir_gui_dark + "w0.png"))
         self.__L_img_emotion.append((self.__dir_gui_light + "w1.png", self.__dir_gui_dark + "w1.png"))
@@ -281,11 +299,14 @@ class copilote_gui(aTk):
 
     def __change_img_load(self,index:int):
         if index < len(self.__L_img_load_gui):
-            l_img,d_img = self.__L_img_load_gui[index]
+            l_img_normal,d_img_normal = self.__L_img_load_gui[index]
+            l_img_little,d_img_little = self.__L_img_load_gui_little[index]
         else :
-            l_img,d_img = self.__L_img_load_gui[0]
+            l_img_normal,d_img_normal = self.__L_img_load_gui[0]
+            l_img_little,d_img_little = self.__L_img_load_gui_little[0]
 
-        self.__c_load.change_background(background_light=l_img, background_dark=d_img)
+        self.__c_load_normal.change_background(background_light=l_img_normal, background_dark=d_img_normal)
+        self.__c_load_little.change_background(background_light=l_img_little, background_dark=d_img_little)
         self.update()
 
     def __change_gui_speak(self):
@@ -389,9 +410,10 @@ class copilote_gui(aTk):
 
             if self.__little_is_enabled:
                 self.__c_speak_little.place_forget()
+                self.__c_load_little.place(x=0, y=0)
             else :
                 self.__c_speak_normal.place_forget()
-                self.__c_load.place(x=0, y=0)
+                self.__c_load_normal.place(x=0, y=0)
 
 
             self.__update_during_reflect()
@@ -465,7 +487,8 @@ class copilote_gui(aTk):
 
         self.__assistant_speaking = True
         self.__timer = 0
-        self.__c_load.place_forget()
+        self.__c_load_normal.place_forget()
+        self.__c_load_little.place_forget()
         self.__c_boot.place_forget()
         if not self.__little_is_enabled:
             self.__c_speak_normal.place(x=0, y=0)
@@ -521,7 +544,8 @@ class copilote_gui(aTk):
     def __sequence_first_boot(self,nb:int):
         self.__assistant_speaking = True
         self.__timer = 0
-        self.__c_load.place_forget()
+        self.__c_load_normal.place_forget()
+        self.__c_load_little.place_forget()
         self.__c_boot.place_forget()
         self.__c_speak_normal.place(x=0, y=0)
 
@@ -576,7 +600,8 @@ class copilote_gui(aTk):
         else :
             self.__th_reflect_ryley = th.Thread()
             self.__th_reflect_six = th.Thread()
-            self.__c_load.place_forget()
+            self.__c_load_normal.place_forget()
+            self.__c_load_little.place_forget()
             var_six = self.__six_brain.getValeurSortie()
             list_six = self.__six_brain.getListSortie()
 
@@ -679,7 +704,8 @@ class copilote_gui(aTk):
         self.__quick_setting.unview()
         self.__mode_normal()
         self.__c_speak_little.place_forget()
-        self.__c_load.place_forget()
+        self.__c_load_normal.place_forget()
+        self.__c_load_little.place_forget()
         self.__back_widget_normal.place_forget()
         self.__c_speak_normal.place_forget()
         self.__c_boot.place_forget()
@@ -695,7 +721,8 @@ class copilote_gui(aTk):
 
     def __view_quick_setting(self):
         self.__timer = 0
-        self.__c_load.place_forget()
+        self.__c_load_normal.place_forget()
+        self.__c_load_little.place_forget()
         self.__c_speak_normal.place_forget()
         self.__c_boot.place_forget()
         if not self.__little_is_enabled:
@@ -707,7 +734,8 @@ class copilote_gui(aTk):
     def __unview_quick_setting(self):
         self.__timer = 0
         self.__quick_setting.unview()
-        self.__c_load.place_forget()
+        self.__c_load_normal.place_forget()
+        self.__c_load_little.place_forget()
         self.__c_speak_normal.place(x=0, y=0)
         self.__c_boot.place_forget()
         if not self.__little_is_enabled:
