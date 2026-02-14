@@ -214,10 +214,10 @@ class copilote_gui(aTk):
         c = aBackgroundImage(self,background_light=l_img,background_dark=d_img
                              ,width=500,height=70)
 
-        self.__l_speak_little = aLabel(c, text="ASSISTANT", justify="left", wraplength=455,
-                                       police_size=20, corner_radius=0)
+        self.__l_speak_little = aLabel(c, text="ASSISTANT", justify="left", wraplength=500,
+                                       police_size=15, corner_radius=0)
 
-        self.__l_speak_little.place(x=15,y=15)
+        self.__l_speak_little.place(x=15,y=10)
         return c
 
     def __canvas_maj(self):
@@ -558,7 +558,10 @@ class copilote_gui(aTk):
         else :
             self.__th_speak = th.Thread()
             self.__change_gui_speak()
-            self.__back_widget_normal.placeBottomCenter()
+            if self.__little_is_enabled:
+                self.__back_widget_little.placeBottomCenter()
+            else :
+                self.__back_widget_normal.placeBottomCenter()
             self.__assistant_speaking = False
 
     def __update_during_reflect(self):
