@@ -188,7 +188,7 @@ class copilote_gui(aTk):
         c = aBackgroundImage(self,background_light=l_img,background_dark=d_img,
                              fg_color=("#ffffff","#000000"),width=500,height=350)
 
-        self.__l_speak_normal = aLabel(c, text="", justify="left", wraplength=455,
+        self.__l_speak_normal = aLabel(c, text="", justify="left", wraplength=445,
                                        police_size=20, corner_radius=0)
 
         self.__L_btn_tableur_normal.append(aButton(c, width=30, height=30, text="", image=tableurIMG,
