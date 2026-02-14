@@ -12,3 +12,6 @@ class copilote_language :
 
     def get_ph_help(self):
         return self.__f_copilote.getContentJsonFlag("aide")
+
+    def get_ph_windows_mode(self,nb:int):
+        return self.__f_copilote.getContentJsonFlag("windows"+str(nb))

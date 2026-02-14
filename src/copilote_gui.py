@@ -558,6 +558,8 @@ class copilote_gui(aTk):
         else :
             self.__th_speak = th.Thread()
             self.__change_gui_speak()
+            self.__back_widget_little.place_forget()
+            self.__back_widget_normal.place_forget()
             if self.__little_is_enabled:
                 self.__back_widget_little.placeBottomCenter()
             else :
@@ -752,7 +754,7 @@ class copilote_gui(aTk):
         self.geometry("500x400+5+30")
         self.__c_speak_little.place_forget()
         self.__little_is_enabled = False
-        self.__sequence_speak("MODE NORMAL") # ToDo : Mettre un petit texte
+        self.__sequence_speak(self.__copilote_language.get_ph_windows_mode(1))
         self.__quick_setting.mode_normal()
 
     def __mode_little(self):
@@ -761,5 +763,5 @@ class copilote_gui(aTk):
         self.__c_speak_normal.place_forget()
         self.__c_emotion_normal.place_forget()
         self.__little_is_enabled = True
-        self.__sequence_speak("MODE LITTLE") # ToDo : Mettre un petit texte
+        self.__sequence_speak(self.__copilote_language.get_ph_windows_mode(2))
         self.__quick_setting.mode_little()
