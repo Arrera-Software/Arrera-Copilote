@@ -15,3 +15,6 @@ class copilote_language :
 
     def get_ph_windows_mode(self,nb:int):
         return self.__f_copilote.getContentJsonFlag("windows"+str(nb))
+
+    def get_ph_cancel_close(self):
+        return self.__f_copilote.getContentJsonFlag("cancel_close")

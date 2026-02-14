@@ -632,22 +632,25 @@ class copilote_gui(aTk):
     # Methode qui agit sur la fenetre
 
     def __on_close(self):
+        if self.__little_is_enabled:
+            self.geometry("500x400+5+30")
+            self.__c_speak_little.place_forget()
+            self.__little_is_enabled = False
+            self.__quick_setting.mode_normal()
+
         self.__change_img_boot(4)
         self.__c_boot.place(x=0,y=0)
         self.update()
+
         if askyesno("Atention", "Voulez-vous vraiment fermer Arrera Copilote ?"):
             self.title(self.__nameSoft)
-            # self.__gazelleUI.clearAllFrame()
+            self.__gazelleUI.clearAllFrame()
             self.update()
             self.__c_boot.place_forget()
             self.__sequence_stop()
         else :
-            self.__l_speak_normal.configure(text="RETOUR") # ToDo : Mettre un petit texte
             self.__c_boot.place_forget()
-            self.__change_gui_speak()
-            self.__c_speak_normal.place(x=0, y=0)
-            self.__back_widget_normal.placeBottomCenter()
-
+            self.__sequence_speak(self.__copilote_language.get_ph_cancel_close())
 
     def __about(self):
         windows_about(nameSoft=self.__nameSoft,
