@@ -669,6 +669,8 @@ class copilote_gui(aTk):
     def __active_setting(self):
         self.__setting_is_enabled = True
         self.__quick_setting.unview()
+        self.__mode_normal()
+        self.__c_speak_little.place_forget()
         self.__c_load.place_forget()
         self.__back_widget_normal.place_forget()
         self.__c_speak_normal.place_forget()
