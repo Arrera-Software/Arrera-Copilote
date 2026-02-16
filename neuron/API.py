@@ -100,6 +100,7 @@ class neuroneAPI(neuronBase) :
                 if time(6,0) <= datetime.now().time() < time(11,0):
                     outInt = 5
                     self._gestGUI.setGUIActive("breef")
+                    texte = self._language.getPhraseMorningBreef("1")
                 elif self._keyword.checkAPI(requette,"actualite") or self._keyword.checkAPI(requette,"meteo"):
                     out = self.__fncBreef.summarizeActuAndMeteo(self._userConf.getLieuDomicile())
                     texte = self._language.getPhraseResumerActu()
