@@ -541,18 +541,14 @@ class copilote_gui(aTk):
     def __sequence_stop(self):
         self.__set_normal()
 
-        self.__c_speak_little.place_forget()
-        self.__back_widget_little.place_forget()
+        self.__clear_canvas_emotion()
+        self.__clear_canvas_load()
+        self.__clear_canvas_speak()
 
-        self.__c_emotion_normal.place_forget()
-        self.__c_emotion_little.place_forget()
         if random.randint(0,1) == 0 :
             texte_stop = self.__six_brain.shutdown()
         else :
             texte_stop = self.__ryley_brain.shutdown()
-
-        self.__l_speak_normal.configure(text=texte_stop)
-        self.__back_widget_normal.place_forget()
 
         if self.__speak_is_enable:
             self.__quick_setting.unview()
@@ -566,8 +562,10 @@ class copilote_gui(aTk):
     def __sequence_first_boot(self,nb:int):
         self.__assistant_speaking = True
         self.__timer = 0
-        self.__c_load_normal.place_forget()
-        self.__c_load_little.place_forget()
+        self.__clear_back_widget()
+        self.__clear_canvas_emotion()
+        self.__clear_canvas_load()
+
         self.__c_boot.place_forget()
         self.__c_speak_normal.place(x=0, y=0)
 
@@ -604,8 +602,9 @@ class copilote_gui(aTk):
         else :
             self.__th_speak = th.Thread()
             self.__change_gui_speak()
-            self.__back_widget_little.place_forget()
-            self.__back_widget_normal.place_forget()
+
+            self.__clear_back_widget()
+
             if self.__little_is_enabled:
                 self.__back_widget_little.placeBottomCenter()
             else :
@@ -819,3 +818,21 @@ class copilote_gui(aTk):
         self.__little_is_enabled = True
         self.__sequence_speak(self.__copilote_language.get_ph_windows_mode(2))
         self.__quick_setting.mode_little()
+
+    # Methode pour clear les canvas
+
+    def __clear_canvas_speak(self):
+        self.__c_speak_normal.place_forget()
+        self.__c_speak_little.place_forget()
+
+    def __clear_canvas_load(self):
+        self.__c_load_normal.place_forget()
+        self.__c_load_little.place_forget()
+
+    def __clear_canvas_emotion(self):
+        self.__c_emotion_normal.place_forget()
+        self.__c_emotion_little.place_forget()
+
+    def __clear_back_widget(self):
+        self.__back_widget_normal.place_forget()
+        self.__back_widget_little.place_forget()
