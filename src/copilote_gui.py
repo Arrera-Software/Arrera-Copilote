@@ -157,9 +157,10 @@ class copilote_gui(aTk):
 
         # Appelle des methode pour cree les bouton
         self.__create_arrera_work_btn([self.__c_speak_normal_codehelp,
-                                       self.__c_emotion_codehelp_normal,
-                                       self.__c_speak_normal,
-                                       self.__c_emotion_normal])
+                                       self.__c_speak_normal])
+
+        self.__create_codehelp_btn([self.__c_speak_normal_codehelp,
+                                    self.__c_emotion_codehelp_normal])
 
     def active(self,firstBoot:bool,update_available:bool):
 
@@ -564,6 +565,9 @@ class copilote_gui(aTk):
         if self.__little_is_enabled:
             self.__back_widget_little.clear_entry()
             self.__back_widget_little.insert_text(requette)
+        elif self.__codehelp_is_enable:
+            self.__back_widget_codehelp_normal.clear_entry()
+            self.__back_widget_codehelp_normal.insert_text(requette)
         else :
             self.__back_widget_normal.clear_entry()
             self.__back_widget_normal.insert_text(requette)
@@ -867,6 +871,45 @@ class copilote_gui(aTk):
                                                        dark_color="#1f1f1f", light_color="#e0e0e0",
                                                        hover_color=("#949494", "#505050"),
                                                        command=lambda: self.__set_requette_with_btn("aide projet")))
+
+    def __create_codehelp_btn(self,list_canvas:list):
+        orgavarIMG = aImage(path_dark=self.__dir_gui_dark + "btnOrgaVar.png",
+                            path_light=self.__dir_gui_light + "btnOrgaVar.png",
+                            width=30, height=30)
+        libIMG = aImage(path_dark=self.__dir_gui_dark + "btnLibrairy.png",
+                        path_light=self.__dir_gui_light + "btnLibrairy.png",
+                        width=30, height=30)
+        gestGithubIMG = aImage(path_dark=self.__dir_gui_dark + "btnGestGithub.png",
+                               path_light=self.__dir_gui_light + "btnGestGithub.png",
+                               width=30, height=30)
+        colorIMG = aImage(path_dark=self.__dir_gui_dark + "btnColorSelector.png",
+                          path_light=self.__dir_gui_light + "btnColorSelector.png",
+                          width=30, height=30)
+
+        for c in list_canvas:
+            btn_orga_var = aButton(c, width=30, height=30, text="", image=orgavarIMG,
+                                   dark_color="#1f1f1f", light_color="#e0e0e0",
+                                   hover_color=("#949494", "#505050"),
+                                   command=lambda: self.__set_requette_with_btn("Ouvre orga var"))
+
+            btn_lib = aButton(c, width=30, height=30, text="", image=libIMG,
+                              dark_color="#1f1f1f", light_color="#e0e0e0",
+                              hover_color=("#949494", "#505050"),
+                              command=lambda: self.__set_requette_with_btn("Ouvre la librairy"))
+            btn_gestgithub = aButton(c, width=30, height=30, text="", image=gestGithubIMG,
+                                     dark_color="#1f1f1f", light_color="#e0e0e0",
+                                     hover_color=("#949494", "#505050"),
+                                     command=lambda: self.__set_requette_with_btn("Ouvre gestionnaire github"))
+
+            btn_color = aButton(c, width=30, height=30, text="", image=colorIMG,
+                                dark_color="#1f1f1f", light_color="#e0e0e0",
+                                hover_color=("#949494", "#505050"),
+                                command=lambda: self.__set_requette_with_btn("Ouvre color selecteur"))
+
+            btn_orga_var.placeWidgetCenteredAtBottom(x_offset=-155)
+            btn_lib.placeWidgetCenteredAtBottom(x_offset=155)
+            btn_gestgithub.placeWidgetCenteredAtBottom(x_offset=-80)
+            btn_color.placeWidgetCenteredAtBottom(x_offset=80)
 
     def __view_quick_setting(self):
         self.__timer = 0
