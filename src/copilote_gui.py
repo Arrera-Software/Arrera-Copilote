@@ -29,7 +29,9 @@ class copilote_gui(aTk):
         self.__L_img_boot_gui = []
         self.__L_img_load_gui = []
         self.__L_img_load_gui_little = []
+        self.__L_img_load_codehelp_normal_gui = []
         self.__L_img_emotion = []
+        self.__L_img_emotion_codehelp_normal = []
         self.__L_img_emotion_litte = []
         self.__D_img_speak_gui_normal = {}
         self.__D_img_speak_gui_codehelp = {}
@@ -106,9 +108,13 @@ class copilote_gui(aTk):
 
         self.__c_load_normal = self.__canvas_load_normal()
 
+        self.__c_load_codehelp_normal = self.__canvas_load_codehelp_normal()
+
         self.__c_load_little = self.__canvas_load_little()
 
         self.__c_emotion_normal = self.__canvas_emmotion_normal()
+
+        self.__c_emotion_codehelp_normal = self.__canvas_emmotion_codehelp_normal()
 
         self.__c_emotion_little = self.__canvas_emmotion_little()
 
@@ -231,14 +237,33 @@ class copilote_gui(aTk):
                                          "speak":(self.__dir_gui_light+"during_parole_codehelp.png",self.__dir_gui_dark+"during_parole_codehelp.png")}
 
         l_img,d_img = self.__D_img_speak_gui_codehelp["copilote"]
+        tableurIMG = aImage(path_dark="asset/GUI/dark/tableur.png",
+                            path_light="asset/GUI/light/tableur.png", width=30, height=30)
+        wordIMG = aImage(path_dark="asset/GUI/dark/word.png",
+                         path_light="asset/GUI/light/word.png", width=30, height=30)
+        projetrIMG = aImage(path_dark="asset/GUI/dark/projet.png",
+                            path_light="asset/GUI/light/projet.png", width=30, height=30)
 
         c = aBackgroundImage(self,background_light=l_img,background_dark=d_img
-                             ,width=500,height=70)
+                             ,width=500,height=350)
 
-        self.__l_speak_codehelp = aLabel(c, text="ASSISTANT", justify="left", wraplength=500,
-                                       police_size=15, corner_radius=0)
+        self.__l_speak_codehelp = aLabel(c, text="", justify="left", wraplength=445,
+                                         police_size=20, corner_radius=0)
 
         self.__l_speak_codehelp.place(x=15,y=10)
+
+        self.__L_btn_tableur_normal.append(aButton(c, width=30, height=30, text="", image=tableurIMG,
+                                                   dark_color="#1f1f1f", light_color="#e0e0e0",
+                                                   hover_color=("#949494", "#505050"),
+                                                   command=lambda : self.__set_requette_with_btn("aide tableur")))
+        self.__L_btn_word_normal.append(aButton(c, width=30, height=30, text="", image=wordIMG,
+                                                dark_color="#1f1f1f", light_color="#e0e0e0",
+                                                hover_color=("#949494", "#505050"),
+                                                command = lambda : self.__set_requette_with_btn("aide word")))
+        self.__L_btn_project_normal.append(aButton(c, width=30, height=30, text="", image=projetrIMG,
+                                                   dark_color="#1f1f1f", light_color="#e0e0e0",
+                                                   hover_color=("#949494", "#505050"),
+                                                   command=lambda: self.__set_requette_with_btn("aide projet")))
 
         return c
 
@@ -291,6 +316,25 @@ class copilote_gui(aTk):
                              fg_color=("#ffffff","#000000"),width=500,height=350)
         return c
 
+    def __canvas_load_codehelp_normal(self):
+        self.__L_img_load_codehelp_normal_gui.append((self.__dir_gui_light+"codehelp-load0.png",
+                                                      self.__dir_gui_dark+"codehelp-load0.png"))
+        self.__L_img_load_codehelp_normal_gui.append((self.__dir_gui_light+"codehelp-load1.png",
+                                                      self.__dir_gui_dark+"codehelp-load1.png"))
+        self.__L_img_load_codehelp_normal_gui.append((self.__dir_gui_light+"codehelp-load2.png",
+                                                      self.__dir_gui_dark+"codehelp-load2.png"))
+        self.__L_img_load_codehelp_normal_gui.append((self.__dir_gui_light+"codehelp-load3.png",
+                                                      self.__dir_gui_dark+"codehelp-load3.png"))
+        self.__L_img_load_codehelp_normal_gui.append((self.__dir_gui_light+"codehelp-load4.png",
+                                                      self.__dir_gui_dark+"codehelp-load4.png"))
+
+        l_img,d_img = self.__L_img_load_codehelp_normal_gui[0]
+
+        c = aBackgroundImage(self,background_light=l_img,
+                             background_dark=d_img,
+                             fg_color=("#ffffff","#000000"),width=500,height=350)
+        return c
+
     def __canvas_load_little(self):
         self.__L_img_load_gui_little.append((self.__dir_gui_light+"little-load0.png",self.__dir_gui_dark+"little-load0.png"))
         self.__L_img_load_gui_little.append((self.__dir_gui_light+"little-load1.png",self.__dir_gui_dark+"little-load1.png"))
@@ -314,6 +358,23 @@ class copilote_gui(aTk):
         self.__L_img_emotion.append((self.__dir_gui_light + "w4.png", self.__dir_gui_dark + "w4.png"))
 
         l_img,d_img = self.__L_img_emotion[0]
+        c = aBackgroundImage(self,background_light=l_img,background_dark=d_img,width=500,height=350)
+
+        return c
+
+    def __canvas_emmotion_codehelp_normal(self):
+        self.__L_img_emotion_codehelp_normal.append((self.__dir_gui_light + "codehelp-w0.png",
+                                                     self.__dir_gui_dark + "codehelp-w0.png"))
+        self.__L_img_emotion_codehelp_normal.append((self.__dir_gui_light + "codehelp-w1.png",
+                                                     self.__dir_gui_dark + "codehelp-w1.png"))
+        self.__L_img_emotion_codehelp_normal.append((self.__dir_gui_light + "codehelp-w2.png",
+                                                     self.__dir_gui_dark + "codehelp-w2.png"))
+        self.__L_img_emotion_codehelp_normal.append((self.__dir_gui_light + "codehelp-w3.png",
+                                                     self.__dir_gui_dark + "codehelp-w3.png"))
+        self.__L_img_emotion_codehelp_normal.append((self.__dir_gui_light + "codehelp-w4.png",
+                                                     self.__dir_gui_dark + "codehelp-w4.png"))
+
+        l_img,d_img = self.__L_img_emotion_codehelp_normal[0]
         c = aBackgroundImage(self,background_light=l_img,background_dark=d_img,width=500,height=350)
 
         return c
@@ -346,12 +407,15 @@ class copilote_gui(aTk):
         if index < len(self.__L_img_load_gui):
             l_img_normal,d_img_normal = self.__L_img_load_gui[index]
             l_img_little,d_img_little = self.__L_img_load_gui_little[index]
+            l_img_codehelp,d_img_codehelp = self.__L_img_load_codehelp_normal_gui[index]
         else :
             l_img_normal,d_img_normal = self.__L_img_load_gui[0]
             l_img_little,d_img_little = self.__L_img_load_gui_little[0]
+            l_img_codehelp,d_img_codehelp = self.__L_img_load_codehelp_normal_gui[0]
 
         self.__c_load_normal.change_background(background_light=l_img_normal, background_dark=d_img_normal)
         self.__c_load_little.change_background(background_light=l_img_little, background_dark=d_img_little)
+        self.__c_load_codehelp_normal.change_background(background_light=l_img_codehelp, background_dark=d_img_codehelp)
         self.update()
 
     def __change_gui_speak(self):
@@ -429,12 +493,15 @@ class copilote_gui(aTk):
         if index < len(self.__L_img_emotion):
             l_img,d_img = self.__L_img_emotion[index]
             l_img_little,d_img_little = self.__L_img_emotion_litte[index]
+            l_img_codehelp,d_img_codehelp = self.__L_img_emotion_codehelp_normal[index]
         else :
             l_img,d_img = self.__L_img_emotion[0]
             l_img_little,d_img_little = self.__L_img_emotion_litte[0]
+            l_img_codehelp,d_img_codehelp = self.__L_img_emotion_codehelp_normal[0]
 
         self.__c_emotion_normal.change_background(background_light=l_img, background_dark=d_img)
         self.__c_emotion_little.change_background(background_light=l_img_little, background_dark=d_img_little)
+        self.__c_emotion_codehelp_normal.change_background(background_light=l_img_codehelp, background_dark=d_img_codehelp)
         self.update()
 
     # Partie reflection de l'assistant
@@ -459,8 +526,6 @@ class copilote_gui(aTk):
                 self.__active_setting()
                 return
 
-            self.__back_widget_normal.place_forget()
-
             self.__th_reflect_six = th.Thread(target=self.__six_brain.neuron,args=(text,))
             self.__th_reflect_ryley = th.Thread(target=self.__ryley_brain.neuron,args=(text,))
             self.__th_reflect_six.start()
@@ -469,12 +534,14 @@ class copilote_gui(aTk):
             self.__index_load = 0
             self.__change_img_load(0)
 
+            self.__clear_canvas_emotion()
+
             if self.__little_is_enabled:
                 self.__c_speak_little.place_forget()
                 self.__c_load_little.place(x=0, y=0)
             elif self.__codehelp_is_enable:
                 self.__c_speak_normal_codehelp.place_forget()
-                self.__c_load_normal.place(x=0, y=0)
+                self.__c_load_codehelp_normal.place(x=0, y=0)
             else :
                 self.__c_speak_normal.place_forget()
                 self.__c_load_normal.place(x=0, y=0)
@@ -506,12 +573,15 @@ class copilote_gui(aTk):
                 self.__treatment_out_assistant(varOut,0,listOut,[])
             elif self.__timer >= 10:
                     if self.__timer == 10:
-                        if not self.__little_is_enabled:
-                            self.__c_speak_normal.place_forget()
-                            self.__c_emotion_normal.place(x=0, y=0)
-                        else :
+                        if self.__little_is_enabled:
                             self.__c_speak_little.place_forget()
                             self.__c_emotion_little.place(x=0, y=0)
+                        elif self.__codehelp_is_enable:
+                            self.__c_speak_normal_codehelp.place_forget()
+                            self.__c_emotion_codehelp_normal.place(x=0, y=0)
+                        else :
+                            self.__c_speak_normal.place_forget()
+                            self.__c_emotion_normal.place(x=0, y=0)
                     self.__sequence_emotion()
 
         self.__manage_btn_open_fnc()
@@ -559,13 +629,15 @@ class copilote_gui(aTk):
 
         self.__c_boot.place_forget()
 
-        if not self.__little_is_enabled:
-            self.__c_speak_normal.place(x=0, y=0)
-        else :
+        if self.__little_is_enabled:
             self.__c_speak_little.place(x=0, y=0)
-
-        self.__l_speak_normal.configure(text=text)
-        self.__l_speak_little.configure(text=text)
+            self.__l_speak_little.configure(text=text)
+        elif self.__codehelp_is_enable:
+            self.__c_speak_normal_codehelp.place(x=0, y=0)
+            self.__l_speak_codehelp.configure(text=text)
+        else :
+            self.__c_speak_normal.place(x=0, y=0)
+            self.__l_speak_normal.configure(text=text)
 
         if self.__speak_is_enable:
             self.__set_voice_speak()
@@ -908,10 +980,12 @@ class copilote_gui(aTk):
     def __clear_canvas_load(self):
         self.__c_load_normal.place_forget()
         self.__c_load_little.place_forget()
+        self.__c_load_codehelp_normal.place_forget()
 
     def __clear_canvas_emotion(self):
         self.__c_emotion_normal.place_forget()
         self.__c_emotion_little.place_forget()
+        self.__c_emotion_codehelp_normal.place_forget()
 
     def __clear_back_widget(self):
         self.__back_widget_normal.place_forget()
