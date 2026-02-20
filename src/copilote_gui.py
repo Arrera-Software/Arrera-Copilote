@@ -870,27 +870,35 @@ class copilote_gui(aTk):
 
     def __view_quick_setting(self):
         self.__timer = 0
-        self.__c_load_normal.place_forget()
-        self.__c_load_little.place_forget()
-        self.__c_speak_normal.place_forget()
+
+        self.__clear_canvas_load()
+        self.__clear_canvas_emotion()
+        self.__clear_canvas_speak()
+
         self.__c_boot.place_forget()
-        if not self.__little_is_enabled:
-            self.__back_widget_normal.place_forget()
-        else :
-            self.__back_widget_little.place_forget()
+        self.__clear_back_widget()
+
         self.__quick_setting.view()
 
     def __unview_quick_setting(self):
         self.__timer = 0
         self.__quick_setting.unview()
-        self.__c_load_normal.place_forget()
-        self.__c_load_little.place_forget()
-        self.__c_speak_normal.place(x=0, y=0)
+
+        self.__clear_canvas_load()
+        self.__clear_canvas_emotion()
+        self.__clear_canvas_speak()
+
         self.__c_boot.place_forget()
-        if not self.__little_is_enabled:
-            self.__back_widget_normal.placeBottomCenter()
-        else :
+        if self.__little_is_enabled:
             self.__back_widget_little.placeBottomCenter()
+            self.__c_speak_little.place(x=0, y=0)
+        elif self.__codehelp_is_enable:
+            self.__back_widget_codehelp_normal.placeBottomCenter()
+            self.__c_speak_normal_codehelp.place(x=0, y=0)
+        else :
+            self.__back_widget_normal.placeBottomCenter()
+            self.__c_speak_normal.place(x=0, y=0)
+
         self.__set_state_micro_sound()
 
     def __set_state_micro_sound(self):
