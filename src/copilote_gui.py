@@ -155,6 +155,12 @@ class copilote_gui(aTk):
 
         self.__quick_setting.mode_normal()
 
+        # Appelle des methode pour cree les bouton
+        self.__create_arrera_work_btn([self.__c_speak_normal_codehelp,
+                                       self.__c_emotion_codehelp_normal,
+                                       self.__c_speak_normal,
+                                       self.__c_emotion_normal])
+
     def active(self,firstBoot:bool,update_available:bool):
 
         self.__first_boot = firstBoot
@@ -204,31 +210,13 @@ class copilote_gui(aTk):
                                   "six":(self.__dir_gui_light+"parole_six.png",self.__dir_gui_dark+"parole_six.png"),
                                   "ryley":(self.__dir_gui_light+"parole_ryley.png",self.__dir_gui_dark+"parole_ryley.png"),
                                   "speak":(self.__dir_gui_light+"during_parole.png",self.__dir_gui_dark+"during_parole.png")}
-        tableurIMG = aImage(path_dark="asset/GUI/dark/tableur.png",
-                            path_light="asset/GUI/light/tableur.png", width=30, height=30)
-        wordIMG = aImage(path_dark="asset/GUI/dark/word.png",
-                         path_light="asset/GUI/light/word.png", width=30, height=30)
-        projetrIMG = aImage(path_dark="asset/GUI/dark/projet.png",
-                            path_light="asset/GUI/light/projet.png", width=30, height=30)
+
         l_img,d_img = self.__D_img_speak_gui_normal["copilote"]
         c = aBackgroundImage(self,background_light=l_img,background_dark=d_img,
                              fg_color=("#ffffff","#000000"),width=500,height=350)
 
         self.__l_speak_normal = aLabel(c, text="", justify="left", wraplength=445,
                                        police_size=20, corner_radius=0)
-
-        self.__L_btn_tableur_normal.append(aButton(c, width=30, height=30, text="", image=tableurIMG,
-                                                   dark_color="#1f1f1f", light_color="#e0e0e0",
-                                                   hover_color=("#949494", "#505050"),
-                                                   command=lambda : self.__set_requette_with_btn("aide tableur")))
-        self.__L_btn_word_normal.append(aButton(c, width=30, height=30, text="", image=wordIMG,
-                                                dark_color="#1f1f1f", light_color="#e0e0e0",
-                                                hover_color=("#949494", "#505050"),
-                                                command = lambda : self.__set_requette_with_btn("aide word")))
-        self.__L_btn_project_normal.append(aButton(c, width=30, height=30, text="", image=projetrIMG,
-                                                   dark_color="#1f1f1f", light_color="#e0e0e0",
-                                                   hover_color=("#949494", "#505050"),
-                                                   command=lambda: self.__set_requette_with_btn("aide projet")))
 
         return c
 
@@ -237,33 +225,15 @@ class copilote_gui(aTk):
                                          "speak":(self.__dir_gui_light+"during_parole_codehelp.png",self.__dir_gui_dark+"during_parole_codehelp.png")}
 
         l_img,d_img = self.__D_img_speak_gui_codehelp["copilote"]
-        tableurIMG = aImage(path_dark="asset/GUI/dark/tableur.png",
-                            path_light="asset/GUI/light/tableur.png", width=30, height=30)
-        wordIMG = aImage(path_dark="asset/GUI/dark/word.png",
-                         path_light="asset/GUI/light/word.png", width=30, height=30)
-        projetrIMG = aImage(path_dark="asset/GUI/dark/projet.png",
-                            path_light="asset/GUI/light/projet.png", width=30, height=30)
 
         c = aBackgroundImage(self,background_light=l_img,background_dark=d_img
-                             ,width=500,height=350)
+                                ,fg_color=("#ffffff","#000000"),width=500,height=350)
 
         self.__l_speak_codehelp = aLabel(c, text="", justify="left", wraplength=445,
                                          police_size=20, corner_radius=0)
 
         self.__l_speak_codehelp.place(x=15,y=10)
 
-        self.__L_btn_tableur_normal.append(aButton(c, width=30, height=30, text="", image=tableurIMG,
-                                                   dark_color="#1f1f1f", light_color="#e0e0e0",
-                                                   hover_color=("#949494", "#505050"),
-                                                   command=lambda : self.__set_requette_with_btn("aide tableur")))
-        self.__L_btn_word_normal.append(aButton(c, width=30, height=30, text="", image=wordIMG,
-                                                dark_color="#1f1f1f", light_color="#e0e0e0",
-                                                hover_color=("#949494", "#505050"),
-                                                command = lambda : self.__set_requette_with_btn("aide word")))
-        self.__L_btn_project_normal.append(aButton(c, width=30, height=30, text="", image=projetrIMG,
-                                                   dark_color="#1f1f1f", light_color="#e0e0e0",
-                                                   hover_color=("#949494", "#505050"),
-                                                   command=lambda: self.__set_requette_with_btn("aide projet")))
 
         return c
 
@@ -358,7 +328,8 @@ class copilote_gui(aTk):
         self.__L_img_emotion.append((self.__dir_gui_light + "w4.png", self.__dir_gui_dark + "w4.png"))
 
         l_img,d_img = self.__L_img_emotion[0]
-        c = aBackgroundImage(self,background_light=l_img,background_dark=d_img,width=500,height=350)
+        c = aBackgroundImage(self,background_light=l_img,background_dark=d_img,
+                             width=500,height=350,fg_color=("#ffffff","#000000"))
 
         return c
 
@@ -375,7 +346,8 @@ class copilote_gui(aTk):
                                                      self.__dir_gui_dark + "codehelp-w4.png"))
 
         l_img,d_img = self.__L_img_emotion_codehelp_normal[0]
-        c = aBackgroundImage(self,background_light=l_img,background_dark=d_img,width=500,height=350)
+        c = aBackgroundImage(self,background_light=l_img,background_dark=d_img,
+                             fg_color=("#ffffff","#000000"),width=500,height=350)
 
         return c
 
@@ -873,6 +845,28 @@ class copilote_gui(aTk):
         self.__timer = 0
 
     # Methode des bouton
+
+    def __create_arrera_work_btn(self,list_canvas:list):
+        tableurIMG = aImage(path_dark="asset/GUI/dark/tableur.png",
+                            path_light="asset/GUI/light/tableur.png", width=30, height=30)
+        wordIMG = aImage(path_dark="asset/GUI/dark/word.png",
+                         path_light="asset/GUI/light/word.png", width=30, height=30)
+        projetrIMG = aImage(path_dark="asset/GUI/dark/projet.png",
+                            path_light="asset/GUI/light/projet.png", width=30, height=30)
+
+        for c in list_canvas:
+            self.__L_btn_tableur_normal.append(aButton(c, width=30, height=30, text="", image=tableurIMG,
+                                                       dark_color="#1f1f1f", light_color="#e0e0e0",
+                                                       hover_color=("#949494", "#505050"),
+                                                       command=lambda : self.__set_requette_with_btn("aide tableur")))
+            self.__L_btn_word_normal.append(aButton(c, width=30, height=30, text="", image=wordIMG,
+                                                    dark_color="#1f1f1f", light_color="#e0e0e0",
+                                                    hover_color=("#949494", "#505050"),
+                                                    command = lambda : self.__set_requette_with_btn("aide word")))
+            self.__L_btn_project_normal.append(aButton(c, width=30, height=30, text="", image=projetrIMG,
+                                                       dark_color="#1f1f1f", light_color="#e0e0e0",
+                                                       hover_color=("#949494", "#505050"),
+                                                       command=lambda: self.__set_requette_with_btn("aide projet")))
 
     def __view_quick_setting(self):
         self.__timer = 0
