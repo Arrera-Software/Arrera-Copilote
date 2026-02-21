@@ -736,7 +736,9 @@ class copilote_gui(aTk):
             self.__assistant_speaking = False
 
     def __sequence_stop(self):
-        self.__set_normal()
+        self.geometry("500x400")
+        self.__little_is_enabled = False
+        self.__codehelp_is_enable = False
 
         self.__clear_canvas_emotion()
         self.__clear_canvas_load()
@@ -1084,7 +1086,7 @@ class copilote_gui(aTk):
     # Methode pour les mode
 
     def __mode_normal(self):
-        self.geometry("500x400+5+30")
+        self.geometry("500x400")
         self.__clear_canvas_speak()
         self.__clear_canvas_load()
         self.__clear_canvas_emotion()
@@ -1095,7 +1097,7 @@ class copilote_gui(aTk):
         self.__quick_setting.mode_normal()
 
     def __mode_little(self):
-        self.geometry("500x120+5+30")
+        self.geometry("500x120")
         self.update()
         self.__clear_canvas_speak()
         self.__clear_canvas_load()
@@ -1107,25 +1109,25 @@ class copilote_gui(aTk):
         self.__quick_setting.mode_little()
 
     def __mode_codehelp(self):
-        self.geometry("500x400+5+30")
+        self.geometry("500x400")
         self.__clear_canvas_speak()
         self.__clear_canvas_load()
         self.__clear_canvas_emotion()
         self.__clear_back_widget()
         self.__little_is_enabled = False
         self.__codehelp_is_enable = True
-        self.__sequence_speak("Mode codehelp") # ToDo : Changer la phrase
+        self.__sequence_speak(self.__copilote_language.get_ph_windows_mode(3))
         self.__quick_setting.mode_normal()
 
     def __mode_codehelp_little(self):
-        self.geometry("500x120+5+30")
+        self.geometry("500x120")
         self.__clear_canvas_speak()
         self.__clear_canvas_load()
         self.__clear_canvas_emotion()
         self.__clear_back_widget()
         self.__little_is_enabled = True
         self.__codehelp_is_enable = True
-        self.__sequence_speak("Mode codehelp little") # ToDo : Changer la phrase
+        self.__sequence_speak(self.__copilote_language.get_ph_windows_mode(4))
         self.__quick_setting.mode_little()
 
     # Methode pour clear les canvas
