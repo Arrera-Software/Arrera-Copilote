@@ -17,12 +17,21 @@ class copilote_assistant():
             name="Arrera Copilote Ryley",
             lang="fr",
             asset="asset/",
-            icon="asset/icone/six-ryley/ryley.png",
-            assistant_color="#041f75",
+            icon="asset/icone/linux/icon.png",
+            assistant_color="#442446",
             assistant_texte_color="white",
-            bute="",
+            bute="Je suis un assistant spécialisé dans l'aide au développement et les services utilitaires.",
             createur="Baptiste P",
-            listFonction=[],
+            listFonction=["Ouvrir une application",
+                          "Aider aux recherches sur Internet",
+                          "Donner la météo",
+                          "Faire un résumé des actualités",
+                          "Aider à organiser son travail",
+                          "Donner l'heure",
+                          "Créer des projets",
+                          "Éditer des fichiers Word",
+                          "Éditer des tableurs",
+                          "Outil d'aide au développement informatique"],
             moteurderecherche="google",
             etatService=1,
             etatTime=1,
@@ -34,8 +43,8 @@ class copilote_assistant():
             etatWork=0,
             etatSocket=0,
             lienDoc="www.google.com", # TODO : A changer plus tart
-            fichierLangue="language/tutoiment/", # Path to language files
-            fichierKeyword="keyword/",            # Path to keyword files
+            fichierLangue="language/tutoiment/",
+            fichierKeyword="keyword/",
             voiceAssistant=False
         )
 
@@ -43,12 +52,21 @@ class copilote_assistant():
             name="Arrera Copilote Six",
             lang="fr",
             asset="asset/",
-            icon="asset/icone/six-ryley/six.png",
-            assistant_color="#e0e0e0",
+            icon="asset/icone/linux/icon.png",
+            assistant_color="#442446",
             assistant_texte_color="black",
-            bute="",
+            bute="Je suis un assistant polyvalent pour la recherche, la bureautique et l'ouverture d'applications.",
             createur="Baptiste P",
-            listFonction=[],
+            listFonction=["Ouvrir une application",
+                          "Aider aux recherches sur Internet",
+                          "Donner la météo",
+                          "Faire un résumé des actualités",
+                          "Aider à organiser son travail",
+                          "Donner l'heure",
+                          "Créer des projets",
+                          "Éditer des fichiers Word",
+                          "Éditer des tableurs",
+                          "Outil d'aide au développement informatique"],
             moteurderecherche="google",
             etatService=0,
             etatTime=0,
@@ -60,8 +78,8 @@ class copilote_assistant():
             etatWork=1,
             etatSocket=1,
             lienDoc="www.google.com", # TODO : A changer plus tart
-            fichierLangue="language/vouvoiment/", # Path to language files
-            fichierKeyword="keyword/",            # Path to keyword files
+            fichierLangue="language/vouvoiment/",
+            fichierKeyword="keyword/",
             voiceAssistant=True
         )
 
