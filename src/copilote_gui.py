@@ -751,6 +751,8 @@ class copilote_gui(aTk):
 
         if self.__speak_is_enable:
             self.__quick_setting.unview()
+            self.__clear_canvas_speak()
+            self.__l_speak_normal.configure(text=texte_stop)
             self.__c_speak_normal.place(x=0, y=0)
             self.__th_speak_stop = th.Thread(target=self.__arr_voice.say,args=(texte_stop,))
             self.__th_speak_stop.start()
