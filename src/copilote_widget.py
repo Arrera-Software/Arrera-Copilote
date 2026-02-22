@@ -1,9 +1,10 @@
 from lib.arrera_tk import *
 from librairy.dectectionOS import OS
 from src.copilote_setting import copilote_setting
+from gestionnaire.gestion import gestionnaire
 
 class back_widget(aFrame):
-    def __init__(self, master:aTk, key_gest:keyboad_manager,
+    def __init__(self, master:aTk,assistant_gest:gestionnaire, key_gest:keyboad_manager,
                  dirImg:list, img_windows_mode:str,
                  img_mode:str, dectOS:OS, fonc_speed_setting:Callable,
                  fonc_mode:Callable, fonc_windows_mode:Callable,
@@ -14,6 +15,8 @@ class back_widget(aFrame):
         self.__d_dir = dirImg[1]
 
         self.__master = master
+
+        self.__assistant_gest = assistant_gest
 
 
         user = self.__entry_btn(img_mode,img_windows_mode)
@@ -89,7 +92,7 @@ class back_widget(aFrame):
         self.__master.focus()
 
     def get_text_entry(self):
-        return self.__entry.get()
+        return self.__assistant_gest.netoyageChaine(self.__entry.get().lower())
 
     def clear_entry(self):
         self.__entry.delete(0,END)
