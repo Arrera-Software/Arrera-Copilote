@@ -133,6 +133,7 @@ class copilote_gui(aTk):
                                              self.__active_setting)
 
         self.__back_widget_normal = back_widget(self,key_gest=self.__key_manage,
+                                                assistant_gest=self.__gestionnaire,
                                                 dirImg=[self.__dir_gui_light,self.__dir_gui_dark],
                                                 img_windows_mode="icon-lttle.png",img_mode="codehelp.png",
                                                 dectOS=self.__objOS,
@@ -143,6 +144,7 @@ class copilote_gui(aTk):
                                                 fonc_send= self.__send_on_assistants)
 
         self.__back_widget_codehelp_normal = back_widget(self,key_gest=self.__key_manage,
+                                                 assistant_gest=self.__gestionnaire,
                                                 dirImg=[self.__dir_gui_light,self.__dir_gui_dark],
                                                 img_windows_mode="icon-lttle.png",img_mode="copilote.png",
                                                 dectOS=self.__objOS,
@@ -153,6 +155,7 @@ class copilote_gui(aTk):
                                                 fonc_send= self.__send_on_assistants)
 
         self.__back_widget_codehelp_little = back_widget(self,key_gest=self.__key_manage,
+                                                         assistant_gest=self.__gestionnaire,
                                                          dirImg=[self.__dir_gui_light,self.__dir_gui_dark],
                                                          img_windows_mode="icon-big.png",img_mode="copilote.png",
                                                          dectOS=self.__objOS,
@@ -163,6 +166,7 @@ class copilote_gui(aTk):
                                                          fonc_send= self.__send_on_assistants)
 
         self.__back_widget_little = back_widget(self, key_gest=self.__key_manage,
+                                                assistant_gest=self.__gestionnaire,
                                                 dirImg=[self.__dir_gui_light, self.__dir_gui_dark],
                                                 img_windows_mode="icon-big.png", img_mode="codehelp.png",
                                                 dectOS=self.__objOS,
@@ -268,7 +272,7 @@ class copilote_gui(aTk):
         self.__l_speak_little = aLabel(c, text="ASSISTANT", justify="left", wraplength=400,
                                        police_size=14, corner_radius=0)
 
-        self.__l_speak_little.place(x=15,y=10)
+        self.__l_speak_little.place(x=18,y=10)
         return c
 
     def __canvas_speak_codehelp_little(self):
@@ -534,7 +538,7 @@ class copilote_gui(aTk):
         self.__c_speak_little_codehelp.change_background(background_light=l_img_little_codehelp, background_dark=d_img_little_codehelp)
 
         self.__l_speak_normal.configure(fg_color=("#3b224a", "#3b224a"), text_color=("#ffffff", "#ffffff"))
-        self.__l_speak_little.configure(fg_color=("#3b224a", "#3b224a"), text_color=("#ffffff", "#ffffff"))
+        self.__l_speak_little.configure(fg_color=("#442346", "#442346"), text_color=("#ffffff", "#ffffff"))
         self.__l_speak_codehelp.configure(fg_color=("#3b224a", "#3b224a"), text_color=("#ffffff", "#ffffff"))
 
         self.__l_speak_normal.place(x=30, y=100)
@@ -567,49 +571,73 @@ class copilote_gui(aTk):
         self.__assistant_speaking = True
 
         if self.__little_is_enabled and self.__codehelp_is_enable:
-            text = self.__back_widget_codehelp_little.get_text_entry()
+            content = self.__back_widget_codehelp_little.get_text_entry()
             self.__back_widget_codehelp_little.clear_entry()
         elif self.__little_is_enabled:
-            text = self.__back_widget_little.get_text_entry()
+            content = self.__back_widget_little.get_text_entry()
             self.__back_widget_little.clear_entry()
         elif self.__codehelp_is_enable:
-            text = self.__back_widget_codehelp_normal.get_text_entry()
+            content = self.__back_widget_codehelp_normal.get_text_entry()
             self.__back_widget_codehelp_normal.clear_entry()
         else :
-            text = self.__back_widget_normal.get_text_entry()
+            content = self.__back_widget_normal.get_text_entry()
             self.__back_widget_normal.clear_entry()
 
-        if text != "":
+        if content != "":
 
-            if "parametre" in text or "settings" in text:
+            if "parametre" in content or "settings" in content:
                 self.__active_setting()
-                return
-
-            self.__th_reflect_six = th.Thread(target=self.__six_brain.neuron,args=(text,))
-            self.__th_reflect_ryley = th.Thread(target=self.__ryley_brain.neuron,args=(text,))
-            self.__th_reflect_six.start()
-            self.__th_reflect_ryley.start()
-
-            self.__index_load = 0
-            self.__change_img_load(0)
-
-            self.__clear_canvas_emotion()
-
-            if self.__little_is_enabled and self.__codehelp_is_enable:
-                self.__c_speak_little_codehelp.place_forget()
-                self.__c_load_codehelp_little.place(x=0, y=0)
-            elif self.__little_is_enabled:
-                self.__c_speak_little.place_forget()
-                self.__c_load_little.place(x=0, y=0)
-            elif self.__codehelp_is_enable:
-                self.__c_speak_normal_codehelp.place_forget()
-                self.__c_load_codehelp_normal.place(x=0, y=0)
+            elif "fenetre" in content :
+                if "petit" in content or "reduis" in content or "mini" in content or "compact" in content:
+                    if self.__codehelp_is_enable:
+                        self.__mode_codehelp_little()
+                    else :
+                        self.__mode_little()
+                elif "normal" in content or "standard" in content or "default" in content:
+                    if self.__codehelp_is_enable:
+                        self.__mode_codehelp()
+                    else :
+                        self.__mode_normal()
+                else :
+                    self.__sequence_speak(self.__copilote_language.get_ph_error(1))
+            elif "mode" in content:
+                if "normal" in content :
+                    if self.__codehelp_is_enable:
+                        self.__mode_codehelp()
+                    else :
+                        self.__mode_normal()
+                elif "codehelp" in content or "developpement" in content :
+                    if not self.__little_is_enabled:
+                        self.__mode_codehelp()
+                    else :
+                        self.__mode_codehelp_little()
+                else :
+                    self.__sequence_speak(self.__copilote_language.get_ph_error(2))
             else :
-                self.__c_speak_normal.place_forget()
-                self.__c_load_normal.place(x=0, y=0)
+                self.__th_reflect_six = th.Thread(target=self.__six_brain.neuron,args=(content,))
+                self.__th_reflect_ryley = th.Thread(target=self.__ryley_brain.neuron,args=(content,))
+                self.__th_reflect_six.start()
+                self.__th_reflect_ryley.start()
 
+                self.__index_load = 0
+                self.__change_img_load(0)
 
-            self.__update_during_reflect()
+                self.__clear_canvas_emotion()
+
+                if self.__little_is_enabled and self.__codehelp_is_enable:
+                    self.__c_speak_little_codehelp.place_forget()
+                    self.__c_load_codehelp_little.place(x=0, y=0)
+                elif self.__little_is_enabled:
+                    self.__c_speak_little.place_forget()
+                    self.__c_load_little.place(x=0, y=0)
+                elif self.__codehelp_is_enable:
+                    self.__c_speak_normal_codehelp.place_forget()
+                    self.__c_load_codehelp_normal.place(x=0, y=0)
+                else :
+                    self.__c_speak_normal.place_forget()
+                    self.__c_load_normal.place(x=0, y=0)
+
+                self.__update_during_reflect()
 
     def __treatment_out_assistant(self,var_six:int,var_ryley:int,out_six:list,out_ryley:list):
         if var_six == 15 and var_ryley == 15:
@@ -936,12 +964,16 @@ class copilote_gui(aTk):
     def __active_setting(self):
         self.__setting_is_enabled = True
         self.__quick_setting.unview()
-        self.__mode_normal()
-        self.__c_speak_little.place_forget()
-        self.__c_load_normal.place_forget()
-        self.__c_load_little.place_forget()
-        self.__back_widget_normal.place_forget()
-        self.__c_speak_normal.place_forget()
+        self.geometry("500x400")
+
+        self.__little_is_enabled = False
+        self.__codehelp_is_enable = False
+
+        self.__clear_canvas_speak()
+        self.__clear_canvas_load()
+        self.__clear_canvas_emotion()
+        self.__clear_back_widget()
+
         self.__c_boot.place_forget()
         self.__gazelleUI.active()
 
