@@ -231,7 +231,7 @@ class gestGUI:
         liste = self.__parms[1]
         intIn = self.__parms[2]
         self.__guiResumer.activeView(dict=dicte, list=liste, intIn=intIn)
-        self.__textOut = self.__gest.getLanguageObjet().getPhraseOpenTraducteur()
+        self.__textOut = self.__parms[3]
         self.__valOut = 5
         return True
 
