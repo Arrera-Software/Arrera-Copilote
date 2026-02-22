@@ -18,3 +18,6 @@ class copilote_language :
 
     def get_ph_cancel_close(self):
         return self.__f_copilote.getContentJsonFlag("cancel_close")
+
+    def get_ph_error(self,nb:int):
+        return self.__f_copilote.getContentJsonFlag("error"+str(nb))
