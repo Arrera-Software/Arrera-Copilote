@@ -68,3 +68,19 @@ L'explication des boutons va de gauche à droite
 - Bouton Micro (Bouton avec le logo de micro) : Active ou désactive le système de trigger word de l'assistant.
 - Bouton sons (Bouton avec un logo de haut-parleur) : Active ou désactive la lecture à voix haute de la réponse de l'assistant.
 - Bouton Fermer : Ferme les paramètres rapides.
+
+## Explication des paramètres
+
+![setting_copilote.png](img_doc/setting_copilote.png)
+
+- *Paramètres généraux* : Paramètre qui permet d'ajouter ou supprimer les dossiers d'Arrera Work et Arrera Download
+- *Paramètres utilisateur* : Paramètre pour modifier le nom, le prénom et le genre avec lesquels vous souhaitez que votre assistant vous appelle
+- *Paramètres météo* : Permet de gérer les villes enregistrées dans le système de météo de l'assistant
+- *Intelligence Artificielle* : Permet d'activer ou désactiver l'utilisation de modèles d'intelligence artificielle et de télécharger de nouveaux modèles 
+- *Paramètres de recherche* : Paramètre pour changer le moteur de recherche utilisé par l'assistant
+- *Logiciels externes* : Permet d'ajouter ou supprimer les logiciels enregistrés dans l'assistant pour qu'il puisse vous les ouvrir 
+- *Raccourcis internet* : Permet d'ajouter ou supprimer les raccourcis internet enregistrés dans l'assistant pour qu'il puisse vous les ouvrir 
+- *Adresse GPS* : Permet de modifier les adresses de votre lieu de travail et de domicile enregistrées dans l'assistant pour qu'il puisse vous calculer les meilleurs itinéraires
+- *Intégration Github* : Permet d'ajouter le token github pour les fonctions de codehelp
+- *Paramètres du micro* : Permet d'ajouter les mots de déclenchement de l'assistant et d'activer ou non le son au déclenchement du micro
+- *Retour* : Retourne à l'assistant
