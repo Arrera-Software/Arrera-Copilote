@@ -1065,6 +1065,7 @@ class copilote_gui(aTk):
         self.__clear_canvas_load()
         self.__clear_canvas_emotion()
         self.__clear_canvas_speak()
+        self.__clear_back_widget()
 
         self.__c_boot.place_forget()
         if self.__little_is_enabled and self.__codehelp_is_enable:
