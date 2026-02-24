@@ -48,3 +48,23 @@ L'explication des boutons va de gauche à droite
 - *Bouton Copilote* : Passe en mode normal en petite fenêtre.
 - *Bouton fenêtre normale* : Passe l'assistant en mode fenêtre normale CodeHelp.
 - *Bouton paramètres rapides* : Ouvre les paramètres rapides de Copilote.
+
+## Explication des paramètres rapides (Quick settings)
+
+### Mode fenêtre normale
+
+![quick_setting_normal.png](img_doc/quick_setting_normal.png)
+
+- Bouton Micro (Bouton avec le logo de micro) : Active ou désactive le système de trigger word de l'assistant.
+- Bouton sons (Bouton avec un logo de haut-parleur) : Active ou désactive la lecture à voix haute de la réponse de l'assistant.
+- Bouton Paramètres : Lance les paramètres d'Arrera Copilote.
+- Bouton Fermer : Ferme les paramètres rapides.
+
+
+### Mode petite fenêtre
+
+![quick_setting_little.png](img_doc/quick_setting_little.png)
+
+- Bouton Micro (Bouton avec le logo de micro) : Active ou désactive le système de trigger word de l'assistant.
+- Bouton sons (Bouton avec un logo de haut-parleur) : Active ou désactive la lecture à voix haute de la réponse de l'assistant.
+- Bouton Fermer : Ferme les paramètres rapides.
