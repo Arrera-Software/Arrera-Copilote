@@ -42,7 +42,7 @@ class copilote_assistant():
             etatCodehelp=1,
             etatWork=0,
             etatSocket=0,
-            lienDoc="www.google.com", # TODO : A changer plus tart
+            lienDoc="https://arrera-software.fr/docCopilote",
             fichierLangue="language/tutoiment/",
             fichierKeyword="keyword/",
             voiceAssistant=False
