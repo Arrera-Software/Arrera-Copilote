@@ -9,7 +9,7 @@ from typing import Union, Callable
 
 from customtkinter import CTkCanvas
 
-VERSIONARRERATK = "2.0.2"
+VERSIONARRERATK = "2.0.3"
 
 
 # Fonction pour gerer les resource sur mac os
@@ -231,8 +231,12 @@ class aEntryLengend(placement_Tool_Kit_internet, ctk.CTkFrame):
         text = text + ":  "
         self.__label = aLabel(self, text=text, font=("Roboto", police_size, "bold"))
 
-        if bg != "":
-            self.__label.configure(fg_color=bg)
+
+        if bg == "":
+            bg = master.cget("fg_color")
+
+        self.configure(fg_color=bg)
+        self.__label.configure(fg_color=bg)
 
         if fg != "":
             self.__label.configure(text_color=fg)
@@ -304,8 +308,12 @@ class aOptionMenuLengend(placement_Tool_Kit_internet, ctk.CTkFrame):
         text = text + ":  "
         self.__label = aLabel(self, text=text, font=("Roboto", police_size, "bold"))
 
+        self.configure(fg_color=master.cget("fg_color"))
+
         if bg != "":
             self.__label.configure(fg_color=bg)
+        else :
+            self.__label.configure(fg_color=master.cget("fg_color"))
 
         if fg != "":
             self.__label.configure(text_color=fg)
