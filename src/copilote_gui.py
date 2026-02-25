@@ -981,6 +981,7 @@ class copilote_gui(aTk):
         self.__gazelleUI.clearAllFrame()
         self.__sequence_speak(self.__copilote_language.get_ph_setting())
         self.__setting_is_enabled = False
+        self.__gestionnaire.getLanguageObjet().setVarUser()
         self.__timer = 0
 
     # Methode des bouton
