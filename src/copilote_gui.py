@@ -64,7 +64,7 @@ class copilote_gui(aTk):
         self.__copilote_setting = copilote_setting(self.__objOS)
 
         # Init de la langue
-        self.__copilote_language = copilote_language("json_conf/langue_copilote.json")
+        self.__copilote_language = copilote_language(resource_path("json_conf/langue_copilote.json"))
 
         # Theard
         self.__th_reflect_six = th.Thread()
@@ -80,7 +80,7 @@ class copilote_gui(aTk):
         self.protocol("WM_DELETE_WINDOW", self.__on_close)
 
         # Init des parametre
-        self.__gazelleUI = arrera_gazelle(self,self.__gestionnaire,"json_conf/conf-setting.json")
+        self.__gazelleUI = arrera_gazelle(self,self.__gestionnaire,resource_path("json_conf/conf-setting.json"))
         self.__gazelleUI.passFNCQuit(self.__quit_setting)
         self.__gazelleUI.passFNCBTNIcon(self.__about)
 

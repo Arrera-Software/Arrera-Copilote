@@ -77,7 +77,7 @@ class copilote_assistant():
             etatCodehelp=0,
             etatWork=1,
             etatSocket=1,
-            lienDoc="www.google.com", # TODO : A changer plus tart
+            lienDoc="https://arrera-software.fr/docRyley",
             fichierLangue="language/vouvoiment/",
             fichierKeyword="keyword/",
             voiceAssistant=True
@@ -99,7 +99,7 @@ class copilote_assistant():
     def active(self):
         if self.__firt_boot:
             l = arrera_lynx(self.__gestionnaire,
-                            "json_conf/configLynx.json",
+                            resource_path("json_conf/configLynx.json"),
                             THEME_FILE)
             self.__state_conf = l.return_state_lynx()
         else :
