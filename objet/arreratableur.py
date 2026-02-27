@@ -24,28 +24,68 @@ class CArreraTableur:
         return sortie
     
     def write(self,case:str,valeur):
-        self.__table[case]=valeur
+        try:
+            self.__table[case]=valeur
+            return True
+        except Exception as e:
+            # print(f"Erreur lors de l'écriture dans la cellule {case} : {e}")
+            return False
     
     def deleteValeur(self,case):
-        self.__table[case] = None
+        try :
+            self.__table[case] = None
+            return True
+        except Exception as e:
+            print(e)
+            return False
     
     def saveFile(self):
-        self.__workbook.save(self.__file)
+        try :
+            self.__workbook.save(self.__file)
+            return True
+        except Exception as e:
+            # print(f"Erreur lors de la sauvegarde du fichier : {e}")
+            return False
     
     def closeFile(self):
         self.__del__()
 
     def somme(self,caseDestination:str,case1:str,case2:str):
-        self.__table[caseDestination] = "=SUM("+case1+":"+case2+")"
+        try :
+            self.__table[caseDestination] = "=SUM("+case1+":"+case2+")"
+            return True
+        except Exception as e:
+            # print(f"Erreur lors de la somme : {e}")
+            return False
 
     def moyenne(self,caseDestination:str,case1:str,case2:str):
-        self.__table[caseDestination] = "=AVERAGE("+case1+":"+case2+")"
+        try:
+            self.__table[caseDestination] = "=AVERAGE("+case1+":"+case2+")"
+            return True
+        except Exception as e:
+            # print(f"Erreur lors de la somme : {e}")
+            return False
     
     def comptage(self,caseDestination:str,case1:str,case2:str):
-        self.__table[caseDestination] = "=COUNT("+case1+":"+case2+")"
+        try:
+            self.__table[caseDestination] = "=COUNT("+case1+":"+case2+")"
+            return True
+        except Exception as e:
+            # print(f"Erreur lors de la somme : {e}")
+            return False
     
     def minimun(self,caseDestination:str,case1:str,case2:str):
-        self.__table[caseDestination] = "=MIN("+case1+":"+case2+")"
-    
+        try:
+            self.__table[caseDestination] = "=MIN("+case1+":"+case2+")"
+            return True
+        except Exception as e:
+            # print(f"Erreur lors de la somme : {e}")
+            return False
+
     def maximun(self,caseDestination:str,case1:str,case2:str):
-        self.__table[caseDestination] = "=MAX("+case1+":"+case2+")"
+        try:
+            self.__table[caseDestination] = "=MAX("+case1+":"+case2+")"
+            return True
+        except Exception as e:
+            # print(f"Erreur lors de la somme : {e}")
+            return False

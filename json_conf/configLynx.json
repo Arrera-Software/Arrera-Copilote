@@ -1,0 +1,10 @@
+{
+    "icon_unix": "asset/icone/linux/icon.png",
+    "icon_win": "asset/icone/win/icon.ico",
+    "text_presentation": "Bienvenue sur Arrera Copilote, l'alliance des assistants Arrera Six et Arrera Ryley qui se sont rassemblés pour vous assister dans votre vie de tous les jours, votre travail et dans tous vos projets.",
+   "list_genre": ["Monsieur","Madame","Mademoiselle","Maitre"],
+    "list_engine_search": ["google","brave","duckduckgo","qwant","ecosia","bing","perplexity"],
+    "text_end": "Votre Arrera Copilote a bien été configuré. Arrera Six et Ryley sont maintenant prêts à vous assister.",
+    "github_integration": "1",
+    "micro_use": "1"
+}

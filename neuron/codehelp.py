@@ -1,49 +1,108 @@
-from neuron.CNeuronBase import neuronBase
+from neuron.CNeuronBase import neuronBase,gestionnaire
 
 
 class neuroneCodehelp(neuronBase) :
+    def __init__(self,gestionnaire:gestionnaire):
+        super().__init__(gestionnaire)
+        self.__fncCodeHelp = self._gestionnaire.getGestFNC().getFNCCodeHelp()
 
     def neurone(self,requette:str):
-        #Initilisation des variable nbRand et text et valeur
-        self._listSortie = ["", ""]
         self._valeurOut = 0
-        if self._gestNeuron.getCodeHelp():
-            if "ouvre" in requette:
-                if ("organisateur de variable" in requette)or("orga var" in requette):
-                    self._listSortie = [self._fonctionArreraNetwork.sortieOpenOrgaVar(), ""]
-                    self._objHistorique.setAction("Ouverture organisateur de varriable")
-                    self._valeurOut = 5
-                elif (("color selecteur" in requette) or ("couleur selecteur" in requette)
-                        or ("selecteur de couleur" in requette)):
-                    self._listSortie=[self._fonctionArreraNetwork.sortieOpenColorSelecteur(), ""]
-                    self._objHistorique.setAction("Ouverture selecteur de couleur")
-                    self._valeurOut = 5
-                elif "site github" in requette:
-                    self._listSortie = [self._fonctionArreraNetwork.sortieOpenSiteGithub(), ""]
-                    self._objHistorique.setAction("Ouverture du site github")
-                elif ("gestion github" in requette) or ("gest github" in requette):
-                    self._listSortie = [self._fonctionArreraNetwork.sortieOpenGuiGithub(), ""]
-                    self._objHistorique.setAction("Ouverture de logiciel de gestion github")
-                    self._valeurOut = 5
-                elif "librairy" in requette:
-                    self._listSortie = [self._fonctionArreraNetwork.sortieOpenLibrairy(), ""]
-                    self._objHistorique.setAction("Ouverture de la librairy codehelp")
-                    self._valeurOut = 5
-            elif ("recherche devdoc" in requette or "rdevdoc" in requette or
-                  "sdevdoc" in requette or "recherche microsoft" in requette or
-                  "rmicrosoft" in requette or "smicrosoft" in requette or
-                  "recheche python" in requette or "rpython" in requette or
-                  "spython" in requette):
-                text , recherche = self._fonctionArreraNetwork.sortieSearchDoc(requette)
-                self._listSortie = [text, ""]
-                self._objHistorique.setAction("Recherche documentation " + recherche)
-            elif (("recherche github" in requette) or ("rgithub" in requette) or
-                    ("sgithub" in requette) or ("search github" in requette)):
-                text,recherche = self._fonctionArreraNetwork.sortieSearchGithub(requette)
-                self._listSortie = [text, ""]
-                self._objHistorique.setAction("Recherche github " + recherche)
+        self._listSortie = ["",""]
+        if not self._keyword.checkUtils(requette,"question-fonction"):
+            if self._keyword.checkSearch(requette,"search"):
+                if self._keyword.checkCodeHelp(requette,"devdoc"):
+                    for word in self._keyword.getListKeyword("codehelp","devdoc"):
+                        requette = requette.replace(word,"")
 
-            
-            #Mise a jour de la valeur
-            if self._valeurOut == 0:
-                self._valeurOut = self._gestionNeuron.verrifSortie(self._listSortie[0])
+                    for word in self._keyword.getListKeyword("search","search"):
+                        requette = requette.replace(word,"")
+
+                    requette = requette.strip()
+
+                    if self.__fncCodeHelp.searchDocInDevDoc(requette):
+                        self._listSortie = [self._language.getPhraseCodehelp("6"),
+                                            ""]
+                    else :
+                        self._listSortie = [self._language.getPhraseCodehelp("7"),
+                                            ""]
+
+                    self._valeurOut = 1
+                elif self._keyword.checkCodeHelp(requette,"microsoft"):
+                    for word in self._keyword.getListKeyword("codehelp","microsoft"):
+                        requette = requette.replace(word,"")
+
+                    for word in self._keyword.getListKeyword("search","search"):
+                        requette = requette.replace(word,"")
+
+                    requette = requette.strip()
+
+                    if self.__fncCodeHelp.searchDocInMicrosoft(requette):
+                        self._listSortie = [self._language.getPhraseCodehelp("8"),
+                                            ""]
+                    else :
+                        self._listSortie = [self._language.getPhraseCodehelp("9"),
+                                            ""]
+
+                    self._valeurOut = 1
+                elif self._keyword.checkCodeHelp(requette,"python"):
+                    for word in self._keyword.getListKeyword("codehelp","python"):
+                        requette = requette.replace(word,"")
+
+                    for word in self._keyword.getListKeyword("search","search"):
+                        requette = requette.replace(word,"")
+
+                    requette = requette.strip()
+
+                    if self.__fncCodeHelp.searchDocInPython(requette):
+                        self._listSortie = [self._language.getPhraseCodehelp("10"),
+                                            ""]
+                    else :
+                        self._listSortie = [self._language.getPhraseCodehelp("11"),
+                                            ""]
+
+                    self._valeurOut = 1
+                elif self._keyword.checkCodeHelp(requette,"github"):
+                    for word in self._keyword.getListKeyword("codehelp","github"):
+                        requette = requette.replace(word,"")
+
+                    for word in self._keyword.getListKeyword("search","search"):
+                        requette = requette.replace(word,"")
+
+                    requette = requette.strip()
+
+                    if self.__fncCodeHelp.searchGithub(requette):
+                        self._listSortie = [self._language.getPhraseCodehelp("12"),
+                                            ""]
+                    else :
+                        self._listSortie = [self._language.getPhraseCodehelp("13"),
+                                            ""]
+
+                    self._valeurOut = 1
+            elif self._keyword.checkOpen(requette,"open"):
+                if self._keyword.checkCodeHelp(requette,"orga-var"):
+                    self.__fncCodeHelp.setGUICodeHelp("GUIOrgaVar")
+                    self._listSortie = [self._language.getPhraseCodehelp("1"),
+                                        ""]
+                    self._valeurOut = 23
+                elif self._keyword.checkCodeHelp(requette,"color-select"):
+                    self.__fncCodeHelp.setGUICodeHelp("GUIColorSelector")
+                    self._listSortie = [self._language.getPhraseCodehelp("2"),
+                                        ""]
+                    self._valeurOut = 23
+                elif self._keyword.checkCodeHelp(requette,"github") and  not self._keyword.checkCodeHelp(requette,"gestion"):
+
+                    self.__fncCodeHelp.openSiteGithub()
+                    self._listSortie = [self._language.getPhraseCodehelp("3"),
+                                        ""]
+                    self._valeurOut = 5
+                elif self._keyword.checkCodeHelp(requette,"gestion") and self._keyword.checkCodeHelp(requette,"github"):
+                    self.__fncCodeHelp.setGUICodeHelp("GUIGithubGestion")
+                    self._listSortie = [self._language.getPhraseCodehelp("4"),
+                                        ""]
+                    self._valeurOut = 23
+                elif self._keyword.checkCodeHelp(requette,"librairie"):
+                    self.__fncCodeHelp.setGUICodeHelp("GUILibrairy")
+                    self._listSortie = [self._language.getPhraseCodehelp("5"),
+                                        ""]
+                    self._valeurOut = 23

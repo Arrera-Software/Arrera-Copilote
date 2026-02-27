@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from tkinter import *
+from tkinter import BooleanVar, StringVar
 from PIL import Image, ImageTk
 import webbrowser as wb
 import os
@@ -175,7 +176,7 @@ class CArreraTK :
                 return image
             else :
                 image = ctk.CTkImage(
-                    light_image=Image.open(pathLight),
+                    light_image=Image.open(self.__resource_path(pathLight)),
                     size=(tailleX, tailleY))
                 return image
         else :
@@ -358,12 +359,21 @@ class CArreraTK :
 
         return text
 
-    def createCheckbox(self, screen, text: str = "", bg : str = "", fg : str = ""):
-        checkbox = Checkbutton(screen,text=text)
-        if (bg != ""):
-            checkbox.configure(bg=bg)
-        if (fg != ""):
-            checkbox.configure(fg=fg)
+    def createCheckbox(self, screen,var_chk : BooleanVar, text: str = "", bg : str = "", fg : str = "",command = None):
+        if (self.__mode == 0):
+            checkbox = ctk.CTkCheckBox(screen, text=text, variable=var_chk)
+            if (bg != ""):
+                checkbox.configure(bg=bg)
+            if (fg != ""):
+                checkbox.configure(fg=fg)
+            if command is not None:
+                checkbox.configure(command=command)
+        else :
+            checkbox = Checkbutton(screen,text=text,variable=var_chk)
+            if (bg != ""):
+                checkbox.configure(bg=bg)
+            if (fg != ""):
+                checkbox.configure(fg=fg)
         return checkbox
 
     def createRadioButton(self, screen, text: str = "", bg : str = "", fg : str = ""):
@@ -421,6 +431,34 @@ class CArreraTK :
                 frame.configure(borderwidth=wightBoder,relief="solid")
         return frame
 
+    def createScrollFrame(self, screen,width : int = 0 ,height : int = 0,  bg : str = "",wightBoder : int = 0,corner_radius : int = 1024):
+        if (self.__mode == 0):
+            frame = ctk.CTkScrollableFrame(screen)
+            if (width != 0):
+                frame.configure(width=width)
+            if (height != 0):
+                frame.configure(height=height)
+            if (bg != ""):
+                frame.configure(fg_color=bg)
+            else:
+                frame.configure(fg_color=self.__windowsColor)
+            if (wightBoder != 0):
+                frame.configure(border_width=wightBoder)
+            if (corner_radius != 1024):
+                frame.configure(corner_radius=corner_radius)
+            frame.update()
+        else :
+            frame = Frame(screen)
+            if (width != 0):
+                frame.configure(width=width)
+            if (height != 0):
+                frame.configure(height=height)
+            if (bg != ""):
+                frame.configure(bg=bg)
+            if (wightBoder != 0):
+                frame.configure(borderwidth=wightBoder,relief="solid")
+        return frame
+
     def createOptionMenu(self,screen,value: list, var:StringVar,taille : int = 0, police :str = "",bg : str = "", fg : str = ""):
         if (self.__mode == 0):
             option = ctk.CTkOptionMenu(screen,variable=var,values=value)
@@ -437,15 +475,22 @@ class CArreraTK :
                 option.configure(text_color=fg)
         return option
 
-    def createEntryLegend(self,screen, bg : str = "", fg : str = "",text :str = "", ppolice : str = "Arial", ptaille : int = 12, width : int = 20):
+    def createEntryLegend(self,screen, bg : str = "", fg : str = "",text :str = "", ppolice : str = "Arial", ptaille : int = 12, width : int = 20,gridUsed: bool = False):
         widget = self.createFrame(screen)
         label = self.createLabel(widget, text=text, bg=bg, fg=fg, ppolice=ppolice, ptaille=ptaille, width=width)
         entry = self.createEntry(widget, bg=bg, fg=fg, ppolice=ppolice, ptaille=ptaille, width=width)
-        label.pack(side="left")
-        entry.pack(side="right")
+        if gridUsed:
+            widget.grid_columnconfigure(0, weight=0)
+            widget.grid_columnconfigure(1, weight=1)
+            widget.grid_rowconfigure(0, weight=0)
+            label.grid(row=0, column=0, sticky="w",  padx=(8, 6), pady=6)
+            entry.grid(row=0, column=1, sticky="ew", padx=(6, 8), pady=6)
+        else :
+            label.pack(side="left")
+            entry.pack(side="right")
         return widget,entry
 
-    def createTextBox(self,screen:Union[Tk,ctk.CTk,Toplevel,ctk.CTkToplevel],width:int = 0,height:int = 0,bg:str = "",fg:str = "",ppolice:str="Arial",ptaille:int=12,pstyle:str="normal",wrap:str="word"):
+    def createTextBox(self,screen:Union[Tk,ctk.CTk,Toplevel,ctk.CTkToplevel],width:int = 0,height:int = 0,bg:str = "",fg:str = "",ppolice:str="Arial",ptaille:int=12,pstyle:str="normal",wrap:str="word",enableKeyboard:bool=False):
         if (self.__mode == 0):
             text = ctk.CTkTextbox(screen)
             if (fg != ""):
@@ -494,7 +539,10 @@ class CArreraTK :
 
             text.configure(font=(police, taille, style))
 
-        text.configure(state="disabled")
+        if not enableKeyboard:
+            text.configure(state="disabled")
+        else :
+            text.configure(state="normal")
         return text
 
     def createArreraBackgroudImage(self,screen:Union[Tk,ctk.CTk,Toplevel,ctk.CTkToplevel],imageLight:str,imageDark :str = "",height:int = 600,width:int = 800):
@@ -510,6 +558,42 @@ class CArreraTK :
             label = ctk.CTkLabel(frame,image=image,text="")
             label.place(relx=0.5, rely=0.5, anchor='center')
             return frame
+
+    def createHourPickert(self,screen,varHour:StringVar,varMinute:StringVar):
+        hours   = [f"{h:02d}" for h in range(24)]
+        minutes = [f"{m:02d}" for m in range(60)]
+        widget = self.createFrame(screen)
+        hourPicker = self.createOptionMenu(widget,hours,varHour)
+        minutePicker = self.createOptionMenu(widget,minutes,varMinute)
+        hourPicker.pack(side="left")
+        self.createLabel(widget,text=" : ",ppolice="Arial",ptaille=20,pstyle="blod").pack(side="left")
+        minutePicker.pack(side="right")
+        varHour.set(hours[0])
+        varMinute.set(minutes[0])
+        return widget
+
+    def createTextBoxScrolled(self,screen:Union[Tk,ctk.CTk,Toplevel,ctk.CTkToplevel],ppolice:str="Arial",ptaille:int=12,pstyle:str="normal"):
+        if self.__mode == 0:
+            widget = self.createFrame(screen)
+            textbox = ctk.CTkTextbox(widget, wrap="word", state="disabled")
+            scrollbar = ctk.CTkScrollbar(widget, command=textbox.yview)
+            textbox.configure(yscrollcommand=scrollbar.set)
+
+        else :
+            widget = Frame(screen)
+            textbox = Text(widget, wrap="word", state="disabled")
+            scrollbar = Scrollbar(widget, orient="vertical", command=textbox.yview)
+            textbox.configure(yscrollcommand=scrollbar.set)
+            textbox.configure(font=(ppolice, ptaille, pstyle))
+
+        # Layout
+        widget.grid_rowconfigure(0, weight=1)
+        widget.grid_columnconfigure(0, weight=1)
+
+        textbox.grid(row=0, column=0, sticky="nsew", padx=(10, 0), pady=10)
+        scrollbar.grid(row=0, column=1, sticky="ns", padx=(0, 10), pady=10)
+
+        return widget, textbox
 
     def labelChangeColor(self,label : Union[Label,ctk.CTkLabel],bg:str = "" ,fg :str = "" ):
         if isinstance (label,Label):

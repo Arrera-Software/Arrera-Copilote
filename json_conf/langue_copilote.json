@@ -1,0 +1,13 @@
+{
+  "1": "Bonjour et bienvenu sur Arrera Copilote.",
+  "2": "Je suis là pour vous aider autant dans le travail que dans votre vie, grâce à l’alliance d’Arrera Six et Ryley.",
+  "setting_close": "Tous les paramètres des assistants ont été mis à jour.",
+  "aide": "Je vous ouvre l'interface d'aide de cette fonctionnalité.",
+  "windows1": "C'est noté ! Je repasse en affichage classique pour qu'on puisse discuter confortablement.",
+  "windows2": "Je me fais tout petit dans un coin pour rester discret tout en restant à ton écoute.",
+  "windows3": "Mode CodeHelp activé. Je suis prêt à t'épauler sur tes lignes de code.",
+  "windows4": "Je passe en mode CodeHelp réduit. Je reste dans un coin de ton écran pour tes besoins de dev.",
+  "cancel_close": "Je suis rassuré de savoir que vous ne voulez pas m'arrêter.",
+  "error1": "Le mode de fenêtre que vous avez demandé n'existe pas.",
+  "error2": "Je n'ai pas ce mode dans ma liste."
+}

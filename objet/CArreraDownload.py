@@ -15,7 +15,11 @@ class CArreraDownload :
         2 -> Juste Sons2
         3 -> Juste Video
         """
-        self.__mode = m 
+        if m == 1 or m == 2 or m == 3:
+            self.__mode = m
+            return True
+        else :
+            return False
     
     def setDownloadFolder(self):
         folder = ""
@@ -51,8 +55,10 @@ class CArreraDownload :
         if (url != ""):
             self.__url = url
             self.__urlSet = True
+            return True
         else :
             self.__urlSet = False
+            return False
       
     def download(self):
         if ((self.__downloadFolderSet == True) and (self.__urlSet == True)):
@@ -71,4 +77,7 @@ class CArreraDownload :
             return True
         else :
             return False
+
+    def getMode(self):
+        return {"1":"best","2":"bestaudio","3":"bestvideo"}
         

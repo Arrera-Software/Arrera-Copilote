@@ -6,8 +6,8 @@
   "open": "open.json",
   "search": "search.json",
   "service": "service.json",
-  "software": "software.json",
   "time": "time.json",
   "work": "work.json",
-  "socket": "socket.json"
+  "socket": "socket.json",
+  "interface": "interface.json"
 }
