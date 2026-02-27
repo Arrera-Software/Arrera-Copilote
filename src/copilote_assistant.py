@@ -8,7 +8,7 @@ THEME_FILE = "asset/theme/theme_bleu_violet.json"
 
 SOFT_CONF = soft_config(
     name_soft="arrera-copilote",
-    version="I2026-0.00"
+    version="I2026-1.00"
 )
 
 class copilote_assistant():
