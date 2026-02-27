@@ -176,7 +176,7 @@ class CArreraTK :
                 return image
             else :
                 image = ctk.CTkImage(
-                    light_image=Image.open(pathLight),
+                    light_image=Image.open(self.__resource_path(pathLight)),
                     size=(tailleX, tailleY))
                 return image
         else :
