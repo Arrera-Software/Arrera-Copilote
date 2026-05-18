@@ -12,6 +12,7 @@ openpyxl
 PyGithub
 pyperclip
 websocket-client
+websockets
 pillow
 playsound3
 speechRecognition
@@ -21,3 +22,5 @@ python-vlc
 pyspellchecker
 llama_cpp_python
 pyttsx3
+pyinstaller
+pyaudio

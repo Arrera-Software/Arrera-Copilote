@@ -2,7 +2,7 @@ from brain.brain import ABrain,confNeuron
 from lynx_gui.arrera_lynx import arrera_lynx
 from src.copilote_gui import copilote_gui
 from src.version_demon import demon,soft_config
-from lib.arrera_tk import *
+from librairy.arrera_tk import *
 
 THEME_FILE = "asset/theme/theme_bleu_violet.json"
 

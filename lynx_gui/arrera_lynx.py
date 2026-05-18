@@ -1,4 +1,4 @@
-from lib.arrera_tk import *
+from librairy.arrera_tk import *
 from tkinter.messagebox import *
 from librairy.travailJSON import *
 from gestionnaire.gestion import gestionnaire
