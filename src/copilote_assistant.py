@@ -1,15 +1,12 @@
 from brain.brain import ABrain,confNeuron
 from lynx_gui.arrera_lynx import arrera_lynx
 from src.copilote_gui import copilote_gui
-from src.version_demon import demon,soft_config
+from config.tiger_demon import tiger_demon
 from librairy.arrera_tk import *
 
 THEME_FILE = "asset/theme/theme_bleu_violet.json"
 
-SOFT_CONF = soft_config(
-    name_soft="arrera-copilote",
-    version="I2026-0.00"
-)
+VERSION = "dev"
 
 class copilote_assistant():
     def __init__(self):
@@ -84,7 +81,7 @@ class copilote_assistant():
         )
 
         # Demon de MAJ
-        self.__demon = demon(SOFT_CONF, "https://arrera-software.fr/depots.json")
+        self.__demon = tiger_demon("copilot",VERSION)
 
         # Demarage du reseau de neuron
         self.__six = ABrain(self.__conf_six)
@@ -129,7 +126,7 @@ class copilote_assistant():
                                      six_brain=self.__six,
                                      ryley_brain=self.__ryley,
                                      theme_file=THEME_FILE,
-                                     version=self.__demon.getVersionSoft())
+                                     version=self.__demon.get_local_version())
             assistant.active(self.__firt_boot,self.__demon.checkUpdate())
 
     def __restartConf(self,windows:aTk):
