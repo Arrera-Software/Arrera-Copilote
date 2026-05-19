@@ -6,7 +6,7 @@ from librairy.arrera_tk import *
 
 THEME_FILE = "asset/theme/theme_bleu_violet.json"
 
-VERSION = "dev"
+VERSION = "I2026-2.00"
 
 class copilote_assistant():
     def __init__(self):
