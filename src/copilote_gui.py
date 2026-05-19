@@ -1,9 +1,8 @@
 import signal
-import requests
 from setting_gui.arrera_gazelle import arrera_gazelle
 import time
 from tkinter.messagebox import *
-from lib.arrera_tk import *
+from librairy.arrera_tk import *
 import threading as th
 from brain.brain import ABrain
 import random

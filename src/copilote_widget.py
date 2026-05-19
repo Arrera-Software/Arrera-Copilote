@@ -1,4 +1,4 @@
-from lib.arrera_tk import *
+from librairy.arrera_tk import *
 from librairy.dectectionOS import OS
 from src.copilote_setting import copilote_setting
 from gestionnaire.gestion import gestionnaire
