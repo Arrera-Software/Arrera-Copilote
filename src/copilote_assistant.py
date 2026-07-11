@@ -4,7 +4,7 @@ from config.tiger_demon import tiger_demon
 
 THEME_FILE = "asset/theme/theme_bleu_violet.json"
 
-VERSION = "I2026-3.00"
+VERSION = "dev"
 
 class copilote_assistant():
     def __init__(self):
