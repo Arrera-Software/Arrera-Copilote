@@ -4,15 +4,16 @@ import time
 from tkinter.messagebox import *
 from librairy.arrera_tk import *
 import threading as th
-from brain.brain import ABrain
+from brain.brain import ABrain,confNeuron
 import random
 from src.copilote_widget import back_widget,quick_setting
 from src.copilote_setting import copilote_setting
 from src.copilote_language import copilote_language
+from lynx_gui.arrera_lynx import arrera_lynx
 
 class copilote_gui(aTk):
     def __init__(self,iconFolder:str,iconName:str,
-                 six_brain:ABrain,ryley_brain:ABrain,theme_file:str,
+                 conf_six:confNeuron,conf_ryley:confNeuron,theme_file:str,
                  version:str):
         self.__nameSoft = "Arrera Copilote"
         self.__first_boot = False
@@ -48,9 +49,11 @@ class copilote_gui(aTk):
         self.__L_btn_word_normal = []
         self.__L_btn_project_normal = []
 
+
+
         # Recuperation des cerveau
-        self.__six_brain = six_brain
-        self.__ryley_brain = ryley_brain
+        self.__six_brain = ABrain(conf_six)
+        self.__ryley_brain = ABrain(conf_ryley)
 
         # Recuperation gestionnaire
         self.__gestionnaire = self.__six_brain.getGestionnaire()
@@ -74,6 +77,12 @@ class copilote_gui(aTk):
 
         super().__init__(title=self.__nameSoft,resizable=False,theme_file=theme_file,
                          fg_color=("#ffffff","#000000"))
+
+        # Fenetre de boot
+        self.__lynx_frame = arrera_lynx(self,
+                                        gest=self.__gestionnaire,
+                                        conf_file="json_conf/configLynx.json",
+                                        fnc_end=self.__end_lynx)
 
         self.geometry("500x400+5+30")
         self.protocol("WM_DELETE_WINDOW", self.__on_close)
@@ -188,33 +197,39 @@ class copilote_gui(aTk):
         self.__create_codehelp_btn([self.__c_speak_normal_codehelp,
                                     self.__c_emotion_codehelp_normal])
 
-    def active(self,firstBoot:bool,update_available:bool):
+    def active(self,update_available:bool):
 
-        self.__first_boot = firstBoot
+        self.__first_boot = self.__gestionnaire.getUserConf().getFirstRun()
 
-        if update_available:
-            self.__c_maj.place(x=0,y=0)
+        if self.__first_boot :
+            self.geometry(self.__lynx_frame.get_geometry())
+            self.__lynx_frame.active()
         else :
-            self.__boot()
+            if update_available:
+                self.__c_maj.place(x=0,y=0)
+            else :
+                self.__boot()
 
         self.mainloop()
 
     def __boot(self):
-        self.__set_state_micro_sound()
-        self.__assistant_booting = True
         self.__c_maj.place_forget()
+        self.__sequence_boot()
 
-        if self.__first_boot :
-            self.__sequence_first_boot(1)
-        else :
-            self.__sequence_boot()
-
-            if random.randint(0,1) == 0 :
-                self.__sequence_speak(self.__six_brain.boot())
-            else :
-                self.__sequence_speak(self.__ryley_brain.boot())
+        if random.randint(0, 1) == 0:
+            self.__sequence_speak(self.__six_brain.boot())
+        else:
+            self.__sequence_speak(self.__ryley_brain.boot())
 
         self.__update__assistant()
+
+    def __end_lynx(self):
+        self.__lynx_frame.place_forget()
+        self.geometry("500x400+5+30")
+        self.__set_state_sound()
+        self.__sequence_first_boot(1)
+        self.__update__assistant()
+
 
     # Creation des widget
 
@@ -811,6 +826,7 @@ class copilote_gui(aTk):
             self.__update_during_first_boot(nb)
         else :
             self.__change_gui_speak()
+            self.__update_during_first_boot(nb)
 
     def __sequence_emotion(self):
         if 10 >= self.__timer >= 40:
@@ -1085,9 +1101,9 @@ class copilote_gui(aTk):
             self.__back_widget_normal.placeBottomCenter()
             self.__c_speak_normal.place(x=0, y=0)
 
-        self.__set_state_micro_sound()
+        self.__set_state_sound()
 
-    def __set_state_micro_sound(self):
+    def __set_state_sound(self):
         self.__speak_is_enable = self.__copilote_setting.get_sound()
 
     def __manage_btn_open_fnc(self):
