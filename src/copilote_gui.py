@@ -131,38 +131,41 @@ class copilote_gui(aTk):
                                              self.__unview_quick_setting,
                                              self.__active_setting)
 
-        self.__back_widget_normal = back_widget(self,key_gest=self.__key_manage,
+        self.__back_widget_normal = back_widget(self, key_gest=self.__key_manage,
                                                 assistant_gest=self.__gestionnaire,
-                                                dirImg=[self.__dir_gui_light,self.__dir_gui_dark],
-                                                img_windows_mode="icon-lttle.png",img_mode="codehelp.png",
+                                                dirImg=[self.__dir_gui_light, self.__dir_gui_dark],
+                                                img_windows_mode="icon-lttle.png", img_mode="codehelp.png",
                                                 dectOS=self.__objOS,
                                                 fonc_speed_setting=self.__view_quick_setting,
                                                 fonc_mode=self.__mode_codehelp,
-                                                fonc_windows_mode= self.__mode_little,
-                                                fonc_setting=self.__active_setting,
-                                                fonc_send= self.__send_on_assistants)
+                                                fonc_windows_mode=self.__mode_little,
+                                                fonc_send=self.__send_on_assistants,
+                                                arr_voice=self.__arr_voice,
+                                                use_trigger=self.__gazelleUI.gettigerWordSet())
 
-        self.__back_widget_codehelp_normal = back_widget(self,key_gest=self.__key_manage,
-                                                 assistant_gest=self.__gestionnaire,
-                                                dirImg=[self.__dir_gui_light,self.__dir_gui_dark],
-                                                img_windows_mode="icon-lttle.png",img_mode="copilote.png",
-                                                dectOS=self.__objOS,
-                                                fonc_speed_setting=self.__view_quick_setting,
-                                                fonc_mode=self.__mode_normal,
-                                                fonc_windows_mode= self.__mode_codehelp_little,
-                                                fonc_setting=self.__active_setting,
-                                                fonc_send= self.__send_on_assistants)
-
-        self.__back_widget_codehelp_little = back_widget(self,key_gest=self.__key_manage,
+        self.__back_widget_codehelp_normal = back_widget(self, key_gest=self.__key_manage,
                                                          assistant_gest=self.__gestionnaire,
-                                                         dirImg=[self.__dir_gui_light,self.__dir_gui_dark],
-                                                         img_windows_mode="icon-big.png",img_mode="copilote.png",
+                                                         dirImg=[self.__dir_gui_light, self.__dir_gui_dark],
+                                                         img_windows_mode="icon-lttle.png", img_mode="copilote.png",
+                                                         dectOS=self.__objOS,
+                                                         fonc_speed_setting=self.__view_quick_setting,
+                                                         fonc_mode=self.__mode_normal,
+                                                         fonc_windows_mode=self.__mode_codehelp_little,
+                                                         fonc_send=self.__send_on_assistants,
+                                                         arr_voice=self.__arr_voice,
+                                                         use_trigger=self.__gazelleUI.gettigerWordSet())
+
+        self.__back_widget_codehelp_little = back_widget(self, key_gest=self.__key_manage,
+                                                         assistant_gest=self.__gestionnaire,
+                                                         dirImg=[self.__dir_gui_light, self.__dir_gui_dark],
+                                                         img_windows_mode="icon-big.png", img_mode="copilote.png",
                                                          dectOS=self.__objOS,
                                                          fonc_speed_setting=self.__view_quick_setting,
                                                          fonc_mode=self.__mode_little,
-                                                         fonc_windows_mode= self.__mode_codehelp,
-                                                         fonc_setting=self.__active_setting,
-                                                         fonc_send= self.__send_on_assistants)
+                                                         fonc_windows_mode=self.__mode_codehelp,
+                                                         fonc_send=self.__send_on_assistants,
+                                                         arr_voice=self.__arr_voice,
+                                                         use_trigger=self.__gazelleUI.gettigerWordSet())
 
         self.__back_widget_little = back_widget(self, key_gest=self.__key_manage,
                                                 assistant_gest=self.__gestionnaire,
@@ -172,8 +175,9 @@ class copilote_gui(aTk):
                                                 fonc_speed_setting=self.__view_quick_setting,
                                                 fonc_mode=self.__mode_codehelp_little,
                                                 fonc_windows_mode=self.__mode_normal,
-                                                fonc_setting=self.__active_setting,
-                                                fonc_send=self.__send_on_assistants)
+                                                fonc_send=self.__send_on_assistants,
+                                                arr_voice=self.__arr_voice,
+                                                use_trigger=self.__gazelleUI.gettigerWordSet())
 
         self.__quick_setting.mode_normal()
 

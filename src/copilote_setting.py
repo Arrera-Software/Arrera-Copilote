@@ -2,8 +2,7 @@ from librairy.travailJSON import *
 from librairy.dectectionOS import OS
 import os
 
-DICTBASE = {"sound":1,
-            "microphone":0}
+DICTBASE = {"sound":1}
 
 class copilote_setting:
     def __init__(self,objOs:OS):
@@ -27,17 +26,8 @@ class copilote_setting:
     def get_sound(self):
         return int(self.__file_setting.getContentJsonFlag("sound"))
 
-    def get_micophone(self):
-        return int(self.__file_setting.getContentJsonFlag("microphone"))
-
     def set_sound(self,value:bool):
         if value:
             return self.__file_setting.setValeurJson("sound",1)
         else:
             return self.__file_setting.setValeurJson("sound",0)
-
-    def set_microphone(self,value:bool):
-        if value:
-            return self.__file_setting.setValeurJson("microphone",1)
-        else:
-            return self.__file_setting.setValeurJson("microphone",0)
