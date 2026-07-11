@@ -1089,7 +1089,6 @@ class copilote_gui(aTk):
 
     def __set_state_micro_sound(self):
         self.__speak_is_enable = self.__copilote_setting.get_sound()
-        self.__micro_is_enable = self.__copilote_setting.get_micophone()
 
     def __manage_btn_open_fnc(self):
         if self.__six_brain.getTableur() :

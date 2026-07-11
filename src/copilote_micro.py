@@ -11,13 +11,13 @@ class copilote_micro(aButton):
     def __init__(self,master,arr_voice:CArreraVoice,back_widget:'back_widget',
                  fnc_send:Callable,fg_color:str=None,
                  use_trigger:bool=False):
-        self.__img_micro = aImage(path_light="asset/icone/microphone/microphone_dark.png",
-                                  path_dark="asset/icone/microphone/microphone_white.png",
+        self.__img_micro = aImage(path_light="asset/icone/microphone/microphone_white.png",
+                                  path_dark="asset/icone/microphone/microphone_dark.png",
                                   height=32,width=32)
         self.__img_listen = aImage(path_light="asset/icone/microphone/listen.png"
                                    ,height=32,width=32)
-        self.__img_disable = aImage(path_light="asset/icone/microphone/disable_dark.png",
-                                    path_dark="asset/icone/microphone/disable_white.png",
+        self.__img_disable = aImage(path_light="asset/icone/microphone/disable_white.png",
+                                    path_dark="asset/icone/microphone/disable_dark.png",
                                     height=32,width=32)
         self.__img_trigger = aImage(path_light="asset/icone/microphone/trigger.png"
                                     ,height=32,width=32)
