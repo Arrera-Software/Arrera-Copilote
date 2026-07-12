@@ -1,8 +1,6 @@
-from brain.brain import ABrain,confNeuron
-from lynx_gui.arrera_lynx import arrera_lynx
+from brain.brain import confNeuron
 from src.copilote_gui import copilote_gui
 from config.tiger_demon import tiger_demon
-from librairy.arrera_tk import *
 
 THEME_FILE = "asset/theme/theme_bleu_violet.json"
 
@@ -83,52 +81,15 @@ class copilote_assistant():
         # Demon de MAJ
         self.__demon = tiger_demon("copilot",VERSION)
 
-        # Demarage du reseau de neuron
-        self.__six = ABrain(self.__conf_six)
-        self.__ryley = ABrain(self.__conf_ryley)
-
-        self.__gestionnaire = self.__six.getGestionnaire()
-
-        # Var
-        self.__firt_boot = self.__gestionnaire.getUserConf().getFirstRun()
-        self.__state_conf = False
 
     def active(self):
-        if self.__firt_boot:
-            l = arrera_lynx(self.__gestionnaire,
-                            resource_path("json_conf/configLynx.json"),
-                            THEME_FILE)
-            self.__state_conf = l.return_state_lynx()
-        else :
-            self.__state_conf = True
         self.__boot()
 
     def __boot(self):
-        if not self.__state_conf:
-            w = aTk(title="Arrera Copilote", resizable=False, width=500, height=350,
-                    theme_file=THEME_FILE)
-            img_cavas = aBackgroundImage(w,
-                                         background_dark="asset/GUI/dark/no_config.png",
-                                         background_light="asset/GUI/light/no_config.png",
-                                         width=500, height=350)
-            label_text = aLabel(w, text="Désoler mais vous avez pas configuer l'assistant correctement",
-                                police_size=20, fg_color="#452446",
-                                text_color="white", wraplength=300, justify="left")
-            btn_conf = aButton(w, text="Configurer",
-                               size=20, command=lambda: self.__restartConf(w))
-            img_cavas.pack()
-            label_text.place(x=190, y=40)
-            btn_conf.placeBottomCenter()
-            w.mainloop()
-        else :
-            assistant = copilote_gui(iconFolder="asset/icone/",
-                                     iconName="icon",
-                                     six_brain=self.__six,
-                                     ryley_brain=self.__ryley,
-                                     theme_file=THEME_FILE,
-                                     version=self.__demon.get_local_version())
-            assistant.active(self.__firt_boot,self.__demon.checkUpdate())
-
-    def __restartConf(self,windows:aTk):
-        windows.destroy()
-        self.active()
+        assistant = copilote_gui(iconFolder="asset/icone/",
+                                 iconName="icon",
+                                 conf_six=self.__conf_six,
+                                 conf_ryley=self.__conf_ryley,
+                                 theme_file=THEME_FILE,
+                                 version=self.__demon.get_local_version())
+        assistant.active(self.__demon.checkUpdate())
