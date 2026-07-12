@@ -10,15 +10,13 @@ ICON_FILE = "asset/icone/linux/icon.png"
 UPX_ENABLED = False
 DEBUG_BUILD = False
 HIDDENIMPORTS = [
-    'PIL._tkinter_finder',
-    'pyttsx3.drivers',
-    'pyttsx3.drivers.espeak', # Driver standard sous Linux
-    'pyttsx3.drivers.nsss',   # Au cas où tu compiles sur Mac plus tard
-    'pyttsx3.drivers.sapi5',  # Au cas où tu compiles sur Windows
-    'gtts',
-    'speech_recognition'
+    'PIL._tkinter_finder', 'pyttsx3.drivers', 'pyttsx3.drivers.espeak',
+    'gtts', 'speech_recognition', 'pyaudio', 'numpy', 'google.protobuf',
+    'PIL', 'PIL.Image', 'tkinter', 'sounddevice'
 ]
-EXCLUDES = []
+EXCLUDES = [
+    "tensorflow", "tensorflow_estimator", "tensorboard", "keras", "cv2", "torch"
+]
 # ========= FIN CONFIG =========
 
 block_cipher = None
@@ -40,7 +38,7 @@ final_hiddenimports = list(set(HIDDENIMPORTS + combined_hidden))
 
 # --- Ajout des dossiers locaux ---
 extra_datas = []
-for folder in ['asset', 'config', 'keyword', 'language']:
+for folder in ['asset', 'config', 'keyword', 'language', 'json_conf', 'instruction_ia']:
     source_path = os.path.join(PROJECT_ROOT, folder)
     if os.path.exists(source_path):
         extra_datas.append((source_path, folder))
