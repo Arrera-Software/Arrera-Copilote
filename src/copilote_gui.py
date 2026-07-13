@@ -81,7 +81,7 @@ class copilote_gui(aTk):
         # Fenetre de boot
         self.__lynx_frame = arrera_lynx(self,
                                         gest=self.__gestionnaire,
-                                        conf_file="json_conf/configLynx.json",
+                                        conf_file=resource_path("json_conf/configLynx.json"),
                                         fnc_end=self.__end_lynx)
 
         self.geometry("500x400+5+30")
